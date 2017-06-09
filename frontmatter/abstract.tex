@@ -1,0 +1,26 @@
+% This is the abstract of my dissertation.
+
+\pagestyle{empty} % No page number in entire abstract
+\begin{center}
+  ABSTRACT
+
+  \@title
+
+  \@author
+\end{center}
+
+In order to study the real world, scientists (and computer scientists) develop
+simplified models that attempt to capture the essential features of the observed system.
+Understanding the power and limitations of these models, when they apply or fail to fully
+capture the situation at hand, is therefore of paramount importance.
+
+In this thesis, we consider the role of some of these standard models in property and
+distribution testing, as well as in related areas. We introduce variants or extensions of these
+models, in order to circumvent some of their limitations or draw new insights about the
+problems they aim at capturing. Our results are organized in two main directions:
+
+\begin{enumerate}
+  \item We study and refine our understanding of distribution testing, providing a clear picture of what can and cannot be achieved~--~and why~--~in many problems of interest. This goal is tackled in two ways: first, we abstract structural properties of distributions that allow efficient approaches, and obtain a general algorithmic framework that leverages them. Second, we will introduce and consider new (natural) models of access to the unknown distributions, that enable testers to achieve better efficiency; thus helping both in obtaining such better algorithms in practice, and in providing an understanding of the underlying bottlenecks for algorithms in the standard access models.
+
+  \item We then leave the field of distribution testing to explore areas adjacent or related to property testing. We first introduce a new algorithmic primitive of sampling correction, which in some sense lies in between distribution learning and testing, and aims at capturing imperfect or noisy sources of data. We then venture into the field of communication complexity, and study the role of imperfect context between two communicating parties: thus interpolating between the standard settings of public and private shared randomness between two parties. Finally, we turn back to communication complexity, drawing connections between this field and distribution testing~--~yielding a new general method for proving lower bounds in the latter.
+\end{enumerate}

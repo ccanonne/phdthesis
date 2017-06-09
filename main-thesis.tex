@@ -1,0 +1,87 @@
+% Dissertation Template for Columbia University Ph.D. programs
+% By Charles McNamara, 2016
+% It's probably a good idea to review the university guidelines just so you know what you want your dissertation to look like. You can read about those guidelines at this site: http://gsas.columbia.edu/content/formatting-guidelines.
+
+\documentclass[letterpaper,10pt]{memoir} % The memoir class is great for longer works that use separate chapters. The Dissertation Office recommends 10-pt Arial or 12-pt Times New Roman. I use 12-pt for readability.
+\def\withcolors{1}
+\def\withnotes{1}
+
+\def\withannoyingspacing{0}
+
+% Below are some LaTeX packages to include to make sure that your Unicode characters render correctly. This is especially important if your dissertation includes polytonic Greek!
+ \DisemulatePackage{setspace} % You need to use this package for "true MS Word" double-spacing.
+ \usepackage{setspace} % Allows you to set different spacing (double, etc.) throughout your writing.
+% Here is some stuff on the bibliography. You want to keep your bibliography file in the same directory as this file.
+
+\usepackage[american]{babel} % Enables hyphenation and date formats according to American conventions. Change "american" to "british" (or another value) if you work outside the US.
+
+\input{packages}
+\input{preamble}
+
+%\usepackage{utopia} % Nice font. I like it.
+\usepackage{times} % Stupid font. I like it too.
+
+\title{Property Testing and Probability Distributions: New Insights from New Models}
+\author{Cl\'{e}ment L. Canonne}
+\date{2017}
+
+
+
+\usepackage[backend=bibtex,style=authoryear-icomp]{biblatex} % Use biblatex
+\addbibresource{./bibliography.bib} % Your bibliography file.
+
+% Here you can set margins and other page formatting
+\setlrmarginsandblock{3.175cm}{3.175cm}{*} % Left and right margin -- the dissertation office requires at least 1-inch margins
+\setulmarginsandblock{2.54cm}{2.54cm}{*}  % Upper and lower margin -- same thing, at least 1-inch margins
+\checkandfixthelayout % A function of the memoir class that finds the right number of lines per page and apparently tidies up the formatting in other mysterious ways...?
+\fixpdflayout
+
+ \begin{document}
+\chapterstyle{chappell} % Nice formatting for chapter headings. Check out the documentation for the memoir class for other options.
+\footnotesep\baselineskip % Footnotes need to have a space between each one for Columbia's Dissertation Office. 
+\ifnum\withannoyingspacing=1
+  \setstretch{2} % Set line spacing to "true MS Word" double-spacing
+\else
+  \setstretch{1.5}
+\fi
+\pagestyle{plain} % Put page numbers at the bottom-center for the whole dissertation. Columbia's dissertation office requires that the numbers appear at this location on the page throughout the document.
+
+
+\makeatletter
+\include{./frontmatter/titlepage}
+\include{./frontmatter/copyright}  %% Here's the copyright page. I use a Creative Commons license.
+\include{./frontmatter/abstract}
+\makeatother
+
+\frontmatter
+\tableofcontents % You need to put your ToC after frontmatter so that it will get lowercase Roman numerals.
+
+%%% A list of graphs and illustrations should go here if you use any.
+
+\include{./frontmatter/acknowledgments}
+\include{./frontmatter/dedication}
+
+%%% Preface if you have one
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+% What follows is the main text of your dissertation. You can comment out lines if you want to exclude them from your document for drafts. Everything after \mainmatter will get Arabic numbers centered on the bottom of the page.
+\mainmatter
+
+\include{./introduction/sec-introduction}
+\include{./chapter1/chap-first}
+\include{./conclusion/sec-conclusion}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+% Bibliography
+\backmatter
+\setlength{\bibitemsep}{\baselineskip} % Skip lines between bibliography entries. Columbia requires that you skip a line between entries.
+\SingleSpacing % Start single-spacing text before you start the bibliography. We used \bibitemsep earlier in this document to keep bibliography items separated by one line of blank space, but we need to keep the entries themselves single-spaced.
+\printbibliography % Print the bibliography.
+
+
+
+\end{document}

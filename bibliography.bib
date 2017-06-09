@@ -1,0 +1,1275 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\ifnum\withbiblioconversion=0
+  @string{cacm =  {CACM}}
+  @string{ipl = {IPL}}
+  @string{jacm =  {JACM}}
+  @string{jcss =  {JCSS}}
+  @string{sicomp ={SICOMP}}
+  @string{sidma ={SIDMA}}
+  @string{tcs =  { TCS}}
+  @string{rsa={RSA}}
+  @string{ieeeit={IEEE-IT}}
+  @string{eccc={ECCC}}
+  @string{transalg = {TALG}}
+  @string{fntcs = {FnTCS}}
+  @string{fntml = {FnTML}}
+  @string{ml =    {ML}}
+  @string{jofapp = {J. of Ineq. App.}}
+  @string{jofstatphys = {J. Stat. Phys.}}
+  @string{infcomp={Inf. Comp.}}
+  @string{infctrl={Inf. Cont.}}
+  @string{beatcs = {BEATCS}}
+  @string{annmathstat  = {Ann. Math. Stat.}}
+  @string{annstat  = {Ann. Stat.}}
+  @string{annproba  = {Ann. Probab.}}
+  @string{theorycompsyst = {Theory Comput. Syst.}}
+  @string{theorycomp = {Theory Comput.}}
+  @string{operletters = {Oper. Res. Lett.}}
+\else
+  @string{cacm =  {Communications of the ACM}}
+  @string{ipl = {Information Processing Letters}}
+  @string{jacm =  {Journal of the ACM}}
+  @string{jcss =  {Journal of Computer and System Sciences}}
+  @string{sicomp ={SIAM Journal on Computing}}
+  @string{sidma ={SIAM Journal on Discrete Math}}
+  @string{tcs =   {Theoretical Computer Science}}
+  @string{rsa={Random Structures and Algorithms}}
+  @string{ieeeit={IEEE Transactions on Information Theory}}
+  @string{eccc={Electronic Colloquium on Computational Complexity (ECCC)}}
+  @string{transalg = {Transactions on Algorithms}}
+  @string{fntcs = {Foundations and Trends in Theoretical Computer Science}}
+  @string{fntml= {Foundations and Trends in Machine Learning}}
+  @string{ml =    {Machine Learning}}
+  @string{jofapp = {Journal of Inequalities and Applications}}
+  @string{jofstatphys = {Journal of Statistical Physics}}
+  @string{infcomp={Information and Computation}}
+  @string{infctrl={Information and Control}}
+  @string{beatcs = {Bulletin of the European Association for Theoretical Computer Science}}
+  @string{annmathstat  = {The Annals of Mathematical Statistics}}
+  @string{annstat  = {The Annals of Mathematical Statistics}}
+  @string{annproba  = {The Annals of Probability}}
+  @string{theorycompsyst = {Theory of Computing Systems}}
+  @string{theorycomp = {Theory of Computing}}
+  @string{operletters = {Operations Research Letters}}
+\fi
+
+@string{comcomp = {Computational Complexity}}
+
+@string{arxiv = {ArXiV}}
+@string{arxiveprints = {ArXiV e-prints}}
+
+@string{stoc82 = {Proceedings of STOC}}
+@string{stoc96 = {Proceedings of STOC}}
+@string{stoc98 = {Proceedings of STOC}}
+@string{stoc99 = {Proceedings of STOC}}
+@string{stoc00 = {Proceedings of STOC}}
+@string{stoc01 = {Proceedings of STOC}}
+@string{stoc02 = {Proceedings of STOC}}
+@string{stoc03 = {Proceedings of STOC}}
+@string{stoc04 = {Proceedings of STOC}}
+@string{stoc05 = {Proceedings of STOC}}
+@string{stoc06 = {Proceedings of STOC}}
+@string{stoc07 = {Proceedings of STOC}}
+@string{stoc08 = {Proceedings of STOC}}
+@string{stoc09 = {Proceedings of STOC}}
+@string{stoc10 = {Proceedings of STOC}}
+@string{stoc11 = {Proceedings of STOC}}
+@string{stoc12 = {Proceedings of STOC}}
+@string{stoc13 = {Proceedings of STOC}}
+@string{stoc14 = {Proceedings of STOC}}
+@string{stoc15 = {Proceedings of STOC}}
+
+@string{focs98 = {Proceedings of FOCS}}
+@string{focs99 = {Proceedings of FOCS}}
+@string{focs00 = {Proceedings of FOCS}}
+@string{focs01 = {Proceedings of FOCS}}
+@string{focs02 = {Proceedings of FOCS}}
+@string{focs03 = {Proceedings of FOCS}}
+@string{focs04 = {Proceedings of FOCS}}
+@string{focs05 = {Proceedings of FOCS}}
+@string{focs06 = {Proceedings of FOCS}}
+@string{focs07 = {Proceedings of FOCS}}
+@string{focs08 = {Proceedings of FOCS}}
+@string{focs09 = {Proceedings of FOCS}}
+@string{focs10 = {Proceedings of FOCS}}
+@string{focs11 = {Proceedings of FOCS}}
+@string{focs12 = {Proceedings of FOCS}}
+@string{focs13 = {Proceedings of FOCS}}
+@string{focs14 = {Proceedings of FOCS}}
+@string{focs15 = {Proceedings of FOCS}}
+@string{focs16 = {Proceedings of FOCS}}
+
+@string{soda99 = {Proceedings of SODA}}
+@string{soda00 = {Proceedings of SODA}}
+@string{soda01 = {Proceedings of SODA}}
+@string{soda02 = {Proceedings of SODA}}
+@string{soda03 = {Proceedings of SODA}}
+@string{soda04 = {Proceedings of SODA}}
+@string{soda05 = {Proceedings of SODA}}
+@string{soda06 = {Proceedings of SODA}}
+@string{soda07 = {Proceedings of SODA}}
+@string{soda08 = {Proceedings of SODA}}
+@string{soda09 = {Proceedings of SODA}}
+@string{soda10 = {Proceedings of SODA}}
+@string{soda11 = {Proceedings of SODA}}
+@string{soda12 = {Proceedings of SODA}}
+@string{soda13 = {Proceedings of SODA}}
+@string{soda14 = {Proceedings of SODA}}
+@string{soda15 = {Proceedings of SODA}}
+
+@string{random07 = {Proceedings of APPROX-RANDOM}}
+@string{random09 = {Proceedings of APPROX-RANDOM}}
+@string{random12 = {Proceedings of APPROX-RANDOM}}
+
+@string{pods12 = {Proceedings of PODS}}
+@string{pods16 = {Proceedings of PODS}}
+
+@string{icalp10 = {Proceedings of ICALP}}
+@string{icalp12 = {Proceedings of ICALP}}
+@string{icalp13 = {Proceedings of ICALP}}
+@string{icalp14 = {Proceedings of ICALP}}
+@string{icalp15 = {Proceedings of ICALP}}
+
+@string{itcs11 = {Proceedings of ITCS}}
+@string{itcs13 = {Proceedings of ITCS}}
+@string{itcs14 = {Proceedings of ITCS}}
+@string{itcs15 = {Proceedings of ITCS}}
+
+@string{colt11 = {Proceedings of COLT}}
+@string{colt12 = {Proceedings of COLT}}
+@string{colt13 = {Proceedings of COLT}}
+@string{colt15 = {Proceedings of COLT}}
+@string{colt16 = {Proceedings of COLT}}
+
+@string{aistats = {Proceedings of AISTATS}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+@article{BLR:93,
+  author    = {Manuel Blum and
+               Michael Luby and
+               Ronitt Rubinfeld},
+  title     = {Self-Testing/Correcting with Applications to Numerical Problems},
+  journal   = {J. Comput. Syst. Sci.},
+  volume    = {47},
+  number    = {3},
+  pages     = {549--595},
+  year      = {1993}
+}
+
+@book{Du:GT:2000,
+  title={Combinatorial Group Testing and Its Applications},
+  author={Du, Dingzhu and Hwang, Frank K.},
+  isbn={9789810241070},
+  lccn={99048251},
+  series={Applied Mathematics},
+  url={https://books.google.com/books?id=KW5-CyUUOggC},
+  year={2000},
+  publisher={World Scientific},
+  doi = {10.1142/4252}
+
+}
+
+% PT <-> (P/L)DT
+
+@inproceedings{BCK:14,
+  author    = {Bhrushundi, Abhishek and
+               Chakraborty, Sourav and
+               Kulkarni, Raghav},
+  title     = {Property Testing Bounds for Linear and Quadratic Functions via Parity
+               Decision Trees},
+  booktitle = {{CSR}},
+  series    = {Lecture Notes in Computer Science},
+  volume    = {8476},
+  pages     = {97--110},
+  publisher = {Springer},
+  year      = {2014}
+}
+
+@article{Tell:14,
+  author    = {Tell, Roei},
+  title     = {Deconstructions of Reductions from Communication Complexity to Property
+               Testing using Generalized Parity Decision Trees},
+  journal   = eccc,
+  volume    = {21},
+  pages     = {115},
+  year      = {2014}
+}
+
+% Adaptivity helps
+
+@inproceedings{RS:13,
+  author    = {Ron, Dana and
+               Servedio, Rocco A. },
+  title     = {Exponentially Improved Algorithms and Lower Bounds for Testing Signed
+               Majorities},
+  booktitle = soda13,
+  pages     = {1319--1336},
+  publisher = {{SIAM}},
+  year      = {2013}
+}
+
+@inproceedings{MORS:09,
+  author    = {Matulef, Kevin and
+               O'Donnell, Ryan and
+               Rubinfeld, Ronitt and
+               Servedio, Rocco A.},
+  title     = {Testing {\(\pm\)}1-weight halfspace},
+  booktitle = random09,
+  series    = {Lecture Notes in Computer Science},
+  volume    = {5687},
+  pages     = {646--657},
+  publisher = {Springer},
+  year      = {2009}
+}
+
+@article{RT:12,
+  author    = {Ron, Dana and
+               Tsur, Gilad},
+  title     = {Testing computability by width-two {OBDD}s},
+  journal   = {Theor. Comput. Sci.},
+  volume    = {420},
+  pages     = {64--79},
+  year      = {2012}
+}
+
+@inproceedings{BMW:11,
+  author    = {Brody, Joshua and
+               Matulef, Kevin and
+               Wu, Chenggang},
+  title     = {Lower Bounds for Testing Computability by Small Width {OBDD}s},
+  booktitle = {{TAMC}},
+  series    = {Lecture Notes in Computer Science},
+  volume    = {6648},
+  pages     = {320--331},
+  publisher = {Springer},
+  year      = {2011}
+}
+
+%% Juntas
+
+@inproceedings{Blais:09,
+	title={Testing juntas nearly optimally},
+	author={Blais, Eric},
+	booktitle=stoc09,
+	pages={151--158},
+	year={2009},
+	organization={ACM}
+}
+@article{Chockler:04,
+	title={{A Lower Bound for Testing Juntas}},
+	author={Chockler, Hana and Gutfreund, Dan},
+	journal={Information Processing Letters},
+	volume={90},
+	number={6},
+	pages={301--305},
+	year={2004},
+	publisher={Elsevier}
+}
+@incollection{Blais:08,
+	title={Improved bounds for testing juntas},
+	author={Blais, Eric},
+	booktitle={Approximation, Randomization and Combinatorial Optimization. Algorithms and Techniques},
+	pages={317--330},
+	year={2008},
+	publisher={Springer}
+}
+
+@inproceedings{ServedioTW:15,
+  author    = {Rocco A. Servedio and
+               Li{-}Yang Tan and
+               John Wright},
+  title     = {Adaptivity Helps for Testing Juntas},
+  booktitle = {Conference on Computational Complexity},
+  series    = {LIPIcs},
+  volume    = {33},
+  pages     = {264--279},
+  publisher = {Schloss Dagstuhl - Leibniz-Zentrum fuer Informatik},
+  year      = {2015}
+}
+
+
+@inproceedings{CSTWX:17,
+  author    = {Xi Chen and
+               Rocco A. Servedio and
+               Li{-}Yang Tan and
+               Erik Waingarten and
+               Jinyu Xie},
+  title     = {Settling the query complexity of non-adaptive junta testing},
+  booktitle = {Computational Complexity Conference (CCC)},
+  year      = {2017},
+  note = {To appear}
+}
+
+@inproceedings{BK:12,
+  author    = {Eric Blais and
+               Daniel M. Kane},
+  title     = {Tight Bounds for Testing $k$-Linearity},
+  booktitle = random12,
+  series    = {Lecture Notes in Computer Science},
+  volume    = {7408},
+  pages     = {435--446},
+  publisher = {Springer},
+  year      = {2012}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+@inproceedings{SaglamT:13,
+  author    = {Mert Sa\u{g}lam and
+               G{\'{a}}bor Tardos},
+  title     = {On the Communication Complexity of Sparse Set Disjointness and Exists-Equal
+               Problems},
+  booktitle = focs13,
+  pages     = {678--687},
+  publisher = {{IEEE} Computer Society},
+  year      = {2013}
+} 
+
+@article{NW:93,
+ author = {Nisan, Noam and Wigderson, Avi},
+ title = {Rounds in Communication Complexity Revisited},
+ journal = sicomp,
+ volume = {22},
+ number = {1},
+ month = feb,
+ year = {1993},
+ issn = {0097-5397},
+ pages = {211--219},
+ numpages = {9},
+ url = {http://dx.doi.org/10.1137/0222016},
+ doi = {10.1137/0222016},
+ acmid = {152386},
+ publisher = {Society for Industrial and Applied Mathematics},
+ address = {Philadelphia, PA, USA},
+} 
+
+@inproceedings{PS:82,
+ author = {Papadimitriou, Christos H. and Sipser, Michael},
+ title = {Communication Complexity},
+ booktitle = stoc82,
+ series = stoc82,
+ year = {1982},
+ isbn = {0-89791-070-2},
+ location = {San Francisco, California, USA},
+ pages = {196--200},
+ numpages = {5},
+ url = {http://doi.acm.org/10.1145/800070.802192},
+ doi = {10.1145/800070.802192},
+ acmid = {802192},
+ publisher = {ACM},
+ address = {New York, NY, USA},
+}
+ 
+ 
+@inproceedings{GGK:15,
+  author    = {Goldreich, Oded and
+               Gur, Tom and
+               Komargodski, Ilan},
+  title     = {Strong Locally Testable Codes with Relaxed Local Decoders},
+  booktitle = {Conference on Computational Complexity},
+  series    = {LIPIcs},
+  volume    = {33},
+  pages     = {1--41},
+  publisher = {Schloss Dagstuhl - Leibniz-Zentrum fuer Informatik},
+  year      = {2015}
+}
+
+@article{BGHSV:06,
+  author    = {Eli Ben{-}Sasson and
+               Oded Goldreich and
+               Prahladh Harsha and
+               Madhu Sudan and
+               Salil P. Vadhan},
+  title     = {{Robust PCPs of Proximity, Shorter PCPs, and Applications to Coding}},
+  journal   = sicomp,
+  volume    = {36},
+  number    = {4},
+  pages     = {889--974},
+  year      = {2006},
+  url       = {http://dx.doi.org/10.1137/S0097539705446810},
+  doi       = {10.1137/S0097539705446810},
+  timestamp = {Sat, 02 Jun 2007 22:29:45 +0200},
+  biburl    = {http://dblp.uni-trier.de/rec/bib/journals/siamcomp/Ben-SassonGHSV06},
+  bibsource = {dblp computer science bibliography, http://dblp.org}
+}
+ 
+ 
+ %% K-Functional
+ 
+@book{Peetre:68,
+    AUTHOR = {Peetre, Jaak},
+     TITLE = {A theory of interpolation of normed spaces},
+    SERIES = {Notas de Matem\'atica, No. 39},
+ PUBLISHER = {Instituto de Matem\'atica Pura e Aplicada, Conselho Nacional
+              de Pesquisas, Rio de Janeiro},
+      YEAR = {1968},
+     PAGES = {iii+86},
+   MRCLASS = {46.38},
+  MRNUMBER = {0243340},
+MRREVIEWER = {C. Goulaouic}
+}
+
+@article{Astashkin:2010,
+	doi = {10.1007/s10958-010-0074-z},
+	url = {http://dx.doi.org/10.1007/s10958-010-0074-z},
+	year = 2010,
+	month = {sep},
+	publisher = {Springer Nature},
+	volume = {169},
+	number = {6},
+	pages = {725--886},
+	author = {Astashkin, Sergey V.},
+	title = {Rademacher functions in symmetric spaces},
+	journal = {Journal of Mathematical Sciences}
+
+}
+
+@book{BennettS:88,
+  title={Interpolation of Operators},
+  author={Bennett, Colin and Sharpley, Robert C.},
+  isbn={9780080874487},
+  series={Pure and Applied Mathematics},
+  url={https://books.google.com/books?id=HpqF9zjZWMMC},
+  year={1988},
+  publisher={Elsevier Science}
+}
+
+@article{Holm:70,
+	author = {Holmstedt, Tord},
+	title = {{Interpolation of Quasi-Normed Spaces.}},
+	journal = {Mathematica Scandinavica},
+	volume = {26},
+	number = {0},
+	year = {1970},
+	keywords = {},
+	abstract = {},
+	issn = {1903-1807},
+	pages = {177--199},
+	url = {http://www.mscand.dk/article/view/10976}
+}
+
+
+@article{MS:90,
+  title={{The distribution of Rademacher sums}},
+  author={Montgomery-Smith, Stephen J.},
+  journal={Proceedings of the American Mathematical Society},
+  volume={109},
+  number={2},
+  pages={517--522},
+  year={1990}
+}
+
+@incollection{HK:94,
+    AUTHOR = {Hitczenko, Pawe{\l} and Kwapie{\'n}, Stanis{\l}aw},
+     TITLE = {On the {R}ademacher series},
+ BOOKTITLE = {Probability in {B}anach spaces, 9 ({S}andjberg, 1993)},
+    SERIES = {Progr. Probab.},
+    VOLUME = {35},
+     PAGES = {31--36},
+ PUBLISHER = {Birkh\"auser Boston, Boston, MA},
+      YEAR = {1994},
+   MRCLASS = {60E15 (60G50)},
+  MRNUMBER = {1308508},
+MRREVIEWER = {Stephen Montgomery-Smith},
+}
+
+%% Instance-optimal
+
+@inproceedings{VV:14,
+  title = {An Automatic Inequality Prover and Instance Optimal Identity Testing},
+  author = {Valiant, Gregory and Valiant, Paul},
+  booktitle = focs14,
+  pages     = {51--60},
+  year = {2014}
+}
+
+% LB on PT via CC
+
+@article{BBM:12,
+  author    = {Eric Blais and
+               Joshua Brody and
+               Kevin Matulef},
+  title     = {Property Testing Lower Bounds via Communication Complexity},
+  journal   = {Computational Complexity},
+  volume    = {21},
+  number    = {2},
+  pages     = {311--358},
+  year      = {2012},
+  url       = {http://dx.doi.org/10.1007/s00037-012-0040-x},
+  doi       = {10.1007/s00037-012-0040-x},
+  timestamp = {Mon, 11 Jun 2012 13:15:56 +0200},
+  biburl    = {http://dblp.uni-trier.de/rec/bib/journals/cc/BlaisBM12},
+  bibsource = {dblp computer science bibliography, http://dblp.org}
+}
+
+@article{Goldreich:13,
+  author    = {Oded Goldreich},
+  title     = {On the Communication Complexity Methodology for Proving Lower Bounds
+               on the Query Complexity of Property Testing},
+  journal   = eccc,
+  volume    = {20},
+  pages     = {73},
+  year      = {2013}
+}
+
+@article{BGMW:13,
+  author    = {Harry Buhrman and
+               David Garc{\'{\i}}a{-}Soriano and
+               Arie Matsliah and
+               Ronald de Wolf},
+  title     = {The non-adaptive query complexity of testing $k$-parities},
+  journal   = {Chicago J. Theor. Comput. Sci.},
+  volume    = {2013},
+  year      = {2013}
+}
+
+@inproceedings{newman1996public,
+  title={Public vs. private coin flips in one round communication games},
+  author={Newman, Ilan and Szegedy, Mario},
+  booktitle=stoc96,
+  pages={561--570},
+  year={1996},
+  organization={ACM}
+}
+
+%%%%%%%%%%%%%%% Program checking
+
+@article{RS:96,
+  author = {Rubinfeld, Ronitt and Sudan, Madhu},
+  title = {Robust Characterization of Polynomials with Applications to
+           Program Testing},
+  journal = sicomp,
+  volume = 25,
+  number = 2,
+  pages  = {252--271},
+  year = 1996
+}
+
+%%%%%%%%%%%%%%% Property testing
+
+@article{GGR:98,
+ author = {Goldreich, Oded and Goldwasser, Shafi and Ron, Dana},
+ title = {Property Testing and Its Connection to Learning and Approximation},
+ journal = jacm,
+ volume = {45},
+ number = {4},
+ month = jul,
+ year = {1998},
+ pages = {653--750},
+ publisher = {ACM},
+ address = {New York, NY, USA}
+} 
+
+
+%%%%%%%%%%%%%%% Distribution testing
+
+@article{GRexp:00,
+  author = {Goldreich, Oded and Ron, Dana},
+  title = {On Testing Expansion in Bounded-Degree Graphs},
+  journal = eccc,
+  year = {2000},
+  pages     = {20},
+  volume    = {7},
+  ee        = {http://eccc.hpi-web.de/report/2000/020}
+}
+
+@inproceedings{BFRSW:00,
+  author = {Batu, Tu\u{g}kan and Fortnow, Lance and Rubinfeld, Ronitt
+               and Smith, Warren D.  and White, Patrick},
+  title = {Testing that distributions are close},
+  booktitle = focs00,
+  year = {2000},
+  pages = {189--197}
+}
+
+@article{BFRSW:10,
+  author = {Batu, Tu\u{g}kan and Fortnow, Lance and Rubinfeld, Ronitt
+                 and Smith, Warren D.  and White, Patrick},
+  title = {Testing Closeness of Discrete Distributions},
+  year = {2010},
+  journal =  arxiv,
+  volume = {abs/1009.5397},
+  note = {This is a long version of~\cite{BFRSW:00}.}
+}
+
+@inproceedings{BFFKRW:01,
+  author = {Batu, Tu\u{g}kan and Fischer, Eldar and Fortnow, Lance and Kumar, Ravi and Rubinfeld, Ronitt and White, Patrick},
+  title = {Testing random variables for independence and identity},
+  booktitle = focs01,
+  pages = {442--451},
+  year = {2001}
+  }
+  
+@article{Paninski:04,
+  title = {Estimating entropy on $m$ bins given fewer than $m$ samples},
+  author = {Paninski, Liam},
+  journal =      ieeeit,
+  pages =  {2200--2203},
+  volume = {50},
+  number = {9},
+  year = {2004}
+}
+
+@inproceedings{BKR:04,
+ author = {Batu, Tu\u{g}kan and Kumar, Ravi and Rubinfeld, Ronitt},
+ title = {Sublinear algorithms for testing monotone and unimodal distributions},
+ booktitle = stoc04,
+ year = {2004},
+ pages = {381--390},
+ numpages = {10},
+ url = {http://doi.acm.org/10.1145/1007352.1007414},
+ doi = {10.1145/1007352.1007414},
+ publisher = {ACM},
+ address = {New York, NY, USA}
+}
+
+@article{BDKR:05,
+  author =       {Batu, Tu\u{g}kan and Dasgupta, Sanjoy and Kumar, Ravi and Rubinfeld, Ronitt},
+  journal =      sicomp,
+  number =       {1},
+  pages =        {132--150},
+  publisher = {Society for Industrial and Applied Mathematics (SIAM)},
+  title =        {The complexity of approximating the entropy},
+  volume =       {35},
+  year =         {2005},
+}
+
+@article{Paninski:08,
+  author    = {Paninski, Liam},
+  title     = {A Coincidence-Based Test for Uniformity Given Very Sparsely
+               Sampled Discrete Data},
+  journal   = ieeeit,
+  volume    = {54},
+  number    = {10},
+  year      = {2008},
+  pages     = {4750-4755},
+  ee        = {http://dx.doi.org/10.1109/TIT.2008.928987}
+}
+
+@article{RS:09,
+  address =      {New York, NY, USA},
+  author =       {Rubinfeld, Ronitt and Servedio, Rocco A.},
+  journal =      rsa,
+  month =        jan,
+  number =       {1},
+  pages =        {24--44},
+  publisher =    {John Wiley \& Sons, Inc.},
+  title =        {Testing monotone high-dimensional distributions},
+  volume =       {34},
+  year =         {2009},
+  doi =          {10.1002/rsa.v34:1},
+  ISSN =         {1042-9832}
+}
+
+@article{RRSS:09,
+  author = {Raskhodnikova, Sofya and Ron, Dana and Shpilka, Amir and Smith, Adam},
+  title = {Strong lower bounds for approximating distributions support size and the distinct elements problem}, 
+  journal = sicomp, 
+  year = 2009, 
+  pages = {813--842}, 
+  volume = 39,
+  number = 3
+}
+
+@article{Valiant:11,
+  author    = {Valiant, Paul},
+  title     = {Testing symmetric properties of distributions},
+  journal = sicomp,
+  publisher = {Society for Industrial and Applied Mathematics (SIAM)},
+  year      = 2011,
+  pages     = {1927--1968},
+  volume = 40,
+  number = 6
+}
+
+@article{ValiantValiant:10lb,
+  author    = {Valiant, Gregory and Valiant, Paul},
+  title     = {A {CLT} and tight lower bounds for estimating entropy},
+  journal   = eccc,
+  volume    = {17},
+  year      = {2010},
+  pages     = {179},
+  ee        = {http://eccc.hpi-web.de/report/2010/179}
+}
+
+@article{ValiantValiant:10ub,
+  author    = {Valiant, Gregory and Valiant, Paul},
+  title     = {Estimating the unseen: A sublinear-sample canonical estimator
+               of distributions},
+  journal   = eccc,
+  volume    = {17},
+  year      = {2010},
+  pages     = {180},
+  ee        = {http://eccc.hpi-web.de/report/2010/180}
+}
+
+@inproceedings{ValiantValiant:11:stoc,
+  author    = {Valiant, Gregory and Valiant, Paul},
+  title     = {{Estimating the unseen: an $n/\log(n)$-sample estimator for entropy and
+               support size, shown optimal via new CLTs}},
+  booktitle = stoc11,
+  pages     = {685--694},
+  publisher = {{ACM}},
+  year      = {2011}
+}
+
+@inproceedings{ValiantValiant:11,
+	author  = {Valiant, Gregory and Valiant, Paul},
+	booktitle = focs11, 
+	title = {The Power of Linear Estimators}, 
+	year = {2011}, 
+	month = oct, 
+	pages = {403-412}, 
+	doi = {10.1109/FOCS.2011.81}, 
+	ISSN = {0272-5428},
+	note = {See also \cite{ValiantValiant:10lb} and \cite{ValiantValiant:10ub}}
+}
+
+@inproceedings{ADJOP:11,
+  author    = {Acharya, Jayadev and
+               Das, Hirakendu and
+               Jafarpour, Ashkan and
+               Orlitsky, Alon and
+               Pan, Shengjun},
+  title     = {Competitive Closeness Testing},
+  booktitle = colt11,
+  year      = {2011},
+  pages     = {47--68},
+}
+
+@inproceedings{BFRV:11,
+  author    = {Bhattacharyya, Arnab and
+               Fischer, Eldar and
+               Rubinfeld, Ronitt and
+               Valiant, Paul},
+  title     = {Testing monotonicity of distributions over general partial
+               orders},
+  booktitle = itcs11,
+  year      = {2011},
+  pages     = {239-252},
+  ee        = {http://conference.itcs.tsinghua.edu.cn/ICS2011/content/papers/38.html},
+  bibsource = {DBLP, http://dblp.uni-trier.de}
+}
+
+@inproceedings{ILR:12,
+author={Indyk, Piotr and Levi, Reut and Rubinfeld, Ronitt},
+  title={{Approximating and Testing $k$-Histogram Distributions in Sub-linear Time}},
+  pages={15-22},
+  booktitle = pods12,
+  year={2012}
+}
+
+@article{LRR:13,
+  author    = {Levi, Reut and
+               Ron, Dana and
+               Rubinfeld, Ronitt},
+  title     = {Testing Properties of Collections of Distributions},
+  journal   = theorycomp,
+  volume    = {9},
+  pages     = {295--347},
+  year      = {2013},
+  url       = {http://dx.doi.org/10.4086/toc.2013.v009a008},
+  doi       = {10.4086/toc.2013.v009a008}
+}
+
+@article{WY:14,
+  author    = {Wu, Yihong and Yang, Pengkun},
+  title     = {Minimax rates of entropy estimation on large alphabets via best polynomial
+               approximation},
+  journal =  arxiv,
+  volume    = {abs/1407.0381},
+  year      = {2014},
+  url       = {http://arxiv.org/abs/1407.0381},
+}
+
+@article{JVW:14,
+  author    = {Jiao, Jiantao and
+               Venkat, Kartik and
+               Weissman, Tsachy},
+  title     = {Order-Optimal Estimation of Functionals of Discrete Distributions},
+  journal =  arxiv,
+  volume    = {abs/1406.6956},
+  year      = {2014},
+  url       = {http://arxiv.org/abs/1406.6956},
+}
+
+
+@inproceedings{CDVV:14,
+  author = {Chan, Siu{-}On and Diakonikolas, Ilias and Valiant, Gregory and Valiant, Paul},
+  title = {Optimal Algorithms for Testing Closeness of Discrete Distributions},
+  booktitle = soda14,
+  pages  = {1193-1203},
+  year = 2014,
+  publisher = {Society for Industrial and Applied Mathematics (SIAM)}
+}
+
+@inproceedings{DKN:15,
+  author = {Diakonikolas, Ilias and Kane, Daniel M. and Nikishkin, Vladimir },
+  title = {{Testing Identity of Structured Distributions}},
+  booktitle = soda15,
+  year = {2015},
+  chapter = {123},
+  pages = {1841-1854},
+  publisher = {Society for Industrial and Applied Mathematics (SIAM)},
+  month = jan
+}
+
+@inproceedings{Canonne:15,
+	doi = {10.1007/978-3-662-47672-7_24},
+	url = {http://dx.doi.org/10.1007/978-3-662-47672-7_24},
+	year = 2015,
+	publisher = {Springer},
+	pages = {294--305},
+	author = {Canonne, Cl\'ement L.},
+	title = {{Big Data on the Rise? Testing Monotonicity of Distributions}},
+	booktitle = icalp15
+}
+
+@inproceedings{DKN:15:FOCS,
+	doi = {10.1109/focs.2015.76},
+	url = {http://dx.doi.org/10.1109/FOCS.2015.76},
+	year = 2015,
+	month = {oct},
+	publisher = {Institute of Electrical and Electronics Engineers ({IEEE})},
+	author = {Diakonikolas, Ilias and Kane, Daniel M. and Nikishkin, Vladimir },
+	title = {{Optimal Algorithms and Lower Bounds for Testing Closeness of Structured Distributions}},
+	booktitle = focs15
+}
+
+@inproceedings{AD:15,
+  author = {Acharya, Jayadev and Daskalakis, Constantinos},
+  title = {{Testing Poisson Binomial Distributions}},
+  booktitle = soda15,
+  year = {2015},
+  chapter = {122},
+  pages = {1829-1840}
+}
+
+@inproceedings{ADK:15,
+  title = {Optimal Testing for Properties of Distributions},
+  author = {Acharya, Jayadev and Daskalakis, Constantinos and Kamath, Gautam},
+  booktitle = {{Proceedings of NIPS}},
+  pages = {3577--3598},
+  year = {2015}
+}
+
+@inproceedings{BV:15,
+  author    = {Bhaswar B. Bhattacharya and
+               Gregory Valiant},
+  title     = {Testing Closeness With Unequal Sized Samples},
+  booktitle = {{Proceedings of NIPS}},
+  pages     = {2611--2619},
+  year      = {2015}
+}
+
+@inproceedings{CDGR:16,
+  doi = {10.4230/LIPIcs.STACS.2016.25},
+  url = {https://doi.org/10.4230/LIPIcs.STACS.2016.25},
+  author = {Canonne, Cl\'ement L. and Diakonikolas, Ilias and Gouleakis, Themis and Rubinfeld, Ronitt},
+  title = {{Testing Shape Restrictions of Discrete Distributions}},
+  year = {2016},
+  booktitle = {{Proceedings of STACS}},
+}
+
+@inproceedings{Canonne:16,
+	doi = {10.1145/2902251.2902274},
+	url = {http://dx.doi.org/10.1145/2902251.2902274},
+	year = 2016,
+	publisher = {Association for Computing Machinery ({ACM})},
+	author = {Cl\'ement L. Canonne},
+	title = {{Are Few Bins Enough: Testing Histogram Distributions}},
+	booktitle = pods16
+}
+
+@inproceedings{DK:16,
+  author = {{Diakonikolas}, Ilias and {Kane}, Daniel~M.},
+  title = {A New Approach for Testing Properties of Discrete Distributions},
+  booktitle = focs16,
+  publisher = {{IEEE} Computer Society},
+  year      = {2016}
+}
+
+@article{Gol:16,
+  author    = {Oded Goldreich},
+  title     = {The uniform distribution is complete with respect to testing identity
+               to a fixed distribution},
+  journal   = {Electronic Colloquium on Computational Complexity {(ECCC)}},
+  volume    = {23},
+  pages     = {15},
+  year      = {2016}
+}
+
+@inproceedings{ABR:16,
+  author    = {Aliakbarpour, Maryam and
+               Blais, Eric and
+               Rubinfeld, Ronitt},
+  title     = {Learning and Testing Junta Distributions},
+  booktitle = colt16,
+  series    = {{JMLR} Workshop and Conference Proceedings},
+  volume    = {49},
+  pages     = {19--46},
+  publisher = {JMLR.org},
+  year      = {2016}
+}
+
+
+%% Conditional
+
+@inproceedings{CFGM:13,
+   author = {Chakraborty, Sourav and Fischer, Eldar and Goldhirsh, Yonatan and Matsliah, Arie},
+   title = {On the Power of Conditional Samples in Distribution Testing},
+   booktitle = itcs13,
+   year = {2013},
+   isbn = {978-1-4503-1859-4},
+   location = {Berkeley, California, USA},
+   pages = {561--580},
+   numpages = {20},
+   url = {http://doi.acm.org/10.1145/2422436.2422497},
+   doi = {10.1145/2422436.2422497},
+   acmid = {2422497},
+   publisher = {ACM},
+   address = {New York, NY, USA}
+} 
+
+@article{CRS:12,
+  author =       {Canonne, Cl\'ement L. and Ron, Dana and Servedio, Rocco A.},
+  journal =  sicomp,
+  publisher = {Society for Industrial and Applied Mathematics (SIAM)},
+  title =        {Testing probability distributions using conditional samples},
+  volume = {44},
+  number = {3},
+  pages = {540-616},
+  year = {2015},
+  doi = {10.1137/130945508},
+  note = {Also available on arXiv at \href{http://arxiv.org/abs/1211.2664}{abs/1211.2664}}
+}
+
+@inproceedings{DDSV:13,
+ author = {Daskalakis, Constantinos and Diakonikolas, Ilias and Servedio, Rocco A. and Valiant, Gregory and Valiant, Paul},
+ title = {Testing $k$-modal Distributions: Optimal Algorithms via Reductions},
+ booktitle = soda13,
+ year = {2013},
+ isbn = {978-1-611972-51-1},
+ location = {New Orleans, Louisiana},
+ pages = {1833--1852},
+ numpages = {20},
+ url = {http://dl.acm.org/citation.cfm?id=2627817.2627948},
+ acmid = {2627948},
+ publisher = {Society for Industrial and Applied Mathematics (SIAM)}
+} 
+
+@inproceedings{ACK:14,
+  author =       {Acharya, Jayadev and Canonne, Cl\'ement L. and Kamath, Gautam},
+  title =        {A Chasm Between Identity and Equivalence Testing with Conditional Queries},
+  booktitle = {{APPROX-RANDOM}},
+  series    = {LIPIcs},
+  volume    = {40},
+  pages     = {449--466},
+  year      = {2015}
+}
+
+@inproceedings{CRS:14,
+  author =       {Canonne, Cl\'ement L. and Ron, Dana and Servedio, Rocco A.},
+  booktitle =    soda14,
+  title =        {Testing equivalence between distributions using conditional samples},
+  year =         {2014},
+  note =  {See also \cite{CRS:12} (full version)},
+  isbn = {978-1-611973-38-9},
+  location = {Portland, Oregon},
+  pages = {1174--1192},
+  numpages = {19},
+  url = {http://dl.acm.org/citation.cfm?id=2634074.2634161},
+  acmid = {2634161},
+  publisher = {Society for Industrial and Applied Mathematics (SIAM)}
+}
+
+@article{FJOPS:15,
+  author = {Falahatgar, Moein and
+            Jafarpour, Ashkan and
+            Orlitsky, Alon and 
+            Pichapathi, Venkatadheeraj and
+            Suresh, Ananda Theertha},
+  year = {2015},
+  month = apr,
+  journal =  arxiv,
+  title= {Faster Algorithms for Testing under Conditional Sampling},
+  volume =       {abs/1504.04103}
+}
+
+@article{FLV:16,
+  author    = {Fischer, Eldar and
+               Lachish, Oded and
+               Vasudev, Yadu},
+  title     = {Improving and extending the testing of distributions for shape-restricted
+               properties},
+  journal   = arxiv,
+  volume    = {abs/1609.06736},
+  year      = {2016},
+  month = sep
+}
+
+% Surveys
+
+@article{Canonne:15:Survey,
+  title={A {S}urvey on {D}istribution {T}esting: your Data is {B}ig. {B}ut is it {B}lue?},
+  author={Canonne, Cl{\'e}ment L.},
+  month = apr,
+  journal = eccc,
+  year = {2015},
+  volume = {22},
+  pages = {63},
+  ee        = {http://eccc.hpi-web.de/report/2015/063}
+}
+
+@article{Rubinfeld:12:Survey,
+   author = {Rubinfeld, Ronitt},
+	doi = {10.1145/2331042.2331052},
+	url = {http://dx.doi.org/10.1145/2331042.2331052},
+	year = 2012,
+	month = {sep},
+	publisher = {Association for Computing Machinery ({ACM})},
+	volume = {19},
+	number = {1},
+	pages = {24},
+	title = {Taming big probability distributions},
+	journal = {{XRDS}: Crossroads, The {ACM} Magazine for Students}
+}
+
+@article{Fischer:01,
+  author    = {Fischer, Eldar},
+  title     = {The Art of Uninformed Decisions: A primer to property testing},
+  journal   = {Bulletin of the {EATCS}},
+  volume    = {75},
+  pages     = {97},
+  year      = {2001}
+}
+
+% Misc
+
+@incollection{Yu:97,
+	doi = {10.1007/978-1-4612-1880-7_29},
+	url = {http://dx.doi.org/10.1007/978-1-4612-1880-7_29},
+	year = 1997,
+	publisher = {Springer},
+	pages = {423--435},
+	author = {Bin Yu},
+	title = {{Assouad, Fano, and Le Cam}},
+	booktitle = {Festschrift for Lucien Le Cam}
+}
+
+@misc{Pollard:2003,
+  author = {Pollard, David},
+  title = {Asymptopia},
+  howpublished = {\url{http://www.stat.yale.edu/~pollard/Books/Asymptopia}},
+  note = {Manuscript},
+  year = 2003
+}
+
+@inproceedings{Newman10,
+  author    = {Newman, Ilan},
+  title     = {Property Testing of Massively Parametrized Problems - {A} Survey},
+  booktitle = {Property Testing},
+  series    = {Lecture Notes in Computer Science},
+  volume    = {6390},
+  pages     = {142--157},
+  publisher = {Springer},
+  year      = {2010}
+}
+
+@article{BW02,
+  author    = {Harry Buhrman and
+               Ronald de Wolf},
+  title     = {Complexity measures and decision tree complexity: a survey},
+  journal   = {Theor. Comput. Sci.},
+  volume    = {288},
+  number    = {1},
+  pages     = {21--43},
+  year      = {2002},
+  url       = {http://dx.doi.org/10.1016/S0304-3975(01)00144-X},
+  doi       = {10.1016/S0304-3975(01)00144-X},
+  timestamp = {Wed, 07 Sep 2011 12:13:21 +0200},
+  biburl    = {http://dblp2.uni-trier.de/rec/bib/journals/tcs/BuhrmanW02},
+  bibsource = {dblp computer science bibliography, http://dblp.org}
+}
+
+@article{GT03,
+  author    = {Oded Goldreich and
+               Luca Trevisan},
+  title     = {Three theorems regarding testing graph properties},
+  journal   = {Random Struct. Algorithms},
+  volume    = {23},
+  number    = {1},
+  pages     = {23--57},
+  year      = {2003},
+  url       = {http://dx.doi.org/10.1002/rsa.10078},
+  doi       = {10.1002/rsa.10078},
+  timestamp = {Thu, 27 May 2004 09:13:22 +0200},
+  biburl    = {http://dblp.uni-trier.de/rec/bib/journals/rsa/GoldreichT03},
+  bibsource = {dblp computer science bibliography, http://dblp.org}
+}
+
+@article{AFKS00,
+  author    = {Noga Alon and
+               Eldar Fischer and
+               Michael Krivelevich and
+               Mario Szegedy},
+  title     = {Efficient Testing of Large Graphs},
+  journal   = {Combinatorica},
+  volume    = {20},
+  number    = {4},
+  pages     = {451--476},
+  year      = {2000},
+  url       = {http://dx.doi.org/10.1007/s004930070001},
+  doi       = {10.1007/s004930070001},
+  timestamp = {Fri, 20 May 2011 14:40:20 +0200},
+  biburl    = {http://dblp.uni-trier.de/rec/bib/journals/combinatorica/AlonFKS00},
+  bibsource = {dblp computer science bibliography, http://dblp.org}
+}
+
+@book{Gol:17,
+  title={Introduction to Property Testing},
+  author={Goldreich, Oded},
+  url={ http://www.wisdom.weizmann.ac.il/~oded/pt-intro.html},
+  year={2017},
+  publisher={Forthcoming}
+}
+
+@article{Ron:08,
+  author    = {Dana Ron},
+  title     = {Property Testing: {A} Learning Theory Perspective},
+  journal   = {Foundations and Trends in Machine Learning},
+  volume    = {1},
+  number    = {3},
+  pages     = {307--402},
+  year      = {2008},
+  url       = {http://dx.doi.org/10.1561/2200000004},
+  doi       = {10.1561/2200000004},
+  timestamp = {Tue, 13 Jan 2009 17:29:20 +0100},
+  biburl    = {http://dblp.uni-trier.de/rec/bib/journals/ftml/Ron08},
+  bibsource = {dblp computer science bibliography, http://dblp.org}
+}
+
+@article{Ron:09,
+  author    = {Dana Ron},
+  title     = {Algorithmic and Analysis Techniques in Property Testing},
+  journal   = {Foundations and Trends in Theoretical Computer Science},
+  volume    = {5},
+  number    = {2},
+  pages     = {73--205},
+  year      = {2009},
+  url       = {http://dx.doi.org/10.1561/0400000029},
+  doi       = {10.1561/0400000029},
+  timestamp = {Mon, 12 Apr 2010 07:26:22 +0200},
+  biburl    = {http://dblp.uni-trier.de/rec/bib/journals/fttcs/Ron09},
+  bibsource = {dblp computer science bibliography, http://dblp.org}
+}
+
+@proceedings{Gol:10,
+  editor    = {Oded Goldreich},
+  title     = {Property Testing - Current Research and Surveys [outgrow of a workshop
+               at the Institute for Computer Science {(ITCS)} at Tsinghua University,
+               January 2010]},
+  series    = {Lecture Notes in Computer Science},
+  volume    = {6390},
+  publisher = {Springer},
+  year      = {2010},
+  url       = {http://dx.doi.org/10.1007/978-3-642-16367-8},
+  doi       = {10.1007/978-3-642-16367-8},
+  isbn      = {978-3-642-16366-1},
+  timestamp = {Thu, 13 Jan 2011 14:06:35 +0100},
+  biburl    = {http://dblp.uni-trier.de/rec/bib/conf/propertytesting/2010},
+  bibsource = {dblp computer science bibliography, http://dblp.org}
+}
+
+@article{BHR:05,
+  author    = {Eli Ben{-}Sasson and
+               Prahladh Harsha and
+               Sofya Raskhodnikova},
+  title     = {Some 3{CNF} Properties Are Hard to Test},
+  journal   = {{SIAM} J. Comput.},
+  volume    = {35},
+  number    = {1},
+  pages     = {1--21},
+  year      = {2005},
+  url       = {http://dx.doi.org/10.1137/S0097539704445445},
+  doi       = {10.1137/S0097539704445445},
+  timestamp = {Mon, 12 Sep 2011 16:10:09 +0200},
+  biburl    = {http://dblp.uni-trier.de/rec/bib/journals/siamcomp/Ben-SassonHR05},
+  bibsource = {dblp computer science bibliography, http://dblp.org}
+}
+
+@article{RS:06,
+  author    = {Sofya Raskhodnikova and
+               Adam D. Smith},
+  title     = {A Note on Adaptivity in Testing Properties of Bounded Degree Graphs},
+  journal   = eccc,
+  volume    = {13},
+  number    = {089},
+  year      = {2006},
+  url       = {http://eccc.hpi-web.de/eccc-reports/2006/TR06-089/index.html},
+  timestamp = {Fri, 08 Apr 2016 07:34:31 +0200},
+  biburl    = {http://dblp.uni-trier.de/rec/bib/journals/eccc/RaskhodnikovaS06},
+  bibsource = {dblp computer science bibliography, http://dblp.org}
+}
+
+@book{BY:17,
+  title={Property Testing},
+  author={Arnab Bhattacharyya and Yuichi Yoshida},
+  url={https://propertytestingbook.wordpress.com/},
+  year={2017},
+  publisher={Forthcoming}
+}
+
+@article{GR:11,
+  author    = {Oded Goldreich and
+               Dana Ron},
+  title     = {Algorithmic Aspects of Property Testing in the Dense Graphs Model},
+  journal   = {{SIAM} J. Comput.},
+  volume    = {40},
+  number    = {2},
+  pages     = {376--445},
+  year      = {2011},
+  url       = {http://dx.doi.org/10.1137/090749621},
+  doi       = {10.1137/090749621},
+  timestamp = {Wed, 20 Apr 2011 14:37:57 +0200},
+  biburl    = {http://dblp.uni-trier.de/rec/bib/journals/siamcomp/GoldreichR11},
+  bibsource = {dblp computer science bibliography, http://dblp.org}
+}
+
+@inproceedings{AW:08,
+  author    = {Scott Aaronson and
+               Avi Wigderson},
+  title     = {Algebrization: a new barrier in complexity theory},
+  booktitle = stoc08,
+  pages     = {731--740},
+  year      = {2008},
+  url       = {http://doi.acm.org/10.1145/1374376.1374481},
+  doi       = {10.1145/1374376.1374481},
+  timestamp = {Sat, 19 Jun 2010 14:44:24 +0200},
+  biburl    = {http://dblp.uni-trier.de/rec/bib/conf/stoc/AaronsonW08},
+  bibsource = {dblp computer science bibliography, http://dblp.org}
+}
+
+@inproceedings{IPW:11,
+  author    = {Piotr Indyk and
+               Eric Price and
+               David P. Woodruff},
+  title     = {On the Power of Adaptivity in Sparse Recovery},
+  booktitle = focs11,
+  pages     = {285--294},
+  year      = {2011},
+  url       = {http://dx.doi.org/10.1109/FOCS.2011.83},
+  doi       = {10.1109/FOCS.2011.83},
+  timestamp = {Tue, 16 Dec 2014 09:57:23 +0100},
+  biburl    = {http://dblp.uni-trier.de/rec/bib/conf/focs/IndykPW11},
+  bibsource = {dblp computer science bibliography, http://dblp.org}
+}
+
+@article{GR:17,
+  author    = {Tom Gur  and
+               Ron D. Rothblum},
+  title = {A Hierarchy Theorem for Interactive Proofs of Proximity},
+  year = {2017},
+  note = {The 8th Innovations in Theoretical Computer Science (ITCS 2017) conference (to appear)}
+}
