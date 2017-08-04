@@ -45,6 +45,8 @@
 \fi
 \pagestyle{plain} % Put page numbers at the bottom-center for the whole dissertation. Columbia's dissertation office requires that the numbers appear at this location on the page throughout the document.
 
+%\epigraphfontsize{\itshape}
+\setlength\epigraphwidth{7cm}
 
 \makeatletter
 \include{./frontmatter/titlepage}
@@ -54,6 +56,7 @@
 
 \frontmatter
 \tableofcontents % You need to put your ToC after frontmatter so that it will get lowercase Roman numerals.
+\clearpage
 \listoffigures
 %%% A list of graphs and illustrations should go here if you use any.
 
@@ -71,16 +74,17 @@
 
 \include{./introduction/sec-introduction}
 \include{./preliminaries/chap-preliminaries}
-\chapter{Testing Classes of Distributions: Upper Bounds from Swiss Army Knives} %\chapter[First chapter, ToC][First chapter, Top of Page]{Title of Chapter 1}
+
+%\chapter{Testing Classes of Distributions: Upper Bounds from Swiss Army Knives} %\chapter[First chapter, ToC][First chapter, Top of Page]{Title of Chapter 1}
 \include{./chapter1/chap-first}
 
-\chapter{Testing Properties of Distributions: Lower Bounds from Reductions}
+% \chapter{Testing Properties of Distributions: Lower Bounds from Reductions}
 \include{./chapter2/chap-second}
 
-\chapter{Testing Properties of Distributions: Changing the Rules}
+% \chapter{Testing Properties of Distributions: Changing the Rules}
 \include{./chapter3/chap-third}
 
-\chapter{Correcting Properties of Distributions: Changing the Goal}
+% \chapter{Correcting Properties of Distributions: Changing the Goal}
 \include{./chapter4/chap-fourth}
 
 \include{./conclusion/sec-conclusion}

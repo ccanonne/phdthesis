@@ -65,12 +65,13 @@
 
 \ifnum\withnotes=1
   \newcommand{\cnote}[1]{\par\ccolor{\textbf{C: }\sf #1}} % Clement
+  \newcommand{\todonote}[2][]{\todo[size=\scriptsize,color=red!40,#1]{#2}}  
+	\newcommand{\questionnote}[2][]{\todo[size=\scriptsize,color=blue!30]{#2}}
+	\newcommand{\todonotedone}[2][]{\todo[size=\scriptsize,color=green!40]{$\checkmark$ #2}}
+	\newcommand{\todonoteinline}[2][]{\todo[inline,size=\scriptsize,color=orange!40,#1]{#2}}  
+  \newcommand{\marginnote}[1]{\todo[color=white,linecolor=black]{{#1}}}
 \else
-  \newcommand{\anote}[1]{}
   \newcommand{\cnote}[1]{}
-  \newcommand{\dnote}[1]{}
-  \newcommand{\enote}[1]{}
-  \newcommand{\tnote}[1]{}
   \newcommand{\todonote}[2][]{\ignore{#2}}
 	\newcommand{\questionnote}[2][]{\ignore{#2}}
 	\newcommand{\todonotedone}[2][]{\ignore{#2}}
