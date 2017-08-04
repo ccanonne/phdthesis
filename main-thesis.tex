@@ -2,7 +2,7 @@
 % By Charles McNamara, 2016
 % It's probably a good idea to review the university guidelines just so you know what you want your dissertation to look like. You can read about those guidelines at this site: http://gsas.columbia.edu/content/formatting-guidelines.
 
-\documentclass[letterpaper,10pt]{memoir} % The memoir class is great for longer works that use separate chapters. The Dissertation Office recommends 10-pt Arial or 12-pt Times New Roman. I use 12-pt for readability.
+\documentclass[letterpaper,10pt,oldfontcommands]{memoir} % The memoir class is great for longer works that use separate chapters. The Dissertation Office recommends 10-pt Arial or 12-pt Times New Roman. I use 12-pt for readability.
 \def\withcolors{1}
 \def\withnotes{1}
 \def\withannoyingspacing{0}
@@ -17,6 +17,10 @@
 \input{packages}
 \input{preamble}
 
+% For the quotes.
+%\epigraphfontsize{\itshape}
+\setlength\epigraphwidth{7cm}
+
 %\usepackage{utopia} % Nice font. I like it.
 \usepackage{times} % Stupid font. I like it too.
 
@@ -28,6 +32,7 @@
 
 \usepackage[backend=bibtex,style=authoryear-icomp]{biblatex} % Use biblatex
 \addbibresource{./bibliography.bib} % Your bibliography file.
+\addbibresource{./bibliography-4.bib} % Your bibliography file.
 
 % Here you can set margins and other page formatting
 \setlrmarginsandblock{3.175cm}{3.175cm}{*} % Left and right margin -- the dissertation office requires at least 1-inch margins
@@ -44,9 +49,6 @@
   \setstretch{1.5}
 \fi
 \pagestyle{plain} % Put page numbers at the bottom-center for the whole dissertation. Columbia's dissertation office requires that the numbers appear at this location on the page throughout the document.
-
-%\epigraphfontsize{\itshape}
-\setlength\epigraphwidth{7cm}
 
 \makeatletter
 \include{./frontmatter/titlepage}
@@ -96,7 +98,5 @@
 \setlength{\bibitemsep}{\baselineskip} % Skip lines between bibliography entries. Columbia requires that you skip a line between entries.
 \SingleSpacing % Start single-spacing text before you start the bibliography. We used \bibitemsep earlier in this document to keep bibliography items separated by one line of blank space, but we need to keep the entries themselves single-spaced.
 \printbibliography % Print the bibliography.
-
-
 
 \end{document}
