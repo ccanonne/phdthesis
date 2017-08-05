@@ -1,0 +1,164 @@
+We now turn to proving converses to our positive results -- namely, that many of the upper bounds we obtain cannot be significantly improved upon. As in our algorithmic approach, we describe for this purpose a \emph{generic framework} for obtaining lower bounds.
+
+In order to state our results, we will require the usual definition of \emph{agnostic learning}. Recall that an algorithm is said to be a \emph{semi-agnostic learner} for a class \class if it satisfies the following. Given sample access to an arbitrary distribution $\D$ and parameter $\eps$, it outputs a hypothesis $\hat{\D}$ which (with high probability) does ``almost as well as it gets'':
+\[
+	\normone{\D - \hat{\D}} \leq c\cdot\opt_{\class,\D} + \bigO{\eps}
+\]
+where $\opt_{\class,\D}\eqdef \inf_{\D^\prime\in\class} \lp[1](\D^\prime,\D)$, and $c\geq 1$ is some absolute constant (if $c=1$, the learner is said to be agnostic).
+
+\paragraph{High-level idea.} The motivation for our result is the observation of~\cite{BKR:04} that ``monotonicity is at least as hard as uniformity.'' Unfortunately, their specific argument does not generalize easily to other classes of distributions, making it impossible to extend it readily. The starting point of our approach is to observe that while uniformity testing is hard in general, it becomes very easy \emph{under the promise that the distribution is monotone, or even only close to monotone} (namely, $\bigO{1/\eps^2}$ samples suffice.)\footnote{Indeed, it is not hard to show that a monotone distribution can only be \eps-far from uniform if it puts probability weight $1/2+\bigOmega{\eps}$ on the first half of the domain. Estimating this probability weight to an additive $O(\eps)$ is thus sufficient to conclude.} This can give an alternate proof of the lower bound for monotonicity testing, via a different reduction: first, test if  the unknown distribution is monotone; if it is, test whether it is uniform, now assuming closeness to monotone.
+
+More generally, this idea applies to any class \class which \textsf{(a)} contains the uniform distribution, and \textsf{(b)} for which we have a $\littleO{\sqrt{n}}$-sample agnostic learner $\Learner$, as follows.
+Assuming we have a tester $\Tester$ for $\class$ with sample complexity $\littleO{\sqrt{n}}$, define a uniformity tester as below.
+\begin{itemize}
+  \item test if $\D\in\class$ using $\Tester$; if not, reject (as $\uniform\in\class$, $\D$ cannot be uniform);
+  \item otherwise, agnostically learn $\D$ with $\Learner$ (since $\D$ is close to $\class$), and obtain hypothesis $\hat{\D}$;
+  \item check offline if $\hat{D}$ is close to uniform.
+\end{itemize} 
+By assumption, $\Tester$ and $\Learner$ each use $\littleO{\sqrt{n}}$ samples, so does the whole process; but this contradicts the lower bound of~\cite{BFRSW:00,Paninski:08} on uniformity testing. Hence, $\Tester$ must use $\bigOmega{\sqrt{n}}$ samples.\medskip
+
+This ``testing-by-narrowing'' reduction argument can be further extended to other properties than to uniformity, as we show below:
+\begin{theorem}\label{theo:main:testing:lb}
+Let \class be a class of distributions over $[n]$ for which the following holds:
+\begin{enumerate}[(i)]
+  \item there exists a semi-agnostic learner $\Learner$ for $\class$, with sample complexity $q_L(n,\eps, \delta)$ and ``agnostic constant''~$c$;
+  \item there exists a subclass $\class_{\rm Hard}\subseteq\class$ such that testing $\class_{\rm Hard}$ requires $q_H(n,\eps)$ samples.
+\end{enumerate}
+Suppose further that $q_L(n,\eps, 1/6)=\littleO{q_H(n,\eps)}$. Then, any tester for $\class$ must use $\bigOmega{q_H(n,\eps)}$ samples.
+\end{theorem}
+\begin{proof}
+The above theorem relies on the reduction outlined above, which we rigorously detail here. Assuming $\class$, $\class_{\rm Hard}$, $\Learner$ as above (with semi-agnostic constant $c \geq 1$), and a tester $\Tester$ for \class with sample complexity $q_T(n,\eps)$, we define a tester $\Tester_{\rm Hard}$ for $\class_{\rm Hard}$. On input $\eps\in(0,1]$ and given sample access to a distribution $\D$ on $[n]$, $\Tester_{\rm Hard}$ acts as follows:
+\begin{itemize}
+  \item call $\Tester$ with parameters $n$, $\frac{\eps^\prime}{c}$ (where $\eps^\prime\eqdef\frac{\eps}{3}$) and failure probability $1/6$, to $\frac{\eps^\prime}{c}$-test if $\D\in\class$. If not, reject.
+  \item otherwise, agnostically learn a hypothesis $\hat{\D}$ for $\D$, with $\Learner$ called with parameters $n$, $\eps^\prime$ and failure probability $1/6$;
+  \item check offline if $\hat{\D}$ is $\eps^\prime$-close to $\class_{\rm Hard}$, accept if and only if this is the case.
+\end{itemize} 
+We condition on both calls (to $\Tester$ and $\Learner$) to be successful, which overall happens with probability at least $2/3$ by a union bound. The completeness is immediate: if $\D\in\class_{\rm Hard}\subseteq\class$, $\Tester$ accepts, and the hypothesis $\hat{\D}$ satisfies $\normone{\hat{\D}-\D} \leq \eps^\prime$. Therefore, $\lp[1](\hat{\D},\class_{\rm Hard}) \leq \eps^\prime$, and $\Tester_{\rm Hard}$ accepts.
+
+For the soundness, we proceed by contrapositive. Suppose $\Tester_{\rm Hard}$ accepts; it means that each step was successful. In particular, $\lp[1](\hat{\D},\class)\leq {\eps^\prime}/{c}$; so that the hypothesis outputted by the agnostic learner satisfies $\normone{\hat{\D}-\D} \leq c\cdot\opt+\eps^\prime\leq 2\eps^\prime$. In turn, since the last step passed and by a triangle inequality  we get, as claimed, $\lp[1](\D, \class_{\rm Hard}) \leq 2\eps^\prime + \lp[1](\hat{\D},\class_{\rm Hard}) \leq 3\eps^\prime = \eps$.
+
+Observing that the overall sample complexity is $q_T(n,\frac{\eps^\prime}{c})+q_L(n,\eps^\prime, \frac{1}{6}) = q_T(n,\frac{\eps^\prime}{c})+\littleO{q_H(n,\eps^\prime)}$ concludes the proof.
+\end{proof}
+
+Taking $\class_{\rm Hard}$ to be the singleton consisting of the uniform distribution, and from the semi-agnostic learners of~\cite{CDSS:13,CDSS:14} (each with sample complexity either $\poly(1/\eps)$ or $\poly(\log n,1/\eps)$), we obtain the following:\footnote{Specifically, these lower bounds hold as long as $\eps=\bigOmega{1/n^\alpha}$ for some absolute constant $\alpha > 0$ (so that the sample complexity of the agnostic learner is indeed negligible in front of $\sqrt{n}/\eps^2$).}
+\corolbsqrtn*
+Similarly, we can use another result of~\cite{DDS:PBD:12} which shows how to agnostically learn Poisson Binomial Distributions with $\tildeO{1/\eps^2}$ samples.\footnote{Note the quasi-quadratic dependence on $\eps$ of the learner, which allows us to get $\eps$ into our lower bound for $n\gg \poly\log(1/\eps)$.} Taking $\class_{\rm Hard}$ to be the single $\binomial{n}{1/2}$ distribution (along with the testing lower bound of~\cite{VV:14}), this yields the following:
+\corolbpbd*
+
+\noindent Finally, we derive a lower bound on testing $k$-SIIRVs from the agnostic learner of~\cite{DDDOST:13} (which has sample complexity $\poly(k,1/\eps)$, independent~of~$n$):
+\corolbksiirv*
+\begin{proofof}{\cref{coro:lb:ksiirv}}
+To prove this result, it is enough by \cref{theo:main:testing:lb} to exhibit a particular $k$-SIIRV $S$ such that testing identity to $S$ requires this many samples. Moreover, from~\cite{VV:14} this last part amounts to proving that the (truncated) 2/3-norm $\norm{S^{-\max}_{-\eps}}_{2/3}$ of $S$ is $\bigOmega{k^{1/2}n^{1/4}}$ (for every $\eps\in(0,\eps_0)$, for some small $\eps_0>0$). Our hard instance $S$ will be defined as follows: it is defined as the distribution of $X_1+\dots+X_n$, where the $X_i$'s are independent integer random variables uniform on $\{0,\dots,k-1\}$ (in particular, for $k=2$ we get a $\binomial{n}{1/2}$ distribution). It is straightforward to verify that $\shortexpect{S} = \frac{n(k-1)}{2}$ and $\sigma^2\eqdef\var S = \frac{(k^2-1)n}{12} = \bigTheta{k^2 n}$; moreover, $S$ is log-concave (as the convolution of $n$ uniform distributions). From this last point, we get that \textsf{(i)} the maximum probability of $S$, attained at its mode, is $\norminf{S}=\bigTheta{1/\sigma}$; and \textsf{(ii)} for every $j$ in an interval $I$ of length $2\sigma$ centered at this mode, $S(j) \geq \bigOmega{\norminf{S}}$ (see e.g.~\cite[Lemma 5.7]{DKS:15:arXiv} for the latter point). Define now $\eps_0$ as an absolute constant such that  $2\eps_0 \leq \D(I) = \bigOmega{1}$.
+
+We want to lower bound $\norm{S^{-\max}_{-\eps}}_{2/3}$, for $\eps\leq \eps_0$; as by the above the ``$-\max$'' part can only change the value by $\norminf{S}=o(1)$, we can ignore it. Turning to the $-\eps$ part, i.e. the removal of the $\eps$ probability mass of the elements with smallest probability, note that this can only result in zeroing out at most $\frac{\eps}{\D(I)}\abs{I}\leq \frac{1}{2}\abs{I}$ elements in $I$ (call these $J_\eps\subseteq I$). From this, we obtain that
+\[
+    \norm{S^{-\max}_{-\eps}}_{2/3}\geq \Big(\sum_{j\in I\setminus J_\eps} S(j)^{2/3}\Big)^{3/2} \geq \mleft(\frac{1}{2}\cdot 2\sigma\cdot \bigOmega{1/\sigma}^{2/3}\mright)^{3/2} =\bigOmega{\sigma^{1/2}} = \bigOmega{k^{1/2}n^{1/4}}
+\]
+which concludes the proof.
+\end{proofof}
+
+\subsection{Tolerant Testing}\label{sec:lowerbounds:tol}
+
+This lower bound framework from the previous section carries to \emph{tolerant} testing as well, resulting in this analogue to~\cref{theo:main:testing:lb}:
+\begin{theorem}\label{theo:main:testing:tol:lb}
+Let \class be a class of distributions over $[n]$ for which the following holds:
+\begin{enumerate}[(i)]
+  \item there exists a semi-agnostic learner $\Learner$ for $\class$, with sample complexity $q_L(n,\eps, \delta)$ and ``agnostic constant''~$c$;
+  \item there exists a subclass $\class_{\rm Hard}\subseteq\class$ such that \emph{tolerant} testing $\class_{\rm Hard}$ requires $q_H(n,\eps_1,\eps_2)$ samples for some parameters $\eps_2 > (4c+1)\eps_1$.
+\end{enumerate}
+Suppose further that $q_L(n,\eps_2-\eps_1, 1/10)=\littleO{q_H(n,\eps_1,\eps_2)}$. Then, any \emph{tolerant} tester for $\class$ must use $\bigOmega{q_H(n,\eps_1,\eps_2)}$ samples (for some explicit parameters $\eps^\prime_1,\eps^\prime_2$).
+\end{theorem}
+\begin{proof}
+The argument follows the same ideas as for \cref{theo:main:testing:lb}, up to the details of the parameters. Assuming $\class$, $\class_{\rm Hard}$, $\Learner$ as above (with semi-agnostic constant $c \geq 1$), and a tolerant tester $\Tester$ for \class with sample complexity $q(n,\eps_1,\eps_2)$, we define a tolerant tester $\Tester_{\rm Hard}$ for $\class_{\rm Hard}$. On input $0 < \eps_1 < \eps_2 \leq 1$ with $\eps_2 > (4c+1)\eps_1$, and given sample access to a distribution $\D$ on $[n]$, $\Tester_{\rm Hard}$ acts as follows. After setting $\eps^\prime_1\eqdef\frac{\eps_2-\eps_1}{4}$, $\eps^\prime_2\eqdef\frac{\eps_2-\eps_1}{2}$, $\eps^\prime \eqdef \frac{\eps_2-\eps_1}{16}$ and $\tau\eqdef \frac{6\eps_2+10\eps_1}{16}$,
+\begin{itemize}
+  \item call $\Tester$ with parameters $n$, $\frac{\eps^\prime_1}{c}$, $\frac{\eps^\prime_2}{c}$ and failure probability $1/6$, to tolerantly test if $\D\in\class$. If $\lp[1](\D,\class) > \eps^\prime_2/c$, reject.
+  \item otherwise, agnostically learn a hypothesis $\hat{\D}$ for $\D$, with $\Learner$ called with parameters $n$, $\eps^\prime$ and failure probability $1/6$;
+  \item check offline if $\hat{\D}$ is $\tau$-close to $\class_{\rm Hard}$, accept if and only if this is the case.
+\end{itemize} 
+We condition on both calls (to $\Tester$ and $\Learner$) to be successful, which overall happens with probability at least $2/3$ by a union bound. We first argue completeness: 
+assume $\lp[1](\D,\class_{\rm Hard}) \leq \eps_1$. This implies $\lp[1](\D,\class) \leq \eps_1$, so that $\Tester$ accepts as $\eps_1 \leq \eps^\prime_1/c$ (which is the case because $\eps_2 > (4c+1)\eps_1$). Thus, the hypothesis $\hat{\D}$ satisfies $\normone{\hat{\D}-\D} \leq c\cdot \eps^\prime_1/c + \eps^\prime = \eps^\prime_1 + \eps^\prime$. Therefore, 
+  $\lp[1](\hat{\D},\class_{\rm Hard}) \leq \normone{\hat{\D}-\D} + \lp[1](\D,\class_{\rm Hard}) \leq \eps^\prime_1 + \eps^\prime + \eps_1 < \tau$, and $\Tester_{\rm Hard}$ accepts.
+
+For the soundness, we again proceed by contrapositive. Suppose $\Tester_{\rm Hard}$ accepts; it means that each step was successful. In particular, $\lp[1](\hat{\D},\class)\leq {\eps^\prime_2}/{c}$; so that the hypothesis outputted by the agnostic learner satisfies $\normone{\hat{\D}-\D} \leq c\cdot\opt+\eps^\prime\leq \eps^\prime_2 + \eps^\prime$. In turn, since the last step passed and by a triangle inequality  we get, as claimed, 
+$\lp[1](\D, \class_{\rm Hard}) \leq \eps^\prime_2 + \eps^\prime + \lp[1](\hat{\D},\class_{\rm Hard}) \leq \eps^\prime_2 + \eps^\prime + \tau < \eps_2$.
+
+Observing that the overall sample complexity is $q_T(n,\frac{\eps^\prime_1}{c},\frac{\eps^\prime_2}{c})+q_L(n,\eps^\prime, \frac{1}{10}) = q_T(n,\frac{\eps^\prime}{c})+\littleO{q_H(n,\eps^\prime)}$ concludes the proof.
+\end{proof}
+
+As before, we instantiate the general theorem to obtain specific lower bounds for tolerant testing of the classes we covered in this paper. That is, taking $\class_{\rm Hard}$ to be the singleton consisting of the uniform distribution (combined with the tolerant testing lower bound of~\cite{ValiantValiant:10lb} (restated in~\cref{theo:samp:uniformity:tolerant}), which states that tolerant testing of uniformity over $[n]$ requires $\bigOmega{\frac{n}{\log n}}$ samples), and again from the semi-agnostic learners of~\cite{CDSS:13,CDSS:14} (each with sample complexity either $\poly(1/\eps)$ or $\poly(\log n,1/\eps)$), we obtain the following:
+\corolbtolnlogn*
+Similarly, we again turn to the class of Poisson Binomial Distributions, for which we can invoke as before the $\tildeO{1/\eps^2}$-sample agnostic learner of~\cite{DDS:PBD:12}. As before, we would like to choose for $\class_{\rm Hard}$ the single $\binomial{n}{1/2}$ distribution; however, as no tolerant testing lower bound for this distribution exists~--~to the best of our knowledge~--~in the literature, we first need to establish the lower bound we will rely upon:
+
+\begin{restatable}{theorem}{binomialtolerantlbtheorem}\label{theo:samp:binomial:tolerant:lb}
+    There exists an absolute constant $\eps_0>0$ such that the following holds. Any algorithm which, given sampling access to an unknown distribution $\D$ on $\domain$ and parameter $\eps \in (0,\eps_0)$, distinguishes with probability at least $2/3$ between \textsf{(i)} $\normone{\D-\binomial{n}{1/2}} \leq \eps$ and \textsf{(ii)} $\normone{\D-\binomial{n}{1/2}} \geq 100\eps$ must use $\bigOmega{\frac{1}{\eps}\frac{\sqrt{n}}{\log n}}$ samples.
+\end{restatable}
+The proof relies on a reduction from tolerant testing of \emph{uniformity}, drawing on a result of Valiant and Valiant~\cite{ValiantValiant:10lb}; and is deferred to~\cref{app:binomial:tolerant:lb}. With~\cref{theo:samp:binomial:tolerant:lb} in hand, we can apply~\cref{theo:main:testing:tol:lb} to obtain the desired lower bound:
+\corolbtolpbd*
+
+\noindent We observe that both~\cref{coro:tol:lb:nlogn} and~\cref{coro:lb:tol:pbd} are tight (with regard to the dependence on $n$), as proven in the next section (\cref{sec:toltesting:ub}).\cmargin{Fix this reference.}
+
+\subsubsection{Proof of~\cref{theo:samp:binomial:tolerant:lb}}\label{app:binomial:tolerant:lb}
+The theorem will be a consequence of the (slightly) more general result below:
+\begin{theorem}\label{theo:samp:binomial:tolerant}
+  There exist absolute constants $\eps_0> 0$ and $\lambda > 0$ such that the following holds. Any algorithm which, given sample access to an unknown distribution $\D$ on $\domain$ and parameter $\eps \in (0,\eps_0)$, distinguishes with probability at least $2/3$ between \textsf{(i)} $\normone{\D-\binomial{n}{\frac{1}{2}}} \leq \eps$ and \textsf{(ii)} $\normone{\D-\binomial{n}{\frac{1}{2}}} \geq \lambda\eps^{1/3}-\eps$ must use $\bigOmega{\eps\frac{\sqrt{n}}{\log(\eps n)}}$ samples.
+\end{theorem}
+\noindent By choosing a suitable $\eps$ and working out the corresponding parameters, this for instance enables us to derive the following:
+\begin{corollary}\label{coro:samp:binomial:tolerant}
+  There exists an absolute constant $\eps_0 \in(0,1/1000)$ such that the following holds. Any algorithm which, given sample access to an unknown distribution $\D$ on $\domain$, distinguishes with probability at least $2/3$ between \textsf{(i)} $\normone{\D-\binomial{n}{\frac{1}{2}}} \leq \eps_0$ and \textsf{(ii)} $\normone{\D-\binomial{n}{\frac{1}{2}}} \geq 100\eps_0$ must use $\bigOmega{\frac{\sqrt{n}}{\log n}}$ samples.
+\end{corollary}
+\begin{proofof}{\cref{coro:samp:binomial:tolerant}}
+The corollary follows from the proof of~\cref{theo:samp:binomial:tolerant}, by choosing $\eps_0>0$ sufficiently small so that $\frac{\lambda\eps_0^{1/3}-\eps_0}{\eps_0} \geq 100$.
+\end{proofof}
+\noindent By standard techniques, this will in turn imply~\cref{theo:samp:binomial:tolerant:lb}.\footnote{Namely, for $\eps\in(0,\eps_0)$, define the  mixture $\D_\eps \eqdef \frac{\eps}{\eps_0}\D+(1-\frac{\eps}{\eps_0})\binomial{n}{1/2}$. Being able to distinguish $\normone{\D_\eps-\binomial{n}{1/2}} \leq \eps$ from $\normone{\D_\eps-\binomial{n}{1/2}} \geq 100\eps$ in $q$ samples then allows one to distinguish $\normone{\D-\binomial{n}{1/2}} \leq \eps_0$ from $\normone{\D-\binomial{n}{1/2}} \geq 100\eps_0$ in $O(\eps\cdot q)$ samples.}
+
+\begin{proofof}{\cref{theo:samp:binomial:tolerant}}
+Hereafter, we write for convenience $B_n\eqdef \binomial{n}{\frac{1}{2}}$. To prove this lower bound, we will rely on the following:
+\begin{theorem}[{\cite[Theorem 1]{ValiantValiant:10lb}}]\label{theo:samp:uniformity:tolerant}
+  For any constant $\phi\in(0,1/4)$, following holds. Any algorithm which, given sample access to an unknown distribution $\D$ on $\{1,\dots,N\}$, distinguishes with probability at least $2/3$ between \textsf{(i)} $\normone{\D - \uniform_N} \leq \phi$ and \textsf{(ii)} $\normone{\D - \uniform_N} \geq \frac{1}{2}-\phi$, must have sample complexity at least $\frac{\phi}{32}\frac{N}{\log N}$.
+\end{theorem}
+
+Without loss of generality, assume $n$ is even (so that $B_n$ has only one mode located at $\frac{n}{2}$). For $c>0$, we write $I_{n,c}$ for the interval $\{\frac{n}{2}-c\sqrt{n},\dots,\frac{n}{2}+c\sqrt{n}\}$ and $J_{n,c}\eqdef\domain\setminus I_{n,c}$.
+\begin{fact}\label{fact:easy:binomial}
+For any $c > 0$, \[
+\frac{B_n(\frac{n}{2} + c\sqrt{n})}{B_n({n}/{2})}, \frac{B_n(\frac{n}{2} - c\sqrt{n})}{B_n({n}/{2})} \operatorname*{\sim}_{n\to\infty} e^{-2c^2} \]
+and 
+\[
+B_n(I_{n,c}) \in (1\pm o(1))\cdot[e^{-2c^2},1]\cdot 2c\sqrt{\frac{2}{\pi}} = \bigTheta{c}\,.
+\]
+\end{fact}
+
+The reduction proceeds as follows: given sampling access to $\D$ on $[N]$, we can simulate sampling access to a distribution $\D^\prime$ on $[n]$ (where $n=\bigTheta{N^2}$) such that
+\begin{itemize}
+  \item if $\normone{\D - \uniform_N} \leq \phi$, then $\normone{\D^\prime - B_n} < \eps$;
+  \item if $\normone{\D - \uniform_N} \geq \frac{1}{2}-\phi$, then $\normone{\D^\prime - B_n} > \eps^\prime - \eps$
+\end{itemize}
+for $\eps \eqdef \Theta(\phi^{3/2})$ and $\eps^\prime \eqdef \Theta(\phi^{\frac{1}{2}})$; in a way that preserves the sample complexity. The high-level idea is that (by the above fact) the Binomial distribution over $\domain$ is almost uniform on the middle $O(\sqrt{n})$ elements, and has a constant fraction of its probability mass there: we can therefore ``embed'' the tolerant uniformity testing lower bound (for support $O(\sqrt{n})$) into this middle interval.\smallskip
+
+More precisely, define $c\eqdef \sqrt{\frac{1}{2}\ln\frac{1}{1-\phi}} =\bigTheta{\sqrt{\phi}}$ (so that $\phi = 1 - e^{-2c^2}$) and $n$ such that $\abs{I_{n,c}}= N$ (that is, $n=(N/(2c))^2 = \bigTheta{N^2/\phi}$). From now on, we can therefore identify $[N]$ to $I_{n,c}$ in the obvious way, and see a draw from $\D$ as an element in $I_{n,c}$.
+
+Let $p\eqdef B_n(I_{n,c}) = \bigTheta{\sqrt{\phi}}$, and $B_{n,c}$, $\bar{B}_{n,c}$ respectively denote the conditional distributions induced by $B_n$ on $I_{n,c}$ and $J_{n,c}$. Intuitively, we want $\D$ to be mapped to the conditional distribution of $\D^\prime$ on $I_{n,c}$, and the conditional distribution of $\D^\prime$ on $J_{n,c}$ to be exactly $\bar{B}_{n,c}$. This is achieved by defining $\D^\prime$ by the process below:
+\begin{itemize}
+  \item with probability $p$, we draw a sample from $\D$ (seen as an element of $I_{n,c}$);
+  \item with probability $1-p$, we draw a sample from $\bar{B}_{n,c}$.
+\end{itemize}
+Let $\tilde{B}_n$ be defined as the distribution which exactly matches $B_n$ on $J_{n,c}$, but is uniform on $I_{n,c}$:
+\begin{align*}
+  \tilde{B}_n(i) = \begin{cases}
+    \frac{p}{\abs{I_{n,c}}} & i\in I_{n,c}\\
+    B_n(i) & i\in J_{n,c}\\
+     \end{cases}
+\end{align*}
+From the above, we have that $\normone{\D^\prime - \tilde{B}_n} = p\cdot \normone{\D - \uniform_N}$. Furthermore, by \cref{fact:easy:binomial}, \cref{lemma:small:l2:close:uniform:l1} and the definition of $I_{n,c}$, we get that $\normone{B_n - \tilde{B}_n} = p\cdot \normone{(B_n)_{I_{n,c}} - \uniform_{I_{n,c}}} \leq p\cdot \phi$. Putting it all together,
+
+\begin{itemize}
+  \item If $\normone{\D - \uniform_N} \leq \phi$, then by the triangle inequality $\normone{\D^\prime - B_n} \leq p(\phi + \phi) = 2p\phi$;
+  \item If $\normone{\D - \uniform_N} \geq \frac{1}{2}-\phi$, then similarly $\normone{\D^\prime - B_n} \geq p(\frac{1}{2}-\phi -\phi) = \frac{p}{4}-2p\phi$.
+\end{itemize}
+Recalling that $p= \bigTheta{\sqrt{\phi}}$ and setting $\eps \eqdef 2p\phi$ concludes the reduction. From~\cref{theo:samp:uniformity:tolerant}, we conclude that
+\[
+\frac{\phi}{32}\frac{N}{\log N}
+  = \bigOmega{\phi\frac{\sqrt{\phi n}}{\log(\phi n)}} 
+  = \bigOmega{\eps\frac{\sqrt{n}}{\log(\eps n)}}
+\]
+samples are necessary.
+\end{proofof}
