@@ -3,7 +3,23 @@
 \epigraph{``Should we meet with a Jubjub, that desperate bird,\\
 We shall need all our strength for the job!''}{Lewis Carroll, \textit{The Hunting of the Snark}}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcounter{IRL}
+\renewcommand{\theIRL}{\textsf{Succinctness}}
+\newcommand*{\inlineref}[1]{\refstepcounter{IRL}({\theIRL})\label{#1}}
+\newcommand{\RightComment}[1]{\Comment{\parbox[t]{.30\linewidth}{\small#1}}} % For algorithms
+
+\newcommand{\h}{\mathbf{h}}
+\newcommand{\p}{\mathbf{p}}
+\newcommand{\q}{\mathbf{p}}
+\newcommand{\fourier}[1]{\widehat{#1}}
+
+\newcommand{\bracketing}[3][\operatorname{d_{\textrm{H}}}]{\mathcal{N}_{[ ]}(#2,#3,#1)}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
 \section{The Shape Restrictions Knife}
 \input{chapter1/sec-shaperestrictions}
 
 \section{The Fourier Knife}
+\input{chapter1/sec-fourier}

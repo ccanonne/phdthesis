@@ -580,6 +580,26 @@
   Numpages                 = {20}
 }
 
+@article{DDS:PBD:15,
+  Author    = {Daskalakis, Constantinos and Diakonikolas, Ilias and Servedio, Rocco A.},
+  title     = {{Learning Poisson Binomial Distributions}},
+  journal   = {Algorithmica},
+  volume    = {72},
+  number    = {1},
+  pages     = {316--357},
+  year      = {2015}
+}
+
+@inproceedings{DDKT:16,
+  author    = {Daskalakis, Constantinos and
+               De, Anindya and
+               Kamath, Gautam and
+               Tzamos, Christos},
+  title     = {A Size-Free {CLT} for Poisson Multinomials and its Applications},
+  booktitle   = stoc,
+  year      = {2016}
+}
+
 @InProceedings{DDSVV:13,
   Title                    = {Testing $k$-modal Distributions: Optimal Algorithms via Reductions},
   Author                   = {Daskalakis, Constantinos and Diakonikolas, Ilias and Servedio, Rocco A. and Valiant, Gregory and Valiant, Paul},
@@ -599,8 +619,7 @@
 
 @InProceedings{DK:13,
   Title                    = {Faster and Sample Near-Optimal Algorithms for Proper Learning Mixtures of {G}aussians},
-  Author                   = {Constantinos Daskalakis and
- Gautam Kamath},
+  Author                   = {Constantinos Daskalakis and Gautam Kamath},
   Booktitle                = {Proceedings of The 27th Conference on Learning Theory,
  Barcelona, Spain, June 13-15, 2014},
   Year                     = {2014},
@@ -701,12 +720,11 @@
 }
 
 @InProceedings{DKS:15,
-  Title                    = {{Optimal Learning via the Fourier Transform for Sums of Independent
- Integer Random Variables}},
+  Title                    = {{Optimal Learning via the Fourier Transform for Sums of Independent Integer Random Variables}},
   Author                   = {Ilias Diakonikolas and
  Daniel M. Kane and
  Alistair Stewart},
-  Booktitle                = {{COLT}},
+  Booktitle                = colt,
   Year                     = {2016},
   Note                     = {Full version in~\cite{DKS:15:arXiv}.},
   Pages                    = {831--849},
@@ -717,9 +735,7 @@
 
 @Article{DKS:16,
   Title                    = {Efficient Robust Proper Learning of Log-concave Distributions},
-  Author                   = {Ilias Diakonikolas and
- Daniel M. Kane and
- Alistair Stewart},
+  Author                   = {Ilias Diakonikolas and Daniel M. Kane and Alistair Stewart},
   Journal                  = {CoRR},
   Year                     = {2016},
   Volume                   = {abs/1606.03077},
@@ -730,15 +746,59 @@
   Url                      = {http://arxiv.org/abs/1606.03077}
 }
 
+@inproceedings{DKT:15,
+  author    = {Constantinos Daskalakis and
+               Gautam Kamath and
+               Christos Tzamos},
+  title     = {On the Structure, Covering, and Learning of Poisson Multinomial Distributions},
+   booktitle = focs,
+  year      = {2015}
+}
+
 @Article{DKS:15:arXiv,
-  Title                    = {Nearly Optimal Learning and Sparse Covers for Sums of Independent
- Integer Random Variables},
+  Title                    = {Nearly Optimal Learning and Sparse Covers for Sums of Independent Integer Random Variables},
   Author                   = {Ilias Diakonikolas and
  Daniel M. Kane and
  Alistair Stewart},
   Journal                  = {CoRR},
   Year                     = {2015},
   Volume                   = {abs/1505.00662}
+}
+
+@inproceedings{CDS:17,
+ author = {Cheng, Yu and Diakonikolas, Ilias and Stewart, Alistair},
+ title = {Playing Anonymous Games Using Simple Strategies},
+ booktitle = {Proceedings of the Twenty-Eighth Annual ACM-SIAM Symposium on Discrete Algorithms},
+ series = soda,
+ year = {2017},
+ location = {Barcelona, Spain},
+ pages = {616--631},
+ numpages = {16},
+ url = {http://dl.acm.org/citation.cfm?id=3039686.3039726},
+ acmid = {3039726},
+ publisher = {Society for Industrial and Applied Mathematics},
+ address = {Philadelphia, PA, USA},
+}
+
+@inproceedings{DKS:15b,
+  author    = {Ilias Diakonikolas and
+               Daniel M. Kane and
+               Alistair Stewart},
+  title     = {Properly Learning {P}oisson Binomial Distributions in Almost Polynomial Time},
+  booktitle = colt,
+  pages     = {850--878},
+  year      = {2016},
+  note = {Full version available at \href{https://arxiv.org/abs/1511.04066}{arXiv:1511.04066}.}
+}
+
+@inproceedings{DKS:15c,
+  author    = {Ilias Diakonikolas and
+               Daniel M. Kane and
+               Alistair Stewart},
+ title     = {{The Fourier Transform of Poisson Multinomial Distributions and its Algorithmic Applications}},
+  booktitle = stoc,
+  year      = {2016},
+  note = {Full version available at \href{https://arxiv.org/abs/1511.03592}{arXiv:1511.03592}.}
 }
 
 @Article{DKW:56,
@@ -1483,17 +1543,101 @@
   Url                      = {http://research.microsoft.com/apps/pubs/default.aspx?id=141304}
 }
 
-@Proceedings{conf/soda/2013,
-  Title                    = {Proceedings of the Twenty-Fourth Annual ACM-SIAM Symposium
- on Discrete Algorithms, SODA 2013, New Orleans, Louisiana,
- USA, January 6-8, 2013},
-  Year                     = {2013},
-  Editor                   = {Sanjeev Khanna},
-  Publisher                = {SIAM},
+@book{Boucheron:13,
+  title={{Concentration Inequalities: A Nonasymptotic Theory of Independence}},
+  author={Boucheron, S. and Lugosi, G. and Massart, P.},
+  year={2013},
+  publisher={OUP Oxford}
+}
 
-  Booktitle                = {SODA},
-  Ee                       = {http://dx.doi.org/10.1137/1.9781611973105},
-  ISBN                     = {978-1-61197-251-1, 978-1-61197-310-5},
-  Owner                    = {ceacy},
-  Timestamp                = {2017.08.05}
+@book{vdG:00,
+  title={Empirical Processes in M-estimation},
+  author={van de Geer, Sara A.},
+  volume={6},
+  year={2000},
+  publisher={Cambridge University Press}
+}
+
+@article{KS:16,
+author = "Kim, A. K. H. and Samworth, R. J.",
+fjournal = "The Annals of Statistics",
+journal = "Ann. Statist.",
+month = "12",
+number = "6",
+pages = "2756--2779",
+publisher = "The Institute of Mathematical Statistics",
+title = "Global rates of convergence in log-concave density estimation",
+note={Available at http://arxiv.org/abs/1404.2298},
+volume = "44",
+year = "2016"
+}
+
+@article {WS:95,
+    AUTHOR = {Wong, Wing Hung and Shen, Xiaotong},
+     TITLE = {Probability inequalities for likelihood ratios and convergence rates of sieve {MLE}s},
+   JOURNAL = {Ann. Statist.},
+  FJOURNAL = {The Annals of Statistics},
+    VOLUME = {23},
+      YEAR = {1995},
+    NUMBER = {2},
+     PAGES = {339--362},
+      ISSN = {0090-5364},
+   MRCLASS = {62G05 (62G20 62G30)},
+  MRNUMBER = {1332570},
+MRREVIEWER = {Tadashi Nakamura},
+       DOI = {10.1214/aos/1176324524},
+       URL = {http://dx.doi.org/10.1214/aos/1176324524},
+}
+
+@article{DR:11,
+  author = {Dumbgen, L. and Rufibach, K.},
+  journal = {J. Statist. Software},
+  number = 6,
+  title = {logcondens: Computations Related to Univariate Log-Concave Density Estimation},
+  volume = 39,
+  year = 2011
+}
+
+@article{RS:08:numbertheory,
+   author = {{Richmond}, L.~B. and {Shallit}, J.},
+    title = "{Counting Abelian Squares}",
+  journal = {ArXiv e-prints},
+archivePrefix = "arXiv",
+   eprint = {0807.5028},
+ primaryClass = "math.CO",
+ keywords = {Mathematics - Combinatorics, 05A16},
+     year = 2008,
+    month = jul,
+   adsurl = {http://adsabs.harvard.edu/abs/2008arXiv0807.5028R},
+  adsnote = {Provided by the SAO/NASA Astrophysics Data System}
+}
+
+
+@inproceedings{BDS:12,
+  author    = {A. Bhaskara and
+               D. Desai and
+               S. Srinivasan},
+  title     = {Optimal Hitting Sets for Combinatorial Shapes},
+  booktitle = {15th International Workshop, {APPROX} 2012, and 16th
+               International Workshop, {RANDOM} 2012},
+  pages     = {423--434},
+  year      = {2012}
+ }
+ 
+ 
+ @inproceedings{De:15,
+  author    = {De, Anindya},
+  title     = {Beyond the Central Limit Theorem: asymptotic expansions and pseudorandomness
+               for combinatorial sums},
+  booktitle = focs,
+  year      = {2015}  
+}
+ 
+@inproceedings{GKM:15,
+  author    = {P. Gopalan and
+               D. M. Kane and
+               R. Meka},
+  title     = {Pseudorandomness via the discrete Fourier transform},
+ booktitle = focs,
+  year      = {2015}  
 }

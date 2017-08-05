@@ -335,91 +335,90 @@ We use similar ideas in order to obtain some of the results in the present paper
     
 
 
-It is instructive to compare the goal of our model of distribution
-sampling correctors to that of extractors: in spite of many similarities, the two have essential differences and the results are in many cases incomparable. We defer this discussion to~\cref{sec:uniformity}.
-% %  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% % \section{Preliminaries}\label{sec:preliminaries}
-% % 	
-% % Hereafter, we write $[n]$ for the set $\{1,\dots,n\}$, and $\log$ for the logarithm in base $2$. A \emph{probability distribution} over a finite domain $\domain$ is a non-negative function $\D\colon\domain\to[0,1]$ such that $\sum_{x\in\domain} \D(x) = 1$; we denote by $\uniform_{\domain}$ the uniform distribution on \domain. Moreover, given a distribution $\D$ over $\domain$ and a set $S\subseteq\domain$, we write $\D(S)$ for the total probability weight $\sum_{x\in S} \D(x)$ assigned to $S$ by $\D$.
-% %
-% % \paragraph{Previous tools from probability.}
-% % As previously mentioned, in this work we will be concerned with the total variation distance between distributions. Of interest for the analysis of some of our algorithms, and assuming \domain is totally ordered (in our case, $\domain=[n]$), one can also define the \emph{Kolmogorov distance} between $\D_1$ and $\D_2$ as
-% % \begin{equation}\label{eq:def:dk}
-% %   \kolmogorov{\D_1}{\D_2} \eqdef \max_{x\in \domain}\abs{F_1(x)-F_2(x)}
-% % \end{equation}
-% % where $F_1$ and $F_2$ are the respective cumulative distribution functions (cdf) of $\D_1$ and $\D_2$. Thus, the Kolmogorov distance is the $\lp[\infty]$ distance between the cdf's; and $\kolmogorov{\D_1}{\D_2} \leq \totalvardist{\D_1}{\D_2} \in [0,1]$. \smallskip
-% %
-% % We first state the following theorem, which guarantees that for any two distributions $\D_1$, $\D_2$, applying any (possibly randomized) function to both $\D_1$ and $\D_2$ can never increase their total variation distance:
-% % \begin{fact}[Data Processing Inequality for Total Variation Distance]\label{lemma:data:processing:inequality:total:variation}
-% % Let $\D_1$, $\D_2$ be two distributions over a domain $\Omega$. Fix any randomized function\footnote{Which can be seen as a distribution over functions over $\Omega$.}{} $F$ on $\Omega$, and let $F(\D_1)$ be the distribution such that a draw from $F(\D_1)$ is obtained by drawing independently $x$ from $\D_1$ and $f$ from $F$ and then outputting $f(x)$ (likewise for $F(\D_2)$).
-% % Then we have
-% % \[
-% % \totalvardist{ F(\D_1) }{  F(\D_2) }  \leq \totalvardist{ \D_1 }{ \D_2 }.
-% % \]
-% % \end{fact}
-% %
-% % Finally, we recall below a fundamental fact from probability theory that will be useful to us, the \emph{Dvoretzky--Kiefer--Wolfowitz (DKW) inequality}. Informally, this result says that one can learn the cumulative distribution function of a distribution up to an additive error $\eps$ in $\lp[\infty]$ distance, by taking only $\bigO{1/\eps^2}$ samples from it.
-% % \begin{theorem}[\cite{DKW:56,Massart:90}]\label{theo:dkw}
-% % Let $\D$ be a distribution over $[n]$. Given $m$ independent samples $x_1,\dots ,x_m$ from $\D$, define the empirical distribution $\hat{\D}$ as follows:
-% % \[
-% % \hat{\D}(i) \eqdef \frac{\abs{ \setOfSuchThat{j\in[m]}{x_j=i} } }{m}, \quad i\in[n].
-% % \]
-% % Then, for all $\eps > 0$, $\probaOf{ \kolmogorov{\D}{\hat{\D}} > \eps } \leq 2e^{-2m\eps^2}$, where the probability is taken over the samples.
-% % \end{theorem} 
-% % \noindent In particular, setting $m=\bigTheta{\frac{\log(1/\delta)}{\eps^2}}$ we get that $\kolmogorov{\D}{\hat{\D}} \leq \eps$ with probability at least $1-\delta$.
-% %
-% % \paragraph{Flattenings.}
-% % \noindent For a distribution $\D$ and a partition of $[n]$ into intervals $\mathcal{I}=(I_1,\dots,I_\ell)$, we define the \emph{flattening of $\D$ with relation to $\mathcal{I}$} as the distribution $\Psi_{\mathcal{I}}(\D)$, where $\Psi_{\mathcal{I}}(\D)(i) = {\D(I_k)}/{\abs{I_k}}$ for all $k\in [\ell]$ and $i\in I_k$. A straightforward computation shows that such flattening cannot increase the distance between two distributions, i.e.,
-% %   \begin{equation}\label{eq:Birge:tv}
-% %       \totalvardist{ \Psi_{\mathcal{I}}(\D_1) }{ \Psi_{\mathcal{I}}(\D_2) } \leq \totalvardist{\D_1}{\D_2}.
-% %   \end{equation}
-% % \begin{proof}[Proof of Eq.~\eqref{eq:Birge:tv}]
-% %     Fix a partition $\mathcal{I}$ of $[n]$ into $\ell$ intervals $I_1,\dots, I_\ell$, and let $\D_1$, $\D_2$ be two arbitrary distributions on $[n]$. Recall that $\Psi_{\mathcal{I}}(\D)$ is the flattening of distribution $\D_j$ (with relation to the partition $\mathcal{I}$).
-% %       \begin{align*}
-% %       2\totalvardist{ \Psi_{\mathcal{I}}(\D_1) }{ \Psi_{\mathcal{I}}(\D_2) } &= \sum_{i=1}^n \abs{ \Psi_{\mathcal{I}}(\D_1)(i) - \Psi_{\mathcal{I}}(\D_2)(i) } = \sum_{k=1}^\ell \sum_{i\in I_k} \abs{ \frac{\D_1(I_k)}{\abs{I_k}} - \frac{\D_2(I_k)}{\abs{I_k}} } \\
-% %       &=  \sum_{k=1}^\ell \abs{ \D_1(I_k) - \D_2(I_k) } = \sum_{k=1}^\ell \abs{ \sum_{i\in I_k}\left( \D_1(i) - \D_2(i) \right) } \\
-% %       &\leq  \sum_{k=1}^\ell \sum_{i\in I_k} \abs{ \D_1(i) - \D_2(i)  } = \sum_{i=1}^n \abs{ \D_1(i) - \D_2(i)  } 
-% %       = 2\totalvardist{\D_1}{\D_2}.
-% %       \end{align*}
-% % (we remark that Eq.~\eqref{eq:Birge:tv} could also be obtained directly by applying the data processing inequality for total variation distance (\cref{lemma:data:processing:inequality:total:variation}) to $\D_1$, $\D_2$, for the transformation $\Psi_{\mathcal{I}}(\cdot)$.)
-% % \end{proof}
-% %
-% % \paragraph{Monotone distributions.}
-% % We say that a distribution $\D$ on $[n]$ is \emph{monotone} (non-increasing) if its probability mass function is non-increasing, that is if $\D(1)\geq \dots \geq \D(n)$. 
-% % When dealing with monotone distributions, it will be useful to consider the \emph{Birg\'e decomposition}, which is a way to approximate any monotone distribution $\D$ by a histogram, where the latter is supported by logarithmically many intervals \emph{which crucially do not depend on $\D$ itself}:
-% % \begin{definition}[Birg\'e decomposition]\label{def:birge:decomposition}
-% %   Given a parameter $\alpha>0$, the corresponding (oblivious) \emph{Birg\'e decomposition of $[n]$} is the partition $\mathcal{I}_\alpha=(I_1,\dots,I_\ell)$, where $\ell=\bigTheta{\frac{\ln( \alpha n + 1)}{\alpha}}=\bigTheta{\frac{\log n }{\alpha}}$ and $\abs{I_{k}}=\flr{(1+\alpha)^k}$, $1\leq k \leq \ell$. 
-% % \end{definition}
-% %
-% % \noindent {For a distribution $\D$ and parameter $\alpha$, define $\birge[\D]{\alpha}$ to be the ``flattened'' distribution with relation to the oblivious decomposition $\mathcal{I}_\alpha$, that is $\birge[\D]{\alpha} = \Psi_{\mathcal{I}_\alpha}(\D)$.} 
-% % The next theorem states that every monotone distribution can be well-approximated by its flattening on the Birg\'e decomposition's intervals:     
-% % \begin{theorem}[\cite{Birge:87,DDSVV:13}]\label{theorem:Birge:obl:decomp}
-% %  If $\D$ is monotone, then $\totalvardist{\D}{\birge[\D]{\alpha}} \leq \alpha$.
-% % \end{theorem}
-% %
-% % \noindent As a corollary, one can extend the theorem to distributions only promised to be \emph{close} to monotone:
-% % \begin{restatable}{corollary}{birgerobustcorollary}\label{coro:Birge:decomposition:robust}
-% %     Suppose $\D$ is \eps-close to monotone, and let $\alpha > 0$. Then $\totalvardist{\D}{ \birge[\D]{\alpha} } \leq 2\eps + \alpha$. Furthermore,  $\birge[\D]{\alpha}$ is also \eps-close to monotone.
-% % \end{restatable}
-% % \begin{proof}[Proof of~\cref{coro:Birge:decomposition:robust}]
-% %   Let $\D$ be \eps-close to monotone, and $D^\prime$ be a monotone distribution such that $\totalvardist{\D}{\D^\prime} = \eta \leq \eps$. By Eq.~\eqref{eq:Birge:tv}, we have
-% %   \begin{equation}\label{eqn:phialpha:cannot:increase:tv}
-% %       \totalvardist{ \birge[\D]{\alpha} }{ \birge[\D^\prime]{\alpha} } \leq \totalvardist{\D}{\D^\prime} = \eta
-% %   \end{equation}
-% %   proving the last part of the claim  (since $\birge[\D^\prime]{\alpha}$ is easily seen to be monotone).
-% %
-% %   \noindent Now, by the triangle inequality,
-% %   \begin{align*}
-% %       \totalvardist{D}{ \birge[\D^\prime]{\alpha} } &\leq \totalvardist{\D}{\D^\prime} + \totalvardist{D^\prime}{ \birge[\D^\prime]{\alpha} } + \totalvardist{ \birge[\D^\prime]{\alpha} }{ \birge[\D]{\alpha} } \\
-% %       &\leq \eta + \alpha + \eta \\
-% %       &\leq 2\eps+\alpha
-% %   \end{align*}
-% %   where the last inequality uses the assumption on $\D^\prime$ and~\cref{theorem:Birge:obl:decomp} applied to it.
-% % \end{proof}
-% %   
-% % \paragraph{Access to the distributions.} While we will mostly be concerned in this work with the standard model of access to the probability distributions, where the algorithm is provided with independent samples from an unknown distribution $\D$, the concepts we introduce and some of our results apply to some other types of access as well. One in particular, the \Cdfsamp access model, grants the algorithms the ability to query the value of the cumulative distribution function (cdf) of $\D$, in addition to regular sampling.\footnote{See also~\cite{clement:survey:distributions} for a summary and comparison of the different existing access models.} (We observe, as in~\cite{CR:14}, that this type of query access is for instance justified when the distribution originates from a sorted dataset, in which case such queries can be implemented with only a logarithmic overhead.)
-% %
-% % Unless explicitly specified otherwise, our algorithms only assume standard sampling access; the formal definitions of the two models mentioned above can be found in~\cref{appendix:definitions}.
+It is instructive to compare the goal of our model of distribution sampling correctors to that of extractors: in spite of many similarities, the two have essential differences and the results are in many cases incomparable. We defer this discussion to~\cref{sec:uniformity}.
+ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Preliminaries}\label{sec:preliminaries}
+	
+Hereafter, we write $[n]$ for the set $\{1,\dots,n\}$, and $\log$ for the logarithm in base $2$. A \emph{probability distribution} over a finite domain $\domain$ is a non-negative function $\D\colon\domain\to[0,1]$ such that $\sum_{x\in\domain} \D(x) = 1$; we denote by $\uniform_{\domain}$ the uniform distribution on \domain. Moreover, given a distribution $\D$ over $\domain$ and a set $S\subseteq\domain$, we write $\D(S)$ for the total probability weight $\sum_{x\in S} \D(x)$ assigned to $S$ by $\D$.
+
+\paragraph{Previous tools from probability.}
+As previously mentioned, in this work we will be concerned with the total variation distance between distributions. Of interest for the analysis of some of our algorithms, and assuming \domain is totally ordered (in our case, $\domain=[n]$), one can also define the \emph{Kolmogorov distance} between $\D_1$ and $\D_2$ as
+\begin{equation}\label{eq:def:dk}
+  \kolmogorov{\D_1}{\D_2} \eqdef \max_{x\in \domain}\abs{F_1(x)-F_2(x)}
+\end{equation}
+where $F_1$ and $F_2$ are the respective cumulative distribution functions (cdf) of $\D_1$ and $\D_2$. Thus, the Kolmogorov distance is the $\lp[\infty]$ distance between the cdf's; and $\kolmogorov{\D_1}{\D_2} \leq \totalvardist{\D_1}{\D_2} \in [0,1]$. \smallskip
+
+We first state the following theorem, which guarantees that for any two distributions $\D_1$, $\D_2$, applying any (possibly randomized) function to both $\D_1$ and $\D_2$ can never increase their total variation distance:
+\begin{fact}[Data Processing Inequality for Total Variation Distance]\label{lemma:data:processing:inequality:total:variation}
+Let $\D_1$, $\D_2$ be two distributions over a domain $\Omega$. Fix any randomized function\footnote{Which can be seen as a distribution over functions over $\Omega$.}{} $F$ on $\Omega$, and let $F(\D_1)$ be the distribution such that a draw from $F(\D_1)$ is obtained by drawing independently $x$ from $\D_1$ and $f$ from $F$ and then outputting $f(x)$ (likewise for $F(\D_2)$).
+Then we have
+\[
+\totalvardist{ F(\D_1) }{  F(\D_2) }  \leq \totalvardist{ \D_1 }{ \D_2 }.
+\]
+\end{fact}
+
+Finally, we recall below a fundamental fact from probability theory that will be useful to us, the \emph{Dvoretzky--Kiefer--Wolfowitz (DKW) inequality}. Informally, this result says that one can learn the cumulative distribution function of a distribution up to an additive error $\eps$ in $\lp[\infty]$ distance, by taking only $\bigO{1/\eps^2}$ samples from it.
+\begin{theorem}[\cite{DKW:56,Massart:90}]\label{theo:dkw}
+Let $\D$ be a distribution over $[n]$. Given $m$ independent samples $x_1,\dots ,x_m$ from $\D$, define the empirical distribution $\hat{\D}$ as follows:
+\[
+\hat{\D}(i) \eqdef \frac{\abs{ \setOfSuchThat{j\in[m]}{x_j=i} } }{m}, \quad i\in[n].
+\]
+Then, for all $\eps > 0$, $\probaOf{ \kolmogorov{\D}{\hat{\D}} > \eps } \leq 2e^{-2m\eps^2}$, where the probability is taken over the samples.
+\end{theorem} 
+\noindent In particular, setting $m=\bigTheta{\frac{\log(1/\delta)}{\eps^2}}$ we get that $\kolmogorov{\D}{\hat{\D}} \leq \eps$ with probability at least $1-\delta$.
+
+\paragraph{Flattenings.}
+\noindent For a distribution $\D$ and a partition of $[n]$ into intervals $\mathcal{I}=(I_1,\dots,I_\ell)$, we define the \emph{flattening of $\D$ with relation to $\mathcal{I}$} as the distribution $\Psi_{\mathcal{I}}(\D)$, where $\Psi_{\mathcal{I}}(\D)(i) = {\D(I_k)}/{\abs{I_k}}$ for all $k\in [\ell]$ and $i\in I_k$. A straightforward computation shows that such flattening cannot increase the distance between two distributions, i.e.,
+  \begin{equation}\label{eq:Birge:tv}
+      \totalvardist{ \Psi_{\mathcal{I}}(\D_1) }{ \Psi_{\mathcal{I}}(\D_2) } \leq \totalvardist{\D_1}{\D_2}.
+  \end{equation}
+\begin{proof}[Proof of Eq.~\eqref{eq:Birge:tv}]
+    Fix a partition $\mathcal{I}$ of $[n]$ into $\ell$ intervals $I_1,\dots, I_\ell$, and let $\D_1$, $\D_2$ be two arbitrary distributions on $[n]$. Recall that $\Psi_{\mathcal{I}}(\D)$ is the flattening of distribution $\D_j$ (with relation to the partition $\mathcal{I}$).
+      \begin{align*}
+      2\totalvardist{ \Psi_{\mathcal{I}}(\D_1) }{ \Psi_{\mathcal{I}}(\D_2) } &= \sum_{i=1}^n \abs{ \Psi_{\mathcal{I}}(\D_1)(i) - \Psi_{\mathcal{I}}(\D_2)(i) } = \sum_{k=1}^\ell \sum_{i\in I_k} \abs{ \frac{\D_1(I_k)}{\abs{I_k}} - \frac{\D_2(I_k)}{\abs{I_k}} } \\
+      &=  \sum_{k=1}^\ell \abs{ \D_1(I_k) - \D_2(I_k) } = \sum_{k=1}^\ell \abs{ \sum_{i\in I_k}\left( \D_1(i) - \D_2(i) \right) } \\
+      &\leq  \sum_{k=1}^\ell \sum_{i\in I_k} \abs{ \D_1(i) - \D_2(i)  } = \sum_{i=1}^n \abs{ \D_1(i) - \D_2(i)  } 
+      = 2\totalvardist{\D_1}{\D_2}.
+      \end{align*}
+(we remark that Eq.~\eqref{eq:Birge:tv} could also be obtained directly by applying the data processing inequality for total variation distance (\cref{lemma:data:processing:inequality:total:variation}) to $\D_1$, $\D_2$, for the transformation $\Psi_{\mathcal{I}}(\cdot)$.)
+\end{proof}
+
+\paragraph{Monotone distributions.}
+We say that a distribution $\D$ on $[n]$ is \emph{monotone} (non-increasing) if its probability mass function is non-increasing, that is if $\D(1)\geq \dots \geq \D(n)$. 
+When dealing with monotone distributions, it will be useful to consider the \emph{Birg\'e decomposition}, which is a way to approximate any monotone distribution $\D$ by a histogram, where the latter is supported by logarithmically many intervals \emph{which crucially do not depend on $\D$ itself}:
+\begin{definition}[Birg\'e decomposition]\label{def:birge:decomposition}
+  Given a parameter $\alpha>0$, the corresponding (oblivious) \emph{Birg\'e decomposition of $[n]$} is the partition $\mathcal{I}_\alpha=(I_1,\dots,I_\ell)$, where $\ell=\bigTheta{\frac{\ln( \alpha n + 1)}{\alpha}}=\bigTheta{\frac{\log n }{\alpha}}$ and $\abs{I_{k}}=\flr{(1+\alpha)^k}$, $1\leq k \leq \ell$. 
+\end{definition}
+
+\noindent {For a distribution $\D$ and parameter $\alpha$, define $\birge[\D]{\alpha}$ to be the ``flattened'' distribution with relation to the oblivious decomposition $\mathcal{I}_\alpha$, that is $\birge[\D]{\alpha} = \Psi_{\mathcal{I}_\alpha}(\D)$.} 
+The next theorem states that every monotone distribution can be well-approximated by its flattening on the Birg\'e decomposition's intervals:     
+\begin{theorem}[\cite{Birge:87,DDSVV:13}]\label{theorem:Birge:obl:decomp}
+ If $\D$ is monotone, then $\totalvardist{\D}{\birge[\D]{\alpha}} \leq \alpha$.
+\end{theorem}
+
+\noindent As a corollary, one can extend the theorem to distributions only promised to be \emph{close} to monotone:
+\begin{restatable}{corollary}{birgerobustcorollary}\label{coro:Birge:decomposition:robust}
+    Suppose $\D$ is \eps-close to monotone, and let $\alpha > 0$. Then $\totalvardist{\D}{ \birge[\D]{\alpha} } \leq 2\eps + \alpha$. Furthermore,  $\birge[\D]{\alpha}$ is also \eps-close to monotone.
+\end{restatable}
+\begin{proof}[Proof of~\cref{coro:Birge:decomposition:robust}]
+  Let $\D$ be \eps-close to monotone, and $D^\prime$ be a monotone distribution such that $\totalvardist{\D}{\D^\prime} = \eta \leq \eps$. By Eq.~\eqref{eq:Birge:tv}, we have
+  \begin{equation}\label{eqn:phialpha:cannot:increase:tv}
+      \totalvardist{ \birge[\D]{\alpha} }{ \birge[\D^\prime]{\alpha} } \leq \totalvardist{\D}{\D^\prime} = \eta
+  \end{equation}
+  proving the last part of the claim  (since $\birge[\D^\prime]{\alpha}$ is easily seen to be monotone).
+
+  \noindent Now, by the triangle inequality,
+  \begin{align*}
+      \totalvardist{D}{ \birge[\D^\prime]{\alpha} } &\leq \totalvardist{\D}{\D^\prime} + \totalvardist{D^\prime}{ \birge[\D^\prime]{\alpha} } + \totalvardist{ \birge[\D^\prime]{\alpha} }{ \birge[\D]{\alpha} } \\
+      &\leq \eta + \alpha + \eta \\
+      &\leq 2\eps+\alpha
+  \end{align*}
+  where the last inequality uses the assumption on $\D^\prime$ and~\cref{theorem:Birge:obl:decomp} applied to it.
+\end{proof}
+  
+\paragraph{Access to the distributions.} While we will mostly be concerned in this work with the standard model of access to the probability distributions, where the algorithm is provided with independent samples from an unknown distribution $\D$, the concepts we introduce and some of our results apply to some other types of access as well. One in particular, the \Cdfsamp access model, grants the algorithms the ability to query the value of the cumulative distribution function (cdf) of $\D$, in addition to regular sampling.\footnote{See also~\cite{clement:survey:distributions} for a summary and comparison of the different existing access models.} (We observe, as in~\cite{CR:14}, that this type of query access is for instance justified when the distribution originates from a sorted dataset, in which case such queries can be implemented with only a logarithmic overhead.)
+
+Unless explicitly specified otherwise, our algorithms only assume standard sampling access; the formal definitions of the two models mentioned above can be found in~\cref{appendix:definitions}.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

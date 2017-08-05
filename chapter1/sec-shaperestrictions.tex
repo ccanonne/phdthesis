@@ -1,24 +1,3 @@
-\newcounter{IRL}
-\renewcommand{\theIRL}{\textsf{Succinctness}}
-\newcommand*{\inlineref}[1]{\refstepcounter{IRL}({\theIRL})\label{#1}}
-
-\newcommand{\classmon}{\ensuremath{\mathcal{M}}\xspace}
-\newcommand{\classtmo}[1][t]{\ensuremath{\classmon_{#1}}\xspace}
-\newcommand{\classuni}{\classtmo[1]}
-\newcommand{\classlog}{\ensuremath{\mathcal{L}}\xspace}
-\newcommand{\classcvx}{\ensuremath{\mathcal{K}^+}\xspace}
-\newcommand{\classcve}{\ensuremath{\mathcal{K}^-}\xspace}
-\newcommand{\classmhr}{\ensuremath{\mathcal{MHR}}\xspace}
-\newcommand{\classpbd}{\ensuremath{\mathcal{PBD}}\xspace}
-\newcommand{\classbin}{\ensuremath{\mathcal{BIN}}\xspace}
-\newcommand{\classpoly}[1][t,d]{\ensuremath{\mathcal{P}_{#1}}\xspace}
-\newcommand{\classhist}[1][t]{\ensuremath{\mathcal{H}_{#1}}\xspace}
-\newcommand{\classksiirv}[1][k]{\ensuremath{#1}\text{-}\ensuremath{\mathcal{SIIRV}}\xspace}
-
-\newcommand{\estimdist}[1][\class]{\textsc{ProjectionDist}_{#1}}
-
-\newcommand{\RightComment}[1]{\Comment{\parbox[t]{.30\linewidth}{\small#1}}} % For algorithms
-
 \subsection{Introduction}\label{sec:introduction}
 Inferring information about the probability distribution that underlies a data sample is an essential question in Statistics, and one that has ramifications in every field of the natural sciences and quantitative research. In many situations, it is natural to assume that this data exhibits some simple structure because of known properties of the origin of the data, and in fact these assumptions are crucial in making the problem tractable. Such assumptions translate as constraints on the probability distribution -- e.g., it is supposed to be Gaussian, or to meet a smoothness or ``fat tail'' condition (see e.g.,~\cite{Mandelbrot:63:FatTail,Hougaard:86:StableDistribs,PhysRevLett:95}).
 
@@ -92,7 +71,7 @@ The algorithm \textsc{TestSplittable} can test the classes of Binomial and Poiss
                  & \pb{50mm}{$\bigOmega{\sqrt{tn}}$ (for $t\leq \frac{1}{\eps}$)~\cite{ILR:12}, $\bigOmega{\frac{\sqrt{n}}{\eps^2}+\frac{t}{\eps}}$~\cite{Canonne:16}$^{(\ddagger)}$, \\ $\bigOmega{\frac{\sqrt{n}}{\eps^2}}$ (\cref{coro:lb:sqrtn})}  \\\hline
      \pb{30mm}{$t$-piecewise degree-$d$}  & { $\tildeO{\frac{\sqrt{t(d+1)n}}{\eps^{7/2}} + \frac{t(d+1)}{\eps^3} }$ (\cref{coro:main:testing:piecewise}) }
                  & {$\bigOmega{\frac{\sqrt{n}}{\eps^2}}$ (\cref{coro:lb:sqrtn})}  \\\hline
-     \pb{30mm}{$k$-SIIRV}  & {}
+     \pb{30mm}{$(n,k)$-SIIRV}  & {}
                  & {$\bigOmega{ \frac{{k}^{1/2}{n}^{1/4}}{\eps^2} }$ (\cref{coro:lb:ksiirv})} \\\hline
   \end{tabular}
   \end{adjustwidth}
@@ -125,7 +104,7 @@ In this section, we state the concrete corollaries we obtain for specific struct
 \end{restatable}
 
 \begin{restatable}{corollary}{corolbksiirv}\label{coro:lb:ksiirv}
-  There exist absolute constants $c>0$ and $\eps_0 > 0$ such that testing the class of $k$-SIIRV distributions requires $\Omega\big( k^{1/2}n^{1/4}/\eps^2 \big)$ samples, for any $k=\littleO{n^c}$ and ${1}/{n^{O(1)}} \leq \eps \leq \eps_0$.
+  There exist absolute constants $c>0$ and $\eps_0 > 0$ such that testing the class of $(n,k)$-SIIRV distributions requires $\Omega\big( k^{1/2}n^{1/4}/\eps^2 \big)$ samples, for any $k=\littleO{n^c}$ and ${1}/{n^{O(1)}} \leq \eps \leq \eps_0$.
 \end{restatable}
 
 \subparagraph{Tolerant Testing.} 
@@ -159,47 +138,6 @@ due to the mild structural assumptions it requires. However, we did not attempt 
 We start by giving the necessary background and definitions in~\cref{sec:preliminaries}, before turning to our main result, the proof of~\cref{theo:main:testing} (our general testing algorithm) in~\cref{sec:algorithm}. In~\cref{sec:structural}, we establish the necessary structural theorems for each class of distributions considered, enabling us to derive the upper bounds of~\cref{fig:table:results}.~\cref{sec:effectivesupport} introduces a slight modification of our algorithm which yields stronger testing results for classes of distributions with small effective support, and use it to derive~\cref{coro:main:testing:pbd}, our upper bound for Poisson Binomial distributions. Second,~\cref{sec:lowerbounds} contains the details of our lower bound methodology, and of its applications to the classes of~\cref{fig:table:results}. Finally,~\cref{sec:lowerbounds:tol} is concerned with the extension of this methodology to \emph{tolerant} testing, of which~\cref{sec:toltesting:ub} describes a generic upper bound counterpart.
  
 \subsection{Notation and Preliminaries}\label{sec:preliminaries}
-  \subsubsection{Definitions}\label{ssec:class:definitions}
-
-We give here the formal descriptions of the classes of distributions involved in this work, starting with that of monotone distributions.
-\new{
-\begin{definition}[monotone]\label{def:monotone}
-A distribution $\D$ over $[n]$ is \emph{monotone} (non-increasing) if its probability mass function (pmf) satisfies $\D(1) \geq \D(2) \geq \dots \D(n)$.
-\end{definition}
-}
- A natural generalization of the class $\classmon$ of monotone distributions is the set of $t$-modal distributions, i.e. distributions whose pmf can go ``up and down'' or ``down and up'' up to $t$ times:\footnote{Note that this slightly deviates from the Statistics literature, where only the peaks are counted as modes (so that what is usually referred to as a bimodal distribution is, according to our definition, $3$-modal).
-}
-
-\begin{definition}[$t$-modal]\label{def:tmodal}
-  Fix any distribution $\D$ over $[n]$, and integer $t$. $\D$ is said to have $t$ \emph{modes} if there exists a sequence $i_0 < \dots < i_{t+1}$ such 
-  that either $(-1)^j \D(i_j) < (-1)^j \D(i_{j+1})$ for all $0\leq j \leq t$, or $(-1)^j \D(i_j) > (-1)^j \D(i_{j+1})$ for all $0\leq j \leq t$. We call $\D$ \emph{$t$-modal} if it has at most $t$ modes, and write $\classtmo$ for the class of all $t$-modal distributions (omitting the dependence on $n$). The particular case of $t=1$ corresponds to the set $\classuni$ of \emph{unimodal} distributions.
-\end{definition}
-
-\begin{definition}[Log-concave]\label{def:logconcave}
-  A distribution $\D$ over $[n]$ is said to be \emph{log-concave} if it satisfies the following conditions: \textsf{(i)} for any $1 \leq i < j < k \leq n$ such that $\D(i)\D(k) > 0$, $\D(j) > 0$; and \textsf{(ii)} for all $1 < k < n$, $\D(k)^2 \geq \D(k-1)\D(k+1)$. We write $\classlog$ for the class of all log-concave distributions (omitting the dependence on $n$).
-\end{definition}
-
-\begin{definition}[Concave and Convex]\label{def:concave}
-  A distribution $\D$ over $[n]$ is said to be \emph{concave} if it satisfies the following conditions: \textsf{(i)} for any $1 \leq i < j < k \leq n$ such that $\D(i)\D(k) > 0$, $\D(j) > 0$; and \textsf{(ii)} for all $1 < k < n$ such that $\D(k - 1)\D(k + 1)>0$, $2\D(k) \geq \D(k - 1)+\D(k + 1)$; it is \emph{convex} if the reverse inequality holds in \textsf{(ii)}. We write $\classcve$ (resp. $\classcvx$) for the class of all concave (resp. convex) distributions (omitting the dependence on $n$).
-\end{definition}
-It is not hard to see that convex and concave distributions are unimodal; moreover, every concave distribution is also log-concave, i.e. $\classcve\subseteq\classlog$. Note that in both \cref{def:logconcave} and \cref{def:concave}, condition \textsf{(i)} is equivalent to enforcing that the distribution be supported on an interval.
-
-\begin{definition}[Monotone Hazard Rate]\label{def:mhr}
-  A distribution $\D$ over $[n]$ is said to have \emph{monotone hazard rate} (MHR) if its \emph{hazard rate} $H(i)\eqdef \frac{\D(i)}{\sum_{j=i}^{n} \D(j)}$ is a non-decreasing function. We write $\classmhr$ for the class of all MHR distributions (omitting the dependence on $n$).
-\end{definition}
-It is known that every log-concave distribution is both unimodal and MHR (see e.g.~\cite[Proposition 10]{An:96}), and that monotone distributions are MHR. Two other classes of distributions have elicited significant interest in the context of density estimation, those of \emph{histograms} (piecewise constant) and \emph{piecewise polynomial densities}:
-\begin{definition}[Piecewise Polynomials~\cite{CDSS:14}]\label{def:piecewise}
-  A distribution $\D$ over $[n]$ is said to be a \emph{$t$-piecewise degree-$d$ distribution} if there is a partition of $[n]$ into $t$ disjoint intervals $I_1,\dots,I_t$ such that $\D(i) = p_j(i)$ for all $i \in I_j$, where each $p_1,\dots p_t$ is a univariate polynomial of degree at most $d$. We write $\classpoly$ for the class of all $t$-piecewise degree-$d$ distributions (omitting the dependence on $n$). (We note that {$t$-piecewise degree-$0$ distributions} are also commonly referred to as \emph{$t$-histograms}, and write $\classhist$ for $\classpoly[t,0]$.)
-\end{definition}
-
-Finally, we recall the definition of the two following classes, which both extend the family of Binomial distributions $\classbin_n$: the first, by removing the need for each of the independent Bernoulli summands to share the same bias parameter.
-\begin{definition}\label{def:pbd}
-A random variable $X$ is said to follow a \emph{Poisson Binomial Distribution} (with parameter $n\in\N$) if it can be written as $X=\sum_{k=1}^n X_k$, where $X_1\dots,X_n$ are independent, non-necessarily identically distributed Bernoulli random variables. We denote by $\classpbd_n$ the class of all such Poisson Binomial Distributions.
-\end{definition}
-\noindent It is not hard to show that Poisson Binomial Distributions are in particular log-concave. One can generalize even further, by allowing each random variable of the summation to be integer-valued:
-\begin{definition}\label{def:siirv}
-Fix any $k\geq 0$. We say a random variable $X$ is a \emph{$k$-Sum of Independent Integer Random Variables ($k$-SIIRV)} with parameter $n\in\N$ if it can be written as $X=\sum_{j=1}^n X_j$, where $X_1\dots,X_n$ are independent, non-necessarily identically distributed random variables taking value in $\{0,1,\dots,k-1\}$. We denote by $\classksiirv_n$ the class of all such $k$-SIIRVs.
-\end{definition}
 
 \subsubsection{Tools from previous work}
 
@@ -440,7 +378,7 @@ For any $t\geq 1$ and all $\gamma,\zeta > 0$, the class $\classtmo$ of $t$-modal
 \end{corollary}
 
 \begin{corollary}[Log-concavity, concavity and convexity]\label{theo:structural:logconcave}
-For all $\gamma,\zeta > 0$, the classes $\classlog$, $\classcve$ and $\classcvx$ of log-concave, concave and convex distributions on $[n]$ are $(\gamma,\zeta,L)$-decomposable for $L \eqdef \bigO{\frac{\log^2 \frac{n}{\zeta}}{\gamma}}$.
+For all $\gamma,\zeta > 0$, the classes $\classlogconcave$, $\classcve$ and $\classcvx$ of log-concave, concave and convex distributions on $[n]$ are $(\gamma,\zeta,L)$-decomposable for $L \eqdef \bigO{\frac{\log^2 \frac{n}{\zeta}}{\gamma}}$.
 \end{corollary}
 \begin{proof}
 This is directly implied by \cref{theo:structural:unimodal}, recalling that log-concave, concave and convex distributions are unimodal.
@@ -482,10 +420,10 @@ A similar result can easily be obtained for the class of $t$-modal distributions
 There exists a (non-efficient) procedure $\estimdist[\classmhr]$ that, on input $n$, $\eps$, as well as the full specification of a distribution $\D$ on $[n]$, distinguishes between $\lp[1](\D,\classmhr) \leq \eps$ and $\lp[1](\D,\classmhr)>2\eps$ in time~$2^{\tilde{O}_\eps(n)}$.
 \end{lemma}
 \begin{lemma}[Log-concavity]\label{lemma:distance:log}
-There exists a (non-efficient) procedure $\estimdist[\classlog]$ that, on input $n$, $\eps$, as well as the full specification of a distribution $\D$ on $[n]$, distinguishes between $\lp[1](\D,\classlog) \leq \eps$ and $\lp[1](\D,\classlog)>2\eps$ in time~$2^{\tilde{O}_\eps(n)}$.
+There exists a (non-efficient) procedure $\estimdist[\classlogconcave]$ that, on input $n$, $\eps$, as well as the full specification of a distribution $\D$ on $[n]$, distinguishes between $\lp[1](\D,\classlogconcave) \leq \eps$ and $\lp[1](\D,\classlogconcave)>2\eps$ in time~$2^{\tilde{O}_\eps(n)}$.
 \end{lemma}
 \begin{proofof}{\cref{lemma:distance:mhr} and \cref{lemma:distance:log}}
-We here give a naive algorithm for these two problems, based on an exhaustive search over a (huge) $\eps$-cover $\mathcal{S}$ of distributions over $[n]$. Essentially, $\mathcal{S}$ contains all possible distributions whose probabilities $p_1,\dots,p_n$ are of the form $j\eps/n$, for $j\in\{0,\dots,n/\eps\}$ (so that $\abs{\mathcal{S}} = \bigO{(n/\eps)^{n}}$). It is not hard to see that this indeed defines an \eps-cover of the set of all distributions, and moreover that it can be computed in time $\poly(\abs{\mathcal{S}})$. To approximate the distance from an explicit distribution $\D$ to the class $\class$ (either $\classmhr$ or $\classlog$), it is enough to go over every element $S$ of $\mathcal{S}$, checking (this time, efficiently) if $\normone{S-\D}\leq \eps$ and if there is a distribution $P\in\class$ close to $S$ (this time, pointwise, that is $\abs{P(i)-S(i)} \leq \eps/n$ for all $i$) -- which also implies $\normone{S-P}\leq \eps$ and thus $\normone{P-\D}\leq 2\eps$. The test for pointwise closeness can be done by checking feasibility of a linear program with variables corresponding to the logarithm of probabilities, i.e. $x_i \equiv \ln P(i)$. Indeed, this formulation allows to rephrase the log-concave and MHR constraints as linear constraints, and pointwise approximation is simply enforcing that $\ln(S(i)-\eps/n) \leq x_i \leq \ln(S(i)+\eps/n)$ for all $i$. At the end of this enumeration, the procedure accepts if and only if for some $S$ both $\normone{S-\D}\leq \eps$ and the corresponding linear program was feasible.
+We here give a naive algorithm for these two problems, based on an exhaustive search over a (huge) $\eps$-cover $\mathcal{S}$ of distributions over $[n]$. Essentially, $\mathcal{S}$ contains all possible distributions whose probabilities $p_1,\dots,p_n$ are of the form $j\eps/n$, for $j\in\{0,\dots,n/\eps\}$ (so that $\abs{\mathcal{S}} = \bigO{(n/\eps)^{n}}$). It is not hard to see that this indeed defines an \eps-cover of the set of all distributions, and moreover that it can be computed in time $\poly(\abs{\mathcal{S}})$. To approximate the distance from an explicit distribution $\D$ to the class $\class$ (either $\classmhr$ or $\classlogconcave$), it is enough to go over every element $S$ of $\mathcal{S}$, checking (this time, efficiently) if $\normone{S-\D}\leq \eps$ and if there is a distribution $P\in\class$ close to $S$ (this time, pointwise, that is $\abs{P(i)-S(i)} \leq \eps/n$ for all $i$) -- which also implies $\normone{S-P}\leq \eps$ and thus $\normone{P-\D}\leq 2\eps$. The test for pointwise closeness can be done by checking feasibility of a linear program with variables corresponding to the logarithm of probabilities, i.e. $x_i \equiv \ln P(i)$. Indeed, this formulation allows to rephrase the log-concave and MHR constraints as linear constraints, and pointwise approximation is simply enforcing that $\ln(S(i)-\eps/n) \leq x_i \leq \ln(S(i)+\eps/n)$ for all $i$. At the end of this enumeration, the procedure accepts if and only if for some $S$ both $\normone{S-\D}\leq \eps$ and the corresponding linear program was feasible.
 \end{proofof}
 
 \begin{lemma}[Piecewise Polynomials]\label{lemma:distance:piecewise}
@@ -521,7 +459,7 @@ The proof of this modification of~\cite[Theorem 9]{CDSS:14} is deferred to~\cref
 
 \paragraph{Computationally Efficient Procedures for Log-concave and MHR Distributions}\label{ssec:efficient:logconcave:mhr}
 
-We now describe how to obtain \emph{efficient} testing for the classes \classlog and \classmhr{} -- that is, how to obtain polynomial-time distance estimation procedures for these two classes, unlike the ones described in the previous section. At a very high-level, the idea is in both cases to write down a linear program on variables related \emph{logarithmically} to the probabilities we are searching, as enforcing the log-concave and MHR constraints on these new variables can be done linearly. The catch now becomes the $\lp[1]$ objective function (and, to a lesser extent, the fact that the probabilities must sum to one), now highly non-linear.
+We now describe how to obtain \emph{efficient} testing for the classes \classlogconcave and \classmhr{} -- that is, how to obtain polynomial-time distance estimation procedures for these two classes, unlike the ones described in the previous section. At a very high-level, the idea is in both cases to write down a linear program on variables related \emph{logarithmically} to the probabilities we are searching, as enforcing the log-concave and MHR constraints on these new variables can be done linearly. The catch now becomes the $\lp[1]$ objective function (and, to a lesser extent, the fact that the probabilities must sum to one), now highly non-linear.
 
 The first insight is to leverage the structure of log-concave (resp. monotone hazard rate) distributions to express this objective as slightly stronger constraints, specifically pointwise $(1\pm\eps)$-multiplicative closeness, much easier to enforce in our ``logarithmic formulation.'' Even so, doing this naively fails, essentially because of a too weak distance guarantee between our explicit histogram $\hat{\D}$ and the unknown distribution we are trying to find: in the completeness case, we are only promised $\eps$-closeness in $\lp[1]$, while we would also require good additive pointwise closeness of the order $\eps^2$ or~$\eps^3$.
 
@@ -537,10 +475,10 @@ The second insight is thus to observe that we ``almost'' have this for free: ind
 \end{restatable}
 
 \begin{restatable}[Log-concavity]{lemma}{lemmaefficientdistancelog}\label{lemma:distance:log:eff}
-  There exists a procedure $\estimdist[\classlog]^\ast$ that, on input $n$ as well as the full specifications of a $k$-histogram distribution $\D$ on $[n]$ and an $\ell$-histogram distribution $\D^\prime$ on $[n]$, runs in time $\poly(n,k,\ell,1/\eps)$, and satisfies the following.
+  There exists a procedure $\estimdist[\classlogconcave]^\ast$ that, on input $n$ as well as the full specifications of a $k$-histogram distribution $\D$ on $[n]$ and an $\ell$-histogram distribution $\D^\prime$ on $[n]$, runs in time $\poly(n,k,\ell,1/\eps)$, and satisfies the following.
   \begin{itemize}
-    \item If there is $P\in\classlog$ such that $\normone{\D-P}\leq \eps$ \emph{and} $\kolmogorov{\D^\prime}{P}\leq \frac{\eps^2}{\log^2(1/\eps)}$, then the procedure returns~\yes;
-    \item If $\lp[1](\D,\classlog) \geq 100\eps$, then the procedure returns \no.
+    \item If there is $P\in\classlogconcave$ such that $\normone{\D-P}\leq \eps$ \emph{and} $\kolmogorov{\D^\prime}{P}\leq \frac{\eps^2}{\log^2(1/\eps)}$, then the procedure returns~\yes;
+    \item If $\lp[1](\D,\classlogconcave) \geq 100\eps$, then the procedure returns \no.
   \end{itemize}
 \end{restatable}
 
@@ -554,9 +492,9 @@ We observe that~\cref{lemma:distance:mhr:eff} and~\cref{lemma:distance:log:eff} 
 \subsection{Going Further: Reducing the Support Size}\label{sec:effectivesupport}
   The general approach we have been following so far gives, out-of-the-box, an efficient testing algorithm with sample complexity $\tildeO{\sqrt{n}}$ for a large range of properties. However, this sample complexity can for some classes \property be brought down a lot more, by taking advantage in a preprocessing step of good concentration guarantees of distributions in \property.\medskip
 
-\noindent As a motivating example, consider the class of Poisson Binomial Distributions (PBD). It is well-known (see e.g.~\cite[Section 2]{KG:71}) that PBDs are unimodal, and more specifically that $\classpbd_n\subseteq\classlog\subseteq\classuni$. Therefore, using our generic framework we can test Poisson Binomial Distributions with $\tildeO{\sqrt{n}}$ samples. This is, however, far from optimal: as shown in~\cite{AD:15}, a sample complexity of $\bigTheta{n^{1/4}}$ is both necessary and sufficient. The reason our general algorithm ends up making quadratically too many queries can be explained as follows. PBDs are tightly concentrated around their expectation, so that they ``morally'' live on a support of size $m=\bigO{\sqrt{n}}$. Yet, instead of testing them on this very small support, in the above we still consider the entire range $[n]$, and thus end up paying a dependence $\sqrt{n}$ -- instead of $\sqrt{m}$.
+\noindent As a motivating example, consider the class of Poisson Binomial Distributions (PBD). It is well-known (see e.g.~\cite[Section 2]{KG:71}) that PBDs are unimodal, and more specifically that $\classpbd[n]\subseteq\classlogconcave\subseteq\classuni$. Therefore, using our generic framework we can test Poisson Binomial Distributions with $\tildeO{\sqrt{n}}$ samples. This is, however, far from optimal: as shown in~\cite{AD:15}, a sample complexity of $\bigTheta{n^{1/4}}$ is both necessary and sufficient. The reason our general algorithm ends up making quadratically too many queries can be explained as follows. PBDs are tightly concentrated around their expectation, so that they ``morally'' live on a support of size $m=\bigO{\sqrt{n}}$. Yet, instead of testing them on this very small support, in the above we still consider the entire range $[n]$, and thus end up paying a dependence $\sqrt{n}$ -- instead of $\sqrt{m}$.
 
-If we could use that observation to first reduce the domain to the \emph{effective support} of the distribution, then we could call our testing algorithm on this reduced domain of size $\bigO{\sqrt{n}}$. In the rest of this section, we formalize and develop this idea, and in~\cref{ssec:testing:pbds} will obtain as a direct application a $\tildeO{n^{1/4}}$-query testing algorithm for $\classpbd_n$.
+If we could use that observation to first reduce the domain to the \emph{effective support} of the distribution, then we could call our testing algorithm on this reduced domain of size $\bigO{\sqrt{n}}$. In the rest of this section, we formalize and develop this idea, and in~\cref{ssec:testing:pbds} will obtain as a direct application a $\tildeO{n^{1/4}}$-query testing algorithm for $\classpbd[n]$.
 
 \begin{definition}\label{def:effective:support}
 Given $\eps > 0$, the \emph{\eps-effective support} of a distribution $\D$ is the smallest interval $I$ such that $\D(I) \geq 1-\eps$.
@@ -654,17 +592,17 @@ For any $\eps > 0$, a PBD has \eps-effective support of size $\bigO{\sqrt{n\log(
 By an additive Chernoff Bound, any random variable $X$ following a Poisson Binomial Distribution has $\probaOf{\abs{X-\shortexpect X} > \gamma n} \leq 2e^{-2\gamma^2n}$. Taking $\gamma\eqdef\sqrt{\frac{1}{2n}\ln\frac{2}{\eps}}$, we get that $\probaOf{X\in I} \geq 1-\eps$, where $I\eqdef [\shortexpect X-\sqrt{\frac{n}{2}\ln\frac{2}{\eps}}, \shortexpect X+\sqrt{\frac{n}{2}\ln\frac{2}{\eps}}]$.
 \end{proof}
 
-It is clear that if $\D\in\classpbd_n$ (and therefore is unimodal), then for any interval $I\subseteq[n]$ the conditional distribution $\D_I$ is still unimodal, and thus the class of \emph{conditioned PBDs} $\classpbd_n^{\eps,I}\eqdef \setOfSuchThat{\D_I}{\D\in\classpbd_n, \D(I) \geq 1-\eps}$ falls under~\cref{theo:structural:unimodal}. The last piece we need to apply our generic testing framework is the existence of an algorithm to compute the distance between an (explicit) distribution and the class of conditioned PBDs. This is provided by our next lemma:
+It is clear that if $\D\in\classpbd[n]$ (and therefore is unimodal), then for any interval $I\subseteq[n]$ the conditional distribution $\D_I$ is still unimodal, and thus the class of \emph{conditioned PBDs} $\classpbd[n]^{\eps,I}\eqdef \setOfSuchThat{\D_I}{\D\in\classpbd[n], \D(I) \geq 1-\eps}$ falls under~\cref{theo:structural:unimodal}. The last piece we need to apply our generic testing framework is the existence of an algorithm to compute the distance between an (explicit) distribution and the class of conditioned PBDs. This is provided by our next lemma:
 \begin{claim}\label{lemma:distance:pbd}
-There exists a procedure $\estimdist[\classpbd_n^{\eps,I}]$ that, on input $n$ and $\eps \in [0,1]$, $I\subseteq[n]$ as well as the full specification of a distribution $\D$ on $[n]$, computes a value $\tau$ such that $\tau \in [1\pm 2\eps] \cdot \lp[1](\D,\classpbd_n^{\eps,I}) \pm \frac{\eps}{100}$, in time $n^2 \left( {1/\eps} \right)^{\bigO{\log{1/\eps}}}$.
+There exists a procedure $\estimdist[{\classpbd[n]^{\eps,I}}]$ that, on input $n$ and $\eps \in [0,1]$, $I\subseteq[n]$ as well as the full specification of a distribution $\D$ on $[n]$, computes a value $\tau$ such that $\tau \in [1\pm 2\eps] \cdot \lp[1](\D,\classpbd[n]^{\eps,I}) \pm \frac{\eps}{100}$, in time $n^2 \left( {1/\eps} \right)^{\bigO{\log{1/\eps}}}$.
 \end{claim}
 \begin{proof}
-The goal is to find a $\gamma = \Theta(\eps)$-approximation of the minimum value of $\sum_{i\in I}\abs{\frac{P(i)}{P(I)} - \frac{\D(i)}{\D(I)}}$, subject to $P(I)=\sum_{i\in I} P(i) \geq 1-\eps$ and $P\in\classpbd_n$. We first note that, given the parameters $n \in \N$ and $p_1,\dots,p_n\in[0,1]$ of a PBD $P$, the vector of $(n+1)$ probabilities $P(0),\dots,P(n)$ can be obtained in time $\bigO{n^2}$ by dynamic programming. 
-Therefore, computing the $\lp[1]$ distance between $\D$ and any PBD with known parameters can be done efficiently. To conclude, we invoke a result of Diakonikolas, Kane, and Stewart, that guarantees the existence of a succinct (proper) cover of $\classpbd_n$:
+The goal is to find a $\gamma = \Theta(\eps)$-approximation of the minimum value of $\sum_{i\in I}\abs{\frac{P(i)}{P(I)} - \frac{\D(i)}{\D(I)}}$, subject to $P(I)=\sum_{i\in I} P(i) \geq 1-\eps$ and $P\in\classpbd[n]$. We first note that, given the parameters $n \in \N$ and $p_1,\dots,p_n\in[0,1]$ of a PBD $P$, the vector of $(n+1)$ probabilities $P(0),\dots,P(n)$ can be obtained in time $\bigO{n^2}$ by dynamic programming. 
+Therefore, computing the $\lp[1]$ distance between $\D$ and any PBD with known parameters can be done efficiently. To conclude, we invoke a result of Diakonikolas, Kane, and Stewart, that guarantees the existence of a succinct (proper) cover of $\classpbd[n]$:
 \begin{theorem}[{\cite[Theorem 4]{DKS:15}} (rephrased)]
-  For all $n, \gamma >0$, there exists a set $\mathcal{S}_{\gamma} \subseteq \classpbd_n$ such that:
+  For all $n, \gamma >0$, there exists a set $\mathcal{S}_{\gamma} \subseteq \classpbd[n]$ such that:
   \begin{enumerate}[(i)]
-  \item $\mathcal{S}_{\gamma}$ is a $\gamma$-cover of $\classpbd_n$; that is, for all $\D \in \classpbd_n$ there exists some $\D^\prime \in \mathcal{S}_{\gamma}$ such that $\normone{\D-\D^\prime} \leq \gamma$
+  \item $\mathcal{S}_{\gamma}$ is a $\gamma$-cover of $\classpbd[n]$; that is, for all $\D \in \classpbd[n]$ there exists some $\D^\prime \in \mathcal{S}_{\gamma}$ such that $\normone{\D-\D^\prime} \leq \gamma$
   \item {$\abs{\mathcal{S}_{\gamma}} \leq n \left({1/\gamma}\right)^{\bigO{ \log{1/\gamma}}}$}
   \item $\mathcal{S}_{\gamma}$ can be computed in time {$n\left( {1/\gamma} \right)^{\bigO{\log{1/\gamma}}}$}
   \end{enumerate}
@@ -672,11 +610,11 @@ and each $\D\in\mathcal{S}_{\gamma}$  is explicitly described by its set of para
 \end{theorem}
 \noindent We further observe that the factor $n$ in both the size of the cover and running time can be easily removed in our case, as we know a good approximation of the support size of the candidate PBDs. (That is, we only need to enumerate over a subset of the cover of~\cite{DKS:15}, that of the PBDs with effective support compatible with our distribution $\D$.)
 \iffalse
-Therefore, computing the $\lp[1]$ distance between $\D$ and any PBD with known parameters can be done efficiently. To conclude, we invoke a result of Daskalakis and Papadimitriou, that guarantees the existence of a succinct (proper) cover of $\classpbd_n$:
+Therefore, computing the $\lp[1]$ distance between $\D$ and any PBD with known parameters can be done efficiently. To conclude, we invoke a result of Daskalakis and Papadimitriou, that guarantees the existence of a succinct (proper) cover of $\classpbd[n]$:
 \begin{theorem}[{\cite[Theorem 1]{DP:13}}]
-  For all $n, \gamma >0$, there exists a set $\mathcal{S}_{\gamma} \subseteq \classpbd_n$ such that:
+  For all $n, \gamma >0$, there exists a set $\mathcal{S}_{\gamma} \subseteq \classpbd[n]$ such that:
   \begin{enumerate}[(i)]
-  \item $\mathcal{S}_{\gamma}$ is a $\gamma$-cover of $\classpbd_n$ in $\lp[1]$; that is, for all $\D \in \classpbd_n$, there exists some $\D^\prime \in \mathcal{S}_{\gamma}$ such that $\normone{\D-\D^\prime} \leq \gamma$
+  \item $\mathcal{S}_{\gamma}$ is a $\gamma$-cover of $\classpbd[n]$ in $\lp[1]$; that is, for all $\D \in \classpbd[n]$, there exists some $\D^\prime \in \mathcal{S}_{\gamma}$ such that $\normone{\D-\D^\prime} \leq \gamma$
   \item {$\abs{\mathcal{S}_{\gamma}} \le n^2 + n \cdot \left({1/\gamma}\right)^{\bigO{ \log^2{1/\gamma}}}$}
   \item $\mathcal{S}_{\gamma}$ can be computed in time {$\bigO{ n^2 \log n} + \bigO{n \log n} \cdot \left( {1/\gamma} \right)^{\bigO{\log{1/\gamma}}}$}
   \end{enumerate}
@@ -684,7 +622,7 @@ and each $\D\in\mathcal{S}_{\gamma}$  is explicitly described by its set of para
 \end{theorem}
 \fi
 
-Set $\gamma\eqdef\frac{\eps}{250}$. Fix $P\in\classpbd_n$ such that $P(I) \geq 1-\eps$, and $Q\in \mathcal{S}_{\gamma}$ such that $\normone{P-Q}\leq \gamma$. In particular, it is easy to see via the correspondence between $\lp[1]$ and total variation distance that $\abs{P(I)-Q(I)} \leq \gamma/2$.
+Set $\gamma\eqdef\frac{\eps}{250}$. Fix $P\in\classpbd[n]$ such that $P(I) \geq 1-\eps$, and $Q\in \mathcal{S}_{\gamma}$ such that $\normone{P-Q}\leq \gamma$. In particular, it is easy to see via the correspondence between $\lp[1]$ and total variation distance that $\abs{P(I)-Q(I)} \leq \gamma/2$.
 By a calculation similar to that of~\cref{lemma:conditioned:class}, we have 
 \begin{align*}
   \normone{P_I-Q_I} &= \sum_{i\in I}\abs{\frac{P(i)}{P(I)} - \frac{Q(i)}{Q(I)}} 
@@ -695,9 +633,9 @@ By a calculation similar to that of~\cref{lemma:conditioned:class}, we have
   &\in [ \normone{ P - Q } - {5\gamma}/{2}, (1+2\eps)\left( \normone{ P - Q } + {5\gamma}/{2} \right) ]
   \end{align*}
 where we used the fact that $\sum_{i\notin I}\abs{ P(i) - Q(i) } = 2\left(\sum_{i\notin I\colon P(i) > Q(i)} (P(i)-Q(i))\right) + Q(I)-P(I) \in [-2\gamma,2\gamma]$.
-By the triangle inequality, this implies that the minimum of $\normone{P_I-\D_I}$ over the distributions $P$ of $\mathcal{S}_\eps$ with $P(I)\geq 1-(\eps+\gamma/2)$ will be within an additive $\bigO{\eps}$ of $\lp[1](\D,\classpbd_n^{\eps,I})$. The fact that the former can be found \new{(by enumerating over the cover of size $\left( {1/\eps} \right)^{\bigO{\log{1/\eps}}}$ by the above discussion, and for each distribution in the cover computing the vector of probabilities and the distance to $\D$)} in time \new{$O(n^2)\cdot\abs{S_\eps}=n^2 \cdot \left( {1/\eps} \right)^{\bigO{\log{1/\eps}}}$} concludes the proof.
+By the triangle inequality, this implies that the minimum of $\normone{P_I-\D_I}$ over the distributions $P$ of $\mathcal{S}_\eps$ with $P(I)\geq 1-(\eps+\gamma/2)$ will be within an additive $\bigO{\eps}$ of $\lp[1](\D,\classpbd[n]^{\eps,I})$. The fact that the former can be found \new{(by enumerating over the cover of size $\left( {1/\eps} \right)^{\bigO{\log{1/\eps}}}$ by the above discussion, and for each distribution in the cover computing the vector of probabilities and the distance to $\D$)} in time \new{$O(n^2)\cdot\abs{S_\eps}=n^2 \cdot \left( {1/\eps} \right)^{\bigO{\log{1/\eps}}}$} concludes the proof.
 \end{proof}
-As previously mentioned, this approximation guarantee for $\lp[1](\D,\classpbd_n^{\eps,I})$ is sufficient for the purpose of~\cref{algo:test:splittable}.
+As previously mentioned, this approximation guarantee for $\lp[1](\D,\classpbd[n]^{\eps,I})$ is sufficient for the purpose of~\cref{algo:test:splittable}.
 
 \begin{proofof}{\cref{coro:main:testing:effective:support:pbd}}
 Combining the above, we invoke~\cref{theo:main:testing:effective:support} with $M(n,\eps)=O( \sqrt{n\log(1/\eps)} )$ (\cref{fact:pbd:effective:support}) and $L(\gamma,\zeta,m)=O\big( \frac{1}{\gamma}\log^2 \frac{m}{\zeta} \big)$ (\cref{theo:structural:unimodal}). This yields the claimed sample complexity; finally, the efficiency is a direct consequence of~\cref{lemma:distance:pbd}.
@@ -1463,11 +1401,11 @@ Using a linear program, find a closest \emph{unimodal} distribution $\tilde{\D}$
 
 \begin{itemize}
   \item If $\D$ is $\eps$-close to a log-concave distribution $P$ as above, then it is in particular $\eps$-close to unimodal and we do not reject. Moreover, by the triangle inequality $\normone{\tilde{\D} - P} \leq 2\eps$ and $\kolmogorov{\tilde{\D}}{P} \leq 2\alpha$.
-  \item If $\D$ is $100\eps$-far from log-concave and we do not reject, then $\lp[1](\tilde{\D},\classlog) \geq 99\eps$.
+  \item If $\D$ is $100\eps$-far from log-concave and we do not reject, then $\lp[1](\tilde{\D},\classlogconcave) \geq 99\eps$.
 \end{itemize}
 
 \subparagraph{Reducing to $\D=\D^\prime$.}
-First, we note that it is easy to reduce our problem to the case where, in the completeness case, we have $P\in\classlog$ such that $\normone{\D-P} \leq 4\eps$  and $\kolmogorov{\D}{P} \leq 4\alpha$; while in the soundness case $\lp[1](\D,\classlog) \geq 97\eps$. Indeed, this can be done with a linear program on $\poly(k,\ell)$ variables and constraints, asking to find a $(k+\ell)$-histogram $\D^{\prime\prime}$ on a refinement of $\D$ and $\D^\prime$ minimizing the $\lp[1]$ distance to $\D$, under the constraint that the Kolmogorov distance to $\D^\prime$ be bounded by $2\alpha$. (In the completeness case, clearly a feasible solution exists, as (the flattening on this $(k+\ell)$-interval partition) of $P$ is one.) We therefore follow with this new formulation: either
+First, we note that it is easy to reduce our problem to the case where, in the completeness case, we have $P\in\classlogconcave$ such that $\normone{\D-P} \leq 4\eps$  and $\kolmogorov{\D}{P} \leq 4\alpha$; while in the soundness case $\lp[1](\D,\classlogconcave) \geq 97\eps$. Indeed, this can be done with a linear program on $\poly(k,\ell)$ variables and constraints, asking to find a $(k+\ell)$-histogram $\D^{\prime\prime}$ on a refinement of $\D$ and $\D^\prime$ minimizing the $\lp[1]$ distance to $\D$, under the constraint that the Kolmogorov distance to $\D^\prime$ be bounded by $2\alpha$. (In the completeness case, clearly a feasible solution exists, as (the flattening on this $(k+\ell)$-interval partition) of $P$ is one.) We therefore follow with this new formulation: either
   \begin{enumerate}[\sf(a)]
     \item $\D$ is $4\eps$-close to a log-concave $P$ (in $\lp[1]$ distance) \emph{and} $\D$ is $4\alpha$-close to $P$ (in Kolmogorov distance); and
     \item $\D$ is $97\eps$-far from log-concave;
@@ -1511,7 +1449,7 @@ Let $T\eqdef [n]\setminus S$ be its complement ($T$ is the union of at most two 
 \end{enumerate}
 
 \subparagraph{Discussion: why doing this?}\label{ssec:logconcave:completeness}
-We focus on the completeness case: let $P\in\classlog$ be a log-concave distribution such that $\normone{\D-P} \leq \eps$ and $\kolmogorov{\D}{P} \leq \alpha$.
+We focus on the completeness case: let $P\in\classlogconcave$ be a log-concave distribution such that $\normone{\D-P} \leq \eps$ and $\kolmogorov{\D}{P} \leq \alpha$.
 Applying~\cref{lemma:cdss13:41} on $J$ and the $I^\prime_j$'s, we obtain (using the fact that $\abs{P(I^\prime_j) - \D(I^\prime_j)} \leq 2\alpha$) that:
 \[
     \frac{\max_{x\in I^\prime_j} P(x)}{\min_{x\in I^\prime_j} P(x)} 
@@ -1560,7 +1498,7 @@ where $\mu_j\eqdef \ln\frac{\D(J_j)}{\abs{J_j}}$ for $j\in T^\prime$.\medskip
 \end{algorithm}
 
 \begin{lemma}[Soundness]\label{lemma:lp:logconcave:soundness}
-If the linear program (\cref{algo:lp:logconcave}) has a feasible solution, then $\lp[1](\D, \classlog)\leq \bigO{\eps}$.
+If the linear program (\cref{algo:lp:logconcave}) has a feasible solution, then $\lp[1](\D, \classlogconcave)\leq \bigO{\eps}$.
 \end{lemma}
 \begin{proof}
 \noindent A feasible solution to this linear program will define (setting $p_i=e^{x_i}$) a sequence $p=(p_1,\dots,p_n) \in (0,1]^n$ such that
@@ -1586,10 +1524,10 @@ Since by the above discussion we know that $p(S\cup T^\prime)$ is within $\bigO{
 \end{proof}
 
 \begin{lemma}[Completeness]\label{lemma:lp:logconcave:completeness}
-If there is $P$ in $\classlog$ such that $\normone{\D-P}\leq \eps$ and $\kolmogorov{\D}{P}\leq \alpha$, then the linear program (\cref{algo:lp:logconcave}) has a feasible solution.
+If there is $P$ in $\classlogconcave$ such that $\normone{\D-P}\leq \eps$ and $\kolmogorov{\D}{P}\leq \alpha$, then the linear program (\cref{algo:lp:logconcave}) has a feasible solution.
 \end{lemma}
 \begin{proof}
- Let $P\in\classlog$ such that $\normone{\D - P}\leq \eps$ and $\kolmogorov{\D}{P}\leq \alpha$.
+ Let $P\in\classlogconcave$ such that $\normone{\D - P}\leq \eps$ and $\kolmogorov{\D}{P}\leq \alpha$.
  Define $x_i\eqdef \ln P(i)$ for all $i\in[n]$. Constraints~\eqref{lp:01} and~\eqref{lp:logconcave} are immediately satisfied, since $P$ is log-concave. By the discussion from~\cref{ssec:logconcave:completeness} (more specifically, Eq.~\eqref{eq:logconcave:completeness:1} and~\eqref{eq:logconcave:completeness:2}), constraint~\eqref{lp:right:weight:light:js} holds as well.
  
  Letting $\eps_i\eqdef \abs{P(i)-\D(i)}$ for $i\in S$, we also immediately have~\eqref{lp:bound:sum:epsi} and~\eqref{lp:noneg:epsi} (since $\normone{P-\D} \leq \eps$ and $\kolmogorov{\D}{P}\leq \alpha$ by assumption). Finally, to see why~\eqref{lp:right:weight:heavy:js} is satisfied, we rewrite

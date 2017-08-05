@@ -3,3 +3,47 @@
 \epigraph{``Skip all that!'' cried the Bellman in haste.\\
 If it once becomes dark, there's no chance of a Snark--\\
 We have hardly a minute to waste!''}{Lewis Carroll, \textit{The Hunting of the Snark}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Definitions}\label{ssec:class:definitions}
+
+We give here the formal descriptions of the classes of distributions involved in this work, starting with that of monotone distributions.
+\begin{definition}[monotone]\label{def:monotone}
+A distribution $\D$ over $[n]$ is \emph{monotone} (non-increasing) if its probability mass function (pmf) satisfies $\D(1) \geq \D(2) \geq \dots \D(n)$.
+\end{definition}
+ A natural generalization of the class $\classmon$ of monotone distributions is the set of $t$-modal distributions, i.e. distributions whose pmf can go ``up and down'' or ``down and up'' up to $t$ times:\footnote{Note that this slightly deviates from the Statistics literature, where only the peaks are counted as modes (so that what is usually referred to as a bimodal distribution is, according to our definition, $3$-modal).}
+
+\begin{definition}[$t$-modal]\label{def:tmodal}
+  Fix any distribution $\D$ over $[n]$, and integer $t$. $\D$ is said to have $t$ \emph{modes} if there exists a sequence $i_0 < \dots < i_{t+1}$ such 
+  that either $(-1)^j \D(i_j) < (-1)^j \D(i_{j+1})$ for all $0\leq j \leq t$, or $(-1)^j \D(i_j) > (-1)^j \D(i_{j+1})$ for all $0\leq j \leq t$. We call $\D$ \emph{$t$-modal} if it has at most $t$ modes, and write $\classtmo$ for the class of all $t$-modal distributions. The particular case of $t=1$ corresponds to the set $\classuni$ of \emph{unimodal} distributions.
+\end{definition}
+
+\begin{definition}[Log-concave]\label{def:logconcave}
+  A distribution $\D$ over $[n]$ is said to be \emph{log-concave} if it satisfies the following conditions: \textsf{(i)} for any $1 \leq i < j < k \leq n$ such that $\D(i)\D(k) > 0$, $\D(j) > 0$; and \textsf{(ii)} for all $1 < k < n$, $\D(k)^2 \geq \D(k-1)\D(k+1)$. We write $\classlogconcave$ for the class of all log-concave distributions.
+\end{definition}
+
+\begin{definition}[Concave and Convex]\label{def:concave}
+  A distribution $\D$ over $[n]$ is said to be \emph{concave} if it satisfies the following conditions: \textsf{(i)} for any $1 \leq i < j < k \leq n$ such that $\D(i)\D(k) > 0$, $\D(j) > 0$; and \textsf{(ii)} for all $1 < k < n$ such that $\D(k - 1)\D(k + 1)>0$, $2\D(k) \geq \D(k - 1)+\D(k + 1)$; it is \emph{convex} if the reverse inequality holds in \textsf{(ii)}. We write $\classcve$ (resp. $\classcvx$) for the class of all concave (resp. convex) distributions.
+\end{definition}
+It is not hard to see that convex and concave distributions are unimodal; moreover, every concave distribution is also log-concave, i.e. $\classcve\subseteq\classlogconcave$. Note that in both \cref{def:logconcave} and \cref{def:concave}, condition \textsf{(i)} is equivalent to enforcing that the distribution be supported on an interval.
+
+\begin{definition}[Monotone Hazard Rate]\label{def:mhr}
+  A distribution $\D$ over $[n]$ is said to have \emph{monotone hazard rate} (MHR) if its \emph{hazard rate} $H(i)\eqdef \frac{\D(i)}{\sum_{j=i}^{n} \D(j)}$ is a non-decreasing function. We write $\classmhr$ for the class of all MHR distributions.
+\end{definition}
+It is known that every log-concave distribution is both unimodal and MHR (see e.g.~\cite[Proposition 10]{An:96}), and that monotone distributions are MHR. Two other classes of distributions have elicited significant interest in the context of density estimation, those of \emph{histograms} (piecewise constant) and \emph{piecewise polynomial densities}:
+\begin{definition}[Piecewise Polynomials~\cite{CDSS:14}]\label{def:piecewise}
+  A distribution $\D$ over $[n]$ is said to be a \emph{$t$-piecewise degree-$d$ distribution} if there is a partition of $[n]$ into $t$ disjoint intervals $I_1,\dots,I_t$ such that $\D(i) = p_j(i)$ for all $i \in I_j$, where each $p_1,\dots p_t$ is a univariate polynomial of degree at most $d$. We write $\classpoly$ for the class of all $t$-piecewise degree-$d$ distributions. (We note that {$t$-piecewise degree-$0$ distributions} are also commonly referred to as \emph{$t$-histograms}, and write $\classhist$ for $\classpoly[t,0]$.)
+\end{definition}
+
+Finally, we recall the definition of the two following classes, which both extend the family of Binomial distributions $\classbin[n]$: the first, by removing the need for each of the independent Bernoulli summands to share the same bias parameter.
+\begin{definition}\label{def:pbd}
+A random variable $X$ is said to follow a \emph{Poisson Binomial Distribution} (with parameter $n\in\N$) if it can be written as $X=\sum_{k=1}^n X_k$, where $X_1\dots,X_n$ are independent, non-necessarily identically distributed Bernoulli random variables. We denote by $\classpbd[n]$ the class of all such Poisson Binomial Distributions.
+\end{definition}
+\noindent It is not hard to show that Poisson Binomial Distributions are in particular log-concave. One can generalize even further, by allowing each random variable of the summation to be integer-valued:
+\begin{definition}\label{def:siirv}
+Fix any $k\geq 0$. We say a random variable $X$ is a \emph{$k$-Sum of Independent Integer Random Variables} with parameter $n\in\N$ ($(n,k)$-SIIRV) if it can be written as $X=\sum_{j=1}^n X_j$, where $X_1\dots,X_n$ are independent, non-necessarily identically distributed random variables taking value in $\{0,1,\dots,k-1\}$. We denote by $\classksiirv[n]{k}$ the class of all such $(n,k)$-SIIRVs.
+\end{definition}
+\noindent (The class of Poisson Binomial Distributions thus corresponds to the case $k=2$, that is $(n,2)$-SIIRVS.) A different type of generalization is that of Poisson Multinomial Distributions, where each summand is a random variable supported on the $k$ vectors of the standard basis of $\R^k$, instead of $[k]$:
+\begin{definition}\label{def:pmd}
+Fix any $k\geq 0$. We say a random variable $X$ is a \emph{$(n,k)$-Poisson Multinomial Distribution ($(n,k)$-PMD)} with parameter $n\in\N$ if it can be written as $X=\sum_{j=1}^n X_j$, where $X_1\dots,X_n$ are independent, non-necessarily identically distributed random variables taking value in $\{e_1,\dots,e_k\}$ (where $(e_i)_{i\in[k]}$ is the canonical basis of $\R^k$). We denote by $\classpmd[n]{k}$ the class of all such $(n,k)$-PMDs.
+\end{definition}
