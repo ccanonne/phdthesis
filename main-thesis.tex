@@ -7,6 +7,9 @@
 \def\withnotes{1}
 \def\withannoyingspacing{0}
 
+\setsecnumdepth{subsubsection}
+\maxtocdepth{subsection}
+
 % Below are some LaTeX packages to include to make sure that your Unicode characters render correctly. This is especially important if your dissertation includes polytonic Greek!
  \DisemulatePackage{setspace} % You need to use this package for "true MS Word" double-spacing.
  \usepackage{setspace} % Allows you to set different spacing (double, etc.) throughout your writing.
@@ -30,9 +33,10 @@
 
 
 
-\usepackage[backend=bibtex,style=authoryear-icomp]{biblatex} % Use biblatex
+\usepackage[backend=bibtex]{biblatex} % Use biblatex
+%\usepackage[backend=bibtex,style=authoryear-icomp]{biblatex} % Use biblatex
 \addbibresource{./bibliography.bib} % Your bibliography file.
-\addbibresource{./bibliography-4.bib} % Your bibliography file.
+\addbibresource{./bibliography-1.bib}
 
 % Here you can set margins and other page formatting
 \setlrmarginsandblock{3.175cm}{3.175cm}{*} % Left and right margin -- the dissertation office requires at least 1-inch margins
