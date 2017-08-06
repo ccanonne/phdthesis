@@ -337,91 +337,7 @@ We use similar ideas in order to obtain some of the results in the present paper
 
 It is instructive to compare the goal of our model of distribution sampling correctors to that of extractors: in spite of many similarities, the two have essential differences and the results are in many cases incomparable. We defer this discussion to~\cref{sec:uniformity}.
  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Preliminaries}\label{sec:preliminaries}
-	
-Hereafter, we write $[n]$ for the set $\{1,\dots,n\}$, and $\log$ for the logarithm in base $2$. A \emph{probability distribution} over a finite domain $\domain$ is a non-negative function $\D\colon\domain\to[0,1]$ such that $\sum_{x\in\domain} \D(x) = 1$; we denote by $\uniform_{\domain}$ the uniform distribution on \domain. Moreover, given a distribution $\D$ over $\domain$ and a set $S\subseteq\domain$, we write $\D(S)$ for the total probability weight $\sum_{x\in S} \D(x)$ assigned to $S$ by $\D$.
 
-\paragraph{Previous tools from probability.}
-As previously mentioned, in this work we will be concerned with the total variation distance between distributions. Of interest for the analysis of some of our algorithms, and assuming \domain is totally ordered (in our case, $\domain=[n]$), one can also define the \emph{Kolmogorov distance} between $\D_1$ and $\D_2$ as
-\begin{equation}\label{eq:def:dk}
-  \kolmogorov{\D_1}{\D_2} \eqdef \max_{x\in \domain}\abs{F_1(x)-F_2(x)}
-\end{equation}
-where $F_1$ and $F_2$ are the respective cumulative distribution functions (cdf) of $\D_1$ and $\D_2$. Thus, the Kolmogorov distance is the $\lp[\infty]$ distance between the cdf's; and $\kolmogorov{\D_1}{\D_2} \leq \totalvardist{\D_1}{\D_2} \in [0,1]$. \smallskip
-
-We first state the following theorem, which guarantees that for any two distributions $\D_1$, $\D_2$, applying any (possibly randomized) function to both $\D_1$ and $\D_2$ can never increase their total variation distance:
-\begin{fact}[Data Processing Inequality for Total Variation Distance]\label{lemma:data:processing:inequality:total:variation}
-Let $\D_1$, $\D_2$ be two distributions over a domain $\Omega$. Fix any randomized function\footnote{Which can be seen as a distribution over functions over $\Omega$.}{} $F$ on $\Omega$, and let $F(\D_1)$ be the distribution such that a draw from $F(\D_1)$ is obtained by drawing independently $x$ from $\D_1$ and $f$ from $F$ and then outputting $f(x)$ (likewise for $F(\D_2)$).
-Then we have
-\[
-\totalvardist{ F(\D_1) }{  F(\D_2) }  \leq \totalvardist{ \D_1 }{ \D_2 }.
-\]
-\end{fact}
-
-Finally, we recall below a fundamental fact from probability theory that will be useful to us, the \emph{Dvoretzky--Kiefer--Wolfowitz (DKW) inequality}. Informally, this result says that one can learn the cumulative distribution function of a distribution up to an additive error $\eps$ in $\lp[\infty]$ distance, by taking only $\bigO{1/\eps^2}$ samples from it.
-\begin{theorem}[\cite{DKW:56,Massart:90}]\label{theo:dkw}
-Let $\D$ be a distribution over $[n]$. Given $m$ independent samples $x_1,\dots ,x_m$ from $\D$, define the empirical distribution $\hat{\D}$ as follows:
-\[
-\hat{\D}(i) \eqdef \frac{\abs{ \setOfSuchThat{j\in[m]}{x_j=i} } }{m}, \quad i\in[n].
-\]
-Then, for all $\eps > 0$, $\probaOf{ \kolmogorov{\D}{\hat{\D}} > \eps } \leq 2e^{-2m\eps^2}$, where the probability is taken over the samples.
-\end{theorem} 
-\noindent In particular, setting $m=\bigTheta{\frac{\log(1/\delta)}{\eps^2}}$ we get that $\kolmogorov{\D}{\hat{\D}} \leq \eps$ with probability at least $1-\delta$.
-
-\paragraph{Flattenings.}
-\noindent For a distribution $\D$ and a partition of $[n]$ into intervals $\mathcal{I}=(I_1,\dots,I_\ell)$, we define the \emph{flattening of $\D$ with relation to $\mathcal{I}$} as the distribution $\Psi_{\mathcal{I}}(\D)$, where $\Psi_{\mathcal{I}}(\D)(i) = {\D(I_k)}/{\abs{I_k}}$ for all $k\in [\ell]$ and $i\in I_k$. A straightforward computation shows that such flattening cannot increase the distance between two distributions, i.e.,
-  \begin{equation}\label{eq:Birge:tv}
-      \totalvardist{ \Psi_{\mathcal{I}}(\D_1) }{ \Psi_{\mathcal{I}}(\D_2) } \leq \totalvardist{\D_1}{\D_2}.
-  \end{equation}
-\begin{proof}[Proof of Eq.~\eqref{eq:Birge:tv}]
-    Fix a partition $\mathcal{I}$ of $[n]$ into $\ell$ intervals $I_1,\dots, I_\ell$, and let $\D_1$, $\D_2$ be two arbitrary distributions on $[n]$. Recall that $\Psi_{\mathcal{I}}(\D)$ is the flattening of distribution $\D_j$ (with relation to the partition $\mathcal{I}$).
-      \begin{align*}
-      2\totalvardist{ \Psi_{\mathcal{I}}(\D_1) }{ \Psi_{\mathcal{I}}(\D_2) } &= \sum_{i=1}^n \abs{ \Psi_{\mathcal{I}}(\D_1)(i) - \Psi_{\mathcal{I}}(\D_2)(i) } = \sum_{k=1}^\ell \sum_{i\in I_k} \abs{ \frac{\D_1(I_k)}{\abs{I_k}} - \frac{\D_2(I_k)}{\abs{I_k}} } \\
-      &=  \sum_{k=1}^\ell \abs{ \D_1(I_k) - \D_2(I_k) } = \sum_{k=1}^\ell \abs{ \sum_{i\in I_k}\left( \D_1(i) - \D_2(i) \right) } \\
-      &\leq  \sum_{k=1}^\ell \sum_{i\in I_k} \abs{ \D_1(i) - \D_2(i)  } = \sum_{i=1}^n \abs{ \D_1(i) - \D_2(i)  } 
-      = 2\totalvardist{\D_1}{\D_2}.
-      \end{align*}
-(we remark that Eq.~\eqref{eq:Birge:tv} could also be obtained directly by applying the data processing inequality for total variation distance (\cref{lemma:data:processing:inequality:total:variation}) to $\D_1$, $\D_2$, for the transformation $\Psi_{\mathcal{I}}(\cdot)$.)
-\end{proof}
-
-\paragraph{Monotone distributions.}
-We say that a distribution $\D$ on $[n]$ is \emph{monotone} (non-increasing) if its probability mass function is non-increasing, that is if $\D(1)\geq \dots \geq \D(n)$. 
-When dealing with monotone distributions, it will be useful to consider the \emph{Birg\'e decomposition}, which is a way to approximate any monotone distribution $\D$ by a histogram, where the latter is supported by logarithmically many intervals \emph{which crucially do not depend on $\D$ itself}:
-\begin{definition}[Birg\'e decomposition]\label{def:birge:decomposition}
-  Given a parameter $\alpha>0$, the corresponding (oblivious) \emph{Birg\'e decomposition of $[n]$} is the partition $\mathcal{I}_\alpha=(I_1,\dots,I_\ell)$, where $\ell=\bigTheta{\frac{\ln( \alpha n + 1)}{\alpha}}=\bigTheta{\frac{\log n }{\alpha}}$ and $\abs{I_{k}}=\flr{(1+\alpha)^k}$, $1\leq k \leq \ell$. 
-\end{definition}
-
-\noindent {For a distribution $\D$ and parameter $\alpha$, define $\birge[\D]{\alpha}$ to be the ``flattened'' distribution with relation to the oblivious decomposition $\mathcal{I}_\alpha$, that is $\birge[\D]{\alpha} = \Psi_{\mathcal{I}_\alpha}(\D)$.} 
-The next theorem states that every monotone distribution can be well-approximated by its flattening on the Birg\'e decomposition's intervals:     
-\begin{theorem}[\cite{Birge:87,DDSVV:13}]\label{theorem:Birge:obl:decomp}
- If $\D$ is monotone, then $\totalvardist{\D}{\birge[\D]{\alpha}} \leq \alpha$.
-\end{theorem}
-
-\noindent As a corollary, one can extend the theorem to distributions only promised to be \emph{close} to monotone:
-\begin{restatable}{corollary}{birgerobustcorollary}\label{coro:Birge:decomposition:robust}
-    Suppose $\D$ is \eps-close to monotone, and let $\alpha > 0$. Then $\totalvardist{\D}{ \birge[\D]{\alpha} } \leq 2\eps + \alpha$. Furthermore,  $\birge[\D]{\alpha}$ is also \eps-close to monotone.
-\end{restatable}
-\begin{proof}[Proof of~\cref{coro:Birge:decomposition:robust}]
-  Let $\D$ be \eps-close to monotone, and $D^\prime$ be a monotone distribution such that $\totalvardist{\D}{\D^\prime} = \eta \leq \eps$. By Eq.~\eqref{eq:Birge:tv}, we have
-  \begin{equation}\label{eqn:phialpha:cannot:increase:tv}
-      \totalvardist{ \birge[\D]{\alpha} }{ \birge[\D^\prime]{\alpha} } \leq \totalvardist{\D}{\D^\prime} = \eta
-  \end{equation}
-  proving the last part of the claim  (since $\birge[\D^\prime]{\alpha}$ is easily seen to be monotone).
-
-  \noindent Now, by the triangle inequality,
-  \begin{align*}
-      \totalvardist{D}{ \birge[\D^\prime]{\alpha} } &\leq \totalvardist{\D}{\D^\prime} + \totalvardist{D^\prime}{ \birge[\D^\prime]{\alpha} } + \totalvardist{ \birge[\D^\prime]{\alpha} }{ \birge[\D]{\alpha} } \\
-      &\leq \eta + \alpha + \eta \\
-      &\leq 2\eps+\alpha
-  \end{align*}
-  where the last inequality uses the assumption on $\D^\prime$ and~\cref{theorem:Birge:obl:decomp} applied to it.
-\end{proof}
-  
-\paragraph{Access to the distributions.} While we will mostly be concerned in this work with the standard model of access to the probability distributions, where the algorithm is provided with independent samples from an unknown distribution $\D$, the concepts we introduce and some of our results apply to some other types of access as well. One in particular, the \Cdfsamp access model, grants the algorithms the ability to query the value of the cumulative distribution function (cdf) of $\D$, in addition to regular sampling.\footnote{See also~\cite{clement:survey:distributions} for a summary and comparison of the different existing access models.} (We observe, as in~\cite{CR:14}, that this type of query access is for instance justified when the distribution originates from a sorted dataset, in which case such queries can be implemented with only a logarithmic overhead.)
-
-Unless explicitly specified otherwise, our algorithms only assume standard sampling access; the formal definitions of the two models mentioned above can be found in~\cref{appendix:definitions}.
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Our model: definitions}\label{sec:definitions}
 	In this section, we state the precise definitions of sampling correctors, improvers and batch sampling improvers. 
 To get an intuition, 
@@ -564,7 +480,7 @@ Then, there exists a {semi-}agnostic learner for \class with sample complexity $
 Let $c$ be the constant such $\opt_{\class,\D} \leq \widehat{\opt}\leq c\cdot\opt_{\class,\D}$. The agnostic learner $\Learner^\prime$ for \property, on input $\eps\in(0,1]$, works as follows:
 \begin{itemize}[-]
   \item\label{theo:connection:agnostic:learning:step:1} Run \Algo on $\D$ with parameters $(\widehat{\opt}, \widehat{\opt}+\eps,\frac{\delta}{2})$ to get $q_\Learner(\eps,\frac{\delta}{2})$ samples distributed according to some distribution $\tilde{\D}$.
-  \item Run \Learner on these samples, with parameters $\eps,\frac{\delta}{2}$, and output its hypothesis $\hat{D}$.
+  \item Run \Learner on these samples, with parameters $\eps,\frac{\delta}{2}$, and output its hypothesis $\hat{\D}$.
 \end{itemize}
 We hereafter condition on both algorithms succeeding (which, by a union bound, happens with probability at least $1-\delta$). Since $\D$  is $\widehat{\opt}$-close to $\class$, and therefore by correctness of the sampling corrector we have both $\tilde{\D}\in\class$ and $\totalvardist{\D}{\tilde{\D}} \leq \widehat{\opt}+\eps$. Hence, the output $\hat{\D}$ of the learning algorithm satisfies $\totalvardist{\tilde{\D}}{\hat{\D}} \leq \eps$, which implies
 \begin{equation}
@@ -648,8 +564,8 @@ The tolerant tester $\Tester^\prime$ for \property, on input $0 \leq \eps^\prime
 \begin{itemize}[-]
   \item\label{theo:connection:corrector:testing:step:1} Run \Algo on $\D$ with parameters $(\eps^\prime,\eps_1,\delta/3)$ to get $q_{\mathcal{E}}(\beta,\delta/3)+q_\Tester(\beta,\delta/3)$ samples distributed according to some distribution $\tilde{\D}$. Using these samples:
     \begin{enumerate}
-        \item\label{theo:connection:corrector:testing:step:2} Estimate $\totalvardist{\D}{\tilde{D}}$ to within an additive $\beta$, and \reject if this estimate is more than $\eps_1+\beta=\frac{\eps+\eps^\prime}{2}$;
-        \item\label{theo:connection:corrector:testing:step:3} Otherwise, run \Tester on $\tilde{D}$ with parameter $\beta$ and accept if and only if \Tester outputs \accept.
+        \item\label{theo:connection:corrector:testing:step:2} Estimate $\totalvardist{\D}{\tilde{\D}}$ to within an additive $\beta$, and \reject if this estimate is more than $\eps_1+\beta=\frac{\eps+\eps^\prime}{2}$;
+        \item\label{theo:connection:corrector:testing:step:3} Otherwise, run \Tester on $\tilde{\D}$ with parameter $\beta$ and accept if and only if \Tester outputs \accept.
     \end{enumerate}
 \end{itemize}
 
@@ -786,7 +702,7 @@ Further, $\tilde{\D}$ is also a $k$-histogram distribution on $\mathcal{I}$.
     \begin{claim}\label{claim:oblivious:monotone:guarantee:buckets}
       Let $\D$ be a $k$-histogram distribution on $\mathcal{I}$ that is $\eps$-close to monotone. Then, for any $j\in\{1,\dots,k-1\}$,
       \begin{equation}\label{eq:oblivious:monotone:guarantee:buckets}
-	      D(I_{j+1}) \leq (1+c)D(I_{j})+\eps(2+c).
+	      \D(I_{j+1}) \leq (1+c)\D(I_{j})+\eps(2+c).
       \end{equation}
     \end{claim}
     \begin{proof}
@@ -823,7 +739,7 @@ Further, $\tilde{\D}$ is also a $k$-histogram distribution on $\mathcal{I}$.
 
     \noindent It only remains to bound $\totalvardist{\D}{\tilde{\D}}$:
     \begin{align*}
-      2\totalvardist{\D}{\tilde{\D}} &= \sum_{j=1}^{k} \abs{ \D(I_j) - \tilde{\D}(I_j) } = \sum_{j=1}^{k} \abs{ (1-\lambda)D(I_j) - \lambda\eps \sum_{i=j}^{k-1} (2+c) } \\
+      2\totalvardist{\D}{\tilde{\D}} &= \sum_{j=1}^{k} \abs{ \D(I_j) - \tilde{\D}(I_j) } = \sum_{j=1}^{k} \abs{ (1-\lambda)\D(I_j) - \lambda\eps \sum_{i=j}^{k-1} (2+c) } \\
       &\leq (1-\lambda)\sum_{j=1}^{k} \D(I_j) + \lambda\eps \sum_{j=1}^{k}\sum_{i=j}^{k-1}(2+c) = 1-\frac{1-\eps(2+c)\frac{k(k-1)}{2}}{1+\eps(2+c)\frac{k(k-1)}{2}  }.
     \end{align*}
     Finally, note that $\tilde{\D}$ is a mixture of $\D$ (with weight $\lambda$) and an explicit arithmetically non-increasing distribution; sampling from $\tilde{\D}$ is thus straightforward, and needs at most one sample from $\D$ for each draw.
@@ -846,7 +762,8 @@ We will apply~\cref{theorem:oblivious:corrector} for $k=\bigO{\log n/\eps^\prime
 \[
 	\totalvardist{\bar{\D}}{\tilde{\D}} \leq 1-\frac{1-\eps(2+\eps^\prime)\frac{k(k-1)}{2}}{1+\eps(2+\eps^\prime)\frac{k(k-1)}{2} } \leq \frac{\eps^\prime}{2}
 \]
-where the last inequality derives from the fact that $k^2\eps = \bigO{\eps^\prime}$. This in turn implies by a triangle inequality that $\tilde{\D}$ is $\eps^\prime$-close to $\D$. Finally, observe that, as stated in the lemma, $\tilde{\D}$ can be easily simulated given access to $\D$, using either $0$ or $1$ draw: indeed, $\tilde{\D}$ is a mixture with known weights of an explicit distribution and $\bar{\D}$, and access to the latter can be obtained from $\D$. \end{proof}
+where the last inequality derives from the fact that $k^2\eps = \bigO{\eps^\prime}$. This in turn implies by a triangle inequality that $\tilde{\D}$ is $\eps^\prime$-close to $\D$. Finally, observe that, as stated in the lemma, $\tilde{\D}$ can be easily simulated given access to $\D$, using either $0$ or $1$ draw: indeed, $\tilde{\D}$ is a mixture with known weights of an explicit distribution and $\bar{\D}$, and access to the latter can be obtained from $\D$.
+\end{proof}
 
 \begin{remark}\label{rk:oblivious:stronger:queries}
 An interesting feature of the above construction is that does not
@@ -993,7 +910,7 @@ Recall that we now start and work with $\D^{(3)}$, as obtained in~\cref{sec:mon:
   \end{itemize}
       } 
 \end{itemize}
-Note that the distribution we output from if we initially select the superbucket $S_{i+1}$, is supported on $L_i\cup S_{i+1}$. Moreover, conditioning on $M_{i+1}\cup L_{i+1}$ we get exactly the conditional distribution $D^{(3)}_{M_{i+1}\cup {L_{i+1}}}$. (This ensures that from each bucket there is a unique superbucket that has to be picked initially for the bucket's weight to be modified.) {Observe that as defined above, buckets from $L_i\subseteq \supb_i$ can be outputted from either because superbucket $\supb_i$ was picked, or because $\supb_{i+1}$ was drawn and some of its weight was reassigned to $L_i$ by \textsf{water-boundary-correction}. The probability of outputting any bucket in $L_i$ is then the sum of the probabilities of the two types of events.} 
+Note that the distribution we output from if we initially select the superbucket $S_{i+1}$, is supported on $L_i\cup S_{i+1}$. Moreover, conditioning on $M_{i+1}\cup L_{i+1}$ we get exactly the conditional distribution $\D^{(3)}_{M_{i+1}\cup {L_{i+1}}}$. (This ensures that from each bucket there is a unique superbucket that has to be picked initially for the bucket's weight to be modified.) {Observe that as defined above, buckets from $L_i\subseteq \supb_i$ can be outputted from either because superbucket $\supb_i$ was picked, or because $\supb_{i+1}$ was drawn and some of its weight was reassigned to $L_i$ by \textsf{water-boundary-correction}. The probability of outputting any bucket in $L_i$ is then the sum of the probabilities of the two types of events.} 
 
 
 
@@ -1364,7 +1281,7 @@ $p_0\eqdef \probaOf{X=0} = d_0^2 + d_1^2$ and $p_1\eqdef \probaOf{X=1} = 2d_0d_1
 
 \noindent Consider now the distribution
 \[
-    \tilde{\D} \eqdef (1-p_0)D + p_0 D^{(k)} \vspace{-\baselineskip}
+    \tilde{\D} \eqdef (1-p_0)\D + p_0 \D^{(k)} \vspace{-\baselineskip}
 \]
 where $\D^{(k)}=\overbrace{\D\convolution\dots\convolution \D}^{k\text{ times}}$ as in~\cref{lemma:sampling:corrector:uniformity}. Observe than getting a sample from $\tilde{\D}$ only requires at most $k+2$ queries\footnote{More precisely, $3$ with probability $1-p_0$, and $k+2$ with probability $p_0$, for an expected number $(k-1)p_0+3\simeq k/2$.} to the oracle for $\D$. Moreover,
 \[
@@ -1444,7 +1361,7 @@ Assume $\totalvardist{\D}{\uniform_H} < 1$. Then $\totalvardist{\D_H}{\uniform_H
   First, observe that the assumption implies $\D_H$ is well-defined: indeed, as 
   $\totalvardist{\D}{\uniform_H} = \sup_{S\subseteq G}\left( \uniform_H(S)-\D(S) \right)$, 
   taking $S=H$ yields $1 > \totalvardist{\D}{\uniform_H} \geq \uniform_H(H)-\D(H) = 1-\D(H)$, 
-  and thus $D(H) > 0$.
+  and thus $\D(H) > 0$.
 
   Rewriting the definition of $\totalvardist{\D_H}{\uniform_H}$, one gets $\totalvardist{\D}{\uniform_H} = \frac{1}{2}\left( \sum_{x\in H} \abs{ \D(x) - \frac{1}{\abs{H}} } + \sum_{x\notin H} \D(x)\right)$; so that
   \begin{align*}
@@ -1464,16 +1381,16 @@ Let $\D$ be a distribution on $G$ promised to be \eps-close to the uniform distr
 
 \begin{algorithm}
   \begin{algorithmic}
-    \Require $\eps\in(0,\frac{1}{2}-c]$, $\SAMP_D$ with $D$ \eps-close to uniform on some subgroup $H\subseteq\Z_n$
+    \Require $\eps\in(0,\frac{1}{2}-c]$, $\SAMP_D$ with $\D$ \eps-close to uniform on some subgroup $H\subseteq\Z_n$
     \Ensure Outputs a generator $\hat{h}$ of $H$ with probability $1-\tildeO{\eps}$
-    \State Draw $k$ independent samples $s_1,\dots,s_k$ from $D$, for $k\eqdef\bigO{\log\frac{1}{\eps}}$
+    \State Draw $k$ independent samples $s_1,\dots,s_k$ from $\D$, for $k\eqdef\bigO{\log\frac{1}{\eps}}$
     \State Compute $\hat{h}=\gcd(s_1,\dots,s_k)$
     \State \Return $\hat{h}$
   \end{algorithmic}\caption{\label{algo:find:generator:subgroup} Algorithm {\sc Find-Generator-Subgroup}}
 \end{algorithm}
 
 \begin{restatable}{lemma}{unifsubgroupfindgenerator}\label{lemma:find:generator:subgroup}
-  Let $G$, $H$ be as before. There exists an algorithm (\cref{algo:find:generator:subgroup}) which, given $\eps < 0.49$ as well as sample access to some distribution $D$ over $G$, makes $\bigO{\log\frac{1}{\eps}}$ calls to the oracle and returns an element of $G$. Further, if $\totalvardist{\D}{\uniform_H} \leq \eps$, then with probability at least $1-\tildeO{\eps}$ its output is a generator of $H$.
+  Let $G$, $H$ be as before. There exists an algorithm (\cref{algo:find:generator:subgroup}) which, given $\eps < 0.49$ as well as sample access to some distribution $\D$ over $G$, makes $\bigO{\log\frac{1}{\eps}}$ calls to the oracle and returns an element of $G$. Further, if $\totalvardist{\D}{\uniform_H} \leq \eps$, then with probability at least $1-\tildeO{\eps}$ its output is a generator of $H$.
 \end{restatable}
 \begin{proof}
 In order to argue correctness of the algorithm, we will need the following well-known facts:
@@ -1496,7 +1413,7 @@ $
 \end{fact}
 
 \noindent With this in hand, let $k\eqdef\bigO{\log\frac{1}{\eps}}$,  chosen so that $\eps k = \bigTheta{\frac{1}{2^k}} = \bigTheta{\frac{\eps}{\log\frac{1}{\eps}}}$. We break the analysis of our subgroup-finding algorithm in two cases:
-\paragraph{Case 1: $\abs{H}=\bigTheta{1}$} This is the easy case: if $H$ only contains constantly many elements ($m$ is a constant of $n$ and $\eps$), then after taking $k$ samples $s_1,\dots,s_k\sim D$, we have
+\paragraph{Case 1: $\abs{H}=\bigTheta{1}$} This is the easy case: if $H$ only contains constantly many elements ($m$ is a constant of $n$ and $\eps$), then after taking $k$ samples $s_1,\dots,s_k\sim \D$, we have
 \begin{itemize}
   \item $s_1,\dots,s_k\in H$ (event $E_1$) with probability at least $(1-\eps)^k = 1 - \bigO{k\eps}$;  \item the probability that there exists an element of $H$ not hit by any of the $s_i$'s is at most, by a union bound,
     \[
@@ -1505,7 +1422,7 @@ $
     for $\eps$ sufficiently small ($\eps \ll \frac{1}{m}$). Let $E_2$ be the event each element of $H$ appears amongst the samples.
 \end{itemize}
 Overall, with probability $1 - \bigO{k\eps}$ (conditioning on $E_1$ and $E_2$), our set of samples is exactly $H$, and $\gcd(s_1,\dots,s_k)=\gcd(H)=h$.
-\paragraph{Case 2: $\abs{H}=\omega(1)$} This amounts to saying that $h=\littleO{n}$. In this case, taking again $k$ samples $s_1,\dots,s_k\sim D$ and denoting by $\hat{h}$ their greatest common divisor:
+\paragraph{Case 2: $\abs{H}=\omega(1)$} This amounts to saying that $h=\littleO{n}$. In this case, taking again $k$ samples $s_1,\dots,s_k\sim \D$ and denoting by $\hat{h}$ their greatest common divisor:
 \begin{itemize}
   \item $s_1,\dots,s_k\in H$ (event $E_1$) with probability at least $(1-\eps)^k = 1 - \bigO{k\eps}$ as before;
   \item conditioned on $E_1$, note that if the $s_i$'s were \emph{uniformly} distributed in $H$, then the probability that $\hat{h}=h$ would be exactly $p_{\frac{n}{h},k}$ -- as $\gcd(ha,\dots,hb)=h$ if and only if $\gcd(a,\dots,b) =1$, i.e. if $a,\dots,b$ are relatively prime. In this ideal scenario, therefore, we would have
@@ -1514,9 +1431,9 @@ Overall, with probability $1 - \bigO{k\eps}$ (conditioning on $E_1$ and $E_2$), 
   \]
   by~\cref{fact:random:integers:coprime} and our assumption $h=\littleO{n}$.
   
-  \noindent To adapt this result to our case -- where $s_1,\dots,s_k\sim D_H$ (as we conditioned on $E_1$), it is sufficient to observe that by the Data Processing Inequality for total variation distance,
+  \noindent To adapt this result to our case -- where $s_1,\dots,s_k\sim \D_H$ (as we conditioned on $E_1$), it is sufficient to observe that by the Data Processing Inequality for total variation distance,
   \[
-  \abs{ \probaDistrOf{s_1,\dots,s_k\sim D_H}{ \gcd(s_1,\dots,s_k) = h } - \probaDistrOf{s_1,\dots,s_k\sim \uniform_H}{ \gcd(s_1,\dots,s_k) = h } } \leq \totalvardist{\D_H^{\otimes k}}{\uniform_H^{\otimes k}} \leq k\eps
+  \abs{ \probaDistrOf{s_1,\dots,s_k\sim \D_H}{ \gcd(s_1,\dots,s_k) = h } - \probaDistrOf{s_1,\dots,s_k\sim \uniform_H}{ \gcd(s_1,\dots,s_k) = h } } \leq \totalvardist{\D_H^{\otimes k}}{\uniform_H^{\otimes k}} \leq k\eps
   \]
   so that in our case 
   \begin{equation}
@@ -1606,17 +1523,18 @@ so that $F(m) \geq 1-\frac{3\eps}{4}$. According to the value of $m$, we conside
 \]
 \end{itemize}
 
-By our previous check we know that this quantity is well-defined. Further, this implies that $D(S_0) < 1-\frac{\eps}{4}$ and $\D(S_1) >\frac{\eps}{4}$  (the actual values being known up to $\pm \frac{\eps}{4}$). $\D$ being \eps-close to monotone, it also must be the case that
+By our previous check we know that this quantity is well-defined. Further, this implies that $\D(S_0) < 1-\frac{\eps}{4}$ and $\D(S_1) >\frac{\eps}{4}$  (the actual values being known up to $\pm \frac{\eps}{4}$). $\D$ being \eps-close to monotone, it also must be the case that
 \[
   \D(S_0) \geq \frac{k}{k+1}\left(1-\frac{3\eps}{4}\right) - 2\eps \geq \frac{1}{2}\left(1-\frac{3\eps}{4}\right) - 2\eps \geq \frac{1}{2}-\frac{19\eps}{8}
 \]
 since $\hat{F}(k+1) \geq 1-\frac{\eps}{2}$ implies $\D(\{1,\dots,k\})+\D(k)=\D(\{1,\dots,k+1\}) \geq 1-\frac{3\eps}{4}$. By setting $p\eqdef \D(S_0)$, this means we have access to a Bernoulli random variable with parameter $p\in\left[\frac{1}{2}-3\eps,1-\frac{\eps}{4}\right]$. As in the proof of~\cref{lemma:sampling:corrector:uniformity:vneumann} (the constant $c$ being replaced by $\min\!\left(\frac{\eps}{4}, \frac{1}{2}-3\eps\right)$), one can then leverage this to output with probability at least $1-\delta$ a uniform random number $s\in[n]$ using $\bigO{\frac{\log n}{\eps} \log\frac{\log n}{\delta}}$ samples---and $\bigO{\frac{\log n}{\eps}}$ in expectation.
 \end{proof}
 
-\clearpage
-\appendix
+% \clearpage
+% \appendix
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{On convolutions of distributions over an Abelian finite cyclic group}\label{appendix:convolution:abelian}
+\questionnote{Move this to Preliminaries?}
 
 \begin{definition}
 For any two probability distributions $\D_1$, $\D_2$ over a finite group $G$ (not necessarily Abelian), the \emph{convolution} of $\D_1$ and $\D_2$, denoted $\D_1\convolution \D_2$, is the distribution on $G$ defined by
@@ -1630,7 +1548,7 @@ The convolution satisfies the following properties:
 \begin{enumerate}[(i)]
   \item it is associative:
     \begin{equation}
-      \forall \D_1,\D_2,\D_3, \quad \D_1\convolution (D_2\convolution \D_3) = (D_1\convolution \D_2)\convolution \D_3 = \D_1\convolution \D_2\convolution \D_3
+      \forall \D_1,\D_2,\D_3, \quad \D_1\convolution (\D_2\convolution \D_3) = (\D_1\convolution \D_2)\convolution \D_3 = \D_1\convolution \D_2\convolution \D_3
     \end{equation}
   \item it has a (unique) absorbing element, the uniform distribution $\uniformOn{G}$:
     \begin{equation}
@@ -1685,39 +1603,3 @@ Inspired by---and following---a question on MathOverflow~(\cite{MathOverflow:13:
   \end{align*}
   (as $\eps = \omega(1/\sqrt[3]{n})$).
 \end{proof}
- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Formal definitions: learning and testing}\label{appendix:definitions}
-In this appendix, we define precisely the notions of \emph{testing}, \emph{tolerant testing}, \emph{learning} and \emph{proper learning} of distributions over a domain $[n]$.
-\begin{definition}[Testing]\label{def:testing:alg}
-  Fix any property $\property$ of distributions, and let $\ORACLE_\D$ be an oracle providing some type of access to $D$. A \emph{$q$-sample testing algorithm for $\property$} is a randomized algorithm $\Tester$ which takes as input $n$, $\eps\in(0,1]$, as well as access to $\ORACLE_\D$. After making at most $q(\eps,n)$ calls to the oracle, \Tester outputs either \accept or \reject, such that the following holds:
-  \begin{itemize}
-    \item if $\D\in\property$, \Tester outputs \accept with probability at least $2/3$;
-    \item if $\totalvardist{\D}{\property} \geq \eps$, \Tester outputs \reject with probability at least $2/3$.
-  \end{itemize}
-\end{definition}
-\noindent We shall also be interested in \emph{tolerant} testers -- {roughly}, algorithms robust to a relaxation of the first item above:
-\begin{definition}[Tolerant testing]\label{def:tol:testing:alg}
-  Fix property $\property$ and $\ORACLE_\D$ as above. A \emph{$q$-sample tolerant testing algorithm for $\property$} is a randomized algorithm $\Tester$ which takes as input $n$, $0 \leq \eps_1 < \eps_2 \leq 1$, as well as access to $\ORACLE_\D$. After making at most $q(\eps_1,\eps_2,n)$ calls to the oracle, \Tester outputs either \accept or \reject, such that the following holds:
-  \begin{itemize}
-    \item if $\totalvardist{\D}{\property} \leq \eps_1$, \Tester outputs \accept with probability at least $2/3$;
-    \item if $\totalvardist{\D}{\property} \geq \eps_2$, \Tester outputs \reject with probability at least $2/3$.
-  \end{itemize}
-\end{definition}
-
-Note that the above definition is quite general, and can be instantiated for different types of oracle access to the unknown distribution. In this work, we are mainly concerned with two such settings, namely the \emph{sampling oracle access} and \emph{\Cdfsamp oracle access}:
-  \begin{definition}[Standard access model (sampling)]\label{def:sampling:oracle}
-      Let $\D$ be a fixed distribution over $[n]$. A \emph{sampling oracle for $\D$} is an oracle $\SAMP_\D$ defined as follows: when queried, $\SAMP_\D$ returns an element $x\in[n]$, where the probability that $x$ is returned is $\D(x)$ independently of all previous calls to the oracle.
-  \end{definition}
-    \begin{definition}[\Cdfsamp access model~\cite{BKR:04,CR:14}]\label{def:extended:oracle}
-    Let $\D$ be a fixed distribution over $[n]$. A \emph{cdfsamp oracle for $\D$} is a pair of oracles $(\SAMP_\D, \CDFEVAL_\D)$ defined as follows: the \emph{sampling} oracle $\SAMP_\D$ behaves as before, while the \emph{evaluation} oracle $\CDFEVAL_\D$ takes as input a query element $j\in[n]$, and returns the value of the cumulative distribution function (cdf) at $j$. That is, it returns the probability weight that the distribution puts on $[j]$, $\D([j])=\sum_{i=1}^j D(i)$.
-    \end{definition}  
-
-\noindent Another class of algorithms we consider is that of \emph{(proper) learners}. We give the precise definition below:  
-\begin{definition}[Learning]
-Let $\class$ be a class of probability distributions and $\D\in \class$ be an unknown distribution. Let also $\mathcal{H}$ be a hypothesis class of distributions. 
-A \emph{$q$-sample learning algorithm for $\class$} is a randomized algorithm $\Learner$ which takes as input $n$, $\eps,\delta\in(0,1)$, as well as access to $\SAMP_\D$ and  outputs the description of a distribution $\hat{\D}\in \mathcal{H}$ such that with probability at least $1-\delta$ one has $\totalvardist{\D}{\hat{\D}}\leq \eps$. 
-
-\noindent If in addition $\mathcal{H}\subseteq \class$, then we say \Learner is a \emph{proper learning algorithm}.   
-\end{definition}
-
-The exact formalization of what \emph{learning a probability distribution} means has been considered in  Kearns et al.~\cite{Kearns:94}. We note that in their language, the variant of learning this paper is most closely related to is \emph{learning to generate}.

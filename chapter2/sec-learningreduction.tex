@@ -13,7 +13,7 @@ Assuming we have a tester $\Tester$ for $\class$ with sample complexity $\little
 \begin{itemize}
   \item test if $\D\in\class$ using $\Tester$; if not, reject (as $\uniform\in\class$, $\D$ cannot be uniform);
   \item otherwise, agnostically learn $\D$ with $\Learner$ (since $\D$ is close to $\class$), and obtain hypothesis $\hat{\D}$;
-  \item check offline if $\hat{D}$ is close to uniform.
+  \item check offline if $\hat{\D}$ is close to uniform.
 \end{itemize} 
 By assumption, $\Tester$ and $\Learner$ each use $\littleO{\sqrt{n}}$ samples, so does the whole process; but this contradicts the lower bound of~\cite{BFRSW:00,Paninski:08} on uniformity testing. Hence, $\Tester$ must use $\bigOmega{\sqrt{n}}$ samples.\medskip
 

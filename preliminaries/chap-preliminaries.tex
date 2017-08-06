@@ -5,7 +5,138 @@ If it once becomes dark, there's no chance of a Snark--\\
 We have hardly a minute to waste!''}{Lewis Carroll, \textit{The Hunting of the Snark}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Definitions}\label{ssec:class:definitions}
+\section{Notation.} We write $[n]$ for the (ordered) set of integers $\{1,\dots,n\}$, and $\ln$, $\log$ for respectively the natural and binary logarithms. We use the notation $\tildeOmega{f}$ to hide polylogarithmic dependencies on the argument, i.e. for expressions of the form $\bigOmega{f \log^c f}$ (for some absolute constant $c$). All throughout the paper, we denote by $\distribs{\domain[\Omega]}$ the set of discrete probability distributions over domain $\domain[\Omega]$. When the domain is a subset of the natural numbers $\N$, we shall identify a distribution $\p\in\distribs{\domain[\Omega]}$ with the sequence $(\p_i)_{i\in\N}\in\lp[1]$ corresponding to its probability mass function (pmf). For a subset $S \subseteq \Omega$, we denote by $\p|_S$ the normalized projection of $\p$ to $S$ (so $\p|_S$ is a probability distribution).
+
+For an alphabet $\Sigma$, we denote the projection of $x \in \Sigma^n$ to a subset of
+  coordinates $I \subseteq [n]$ by $x|_I$. For $i \in [n]$, we write
+  $x_i = x|_{\{i\}}$ to denote the projection to a singleton. We denote the \emph{relative Hamming distance}, over alphabet
+  $\Sigma$, between two strings $x \in \Sigma^n$ and $y \in \Sigma^n$ by
+  $\dist{x}{y} \eqdef \abs{ \setOfSuchThat{ x_i \neq y_i }{ i \in [n] } }/n$.
+  If $\dist{x}{y} \leq \eps$, we say that $x$ is \emph{$\eps$-close}
+  to $y$, and otherwise we say that $x$ is \emph{$\eps$-far} from
+  $y$. Similarly, we denote the \emph{relative Hamming distance} of $x$ from
+  a non-empty set $S \subseteq \Sigma^n$ by
+  $\dist{x}{S} \eqdef \min_{y \in S} \dist{x}{y})$. If
+  $\dist{x}{S} \leq \eps$, we say that $x$ is \emph{$\eps$-close} to
+  $S$, and otherwise we say that $x$ is \emph{$\eps$-far} from $S$.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\paragraph{Distributions and metrics} 
+For $m \in \N$, we write $[m]$ for the set $\{0,1,\dots,m-1\}$, and $\log$ (resp. $\ln$) for the binary logarithm (resp. the natural logarithm). A probability distribution over (discrete) domain $\Omega$ is a function $\p\colon\Omega\to[0,1]$ such that $\normone{\p}\eqdef \sum_{\omega\in\Omega}\p(\omega)=1$; we denote by $\distribs{\Omega}$ the set of all probability distributions over domain $\Omega$. 
+Recall that for two probability distributions $\p,\q\in\distribs{\Omega}$, their \emph{total variation distance} (or statistical distance) is defined as 
+$
+     \totalvardist{\p}{\q} \eqdef \sup_{S\subseteq\Omega} (\p(S)-\q(S)) = \frac{1}{2}\sum_{\omega\in\Omega} \abs{\p(\omega)-\q(\omega)},
+$
+i.e. $ \totalvardist{\p}{\q} = \frac{1}{2}\normone{\p-\q}$. Given a subset $\property\subseteq \distribs{\Omega}$ of distributions, the \emph{distance from $\p$ to $\property$} is then defined as $ \totalvardist{\p}{\property}\eqdef \inf_{\q\in\property}  \totalvardist{\p}{\q}$. If $ \totalvardist{\p}{\property} > \eps$, we say that $\p$ is \emph{$\eps$-far} from $\property$; otherwise, it is \emph{$\eps$-close}.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Distribution Testing.} 
+
+\paragraph{Property testing}
+We work in the standard setting of distribution testing: a \emph{testing algorithm for a property $\property\subseteq\distribs{\Omega}$} is an algorithm which, granted access to independent samples from an unknown distribution $\p\in\distribs{\Omega}$ as well as distance parameter $\eps\in(0,1]$, outputs either \accept or \reject, with the following guarantees.
+\begin{itemize}
+  \item if $\p\in\property$, then it outputs \accept with probability at least $2/3$;
+  \item if $ \totalvardist{\p}{\property}>\eps$, then it outputs \reject with probability at least $2/3$.
+\end{itemize}
+The two measures of interest here are the \emph{sample complexity} of the algorithm (i.e., the number of samples from the distribution it takes in the worst case), and its running time.
+
+\paragraph{Property testing}
+
+A \emph{property} of distributions over $\domain[\Omega]$ is a subset $\property\subseteq \distribs{\domain[\Omega]}$, consisting of all distributions that have the property. Given two distributions $\p,\q\in\distribs{\domain[\Omega]}$, the $\lp[1]$ distance between $\p$ and $\q$ is defined as the $\lp[1]$ distance between their pmf's, namely $\normone{\p-\q} = \sum_{i\in\domain[\Omega]} \abs{\p_i-\q_i}$.\footnote{Note that this is equal, up to a factor $2$, to the total variation distance between $\p$ and $\q$.}{} Given a property $\property\subseteq \distribs{\domain[\Omega]}$ and a distribution $\p\in\distribs{\domain[\Omega]}$, we then define the distance of $\p$ to $\property$ as $\lp[1](\p,\property) = \inf_{\q\in\property} \normone{\p-\q}$.
+
+A \emph{testing algorithm} for a fixed property $\property$ is then a randomized algorithm $\Tester$ which takes as input $n$, $\eps\in(0,1]$, and is granted access to independent samples from an unknown distribution $\p$; and satisfies the following.
+\begin{enumerate}[(i)]
+\item if $\p \in \property$, the algorithm outputs \accept with probability at least $2/3$;
+\item if $\lp[1](\p,\property) \geq \eps$, it outputs \reject with probability at least $2/3$.
+\end{enumerate}
+In other words, \Tester must accept with high probability if the unknown distribution has the property, and reject if it is \emph{\eps-far} from having it. The  \emph{sample complexity} of the algorithm is the number of samples it draws from the distribution in the worst case.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Distributions and metrics} 
+Hereafter, we write $[n]$ for the set $\{1,\dots,n\}$, and $\log$ for the logarithm in base $2$. A \emph{probability distribution} over a finite domain $\domain$ is a non-negative function $\D\colon\domain\to[0,1]$ such that $\sum_{x\in\domain} \D(x) = 1$; we denote by $\uniform_{\domain}$ the uniform distribution on \domain. Moreover, given a distribution $\D$ over $\domain$ and a set $S\subseteq\domain$, we write $\D(S)$ for the total probability weight $\sum_{x\in S} \D(x)$ assigned to $S$ by $\D$.
+
+\paragraph{Previous tools from probability.}
+As previously mentioned, in this work we will be concerned with the total variation distance between distributions. Of interest for the analysis of some of our algorithms, and assuming \domain is totally ordered (in our case, $\domain=[n]$), one can also define the \emph{Kolmogorov distance} between $\D_1$ and $\D_2$ as
+\begin{equation}\label{eq:def:dk}
+  \kolmogorov{\D_1}{\D_2} \eqdef \max_{x\in \domain}\abs{F_1(x)-F_2(x)}
+\end{equation}
+where $F_1$ and $F_2$ are the respective cumulative distribution functions (cdf) of $\D_1$ and $\D_2$. Thus, the Kolmogorov distance is the $\lp[\infty]$ distance between the cdf's; and $\kolmogorov{\D_1}{\D_2} \leq \totalvardist{\D_1}{\D_2} \in [0,1]$. \smallskip
+
+We first state the following theorem, which guarantees that for any two distributions $\D_1$, $\D_2$, applying any (possibly randomized) function to both $\D_1$ and $\D_2$ can never increase their total variation distance:
+\begin{fact}[Data Processing Inequality for Total Variation Distance]\label{lemma:data:processing:inequality:total:variation}
+Let $\D_1$, $\D_2$ be two distributions over a domain $\Omega$. Fix any randomized function\footnote{Which can be seen as a distribution over functions over $\Omega$.}{} $F$ on $\Omega$, and let $F(\D_1)$ be the distribution such that a draw from $F(\D_1)$ is obtained by drawing independently $x$ from $\D_1$ and $f$ from $F$ and then outputting $f(x)$ (likewise for $F(\D_2)$).
+Then we have
+\[
+\totalvardist{ F(\D_1) }{  F(\D_2) }  \leq \totalvardist{ \D_1 }{ \D_2 }.
+\]
+\end{fact}
+
+Finally, we recall below a fundamental fact from probability theory that will be useful to us, the \emph{Dvoretzky--Kiefer--Wolfowitz (DKW) inequality}. Informally, this result says that one can learn the cumulative distribution function of a distribution up to an additive error $\eps$ in $\lp[\infty]$ distance, by taking only $\bigO{1/\eps^2}$ samples from it.
+\begin{theorem}[\cite{DKW:56,Massart:90}]\label{theo:dkw}
+Let $\D$ be a distribution over $[n]$. Given $m$ independent samples $x_1,\dots ,x_m$ from $\D$, define the empirical distribution $\hat{\D}$ as follows:
+\[
+\hat{\D}(i) \eqdef \frac{\abs{ \setOfSuchThat{j\in[m]}{x_j=i} } }{m}, \quad i\in[n].
+\]
+Then, for all $\eps > 0$, $\probaOf{ \kolmogorov{\D}{\hat{\D}} > \eps } \leq 2e^{-2m\eps^2}$, where the probability is taken over the samples.
+\end{theorem} 
+\noindent In particular, setting $m=\bigTheta{\frac{\log(1/\delta)}{\eps^2}}$ we get that $\kolmogorov{\D}{\hat{\D}} \leq \eps$ with probability at least $1-\delta$.
+
+\paragraph{Flattenings.}
+\noindent For a distribution $\D$ and a partition of $[n]$ into intervals $\mathcal{I}=(I_1,\dots,I_\ell)$, we define the \emph{flattening of $\D$ with relation to $\mathcal{I}$} as the distribution $\Psi_{\mathcal{I}}(\D)$, where $\Psi_{\mathcal{I}}(\D)(i) = {\D(I_k)}/{\abs{I_k}}$ for all $k\in [\ell]$ and $i\in I_k$. A straightforward computation shows that such flattening cannot increase the distance between two distributions, i.e.,
+  \begin{equation}\label{eq:Birge:tv}
+      \totalvardist{ \Psi_{\mathcal{I}}(\D_1) }{ \Psi_{\mathcal{I}}(\D_2) } \leq \totalvardist{\D_1}{\D_2}.
+  \end{equation}
+\begin{proof}[Proof of Eq.~\eqref{eq:Birge:tv}]
+    Fix a partition $\mathcal{I}$ of $[n]$ into $\ell$ intervals $I_1,\dots, I_\ell$, and let $\D_1$, $\D_2$ be two arbitrary distributions on $[n]$. Recall that $\Psi_{\mathcal{I}}(\D)$ is the flattening of distribution $\D_j$ (with relation to the partition $\mathcal{I}$).
+      \begin{align*}
+      2\totalvardist{ \Psi_{\mathcal{I}}(\D_1) }{ \Psi_{\mathcal{I}}(\D_2) } &= \sum_{i=1}^n \abs{ \Psi_{\mathcal{I}}(\D_1)(i) - \Psi_{\mathcal{I}}(\D_2)(i) } = \sum_{k=1}^\ell \sum_{i\in I_k} \abs{ \frac{\D_1(I_k)}{\abs{I_k}} - \frac{\D_2(I_k)}{\abs{I_k}} } \\
+      &=  \sum_{k=1}^\ell \abs{ \D_1(I_k) - \D_2(I_k) } = \sum_{k=1}^\ell \abs{ \sum_{i\in I_k}\left( \D_1(i) - \D_2(i) \right) } \\
+      &\leq  \sum_{k=1}^\ell \sum_{i\in I_k} \abs{ \D_1(i) - \D_2(i)  } = \sum_{i=1}^n \abs{ \D_1(i) - \D_2(i)  } 
+      = 2\totalvardist{\D_1}{\D_2}.
+      \end{align*}
+(we remark that Eq.~\eqref{eq:Birge:tv} could also be obtained directly by applying the data processing inequality for total variation distance (\cref{lemma:data:processing:inequality:total:variation}) to $\D_1$, $\D_2$, for the transformation $\Psi_{\mathcal{I}}(\cdot)$.)
+\end{proof}
+
+\paragraph{Monotone distributions.}
+We say that a distribution $\D$ on $[n]$ is \emph{monotone} (non-increasing) if its probability mass function is non-increasing, that is if $\D(1)\geq \dots \geq \D(n)$. 
+When dealing with monotone distributions, it will be useful to consider the \emph{Birg\'e decomposition}, which is a way to approximate any monotone distribution $\D$ by a histogram, where the latter is supported by logarithmically many intervals \emph{which crucially do not depend on $\D$ itself}:
+\begin{definition}[Birg\'e decomposition]\label{def:birge:decomposition}
+  Given a parameter $\alpha>0$, the corresponding (oblivious) \emph{Birg\'e decomposition of $[n]$} is the partition $\mathcal{I}_\alpha=(I_1,\dots,I_\ell)$, where $\ell=\bigTheta{\frac{\ln( \alpha n + 1)}{\alpha}}=\bigTheta{\frac{\log n }{\alpha}}$ and $\abs{I_{k}}=\flr{(1+\alpha)^k}$, $1\leq k \leq \ell$. 
+\end{definition}
+
+\noindent {For a distribution $\D$ and parameter $\alpha$, define $\birge[\D]{\alpha}$ to be the ``flattened'' distribution with relation to the oblivious decomposition $\mathcal{I}_\alpha$, that is $\birge[\D]{\alpha} = \Psi_{\mathcal{I}_\alpha}(\D)$.} 
+The next theorem states that every monotone distribution can be well-approximated by its flattening on the Birg\'e decomposition's intervals:     
+\begin{theorem}[\cite{Birge:87,DDSVV:13}]\label{theorem:Birge:obl:decomp}
+ If $\D$ is monotone, then $\totalvardist{\D}{\birge[\D]{\alpha}} \leq \alpha$.
+\end{theorem}
+
+\noindent As a corollary, one can extend the theorem to distributions only promised to be \emph{close} to monotone:
+\begin{restatable}{corollary}{birgerobustcorollary}\label{coro:Birge:decomposition:robust}
+    Suppose $\D$ is \eps-close to monotone, and let $\alpha > 0$. Then $\totalvardist{\D}{ \birge[\D]{\alpha} } \leq 2\eps + \alpha$. Furthermore,  $\birge[\D]{\alpha}$ is also \eps-close to monotone.
+\end{restatable}
+\begin{proof}[Proof of~\cref{coro:Birge:decomposition:robust}]
+  Let $\D$ be \eps-close to monotone, and $\D^\prime$ be a monotone distribution such that $\totalvardist{\D}{\D^\prime} = \eta \leq \eps$. By Eq.~\eqref{eq:Birge:tv}, we have
+  \begin{equation}\label{eqn:phialpha:cannot:increase:tv}
+      \totalvardist{ \birge[\D]{\alpha} }{ \birge[\D^\prime]{\alpha} } \leq \totalvardist{\D}{\D^\prime} = \eta
+  \end{equation}
+  proving the last part of the claim  (since $\birge[\D^\prime]{\alpha}$ is easily seen to be monotone).
+
+  \noindent Now, by the triangle inequality,
+  \begin{align*}
+      \totalvardist{\D}{ \birge[\D^\prime]{\alpha} } &\leq \totalvardist{\D}{\D^\prime} + \totalvardist{\D^\prime}{ \birge[\D^\prime]{\alpha} } + \totalvardist{ \birge[\D^\prime]{\alpha} }{ \birge[\D]{\alpha} } \\
+      &\leq \eta + \alpha + \eta \\
+      &\leq 2\eps+\alpha
+  \end{align*}
+  where the last inequality uses the assumption on $\D^\prime$ and~\cref{theorem:Birge:obl:decomp} applied to it.
+\end{proof}
+  
+\paragraph{Access to the distributions.} While we will mostly be concerned in this work with the standard model of access to the probability distributions, where the algorithm is provided with independent samples from an unknown distribution $\D$, the concepts we introduce and some of our results apply to some other types of access as well. One in particular, the \Cdfsamp access model, grants the algorithms the ability to query the value of the cumulative distribution function (cdf) of $\D$, in addition to regular sampling.\footnote{See also~\cite{clement:survey:distributions} for a summary and comparison of the different existing access models.} (We observe, as in~\cite{CR:14}, that this type of query access is for instance justified when the distribution originates from a sorted dataset, in which case such queries can be implemented with only a logarithmic overhead.)
+
+Unless explicitly specified otherwise, our algorithms only assume standard sampling access; the formal definitions of the two models mentioned above can be found in~\cref{appendix:definitions}.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Classes of distributions}\label{ssec:class:definitions}
 
 We give here the formal descriptions of the classes of distributions involved in this work, starting with that of monotone distributions.
 \begin{definition}[monotone]\label{def:monotone}
@@ -47,3 +178,188 @@ Fix any $k\geq 0$. We say a random variable $X$ is a \emph{$k$-Sum of Independen
 \begin{definition}\label{def:pmd}
 Fix any $k\geq 0$. We say a random variable $X$ is a \emph{$(n,k)$-Poisson Multinomial Distribution ($(n,k)$-PMD)} with parameter $n\in\N$ if it can be written as $X=\sum_{j=1}^n X_j$, where $X_1\dots,X_n$ are independent, non-necessarily identically distributed random variables taking value in $\{e_1,\dots,e_k\}$ (where $(e_i)_{i\in[k]}$ is the canonical basis of $\R^k$). We denote by $\classpmd[n]{k}$ the class of all such $(n,k)$-PMDs.
 \end{definition}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Error-Correcting Codes.} Let $k,n\in\N$, and let $\Sigma$ be a finite alphabet. A \emph{code} is a one-to-one function $C\colon\Sigma^k \to \Sigma^n$ that maps \emph{messages} to \emph{codewords}, where $k$ and $n$ are called the code's \emph{dimension} and \emph{block length}, respectively. The \emph{rate} of the code, measuring the redundancy of the encoding, is defined to be $\rho \eqdef k/n$. We will sometime identify the code $C$ with its image $C(\Sigma^k)$. In particular, we shall write $c \in C$ to indicate that there exists $x\in\bitset^k$ such that $c = C(x)$, and say that $c$ is a codeword of $C$.  The \emph{relative distance} of a code is the minimal relative distance between two codewords of $C$, and is denoted by $\delta \eqdef \min_{c \neq c' \in C}\{\dist{c}{c'}\}$. 
+
+We say that $C$ is an \emph{asymptotically good code} if it has constant rate and constant relative distance. We shall make an extensive use of asymptotically good codes that are \emph{balanced}, that is, codes in which each codeword consists of the same number of $0$'s and $1$'s
+
+\begin{proposition}[Good Balanced Codes]\label{lemma:good:balanced:hamming:codes}
+  For any constant $\delta \in [0,1/3)$, there exists a good balanced code $C\colon \bitset^k \to \bitset^n$ with relative distance $\delta$ and constant rate. Namely, there exists a constant $\rho>0$ such that the following holds.
+  \begin{enumerate}[(i)]
+    \item Balance: $\abs{C(x)} = \frac{n}{2}$ for all $x\in \bitset^k$;
+    \item Relative distance: $\dist{C(x)}{C(y)} > \delta$ for all distinct $x,y\in \bitset^k$;
+    \item Constant rate: $\frac{k}{n} \geq \rho$.
+  \end{enumerate}
+\end{proposition}
+\begin{proof}
+  Fix any code $C'$ with linear distance $\delta$ and constant rate (denoted $\rho'$). We transform $C'\colon \bitset^k \to \bitset^{n'}$ to a balanced code $C\colon \bitset^k \to \bitset^{2n'}$ by representing $0$ and $1$ as the balanced strings $01$ and $10$ (respectively). More accurately, we let $C(x) \eqdef C'(x)\odot\overline{C'(x)}\in\bitset^n$ for all $x\in\bitset^k$, where  $\odot$ denotes the concatenation and $\bar{z}$ is the bitwise negation of $z$. It is immediate to check that this transformation preserves the distance, and that $C$ is a balanced code with rate $\rho\eqdef 2\rho'$.
+\end{proof}
+
+\subparagraph{On uniformity.} For the sake of notation and clarity, throughout this work we define all algorithms and objects non-uniformly. Namely, we fix the relevant parameter (typically $n\in\N$), and restrict ourselves to inputs or domains of size $n$ (for instance, probability distributions over domain $[n]$). However, we still view it as a generic parameter and allow ourselves to write asymptotic expressions such as $\bigO{n}$. Moreover, although our results are stated in terms of non-uniform algorithms, they can be extended to the uniform setting in a straightforward manner.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Tools from previous work}
+
+We first restate a result of Batu et al. relating closeness to uniformity in $\lp[2]$ and $\lp[1]$ norms to ``overall flatness'' of the probability mass function, and which will be one of the ingredients of the proof of \cref{theo:main:testing}:
+
+\begin{lemma}[{\cite{BFRSW:00,BFFKRW:01}}]\label{lemma:small:l2:close:uniform:l1}
+Let $\D$ be a distribution on a domain $S$. \textsf{(a)} If $\max_{i\in S} \D(i) \leq (1+\eps)\min_{i\in S} \D(i)$, then $\normtwo{\D}^2 \leq (1+\eps^2)/\abs{S}$. \textsf{(b)} If $\normtwo{\D}^2 \leq (1+\eps^2)/\abs{S}$, then $\normone{\D-\uniform_{S}} \leq \eps$.
+\end{lemma}
+
+\noindent To check condition \textsf{(b)} above we shall rely on the following, which one can derive from the techniques in~\cite{DKN:15} and whose proof we defer to \cref{app:l2:proof}:
+\
+\begin{restatable}[Adapted from {\cite[Theorem 11]{DKN:15}}]{lemma}{lemmaestimateltwoadd}\label{lemma:estimate:l2:add}
+There exists an algorithm \textsc{Check-Small-$\lp[2]$} which, given parameters $\eps,\delta\in(0,1)$ and $c\cdot{\sqrt{\abs{I}}}/{\eps^2} \log(1/\delta)$ independent samples from a distribution $\D$ over $I$ (for some absolute constant $c>0$), outputs either \yes or \no, and satisfies the following.
+  \begin{itemize}
+    \item If $\normtwo{\D-\uniform_I} > {\eps}/{\sqrt{\abs{I}}}$, then the algorithm outputs \no with probability at least $1-\delta$;
+    \item If $\normtwo{\D-\uniform_I} \leq {\eps}/{2\sqrt{\abs{I}}}$, then the algorithm outputs \yes with probability at least $1-\delta$.
+  \end{itemize}
+\end{restatable}
+
+Finally, we will also rely on a classical result from \new{probability}, the \emph{Dvoretzky--Kiefer--Wolfowitz} (DKW) inequality, restated below:
+\begin{theorem}[\cite{DKW:56,Massart:90}]\label{theo:dkw:ineq}
+Let $\D$ be a distribution over $[n]$. Given $m$ independent samples $x_1,\dots ,x_m$ from $\D$, define the empirical distribution $\hat{\D}$ as follows:
+\[
+\hat{\D}(i) \eqdef \frac{\abs{ \setOfSuchThat{j\in[m]}{x_j=i} } }{m}, \quad i\in[n].
+\]
+Then, for all $\eps > 0$, $\probaOf{ \kolmogorov{\D}{\hat{\D}} > \eps } \leq 2e^{-2m\eps^2}$, where $\kolmogorov{\cdot}{\cdot}$ denotes the Kolmogorov distance (i.e., the $\lp[\infty]$ distance between cumulative distribution functions).
+\end{theorem} 
+\noindent In particular, this implies that $\bigO{1/\eps^2}$ samples suffice to learn a distribution up to $\eps$ in Kolmogorov distance.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Discrete Fourier transform}
+For our SIIRV testing algorithm, we will need the following definition of the Fourier transform. 
+
+\begin{definition}[Discrete Fourier Transform]
+For $x \in \R$, we let $e(x) \eqdef  \exp(-2i\pi x)$. The \emph{Discrete Fourier Transform (DFT) modulo $M$} of a function
+$F\colon[n] \to \C$ is  the function $\fourier{F}\colon[M]\to \C$ defined as
+\[
+    \fourier{F}(\xi)=\sum_{j=0}^{n-1} e\!\left(\frac{\xi j}{M}\right) F(j)
+\]
+for $\xi \in [M]$. The DFT modulo $M$ of a distribution $\p$, $\fourier{\p}$, is then the DFT modulo $M$ of its probability mass function (note that one can then equivalently see $\fourier{\p}(\xi)$ as the expectation $\fourier{\p}(\xi) = \shortexpect_{X\sim F}[e\!\left(\frac{\xi X}{M}\right)]$, for $\xi\in[M]$).
+
+The \emph{inverse DFT modulo $M$} onto the range $[m,m+M-1]$ of $\fourier{F}\colon [M] \to \C$, is the function $F\colon [m, m+M-1] \cap \Z \to \C$ defined by 
+\[
+    F(j)= \frac{1}{M} \sum_{\xi=0}^{M-1} e\!\left(-\frac{\xi j}{M}\right) \fourier{F}(\xi),
+\]
+for $j \in [m, m+M-1] \cap \Z$.
+\end{definition}
+
+Note that the DFT (modulo $M$) is a linear operator; moreover, we recall the standard fact relating the norms of a function and of its Fourier transform, that we will use extensively:
+\begin{theorem}[Plancherel's Theorem]
+For $M\geq 1$ and $F,G\colon[n] \to \C$, we have (i) $\sum_{j=0}^{n-1} F(j)\overline{G(j)} =  \frac{1}{M}\sum_{\xi=0}^{M-1} \fourier{F}(\xi)\overline{\fourier{G}(\xi)}$; and (ii) $\normtwo{F}= \frac{1}{\sqrt{M}}\normtwo{\fourier{F}}$, 
+where $\fourier{F},\fourier{G}$ are the DFT modulo $M$ of $F,G$, respectively.
+\end{theorem}
+\noindent(The latter equality is sometimes referred to as Parseval's theorem.) We also note that, for our PMD testing, we shall need the appropriate generalization of the Fourier transform to the multivariate setting. We leave this generalization to the corresponding section,~\cref{sec:pmd:testing}.
+
+\subsection{Tools from Analysis and Probability}
+We now state a standard probabilistic result that some of our proofs will rely on, the Paley--Zygmund anticoncentration inequality:
+\begin{theorem}[Paley--Zygmund inequality]\label{theo:paley:zigmund}
+  Let $X$ be a non-negative random variable with finite variance. Then, for any $\theta\in[0,1]$,
+  \[
+      \probaOf{ X > \theta\expect{X} } \geq (1-\theta)^2\frac{\expect{X}^2}{\expect{X^2}}.
+  \]
+\end{theorem}
+
+We also recall a classical inequality for sums of independent random variables, due to Bennett~\cite[Chapter 2]{Boucheron:13}:
+\begin{theorem}[Bennett's inequality]
+Let $X=\sum_{i=1}^n X_i$, where $X_1,\dots,X_n$ are independent random variables such that (i) $\shortexpect[X_i]=0$ and (ii) $\abs{X_i}\leq \alpha$ almost surely for all $1\leq i\leq n$. Letting $\sigma^2=\var[X]$, we have, for every $t\geq 0$,
+\[
+    \Pr[ X > t ] \leq \exp\left( -\frac{\var[X]}{\alpha^2} \vartheta\!\left( \frac{\alpha t}{\var[X]} \right) \right)
+\]
+where $\vartheta(x)=(1+x)\ln(1+x) - x$.
+\end{theorem}
+
+We will also require the following version of the rearrangement inequality, due to Hardy and Littlewood (cf. for instance~\cite[Theorem 2.2]{BennettS:88}):
+  \begin{theorem}[Hardy--Littlewood Inequality]\label{theo:hardy:littlewood}
+    Fix any $f,g\colon\R\to [0,\infty)$ such that $\lim_{\pm\infty} f = \lim_{\pm\infty} g = 0$. Then,
+    \[
+        \int_{\R} fg \leq \int_{\R} f^\ast g^\ast
+    \]
+    where $f^\ast, g^\ast$ denote the symmetric decreasing rearrangements of $f,g$ respectively.
+  \end{theorem}
+
+ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Some useful structural results}\label{sec:learn}
+To establish the completeness of our algorithms, we shall rely on this lemma from~\cite{DKS:15}:
+\begin{lemma}[{\cite[Lemma 2.3]{DKS:15}}]\label{lemma:FourierSupportLem}
+Let $\p \in \classksiirv[n]{k}$ with $\sqrt{\var_{X \sim \p}[X]} = s$, $1/2>\delta>0$, and $M \in \Z_+$ with $M>s$.
+Let $\fourier{\p}$ be the discrete Fourier transform of $\p$ modulo $M$. Then, we have
+  \begin{enumerate}
+    \item[(i)]\label{lemma:FourierSupportLem:i} Let $\mathcal{L} = \mathcal{L}(\delta, M,s) \eqdef \left\{ \xi \in [M-1] \mid \exists a, b \in \Z, 0 \leq a \leq b < k \textrm{ such that }
+    |\xi/M - a/b| <  \frac{\sqrt{\ln (1/\delta)}}{2s}  \right\} \;.$ Then, $|\fourier{\p}(\xi)| \leq \delta$ for all $\xi \in [M-1] \setminus \mathcal{L}.$
+    That is, $|\fourier{\p}(\xi)| > \delta$ for
+    at most $|\mathcal{L}| \leq M k^2 s^{-1} \sqrt{\log(1/\delta)}$ values of $\xi$ .
+    \item[(ii)]\label{lemma:FourierSupportLem:ii} At most $4Mks^{-1}\sqrt{\log(1/\delta)}$ many integers $0 \leq \xi \leq M-1$ have  $|\fourier{\p}(\xi)| > \delta \;.$
+  \end{enumerate}
+\end{lemma}
+
+
+We then provide a simple structural lemma, bounding the $L_2$ norm of any $(n,k)$-SIIRV as a function of $k$ and its variance only:
+\begin{lemma}[Any $(n,k)$-SIIRV modulo $M$ has small $L_2$ norm]\label{claim:ksiirv:l2:norm}
+  If $\p \in \mathcal{S}_{n, k}$ has variance $s^2$, then the distribution $\p'$ defined as $\p' \eqdef \p \bmod M$ satisfies 
+  $
+      \normtwo{\p'} \leq \sqrt{\frac{8k}{s}}
+  $.
+\end{lemma}
+\begin{proof}[Proof of~\cref{claim:ksiirv:l2:norm}]
+By Plancherel, we have
+$
+  \normtwo{\p'}^2 = \frac{1}{M} \sum_{\xi=0}^{M-1} \dabs{\fourier{\p'}(\xi)}^2 = \frac{1}{M} \sum_{\xi=0}^{M-1} \dabs{\fourier{\p}(\xi)}^2
+$, 
+the second equality due to the definition of $\fourier{\p'}$. Indeed, for any $\xi\in[M]$, 
+\begin{align*}
+    \fourier{\p'}(\xi) &= \sum_{j=0}^{M-1} e^{-2i\pi \frac{j\xi}{M}} \p'(j) = \sum_{j=0}^{M-1} e^{-2i\pi \frac{j\xi}{M}} \sum_{\substack{j'\in\mathbb{N}\\j' = j \bmod M}} \p(j')
+    = \sum_{j=0}^{M-1} \sum_{\substack{j'\in\mathbb{N}\\j' = j \bmod M}} e^{-2i\pi \frac{j'\xi}{M}} \p(j')
+    \\
+    &= \sum_{j\in\mathbb{N}} e^{-2i\pi \frac{j'\xi}{M}} \p(j')
+    = \fourier{\p}(\xi)
+\end{align*}
+as $u\mapsto e^{-2i\pi u}$ is $1$-periodic. Since $\abs{\fourier{\p}(\xi)}\leq 1$ for every $\xi\in[M]$ (as $\fourier{\p}(\xi) = \shortexpect_{j\sim \p}[e^{-2i\pi \frac{j\xi}{M}}]$), we can upper bound the RHS as
+\[
+    \frac{1}{M} \sum_{\xi=0}^{M-1} \dabs{\fourier{\p}(\xi)}^2 \leq \frac{1}{M} \sum_{r\geq 0} \sum_{\xi : \frac{1}{2^{r+1}} < \abs{\fourier{\p}(\xi)} \leq \frac{1}{2^{r}}} \abs{\fourier{\p}(\xi)}^2
+    \leq \frac{1}{M} \sum_{r\geq 0} \frac{1}{2^{2r}} \abs{\setOfSuchThat{ \xi\in[M] }{ \frac{1}{2^{r+1}} < \abs{\fourier{\p}(\xi)} }}\;.
+\]
+Invoking~\cref{lemma:FourierSupportLem}(ii) with parameter $\delta$ set to $\frac{1}{2^{r+1}}$, we get that $\abs{\setOfSuchThat{ \xi\in[M] }{ \frac{1}{2^{r+1}} < \abs{\fourier{\p}(\xi)} }} \leq 4Mk s^{-1} \sqrt{r+1}$, from which \[
+    \normtwo{\p'}^2 \leq \frac{4k}{s} \sum_{r\geq 0} \frac{\sqrt{r+1}}{2^{2r}} \leq \frac{8k}{s}
+\]
+as desired.
+\end{proof}
+
+ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Formal definitions: learning and testing}\label{appendix:definitions}
+In this appendix, we define precisely the notions of \emph{testing}, \emph{tolerant testing}, \emph{learning} and \emph{proper learning} of distributions over a domain $[n]$.
+\begin{definition}[Testing]\label{def:testing:alg}
+  Fix any property $\property$ of distributions, and let $\ORACLE_\D$ be an oracle providing some type of access to $\D$. A \emph{$q$-sample testing algorithm for $\property$} is a randomized algorithm $\Tester$ which takes as input $n$, $\eps\in(0,1]$, as well as access to $\ORACLE_\D$. After making at most $q(\eps,n)$ calls to the oracle, \Tester outputs either \accept or \reject, such that the following holds:
+  \begin{itemize}
+    \item if $\D\in\property$, \Tester outputs \accept with probability at least $2/3$;
+    \item if $\totalvardist{\D}{\property} \geq \eps$, \Tester outputs \reject with probability at least $2/3$.
+  \end{itemize}
+\end{definition}
+\noindent We shall also be interested in \emph{tolerant} testers -- {roughly}, algorithms robust to a relaxation of the first item above:
+\begin{definition}[Tolerant testing]\label{def:tol:testing:alg}
+  Fix property $\property$ and $\ORACLE_\D$ as above. A \emph{$q$-sample tolerant testing algorithm for $\property$} is a randomized algorithm $\Tester$ which takes as input $n$, $0 \leq \eps_1 < \eps_2 \leq 1$, as well as access to $\ORACLE_\D$. After making at most $q(\eps_1,\eps_2,n)$ calls to the oracle, \Tester outputs either \accept or \reject, such that the following holds:
+  \begin{itemize}
+    \item if $\totalvardist{\D}{\property} \leq \eps_1$, \Tester outputs \accept with probability at least $2/3$;
+    \item if $\totalvardist{\D}{\property} \geq \eps_2$, \Tester outputs \reject with probability at least $2/3$.
+  \end{itemize}
+\end{definition}
+
+Note that the above definition is quite general, and can be instantiated for different types of oracle access to the unknown distribution. In this work, we are mainly concerned with two such settings, namely the \emph{sampling oracle access} and \emph{\Cdfsamp oracle access}:
+  \begin{definition}[Standard access model (sampling)]\label{def:sampling:oracle}
+      Let $\D$ be a fixed distribution over $[n]$. A \emph{sampling oracle for $\D$} is an oracle $\SAMP_\D$ defined as follows: when queried, $\SAMP_\D$ returns an element $x\in[n]$, where the probability that $x$ is returned is $\D(x)$ independently of all previous calls to the oracle.
+  \end{definition}
+    \begin{definition}[\Cdfsamp access model~\cite{BKR:04,CR:14}]\label{def:extended:oracle}
+    Let $\D$ be a fixed distribution over $[n]$. A \emph{cdfsamp oracle for $\D$} is a pair of oracles $(\SAMP_\D, \CDFEVAL_\D)$ defined as follows: the \emph{sampling} oracle $\SAMP_\D$ behaves as before, while the \emph{evaluation} oracle $\CDFEVAL_\D$ takes as input a query element $j\in[n]$, and returns the value of the cumulative distribution function (cdf) at $j$. That is, it returns the probability weight that the distribution puts on $[j]$, $\D([j])=\sum_{i=1}^j \D(i)$.
+    \end{definition}  
+
+\noindent Another class of algorithms we consider is that of \emph{(proper) learners}. We give the precise definition below:  
+\begin{definition}[Learning]
+Let $\class$ be a class of probability distributions and $\D\in \class$ be an unknown distribution. Let also $\mathcal{H}$ be a hypothesis class of distributions. 
+A \emph{$q$-sample learning algorithm for $\class$} is a randomized algorithm $\Learner$ which takes as input $n$, $\eps,\delta\in(0,1)$, as well as access to $\SAMP_\D$ and  outputs the description of a distribution $\hat{\D}\in \mathcal{H}$ such that with probability at least $1-\delta$ one has $\totalvardist{\D}{\hat{\D}}\leq \eps$. 
+
+\noindent If in addition $\mathcal{H}\subseteq \class$, then we say \Learner is a \emph{proper learning algorithm}.   
+\end{definition}
+
+The exact formalization of what \emph{learning a probability distribution} means has been considered in  Kearns et al.~\cite{Kearns:94}. We note that in their language, the variant of learning this paper is most closely related to is \emph{learning to generate}.

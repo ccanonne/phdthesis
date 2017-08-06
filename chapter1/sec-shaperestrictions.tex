@@ -137,36 +137,7 @@ due to the mild structural assumptions it requires. However, we did not attempt 
 
 We start by giving the necessary background and definitions in~\cref{sec:preliminaries}, before turning to our main result, the proof of~\cref{theo:main:testing} (our general testing algorithm) in~\cref{sec:algorithm}. In~\cref{sec:structural}, we establish the necessary structural theorems for each class of distributions considered, enabling us to derive the upper bounds of~\cref{fig:table:results}.~\cref{sec:effectivesupport} introduces a slight modification of our algorithm which yields stronger testing results for classes of distributions with small effective support, and use it to derive~\cref{coro:main:testing:pbd}, our upper bound for Poisson Binomial distributions. Second,~\cref{sec:lowerbounds} contains the details of our lower bound methodology, and of its applications to the classes of~\cref{fig:table:results}. Finally,~\cref{sec:lowerbounds:tol} is concerned with the extension of this methodology to \emph{tolerant} testing, of which~\cref{sec:toltesting:ub} describes a generic upper bound counterpart.
  
-\subsection{Notation and Preliminaries}\label{sec:preliminaries}
 
-\subsubsection{Tools from previous work}
-
-We first restate a result of Batu et al. relating closeness to uniformity in $\lp[2]$ and $\lp[1]$ norms to ``overall flatness'' of the probability mass function, and which will be one of the ingredients of the proof of \cref{theo:main:testing}:
-
-\begin{lemma}[{\cite{BFRSW:00,BFFKRW:01}}]\label{lemma:small:l2:close:uniform:l1}
-Let $\D$ be a distribution on a domain $S$. \textsf{(a)} If $\max_{i\in S} \D(i) \leq (1+\eps)\min_{i\in S} \D(i)$, then $\normtwo{\D}^2 \leq (1+\eps^2)/\abs{S}$. \textsf{(b)} If $\normtwo{\D}^2 \leq (1+\eps^2)/\abs{S}$, then $\normone{\D-\uniform_{S}} \leq \eps$.
-\end{lemma}
-
-\noindent To check condition \textsf{(b)} above we shall rely on the following, which one can derive from the techniques in~\cite{DKN:15} and whose proof we defer to \cref{app:l2:proof}:
-\
-\begin{restatable}[Adapted from {\cite[Theorem 11]{DKN:15}}]{lemma}{lemmaestimateltwoadd}\label{lemma:estimate:l2:add}
-There exists an algorithm \textsc{Check-Small-$\lp[2]$} which, given parameters $\eps,\delta\in(0,1)$ and $c\cdot{\sqrt{\abs{I}}}/{\eps^2} \log(1/\delta)$ independent samples from a distribution $\D$ over $I$ (for some absolute constant $c>0$), outputs either \yes or \no, and satisfies the following.
-  \begin{itemize}
-    \item If $\normtwo{\D-\uniform_I} > {\eps}/{\sqrt{\abs{I}}}$, then the algorithm outputs \no with probability at least $1-\delta$;
-    \item If $\normtwo{\D-\uniform_I} \leq {\eps}/{2\sqrt{\abs{I}}}$, then the algorithm outputs \yes with probability at least $1-\delta$.
-  \end{itemize}
-\end{restatable}
-
-Finally, we will also rely on a classical result from \new{probability}, the \emph{Dvoretzky--Kiefer--Wolfowitz} (DKW) inequality, restated below:
-\begin{theorem}[\cite{DKW:56,Massart:90}]\label{theo:dkw:ineq}
-Let $\D$ be a distribution over $[n]$. Given $m$ independent samples $x_1,\dots ,x_m$ from $\D$, define the empirical distribution $\hat{\D}$ as follows:
-\[
-\hat{\D}(i) \eqdef \frac{\abs{ \setOfSuchThat{j\in[m]}{x_j=i} } }{m}, \quad i\in[n].
-\]
-Then, for all $\eps > 0$, $\probaOf{ \kolmogorov{\D}{\hat{\D}} > \eps } \leq 2e^{-2m\eps^2}$, where $\kolmogorov{\cdot}{\cdot}$ denotes the Kolmogorov distance (i.e., the $\lp[\infty]$ distance between cumulative distribution functions).
-\end{theorem} 
-\noindent In particular, this implies that $\bigO{1/\eps^2}$ samples suffice to learn a distribution up to $\eps$ in Kolmogorov distance.
- 
 \subsection{The General Algorithm}\label{sec:algorithm}
 In this section, we obtain our main result, restated below:
 \mainthmtestingalgo*
@@ -197,7 +168,7 @@ m\cdot 2^\ell=m\cdot 2^{\ell-\ell^\prime}\cdot 2^{\ell^\prime}=m^\prime \cdot 2^
 
 Now consider the following procedure: Starting from right (resp. left) side of the interval $I$, we add the largest interval which is adjacent to it and fully contained in $[a,b]$ and recurse until we cover the whole interval $[(m+1)\cdot 2^\ell+1,b]$ (resp. $[a,m\cdot 2^\ell]$). Clearly, at the end of this procedure, the whole interval $[a,b]$ is covered by dyadic intervals. It remains to show that the procedure takes $\bigO{\log n}$ steps. Indeed, using~\cref{eq:lem:dec:split:smaller:powers}, we can see that at least half of the remaining left or right interval is covered in each step (except maybe for the first 2 steps where it is at least a quarter). Thus, the procedure will take at most $2\log n +2=\bigO{\log n}$ steps in total. From the above, we can see that each of the $L$ intervals of the partition $\mathcal{I}$ can be covered with $\bigO{\log n}$ dyadic intervals, which completes the proof of the claim. 
 
-In order to complete the proof of the lemma, notice that the two conditions in~\cref{def:struct:dec:split} are closed under taking subsets: so that the second is immediately verified, while for the first we have that for any of the ``new'' intervals $I$ that $D(I) \leq  \frac{\zeta}{L} \leq \frac{\zeta\cdot (2\log n+2)}{L'}$. 
+In order to complete the proof of the lemma, notice that the two conditions in~\cref{def:struct:dec:split} are closed under taking subsets: so that the second is immediately verified, while for the first we have that for any of the ``new'' intervals $I$ that $\D(I) \leq  \frac{\zeta}{L} \leq \frac{\zeta\cdot (2\log n+2)}{L'}$. 
 \end{proof}
 
 \subsubsection{The algorithm}\label{ssec:main:algorithm}
@@ -1390,7 +1361,7 @@ Note that the first two sections allow us to argue that instead of additive (in 
 \noindent We will require the following result of Chan, Diakonikolas, Servedio, and Sun:
 \begin{theorem}[{\cite[Lemma 4.1]{CDSS:13}}]\label{lemma:cdss13:41}
 Let $\D$ be a distribution over $[n]$, log-concave and non-decreasing over $\{1,\dots,b\} \subseteq [n]$. Let $a\leq b$ such that
- $\sigma = D(\{1,\dots,a-1\}) > 0$, and write $\tau=\D(\{a,\dots,b\})$. Then 
+ $\sigma = \D(\{1,\dots,a-1\}) > 0$, and write $\tau=\D(\{a,\dots,b\})$. Then 
  		$\frac{\D(b)}{\D(a)} \leq 1+\frac{\tau}{\sigma}$.
 \end{theorem}
 

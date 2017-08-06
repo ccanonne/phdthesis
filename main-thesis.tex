@@ -64,6 +64,10 @@
 \tableofcontents % You need to put your ToC after frontmatter so that it will get lowercase Roman numerals.
 \clearpage
 \listoffigures
+
+\ifnum\withnotes=1
+  \listoftodos
+\fi
 %%% A list of graphs and illustrations should go here if you use any.
 
 \include{./frontmatter/acknowledgments}
