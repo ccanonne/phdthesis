@@ -38,11 +38,7 @@
  	 \newtheorem{openquestion}{Open Problem}
 }{}
 \makeatother
-\providecommand*{\lemautorefname}{Lemma} % For \autoref{} to know the name of lemmas
-\providecommand*{\clmautorefname}{Claim}
-\providecommand*{\propautorefname}{Proposition}
-\providecommand*{\coroautorefname}{Corollary}
-\providecommand*{\defnautorefname}{Definition}
+\crefname{claim}{Claim}{Claims}
 \newenvironment{proofof}[1]{\begin{proof}[Proof of {#1}]}{\end{proof}}
 
 %% \email{} command
@@ -95,7 +91,6 @@
 \newcommand{\fail}{\textsf{fail}\xspace}
 \newcommand{\reject}{\textsf{reject}\xspace}
 \newcommand{\opt}{{\textsc{opt}}\xspace}
-\newcommand{\half}{\frac{1}{2}}
 \newcommand{\domain}[1][{\Omega}]{\ensuremath{#1}\xspace} % Domain of a distribution (default notation)
 \newcommand{\distribs}[1]{\Delta\!\left(#1\right)} % Domain of a distribution (default notation)
 \newcommand{\yes}{\textsf{yes}\xspace}
@@ -276,6 +271,16 @@
 \newcommand{\randDTos}[2]{R^{\textsf{os}}_{#1}(#2)} % Randomized, one-sided DT complexity (with round adaptivity k)
 \newcommand{\randLDT}[2]{R^{\oplus}_{#1}(#2)} % Randomized, two-sided LDT complexity (with round adaptivity k)
 \newcommand{\randLDTos}[2]{R^{\oplus,\textsf{os}}_{#1}(#2)} % Randomized, one-sided LDT complexity (with round adaptivity k)
+
+% For conditional sampling article
+\newcommand{\good}{comparable\xspace}
+\newcommand{\bad}{bad\xspace}
+\newcommand{\unknown}{\textsf{unknown}\xspace}
+\newcommand{\high}{{\textsf{high}}\xspace}
+\newcommand{\low}{{\textsf{low}}\xspace}
+\newcommand{\T}{{\rm T}}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\wt}{sum}
 
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Add author and title info to PDF (and handles multiple authors)

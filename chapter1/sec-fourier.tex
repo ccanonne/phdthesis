@@ -5,9 +5,9 @@ The prototypical inference question in the area of \emph{distribution property t
 is the following: Given a set of samples from a collection of probability distributions, can we
 determine whether these distributions satisfy a certain property?
 During the past two decades, this broad
-question -- whose roots lie in statistical hypothesis testing~\cite{NeymanP, lehmann2005testing} --
+question -- whose roots lie in statistical hypothesis testing~\cite{NeymannPearson:33,Lehmann:2005:book} --
 has received considerable attention by the computer science community,
-see~\cite{Rubinfeld:12:Taming, Canonne15} for two recent surveys.
+see~\cite{Rubinfeld:12:Survey, Canonne:15:Survey} for two recent surveys.
 After two decades of study, for many properties of interest there exist
 sample-optimal testers (matched by information-theoretic lower bounds)
 ~\cite{Paninski:08, CDVV:14, VV:14, DKN:15, DK:16}.
@@ -37,9 +37,9 @@ in $\{0, 1, \ldots, k-1\}$.
 SIIRVs comprise a rich class of distributions that arise in many settings. The special case of $k=2$, $\classksiirv[n]{2}$,
 was first considered by Poisson \cite{Poisson:37} as a non-trivial extension of the Binomial distribution,
 and is known as Poisson binomial distribution (PBD). In application domains, SIIRVs have many uses in research areas
-such as survey sampling, case-control studies, and survival analysis, see e.g., \cite{ChenLiu:97} for a survey of the many practical uses of these distributions.
+such as survey sampling, case-control studies, and survival analysis, see e.g., \cite{CL:97} for a survey of the many practical uses of these distributions.
 We remark that these distributions are of fundamental interest and have been extensively 
-studied in probability and statistics~\cite{Chernoff:52,Hoeffding:63,DP09, Presman:83,Kruopis:86,BHJ:92, CL10,CGS11}.
+studied in probability and statistics~\cite{Chernoff:52,Hoeffding:63,DP:09, Presman:83,Kruopis:86,BHJ:92, CL10,CGS11}.
 We show the following:
 
 \begin{theorem}[Testing SIIRVs]\label{theo:testing:ksiirv}
@@ -86,10 +86,9 @@ $\{e_1, e_2, \ldots, e_k \}$ of standard basis vectors in $\R^k$.
 PMDs comprise a broad class of discrete distributions of fundamental importance in computer science, probability, and statistics.
 A large body of work in the probability and statistics literature has been devoted to the study of the behavior
 of PMDs under various structural conditions~\cite{Barbour88, Loh92, BHJ:92, Bentkus:03, Roos99, Roos10}.
-PMDs generalize the familiar multinomial distribution, and describe many distributions commonly encountered in computer science (see, e.g.,~\cite{DaskalakisP07, DaskalakisP08, Valiant:11, VV:11:stoc}).
+PMDs generalize the familiar multinomial distribution, and describe many distributions commonly encountered in computer science (see, e.g.,~\cite{DP:07:AGT, DP:08:AGT, Valiant:11,VV:11:stoc}).
 Recent years have witnessed a flurry of research activity on PMDs and related distributions,
-from several perspectives of theoretical computer science,including learning~\cite{DDS:PBD:15, DDOST:13, DKS:15, DKT:15, DKS:15b}, property testing~\cite{Valiant:11, ValiantValiant:10lb, VV:11:stoc}, 
- computational game theory~\cite{DaskalakisP07, DaskalakisP08, BorgsCIKMP08, DaskalakisP09, DaskalakisP2014, GT14,CDS:17},
+from several perspectives of theoretical computer science,including learning~\cite{DDS:PBD:15, DDOST:13, DKS:15, DKT:15, DKS:15b}, property testing~\cite{Valiant:11, ValiantValiant:10lb, VV:11:stoc}, computational game theory~\cite{DP:07:AGT, DP:08:AGT, BorgsCIKMP08, DP:09:AGT, DP:14:AGT, GT14,CDS:17},
  and derandomization~\cite{GMRZ:11, BDS:12, De:15, GKM:15}. 
 
 

@@ -63,7 +63,9 @@ As previously mentioned, in this work we will be concerned with the total variat
 \end{equation}
 where $F_1$ and $F_2$ are the respective cumulative distribution functions (cdf) of $\D_1$ and $\D_2$. Thus, the Kolmogorov distance is the $\lp[\infty]$ distance between the cdf's; and $\kolmogorov{\D_1}{\D_2} \leq \totalvardist{\D_1}{\D_2} \in [0,1]$. \smallskip
 
-We first state the following theorem, which guarantees that for any two distributions $\D_1$, $\D_2$, applying any (possibly randomized) function to both $\D_1$ and $\D_2$ can never increase their total variation distance:
+On several occasions we will use the \emph{data processing inequality for variation distance}.  This intuitive yet fundamental result says that for any two distributions $\D$, $\D'$,
+applying any (possibly randomized) function to both $\D$ and $\D'$ can never increase their statistical distance; see e.g. part~(iv) of~\cite[Lemma 2]{Rey:11} for a proof of this
+lemma.
 \begin{fact}[Data Processing Inequality for Total Variation Distance]\label{lemma:data:processing:inequality:total:variation}
 Let $\D_1$, $\D_2$ be two distributions over a domain $\Omega$. Fix any randomized function\footnote{Which can be seen as a distribution over functions over $\Omega$.}{} $F$ on $\Omega$, and let $F(\D_1)$ be the distribution such that a draw from $F(\D_1)$ is obtained by drawing independently $x$ from $\D_1$ and $f$ from $F$ and then outputting $f(x)$ (likewise for $F(\D_2)$).
 Then we have
@@ -131,7 +133,7 @@ The next theorem states that every monotone distribution can be well-approximate
   where the last inequality uses the assumption on $\D^\prime$ and~\cref{theorem:Birge:obl:decomp} applied to it.
 \end{proof}
   
-\paragraph{Access to the distributions.} While we will mostly be concerned in this work with the standard model of access to the probability distributions, where the algorithm is provided with independent samples from an unknown distribution $\D$, the concepts we introduce and some of our results apply to some other types of access as well. One in particular, the \Cdfsamp access model, grants the algorithms the ability to query the value of the cumulative distribution function (cdf) of $\D$, in addition to regular sampling.\footnote{See also~\cite{clement:survey:distributions} for a summary and comparison of the different existing access models.} (We observe, as in~\cite{CR:14}, that this type of query access is for instance justified when the distribution originates from a sorted dataset, in which case such queries can be implemented with only a logarithmic overhead.)
+\paragraph{Access to the distributions.} While we will mostly be concerned in this work with the standard model of access to the probability distributions, where the algorithm is provided with independent samples from an unknown distribution $\D$, the concepts we introduce and some of our results apply to some other types of access as well. One in particular, the \Cdfsamp access model, grants the algorithms the ability to query the value of the cumulative distribution function (cdf) of $\D$, in addition to regular sampling.\footnote{See also~\cite{Canonne:15:Survey} for a summary and comparison of the different existing access models.} (We observe, as in~\cite{CR:14}, that this type of query access is for instance justified when the distribution originates from a sorted dataset, in which case such queries can be implemented with only a logarithmic overhead.)
 
 Unless explicitly specified otherwise, our algorithms only assume standard sampling access; the formal definitions of the two models mentioned above can be found in~\cref{appendix:definitions}.
 
@@ -234,8 +236,106 @@ and $\eps < \eta.$ Then,
 \[ \totalvardist{ \binomial{m}{p} }{ \binomial{m}{p+\eps} } < \frac{1}{3}. \]
 \end{fact}
 
-\noindent We will make extensive use of Chernoff bounds; for completeness, we state them in~\cref{appendix:chernoff}.
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Tools from Analysis and Probability}
+We first give several variants of the Chernoff bounds (see e.g.~\cite[Chapter~4]{MotwaniRaghavan:95}), which we will use extensively in this thesis.
+\begin{theorem} \label{thm:multCB}
+Let $Y_1,\dots,Y_m$ be $m$ independent random variables that take on values in $[0,1]$, where $\expect{Y_i} = p_i$, and $\sum_{i=1}^m p_i = P$. For any $\gamma \in (0,1]$ we have
+\begin{align}
+  \label{eq:additive-chernoff}\text{(additive bound)} & & \probaOf{ \sum_{i=1}^m Y_i   > P+ \gamma m  },\ \probaOf{ \sum_{i=1}^m Y_i  < P - \gamma m } &\leq \exp(-2 \gamma^2 m)\\
+  \label{eq:cher-ub}\text{(multiplicative bound)}     & & \probaOf{ \sum_{i=1}^m Y_i > (1+\gamma)P } &< \exp(-\gamma^2 P/3)\\
+  \text{and}\notag\\
+  \label{eq:cher-lb}\text{(multiplicative bound)}     & & \probaOf{ \sum_{i=1}^m Y_i < (1-\gamma)P } &< \exp(-\gamma^2 P/2).
+\end{align}
+The bound in~\cref{eq:cher-ub} is derived from the following more general bound, which holds from any $\gamma > 0$:
+  \begin{equation}\label{eq:cher-ub-gen}
+  \probaOf{ \sum_{i=1}^m Y_i > (1+\gamma)P } \leq \left(\frac{e^\gamma}{(1+\gamma)^{1+\gamma}}\right)^{P}\;,
+  \end{equation}
+and which also implies that for any $B > 2eP$,
+  \begin{equation}\label{eq:cher-ub-large}
+  \probaOf{ \sum_{i=1}^m Y_i > B } \leq 2^{-B}\;.
+  \end{equation}
+\end{theorem}
+The following extension of the multiplicative bound is useful when we only have upper and/or lower bounds on $P$ (see e.g.~\cite[Exercise~1.1]{DP:09}):
+\begin{claim} \label{cor:CB-upperlower}
+In the setting of~\cref{thm:multCB} suppose that $P_L \leq P \leq P_H.$ Then for any $\gamma \in (0,1]$, we have
+  \begin{align}
+    \probaOf{ \sum_{i=1}^m Y_i > (1+\gamma)P_H } &< \exp(-\gamma^2 P_H/3)      \label{eq:multCB-upper2}\\
+    \probaOf{ \sum_{i=1}^m Y_i < (1-\gamma)P_L } &< \exp(-\gamma^2 P_L/2)      \label{eq:multCB-lower}
+  \end{align}
+\end{claim}
+
+\noindent We will also rely on the following corollary of~\cref{thm:multCB}:
+\begin{corollary}\label{cor:sum-wiXi}
+Let $0 \leq w_1,\dots,w_m \in \R$ be such that $w_i \leq \kappa$ for all $i \in [m]$, where $\kappa \in (0,1]$. Let $X_1,\dots,X_m$ be i.i.d. Bernoulli random variables with $\Pr[X_i=1]=1/2$ for all $i$, and let \mbox{$X = \sum_{i=1}^m w_i X_i$} and $W = \sum_{i=1}^m w_i$.
+For any $\gamma \in (0,1]$,
+\[
+\probaOf{ X > (1+\gamma)\frac{W}{2} }
+    < \exp\left(-\gamma^2\frac{W}{6\kappa}\right)
+    \;\mbox{ and }\;
+\probaOf{ X < (1-\gamma)\frac{W}{2} }
+    < \exp\left(-\gamma^2\frac{W}{4\kappa}\right)\;,
+\]
+and for any $B > e\cdot W$,
+\[
+\Pr[X > B] < 2^{-B/\kappa}\;.
+\]
+\end{corollary}
+\begin{proof}
+Let $w_i' \eqdef w_i/\kappa$ (so that $w_i' \in [0,1]$), $W' \eqdef \sum_{i=1}^m w'_i = W/\kappa$, and
+for each $i \in [m]$ let $Y_i \eqdef w_i' X_i$, so that $Y_i$ takes on values in $[0,1]$ and $\expect{Y_i} = w'_i/2$.
+Let $X' = \sum_{i=1}^m w'_i X_i = \sum_{i=1}^m Y_i$,
+so that $\expect{X'} = W'/2$.
+By the definitions of $W'$ and $X'$ and by~\cref{eq:cher-ub},
+for any $\gamma \in (0,1]$,
+\[
+\probaOf{ X > (1+\gamma)\frac{W}{2} }
+ = \probaOf{ X' > (1+\gamma)\frac{W'}{2} }
+    < \exp\left(-\gamma^2\frac{W'}{6}\right)
+    = \exp\left(-\gamma^2\frac{W}{6\kappa}\right),
+\]
+and similarly by~\cref{eq:cher-lb}
+\[
+\probaOf{ X < (1-\gamma)\frac{W}{2} }
+    < \exp\left(-\gamma^2\frac{W}{{4}\kappa}\right)\;.
+\]
+For $B > e\cdot W = 2e\cdot W/2$
+we apply~\cref{eq:cher-ub-large} and get
+\[
+\probaOf{ X > B }
+ = \probaOf{ X' > B/\kappa }
+    < 2^{-B/\kappa},
+\]
+as claimed.
+\end{proof}
+
+Next, we state a standard probabilistic result that some of our proofs will rely on, the Paley--Zygmund anticoncentration inequality:
+\begin{theorem}[Paley--Zygmund inequality]\label{theo:paley:zigmund}
+  Let $X$ be a non-negative random variable with finite variance. Then, for any $\theta\in[0,1]$,
+  \[
+      \probaOf{ X > \theta\expect{X} } \geq (1-\theta)^2\frac{\expect{X}^2}{\expect{X^2}}.
+  \]
+\end{theorem}
+
+We also recall a classical inequality for sums of independent random variables, due to Bennett~\cite[Chapter 2]{Boucheron:13}:
+\begin{theorem}[Bennett's inequality]
+Let $X=\sum_{i=1}^n X_i$, where $X_1,\dots,X_n$ are independent random variables such that (i) $\shortexpect[X_i]=0$ and (ii) $\abs{X_i}\leq \alpha$ almost surely for all $1\leq i\leq n$. Letting $\sigma^2=\var[X]$, we have, for every $t\geq 0$,
+\[
+    \Pr[ X > t ] \leq \exp\left( -\frac{\var[X]}{\alpha^2} \vartheta\!\left( \frac{\alpha t}{\var[X]} \right) \right)
+\]
+where $\vartheta(x)=(1+x)\ln(1+x) - x$.
+\end{theorem}
+
+We will also require the following version of the rearrangement inequality, due to Hardy and Littlewood (cf. for instance~\cite[Theorem 2.2]{BennettS:88}):
+  \begin{theorem}[Hardy--Littlewood Inequality]\label{theo:hardy:littlewood}
+    Fix any $f,g\colon\R\to [0,\infty)$ such that $\lim_{\pm\infty} f = \lim_{\pm\infty} g = 0$. Then,
+    \[
+        \int_{\R} fg \leq \int_{\R} f^\ast g^\ast
+    \]
+    where $f^\ast, g^\ast$ denote the symmetric decreasing rearrangements of $f,g$ respectively.
+  \end{theorem}
+  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Discrete Fourier transform}
 For our SIIRV testing algorithm, we will need the following definition of the Fourier transform. 
@@ -261,33 +361,6 @@ For $M\geq 1$ and $F,G\colon[n] \to \C$, we have (i) $\sum_{j=0}^{n-1} F(j)\over
 where $\fourier{F},\fourier{G}$ are the DFT modulo $M$ of $F,G$, respectively.
 \end{theorem}
 \noindent(The latter equality is sometimes referred to as Parseval's theorem.) We also note that, for our PMD testing, we shall need the appropriate generalization of the Fourier transform to the multivariate setting. We leave this generalization to the corresponding section,~\cref{sec:pmd:testing}.
-
-\subsection{Tools from Analysis and Probability}
-We now state a standard probabilistic result that some of our proofs will rely on, the Paley--Zygmund anticoncentration inequality:
-\begin{theorem}[Paley--Zygmund inequality]\label{theo:paley:zigmund}
-  Let $X$ be a non-negative random variable with finite variance. Then, for any $\theta\in[0,1]$,
-  \[
-      \probaOf{ X > \theta\expect{X} } \geq (1-\theta)^2\frac{\expect{X}^2}{\expect{X^2}}.
-  \]
-\end{theorem}
-
-We also recall a classical inequality for sums of independent random variables, due to Bennett~\cite[Chapter 2]{Boucheron:13}:
-\begin{theorem}[Bennett's inequality]
-Let $X=\sum_{i=1}^n X_i$, where $X_1,\dots,X_n$ are independent random variables such that (i) $\shortexpect[X_i]=0$ and (ii) $\abs{X_i}\leq \alpha$ almost surely for all $1\leq i\leq n$. Letting $\sigma^2=\var[X]$, we have, for every $t\geq 0$,
-\[
-    \Pr[ X > t ] \leq \exp\left( -\frac{\var[X]}{\alpha^2} \vartheta\!\left( \frac{\alpha t}{\var[X]} \right) \right)
-\]
-where $\vartheta(x)=(1+x)\ln(1+x) - x$.
-\end{theorem}
-
-We will also require the following version of the rearrangement inequality, due to Hardy and Littlewood (cf. for instance~\cite[Theorem 2.2]{BennettS:88}):
-  \begin{theorem}[Hardy--Littlewood Inequality]\label{theo:hardy:littlewood}
-    Fix any $f,g\colon\R\to [0,\infty)$ such that $\lim_{\pm\infty} f = \lim_{\pm\infty} g = 0$. Then,
-    \[
-        \int_{\R} fg \leq \int_{\R} f^\ast g^\ast
-    \]
-    where $f^\ast, g^\ast$ denote the symmetric decreasing rearrangements of $f,g$ respectively.
-  \end{theorem}
 
  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Some useful structural results}\label{sec:learn}
