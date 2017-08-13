@@ -227,6 +227,15 @@ Then, for all $\eps > 0$, $\probaOf{ \kolmogorov{\D}{\hat{\D}} > \eps } \leq 2e^
 \end{theorem} 
 \noindent In particular, this implies that $\bigO{1/\eps^2}$ samples suffice to learn a distribution up to $\eps$ in Kolmogorov distance.
 
+Finally, recall the following well-known result on distinguishing biased coins (which can for instance be derived from Eq.~(2.15) and~(2.16) of~\cite{AdellJodra:06}), that shall come in handy in proving our lower bounds:
+\begin{fact}\label{fact:fair:biased:coin}
+Let $p\in[\eta, 1-\eta]$ for some fixed constant $\eta > 0$, and suppose $m\leq\frac{c_\eta}{\eps^2}$, with $c_\eta$ a sufficiently small constant
+and $\eps < \eta.$ Then,
+\[ \totalvardist{ \binomial{m}{p} }{ \binomial{m}{p+\eps} } < \frac{1}{3}. \]
+\end{fact}
+
+\noindent We will make extensive use of Chernoff bounds; for completeness, we state them in~\cref{appendix:chernoff}.
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Discrete Fourier transform}
 For our SIIRV testing algorithm, we will need the following definition of the Fourier transform. 
