@@ -146,7 +146,7 @@ such as for instance log-concavity, Monotone Hazard Risk and Poisson Binomial Di
 This gives evidence that the study of monotone distributions may have direct implications for 
 correction of many of these ``shape-constrained properties.''
 
-\paragraph{Sampling correctors, learning algorithms and property testing algorithms.}
+\paragraph{Sampling correctors, learning algorithms and property testing algorithms}
 We begin by showing implications of the existence of
 sampling correctors for the existence of various types of learning and property
 testing algorithms in other 
@@ -220,7 +220,7 @@ and crucially, \emph{with all future sample corrections.}
  {To achieve this, we use a ``boundary correction'' subroutine which fixes potential violations between two neighboring superbuckets by evening out the boundary differences. To make it possible, we use rejection sampling to allocate adaptively an extra ``budget'' to each superbucket that this subroutine can use for corrections.}
 
 
-\paragraph{Restricted error models.}
+\paragraph{Restricted error models}
 Since many of the sampling correction problems are 
 difficult to solve in general, we suggest error models
 for which more efficient sampling correction algorithms
@@ -248,7 +248,7 @@ by which the algorithm can use its knowledge
 of the estimated missing interval to
  correct the distribution by rejection sampling.
  
- \paragraph{Randomness Scarcity.}
+ \paragraph{Randomness Scarcity}
 We {then} consider the case where only a limited amount of randomness (other than the input distribution) is available, and optimizing its use, possibly at the cost of worse parameters and/or sample complexity of our sampling improvers, is crucial. This captures situations where generating the random bits the algorithm use is either expensive\footnote{On this topic, see for instance the discussion in~\cite{KR:94,IZ:89}, and references therein.} (as in the case of physical implementations relying on devices, such as Geiger counters or Zener diodes) or undesirable  (e.g., when we want the output distribution to be a deterministic function of the input data, for the sake of reproducibility or parallelization). We focus on this setting in~\cref{sec:focus:randomness}, and provide sampling correctors and improvers for uniformity that use samples \emph{only} from the input distribution. For example, we give a sampling improver that, given access to distribution $\eps$-close to uniform, grants access to a distribution $\eps_2$-close to uniform distribution and has \emph{constant} sample complexity $O_{\eps, \eps_2}(1)$. We achieve this by exploiting the fact that the uniform distribution is not only an absorbing element for convolution in Abelian groups, but also an \emph{attractive fixed point} with high convergence rate. That is, by convolving a distribution with itself (i.e., summing independent samples modulo the order of the group) one gets very quickly close to uniform. Combining this idea with a different type of improvement (based on a von Neumann-type ``trick'') allows us to obtain an essentially optimal tradeoff between closeness to uniform and to the original distribution. 
 
 
@@ -335,7 +335,7 @@ We use similar ideas in order to obtain some of the results in the present paper
     
 
 
-It is instructive to compare the goal of our model of distribution sampling correctors to that of extractors: in spite of many similarities, the two have essential differences and the results are in many cases incomparable. We defer this discussion to~\cref{sec:uniformity}.
+It is instructive to compare the goal of our model of distribution sampling correctors to that of extractors: in spite of many similarities, the two have essential differences and the results are in many cases incomparable. We defer this discussion to~\cref{sec:uniformity:samplingcorrectors}.
  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Our model: definitions}\label{sec:definitions}
@@ -466,10 +466,9 @@ and parameter $\eps$, outputs a hypothesis $\hat{\D}\in\mathcal{H}$ such that, w
 \[
 	\totalvardist{\D}{\hat{\D}} \leq c\cdot\opt_{\class,\D} + \bigO{\eps}
 \]
-where $\opt_{\class,\D}\eqdef \inf_{\D_{\class}\in\class} \totalvardist{\D_{\class}}{\D}$ and $c\geq 1$ is some absolute constant (if $c=1$, the learner is said to be agnostic).
+where $\opt_{\class,\D}\eqdef \inf_{\D_{\class}\in\class} \totalvardist{\D_{\class}}{\D}$ and $c\geq 1$ is some absolute constant (if $c=1$, the learner is said to be agnostic).\medskip
 
-
-\paragraph{} We first describe how to combine a (non-agnostic) learning algorithm with a sampling corrector in order to obtain an agnostic learner, under the strong assumption that a (rough) estimate of $\opt$ is known. Then, we explain how to get rid of this extra requirement, using machinery from the distribution learning literature (namely, an efficient \emph{hypothesis selection} procedure).
+We first describe how to combine a (non-agnostic) learning algorithm with a sampling corrector in order to obtain an agnostic learner, under the strong assumption that a (rough) estimate of $\opt$ is known. Then, we explain how to get rid of this extra requirement, using machinery from the distribution learning literature (namely, an efficient \emph{hypothesis selection} procedure).
 
 \begin{restatable}{theorem}{theoconnectionagnostic}\label{theo:connection:agnostic:learning}
 Let $\class$ be as above. Suppose there exists a learning algorithm $\Learner$ for $\class$ with sample complexity $q_\Learner$, and a batch sampling corrector $\Algo$ for $\class$ with sample complexity $q_\Algo$. Suppose further that a constant-factor estimate $\widehat{\opt}$ of $\opt_{\class, \D}$ is known (up to a multiplicative $c$).
@@ -522,7 +521,7 @@ with accuracy parameter $\eps$ and failure probability $\delta/2$. This algorith
   \]
 \end{proposition}
 
-\paragraph{Summary.} Using this result in the approach outlined above, we get with probability at least $1-\delta$, we will obtain a hypothesis $\hat{\D}_{k^\ast}$ doing ``almost as well as the best $\D_k$''; that is,
+\paragraph{Summary} Using this result in the approach outlined above, we get with probability at least $1-\delta$, we will obtain a hypothesis $\hat{\D}_{k^\ast}$ doing ``almost as well as the best $\D_k$''; that is,
 \[
 	\totalvardist{ \D }{ \hat{\D}_{k^\ast} } \leq 18.2\cdot \opt_{\class,\D} + \bigO{\eps}
 \]
@@ -642,7 +641,7 @@ A natural question is then whether one can ``beat'' this approach, and correct t
 
 Finally, we give in~\cref{sec:monotonicity:cdf} a corrector for monotonicity with no restriction on the range of parameters, but assuming a stronger type of query access to the original distribution. {Specifically}, our algorithm leverages the ability to make \emph{cdf queries} to the distribution $\D$, in order to generate independent samples from a corrected $\tilde{\D}$. This sampling corrector also outperforms the one from~\cref{sec:monotonicity}, making only $\bigO{\sqrt{\log n}}$ queries per sample on expectation.
 
-{\paragraph{A parenthesis: non-proper correcting.} We note that it is easy to obtain a non-proper corrector for $k(n,\eps)$-histograms assuming monotonicity with \emph{constant} sample complexity, for $k(n,\eps) = \bigTheta{\frac{\log n}{\eps}}$. Indeed, this follows from the oblivious Birg\'e decomposition {(see~\cref{def:birge:decomposition})} we shall be using many times through this section, which ensures that ``flattening'' a monotone distribution yields a $k(n,\eps)$-histogram that remains close to the original distribution.}
+{\paragraph{A parenthesis: non-proper correcting} We note that it is easy to obtain a non-proper corrector for $k(n,\eps)$-histograms assuming monotonicity with \emph{constant} sample complexity, for $k(n,\eps) = \bigTheta{\frac{\log n}{\eps}}$. Indeed, this follows from the oblivious Birg\'e decomposition {(see~\cref{def:birge:decomposition})} we shall be using many times through this section, which ensures that ``flattening'' a monotone distribution yields a $k(n,\eps)$-histogram that remains close to the original distribution.}
 
 \subsection{A natural approach: correcting by learning}\label{sec:monotonicity}
 Our first corrector works in a straightforward fashion: 
@@ -835,7 +834,7 @@ $\D^{(3)}$ is uniquely determined by $\eps,n$ and $\D$, and can be explicitly co
 \subsubsection{Sampling steps (correcting while sampling)}\label{sec:mon:corr:sampling}
 Before going further, we describe a procedure that will be necessary for our fourth step, as it will be the core subroutine allowing us to perform local corrections \emph{between superbuckets}.
 
-\paragraph{Water-filling.}
+\paragraph{Water-filling}
 Partition each superbucket $\supb_i$ into range $H_i$, $M_i$ and $L_i$ where (assuming the buckets in  $\supb_i$ are monotone):
 \begin{itemize}[-]
   \item $m_i={\D^{(3)}(\supb_i)}/{\abs{\supb_i}}$ is the initial value of the average value of superbucket $\supb_i$ [this does not change throughout the procedure]
@@ -889,9 +888,8 @@ Let $e_i \eqdef \sum_{x \in H_i} (p(x) - m_i)$ to be the \emph{surplus}  (so tha
   \end{algorithmic}
   \end{algorithm}
 
-\paragraph{Sampling procedure.}
+\paragraph{Sampling procedure}
 Recall that we now start and work with $\D^{(3)}$, as obtained in~\cref{sec:mon:corr:prelim}.
-
 \begin{itemize}
   \item Draw a superbucket $\supb_{i+1}$ according to the distribution $\D^{(3)}(\supb_1)$, $\D^{(3)}(\supb_K)$ on $[K]$.
     \item If $\supb_{i+1} \neq \supb_1$ (we did not land in the first superbucket):
@@ -1166,10 +1164,10 @@ If we could have perfect estimates of the gap ($[a,b]=[i,j]$), the missing weigh
 
 By choice of $m$, with probability at least $1-\delta$ the two subroutines of the \textsc{Preprocessing} stage (from~\cref{lemma:monotonicity:missingdata:step1} and~\cref{lemma:monotonicity:missingdata:step2}) behave as expected. We hereafter condition on this being the case. For convenience, we write $I=[a,b]$, $J=[b+1,2b-a+1]$ and $K=[c,n]$, where $a,b,c$ and $\gamma, \gamma^\prime$ are the outcome of the preprocessing phase.
 
-\paragraph{If the test in Line~\ref{algo:step:already:close} passes.}
+\paragraph{If the test in Line~\ref{algo:step:already:close} passes}
 If the preprocessing stage returned either \textsf{close}, or a value $\gamma < 5\eps_2^{3/2}=5\alpha^3$, then we claim that $\D^\prime$ is already $\bigO{\alpha^2}$-close to monotone. The first case is by correctness of~\cref{lemma:monotonicity:missingdata:step1}; as for the second, observe that it implies $\D^\prime(J) < 6\alpha^3$. Thus, ``putting back'' (from the tail of the support) weight at most $6\alpha^3$ in $[i,j]$ would be sufficient to correct the violation of monotonicity; which yields an $\bigO{\alpha^3}$ upperbound on the distance of $\D^\prime$ to monotone.
 
-\paragraph{Otherwise.} This implies in particular that $\gamma \geq 5\alpha^3$, and thus $\D^\prime(J) \geq 4\alpha^3$. By~\cref{lemma:monotonicity:missingdata:step2} \ref{lemma:monotonicity:missingdata:step2:3}, it is then also the case that $\D^\prime(K) \geq 2\alpha^3$. Then, denoting by $\tilde{\D}$ the corrected distribution, we have
+\paragraph{Otherwise} This implies in particular that $\gamma \geq 5\alpha^3$, and thus $\D^\prime(J) \geq 4\alpha^3$. By~\cref{lemma:monotonicity:missingdata:step2} \ref{lemma:monotonicity:missingdata:step2:3}, it is then also the case that $\D^\prime(K) \geq 2\alpha^3$. Then, denoting by $\tilde{\D}$ the corrected distribution, we have
 \[
 \tilde{\D}(x) = \begin{cases}
  \D^\prime(x) + \frac{\gamma}{\gamma^\prime}\cdot\frac{\D^\prime(K)}{\abs{I}} & \text{ if } x\in I \\
@@ -1178,7 +1176,7 @@ If the preprocessing stage returned either \textsf{close}, or a value $\gamma < 
  \D^\prime(x) & \text{ otherwise.}
 \end{cases}
 \]
-\paragraph{Distance to $\D^\prime$.} From the expression above, we get that
+\paragraph{Distance to $\D^\prime$} From the expression above, we get that
 \[
 2\totalvardist{\tilde{\D}}{\D^\prime} \leq \frac{\gamma}{\gamma^\prime} \D^\prime(K) +  2\D^\prime(J) + \frac{\gamma}{\gamma^\prime} \D^\prime(K) = 2\left(\frac{\gamma}{\gamma^\prime} \D^\prime(K) + \D^\prime(J) \right).
 \] 
@@ -1188,7 +1186,7 @@ From~\cref{lemma:monotonicity:missingdata:step2}, we also know that $\D^\prime(J
 \] 
 (Where, for the last inequality, we used~\cref{lemma:monotonicity:missingdata:step2} \ref{lemma:monotonicity:missingdata:step2:4}; and finally the fact that $\eps_2\leq \eps$).
 
-\paragraph{Distance to monotone.}
+\paragraph{Distance to monotone}
 
 Consider the distributions $M$ defined as
 \[
@@ -1208,7 +1206,7 @@ Moreover, the distance between $M$ and $\tilde{\D}$ can be upperbounded by their
 where we used the fact that $\frac{\gamma}{\gamma^\prime} \in \left[\frac{\D^\prime(J)-\alpha^3}{\D^\prime(K) + \alpha^3}, \frac{\D^\prime(J)+\alpha^3}{\D^\prime(K) - \alpha^3}\right]$, and that $\D^\prime(K) \geq 2\alpha^3$. By the triangle inequality, $\tilde{\D}$ is then itself $\bigO{\alpha^2}$-close to monotone. This concludes the proof of~\cref{theo:monotonicity:missingdata:theo}.\qed
  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Focusing on randomness scarcity}\label{sec:focus:randomness}
-	\subsection{Correcting uniformity}\label{sec:uniformity}
+	\subsection{Correcting uniformity}\label{sec:uniformity:samplingcorrectors}
 		In order to illustrate the challenges and main aspects of this section, we shall focus on what is arguably the most natural property of interest, ``being uniform'' 
 (i.e. $\property=\{\uniform_n\})$. 
 As a first observation, we note that when one is interested in correcting uniformity on an arbitrary domain $\domain$, allowing arbitrary

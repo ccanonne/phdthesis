@@ -1,6 +1,5 @@
 \subsection{Introduction}
   \subsubsection{Background}
-  
         Given data sampled from a population or an experiment, understanding the distribution from which it has been drawn is a fundamental problem in statistics, and one which has been extensively studied for decades. However, it is only rather recently that these questions have been considered when the distribution is over a \emph{very large} domain (see for instance~\cite{BFRSW:00,GRexp:00,Ma:81:Physics}). In this case, the usual techniques in statistics and learning theory become impractical, motivating the search for better algorithms, in particular by relaxing the goals so that learning is not required. This is useful in many real-world applications where only a particular aspect of the distribution is investigated, such as estimating the entropy or the distance between two distributions. In these examples, as well as many others, one \emph{can} achieve sublinear sample complexity. However, strong lower bounds show that the complexity of these tasks is still daunting, as it has polynomial, and often nearly linear, dependence on the size of the support of the distribution. To address this difficulty, new lines of research have emerged.  One approach is to obtain more efficient algorithms for special classes of distributions. For instance, improved algorithms whose sample complexity is polylogarithmic in the domain size can be achieved by requiring it to satisfy specific smoothness assumptions, or to be of a convenient shape (monotone, unimodal, or a ``$k$-histogram''~\cite{BKR:04,ILR:12,DDSVV:13}).
 A different approach applies to general distributions, but gives the algorithm more power in form of more flexible access to the distribution: as in many applications the data has already been collected and aggregated, it may be reasonable to assume that the testing algorithm can make other limited queries to the probability density function. For example, the algorithm may be provided with query access to the probability density function of the distribution
 \cite{RS:09}, or samples from conditional distributions induced by the original distribution~\cite{CFGM:13,CRS:15,CRS:14}.
@@ -37,7 +36,7 @@ density function at $i$.\footnote{Note that in both definitions, one can decide 
   Finally, a further motivation is the tight connection between the \pdfsamp access model and the \emph{data-stream model}, as shown by Guha et al. (\cite[Theorem 25]{GMV:06}): more precisely, they prove that any (multiplicative) approximation algorithm for a large class of functions of the distribution (functions that are invariant by relabeling of any two elements of the support) in the \pdfsamp access model yields a space-efficient, $\bigO{1}$-pass approximation algorithm for the same function in the data-stream model.
 
       \subsubsection{Our results and techniques}
-  We focus here on four fundamental and pervasive problems in distribution testing, which are testing \emph{uniformity}, \emph{identity} to a known distribution $\D^\ast$, \emph{closeness} between two (unknown) distributions $\D_1$, $\D_2$, and finally \emph{entropy and support size}. As usual in the distribution testing literature, the notion of distance we use is the \emph{total variation distance} (or statistical distance), which is essentially the $\ell_1$ distance between the probability distributions (see~\cref{sec:preliminaries} for the formal definition). Testing closeness is thus the problem of deciding if two distributions are equal or far from each other in total variation distance; while tolerant testing aims at deciding whether they are sufficiently close versus far from each other.
+  We focus here on four fundamental and pervasive problems in distribution testing, which are testing \emph{uniformity}, \emph{identity} to a known distribution $\D^\ast$, \emph{closeness} between two (unknown) distributions $\D_1$, $\D_2$, and finally \emph{entropy and support size}. As usual in the distribution testing literature, the notion of distance we use is the \emph{total variation distance} (or statistical distance), which is essentially the $\ell_1$ distance between the probability distributions. Testing closeness is thus the problem of deciding if two distributions are equal or far from each other in total variation distance; while tolerant testing aims at deciding whether they are sufficiently close versus far from each other.
     
   As shown in~\cref{table:secextended:results}, which summarizes our results and compares them to the corresponding bounds for the standard sampling-only ($\SAMP$), evaluation-only ($\EVAL$) and conditional sampling ($\COND$) models, we indeed manage to bypass the aforementioned limitations of the sampling model, and give (often tight) algorithms with sample complexity either constant (with relation to $n$) or logarithmic, where a polynomial dependence was required in the standard setting.
   
@@ -62,7 +61,7 @@ density function at $i$.\footnote{Note that in both definitions, one can decide 
     \parbox{25mm}{ Estimating support size to $\pm\eps n$ \strut } & $\bigTheta{\frac{n}{\log n}}$~\cite{ValiantValiant:11,ValiantValiant:10lb} & \cellcolor{gray!25}~  & \cellcolor{gray!25}~\ignore{ $\bigTheta{\frac{1}{\eps^{2}}}$ $(\star)$ }        & $\bigTheta{\frac{1}{\eps^{2}}}$             & $\bigO{\frac{1}{\eps^{2}}}$           \\ \hline
     \end{tabular}
 \end{adjustwidth}
-    \caption{\label{table:secextended:results}\small Summary of results. $(\dagger)$ stands for ``robust to multiplicative noise''. The bounds with an asterisk are those which, in spite of being for different models, derive from the results of the last two columns.}
+    \caption{\label{table:secextended:results} Summary of results. $(\dagger)$ stands for ``robust to multiplicative noise''. The bounds with an asterisk are those which, in spite of being for different models, derive from the results of the last two columns.}
 \end{table}
  
 While it is not clear, looking at these problems, whether the additional flexibility that the \Cdfsamp access grants over the \Pdfsamp one can \emph{unconditionally} yield strictly more sample-efficient testing algorithms, we do provide a separation between the two models in~\cref{sec:supportsize:entropy:monotone} by showing an exponential improvement in the query complexity for estimating the entropy of a distribution given the promise that the latter is (close to) monotone. This leads us to suspect that for the task of testing monotonicity (for which we have preliminary results), under a structural assumption on the distribution, or more generally for properties intrinsically related to the underlying total order of the domain, such a speedup holds.  Moreover, we stress out the fact that our $\bigOmega{1/(\eps_2-\eps_1)^2}$ lower bound for tolerant identity testing does not apply to the \Cdfsamp setting.
@@ -73,7 +72,7 @@ $\shortexpect_{i\sim \D}\left[ \Phi(i,\D(i)) \right]$, for any \emph{bounded} fu
 On the other hand, for the task of proving lower bounds, we no longer can take advantage of the systematic characterizations known for the sampling model  (see e.g.~\cite{BarYossef:02}, Sect. 2.4.1). For this reason, we have to rely on reductions from known-to-be-hard problems (such as estimating the bias of a coin), or prove indistinguishability in a \emph{customized} fashion.
   
   \subsubsection{Organization}
-  After the relevant definitions and preliminaries in~\cref{sec:preliminaries}, we pursue by considering the first three problems of testing equivalence of distributions in~\cref{sec:uniformity:equivalence:identity}, where we describe our testing upper and lower bounds. We then turn to the harder problem of \emph{tolerant} testing. Finally, we tackle in~\cref{sec:supportsize:entropy} the task of performing entropy and support size estimation, and give for the latter matching upper and lower bounds.
+  We begin with the first three problems of testing equivalence of distributions in~\cref{sec:uniformity:equivalence:identity}, where we describe our testing upper and lower bounds. We then turn to the harder problem of \emph{tolerant} testing. Finally, we tackle in~\cref{sec:supportsize:entropy} the task of performing entropy and support size estimation, and give for the latter matching upper and lower bounds.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
  \subsection{Uniformity and identity of distributions}\label{sec:uniformity:equivalence:identity}
@@ -146,17 +145,21 @@ In the \pdfsamp access model, there exists a tolerant tester for uniformity with
   \totalvardist{\D}{\uniform} &= \frac{1}{2}\sum_{i\in[n]} \abs{\D(i)-\frac{1}{n}} = \sum_{i:\D(i)> \frac{1}{n} } \left(\D(i)-\frac{1}{n}\right) = \sum_{i:\D(i)> \frac{1}{n}} \left(1-\frac{1}{n\D(i)}\right)\cdot \D(i) \notag\\
   &= \shortexpect_{i\sim \D}\left[ \left(1 - \frac{1}{n\D(i)}\right)\indic{\D(i)> \frac{1}{n}} \right] \label{eq:trick:dtv:as:expectation}
   \end{align}
-  where $\indicSet{E}$ stands for the indicator function of set (or event) $E$; thus, $\Tester$ only has to do get an empirical estimate of this expected value, which can be done by taking $m=\bigO{{1}/{(\eps_2-\eps_1)^2}}$ samples $s_i$ from $\D$, querying $\D(s_i)$ and computing $X_i = \left(1 - \frac{1}{nD(s_i)}\right)\indic{\D(s_i)> \frac{1}{n}}$ (cf.~\cref{algo:compute:l1:distance:samp+eval}).
+  where $\indicSet{E}$ stands for the indicator function of set (or event) $E$; thus, $\Tester$ only has to do get an empirical estimate of this expected value, which can be done by taking $m=\bigO{{1}/{(\eps_2-\eps_1)^2}}$ samples $s_i$ from $\D$, querying $\D(s_i)$ and computing $X_i = \left(1 - \frac{1}{n\D(s_i)}\right)\indic{\D(s_i)> \frac{1}{n}}$ (cf.~\cref{algo:compute:l1:distance:samp+eval}).
   \begin{algorithm}[h!]
     \begin{algorithmic}
       \Require $\SAMP_{\D}$ and $\EVAL_{\D}$ oracle access, parameters $0\leq \eps_1 < \eps_2$
       \State Set $m\eqdef\bigTheta{\frac{1}{\gamma^2}}$, where $\gamma\eqdef\frac{\eps_2-\eps_1}{2}$.
       \State Draw $s_1,\dots,s_m$ from $\D$
       \For{$i=1 \textbf{ to } m$}
-        \State With \EVAL, get $X_i \eqdef \left(1 - \frac{1}{nD(s_i)}\right)\indic{\D(s_i)> \frac{1}{n}}$
+        \State With \EVAL, get $X_i \eqdef \left(1 - \frac{1}{n\D(s_i)}\right)\indic{\D(s_i)> \frac{1}{n}}$
       \EndFor
       \State Compute $\hat{d}\eqdef \frac{1}{m} \sum_{i=1}^m X_i$.
-      \If{ $\hat{d}\leq \frac{\eps_1+\eps_2}{2}$} \State \Return\accept  \Else \State \Return\reject \EndIf
+      \If{ $\hat{d}\leq \frac{\eps_1+\eps_2}{2}$}
+          \State \Return\accept
+      \Else
+          \State \Return\reject
+      \EndIf
     \end{algorithmic}
     \caption{\label{algo:compute:l1:distance:samp+eval}Tester $\Tester$: \textsc{Estimate-$L_1$} }
   \end{algorithm}
@@ -202,7 +205,7 @@ In this subsection, we show that the upper bounds of~\cref{theorem:tolerant:test
  \begin{proof}
 The overall idea lies on a reduction from distinguishing between two types of biased coins to tolerant testing for uniformity. In more detail, given access to samples from a fixed coin (promised to be of one of these two types), we define a probability distribution as follows: the domain $[n]$ is randomly partitioned into $K=1/\eps^2$ pairs of buckets, each bucket having same number of elements; the distribution is uniform within each bucket, and the two buckets of each pair are balanced to have total weight $2/K$. However, within each pair of buckets $(A,B)$, the probability mass is divided according to a coin toss (performed ``on-the-fly'' when a query is made by the tolerant tester), so that either \textsf{(a)} $\D(A)=(1+\alpha)/K$ and $\D(B)=(1-\alpha)/K$, or \textsf{(b)} $\D(A)=\D(B)=1/K$. Depending on whether the coin used for this choice is fair or $(\frac{1}{2}+\eps)$)biased, the resulting distribution will (with high probability) have different distance from uniformity -- sufficiently for a tolerant tester to distinguish between the two cases.
 
-  \subparagraph{Construction} We start by defining the instances of distributions we shall consider. Fix any $\eps\in(0,\frac{1}{100})$; without loss of generality, assume $n$ is even, and $n \gg 1/\eps$. Define $\alpha = 2/(1+\eps)$, $K= 1/\eps^2$, $p^+ = (1+\eps)/2$ and $p^- = (1+20\eps)/2$, and consider the family of distributions $\distrD^+$ (resp. $\distrD^-$) defined by the following construction:\todonote{Fix this construction (here, $\alpha > 1$, so $\D^+$ may have negative values).}
+  \subparagraph{Construction} We start by defining the instances of distributions we shall consider. Fix any $\eps\in(0,\frac{1}{100})$; without loss of generality, assume $n$ is even, and $n \gg 1/\eps$. Define $\alpha = \new{1}/(1+\eps)\in(0,1)$, $K= 1/\eps^2$, $p^+ = (1+\eps)/2$ and $p^- = (1+\new{30}\eps)/2$, and consider the family of distributions $\distrD^+$ (resp. $\distrD^-$) defined by the following construction:
   \begin{itemize}
     \item pick uniformly at random a partition\footnote{For convenience, it will be easier to think of the $A_i$'s and $B_i$'s as consecutive intervals, the first ones covering $[\frac n 2]$ while the former cover $[n]\setminus[\frac n 2]$ (see~\cref{fig:construction:lb:tolerant:uniformity:D:pm}).} of $[n]$ in $2K$ sets of size $n/(2K)$ $A_1,\dots, A_K, B_1,\dots, B_K$;
     \item for all $k\in[K]$, draw independently at random $X_k\sim\bernoulli{p^+}$ (resp. $X_k\sim\bernoulli{p^-}$), and set for all $x\in A_k$, $y\in B_k$
@@ -221,15 +224,15 @@ The overall idea lies on a reduction from distinguishing between two types of bi
   (the pairing between $A_k$ and $B_k$ ensures the final measure indeed sums to one).
   Regardless of the choice of the initial partition, but with fluctuations over the random coin tosses $X_1,\dots, X_k$, we have that the total variation distance between a distribution $\D^+\in\distrD^+$ (resp. $\D^-\in\distrD^-$) and uniform is on expectation what we aimed for:
   \begin{align*}
-  \expect{ \totalvardist{\D^+}{\uniform} } &= \frac{1}{2}\cdot 2\cdot\sum_{k=1}^K \frac{n}{2K}\cdot\frac{\alpha}{n}p^+ = \frac{1}{2}\alpha p^+ = \frac{1}{2} \\
-  \expect{ \totalvardist{\D^{-\vphantom{+}}}{\uniform} } &= \frac{1}{2} p^-\alpha = \frac{1+20\eps}{1+\eps}\cdot\frac{1}{2} > \frac{1}{2} + 7\eps
+  \expect{ \totalvardist{\D^+}{\uniform} } &= \frac{1}{2}\cdot 2\cdot\sum_{k=1}^K \frac{n}{2K}\cdot\frac{\alpha}{n}p^+ = \frac{1}{2}\alpha p^+ = \frac{1}{\new{4}} \\
+  \expect{ \totalvardist{\D^{-\vphantom{+}}}{\uniform} } &= \frac{1}{2} p^-\alpha = \frac{1+\new{30}\eps}{1+\eps}\cdot\frac{1}{\new{4}} > \frac{1}{\new{4}} + 7\eps
   \end{align*}
-  and with an additive Chernoff bound    on the sum of $1/\eps^2$ i.i.d. choices for the $X_k$'s, we have that for $(\D^+, \D^-)$: for any choice of the initial partition $\Pi=(A_k,B_k)_{k\in[K]}$, with probability at least $99/100$,
+  and with an additive Chernoff bound on the sum of $K=1/\eps^2$ i.i.d. choices for the $X_k$'s, we have that for $(\D^+, \D^-)$: for any choice of the initial partition $\Pi=(A_k,B_k)_{k\in[K]}$, with probability at least $99/100$,
   \begin{align*}
-  \totalvardist{\D_\Pi^+}{\uniform} &< \frac{1}{2} + 3\eps \\
-  \totalvardist{\D_\Pi^-}{\uniform} &> \frac{1}{2} + 4\eps
+  \totalvardist{\D_\Pi^+}{\uniform} &< \frac{1}{\new{4}} + 3\eps \\
+  \totalvardist{\D_\Pi^-}{\uniform} &> \frac{1}{\new{4}} + 4\eps
   \end{align*}
-  where by $\D_\Pi^\pm$ we denote the distribution defined as above, but fixing the partition for the initial step to be $\Pi$. We will further implicitly condition on this event happening; any tester for uniformity called with $(\eps^\prime, \eps^\prime+c\eps)$ must therefore distinguish between $\D^+$ and $\D^-$. Suppose we have such a tester $\Tester$, with (without loss of generality) exact sample complexity $q=q(\eps)=\littleO{\frac{1}{\eps^2}}$.
+  where by $\D_\Pi^\pm$ we denote the distribution defined as above, but fixing the partition for the initial step to be $\Pi$. We will further implicitly condition on this event happening; any tolerant tester for uniformity called with $(\eps^\prime, \eps^\prime+c\eps)$ must therefore distinguish between $\D^+$ and $\D^-$. Suppose we have such a tester $\Tester$, with (without loss of generality) exact sample complexity $q=q(\eps)=\littleO{\frac{1}{\eps^2}}$.
   
   
   \begin{figure}[!ht]\centering
@@ -283,7 +286,7 @@ The overall idea lies on a reduction from distinguishing between two types of bi
   \end{tikzpicture}\caption{\label{fig:construction:lb:tolerant:uniformity:D:pm}The \textsf{yes}-instance $\D^+$ (for a fixed $\Pi$, taken to be consecutive intervals).}
 \end{figure}
   
-  \subparagraph{Reduction} We will reduce the problem of distinguishing between $\textsf{(a)}$ a $\frac{p^+\alpha}{2}$ and $\textsf{(b)}$ a $\frac{p^-\alpha}{2}$ biased coin to telling $\D^+$ and $\D^-$ apart.
+  \subparagraph{Reduction} We will reduce the problem of distinguishing between \textsf{(a)} a $p^+$- and \textsf{(b)} a $p^-$-biased coin to telling $\D^+$ and $\D^-$ apart.
   
 Given $\SAMP_\text{coin}$ access to i.i.d. coin tosses coming either from one of those two situations, define a distinguisher \Algo as follows:
   \begin{itemize}
@@ -331,9 +334,7 @@ Fix $\gamma > 0$. In the \pdfsamp access model, there exists an algorithm that, 
 \begin{theorem}[Lower bound {\cite[Theorem 18]{BDKR:05}}]\label{theorem:entropy:estimation:multiplicative:lb}
 Fix $\gamma > 0$. In the \pdfsamp access model, any algorithm that, given a parameter $h >0$ and the promise that $H(\D) =\bigOmega{h}$, estimates the entropy within a multiplicative $(1+\gamma)$ factor must have sample complexity $\bigOmega{\frac{\log n}{\gamma(2+\gamma) h}}$.
 \end{theorem}
-
  Observe that the additive bound we give (based on a different cutoff threshold), however, still performs better in many cases, e.g. $\Delta=\gamma h > 1$ and $h > 1$; and does not require any \textit{a priori} knowledge on a lower bound $h > 0$. Moreover, we believe that this constitutes a good illustration of the more general technique used, and a good example of what the \pdfsamp model allows: approximation of quantities of the form $\shortexpect_{i\sim \D}\left[ \Phi(i,\D(i)) \right]$, where $\Phi$ is any \emph{bounded} function of both an element of the domain and its probability mass under the distribution $\D$.
-
 
 \subparagraph{Additive estimate}
 The key idea is to observe that for a distribution $\D$, the entropy $H(\D)$ can be rewritten as

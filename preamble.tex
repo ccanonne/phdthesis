@@ -221,7 +221,6 @@
 %\newcommand{\D}{\ensuremath{D}}  % distribution (alternative main symbol)
 \newcommand{\distrD}{\ensuremath{\mathcal{D}}}
 \newcommand{\birge}[2][\D]{\Phi_{#2}(#1)}
-\newcommand{\iid}{i.i.d.\xspace}
 \newcommand{\fourier}[1]{\widehat{#1}}
 
 \newcommand{\bracketing}[3][\operatorname{d_{\textrm{H}}}]{\mathcal{N}_{[ ]}(#2,#3,#1)}
@@ -281,6 +280,18 @@
 \newcommand{\T}{{\rm T}}
 \DeclareMathOperator{\rank}{rank}
 \DeclareMathOperator{\wt}{sum}
+
+% For communication complexity article
+\newcommand{\kfunctional}[4]{K(#1,#2,#3,#4)}
+\newcommand{\kf}[1]{\kappa_{#1}}
+\newcommand{\pdistfunc}[1][\p]{\operatorname{dist}_{#1}}
+\newcommand{\pweightfunc}[1][\p]{\operatorname{weight}_{#1}}
+\newcommand{\pdist}[3][\p]{\pdistfunc[#1]\mleft({#2, #3}\mright)}
+\newcommand{\pweight}[2][\p]{\pweightfunc[#1]\mleft({#2}\mright)}
+\newcommand{\SMP}{\ensuremath{\mathsf{SMP}}}
+\newcommand{\code}{\ensuremath{\mathcal{C}}}
+\newcommand{\EQ}[1][n]{\textsc{Eq}_{#1}}
+
 
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Add author and title info to PDF (and handles multiple authors)
