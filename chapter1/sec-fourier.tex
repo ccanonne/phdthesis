@@ -22,7 +22,7 @@ on the same domain as $\property$),
 we want to distinguish between the case that $\p \in \property$ versus $\totalvardist{\p}{\property} \geq \eps$. 
 The sample complexity of this problem depends on the underlying family
 $\property$. For example, if $\cal P$ contains a single distribution over a domain of size $n$,
-the sample complexity of the testing problem is $\Theta(n^{1/2}/\eps^2)$~\cite{CDVV:14, DKN:15}.
+the sample complexity of the testing problem is $\bigTheta{n^{1/2}/\eps^2}$~\cite{CDVV:14, DKN:15}.
 
 In this work, we give a general technique to test membership in various distribution families over discrete domains.
 Before we state our results in full generality, we present concrete applications to 
@@ -35,15 +35,15 @@ sums of independent integer random variables (SIIRVs).
 Formally, an $(n, k)$-SIIRV is a sum of independent integer random variables each supported
 in $\{0, 1, \ldots, k-1\}$.
 SIIRVs comprise a rich class of distributions that arise in many settings. The special case of $k=2$, $\classksiirv[n]{2}$,
-was first considered by Poisson \cite{Poisson:37} as a non-trivial extension of the Binomial distribution,
+was first considered by Poisson~\cite{Poisson:37} as a non-trivial extension of the Binomial distribution,
 and is known as Poisson binomial distribution (PBD). In application domains, SIIRVs have many uses in research areas
-such as survey sampling, case-control studies, and survival analysis, see e.g., \cite{CL:97} for a survey of the many practical uses of these distributions.
+such as survey sampling, case-control studies, and survival analysis, see e.g.,~\cite{CL:97} for a survey of the many practical uses of these distributions.
 We remark that these distributions are of fundamental interest and have been extensively 
 studied in probability and statistics~\cite{Chernoff:52,Hoeffding:63,DP:09, Presman:83,Kruopis:86,BHJ:92, CL10,CGS11}.
 We show the following:
 
 \begin{theorem}[Testing SIIRVs]\label{theo:testing:ksiirv}
-    Given parameters $k,n\in\mathbb{N}$, $\eps\in(0,1]$, and sample access to a distribution $\p$ over $\mathbb{N}$, there exists an algorithm (\cref{algo:ft:effective:support}) which outputs either \accept or \reject, and satisfies the following:
+    Given parameters $k,n\in\N$, $\eps\in(0,1]$, and sample access to a distribution $\p$ over $\N$, there exists an algorithm (\cref{algo:ft:effective:support}) which outputs either \accept or \reject, and satisfies the following:
     \begin{enumerate}
         \item if $\p \in \classksiirv[n]{k}$, then it outputs \accept with probability at least $3/5$;
         \item if $\totalvardist{\p}{\classksiirv[n]{k}}>\eps$, then it outputs \reject with probability at least $3/5$.
@@ -59,10 +59,10 @@ $\bigO{\frac{n^{1/4}}{\eps^2}\sqrt{\log1/\eps}+\frac{\log^{5/2}1/\eps}{\eps^6}}$
 Our techniques also yield the following corollary: 
 
 \begin{theorem}[Testing PBDs]\label{theo:testing:[bd}
-    Given parameters $n\in\mathbb{N}$, $\eps\in(0,1]$, and sample access to a distribution $\p$ over $\mathbb{N}$, there exists an algorithm (\cref{algo:ft:effective:support}) which outputs either \accept or \reject, and satisfies the following.
+    Given parameters $n\in\N$, $\eps\in(0,1]$, and sample access to a distribution $\p$ over $\N$, there exists an algorithm (\cref{algo:ft:effective:support}) which outputs either \accept or \reject, and satisfies the following.
     \begin{enumerate}
-        \item if $\p \in \mathcal{PBD}_{n}$, then it outputs \accept with probability at least $3/5$;
-        \item if $\totalvardist{\p}{\mathcal{PBD}_{n}} > \eps$, then it outputs \reject with probability at least $3/5$.
+        \item if $\p \in \classpbd[n]$, then it outputs \accept with probability at least $3/5$;
+        \item if $\totalvardist{\p}{\classpbd[n]} > \eps$, then it outputs \reject with probability at least $3/5$.
     \end{enumerate}
     Moreover, the algorithm takes $\bigO{\frac{n^{1/4}}{\eps^2}\log^{1/4}\frac{1}{\eps} + \frac{\log^2 1/\eps}{\eps^2}}$ samples from $\p$, and runs in time $n^{1/4}\cdot\tildeO{{1}/{\eps^2}}+(1/\eps)^{\bigO{\log\log(1/\eps)}}$.
 \end{theorem}
@@ -85,7 +85,7 @@ where the $X_i$'s are independent random vectors supported on the set
 $\{e_1, e_2, \ldots, e_k \}$ of standard basis vectors in $\R^k$.
 PMDs comprise a broad class of discrete distributions of fundamental importance in computer science, probability, and statistics.
 A large body of work in the probability and statistics literature has been devoted to the study of the behavior
-of PMDs under various structural conditions~\cite{Barbour88, Loh92, BHJ:92, Bentkus:03, Roos99, Roos10}.
+of PMDs under various structural conditions~\cite{Barbour:88, Loh:92, BHJ:92, Bentkus:03, Roos:99, Roos:10}.
 PMDs generalize the familiar multinomial distribution, and describe many distributions commonly encountered in computer science (see, e.g.,~\cite{DP:07:AGT, DP:08:AGT, Valiant:11,VV:11:stoc}).
 Recent years have witnessed a flurry of research activity on PMDs and related distributions,
 from several perspectives of theoretical computer science,including learning~\cite{DDS:PBD:15, DDOST:13, DKS:15, DKT:15, DKS:15b}, property testing~\cite{Valiant:11, ValiantValiant:10lb, VV:11:stoc}, computational game theory~\cite{DP:07:AGT, DP:08:AGT, BorgsCIKMP08, DP:09:AGT, DP:14:AGT, GT14,CDS:17},
@@ -93,7 +93,7 @@ from several perspectives of theoretical computer science,including learning~\ci
 
 
 \begin{theorem}[Testing PMDs]\label{theo:testing:pmd}
-    Given parameters $k,n\in\mathbb{N}$, $\eps\in(0,1]$, and sample access to a distribution $\p$ over $\N$, there exists an algorithm (\cref{algo:pmd:tester}) which outputs either \accept or \reject, and satisfies the following.
+    Given parameters $k,n\in\N$, $\eps\in(0,1]$, and sample access to a distribution $\p$ over $\N$, there exists an algorithm (\cref{algo:pmd:tester}) which outputs either \accept or \reject, and satisfies the following.
     \begin{enumerate}
         \item if $\p \in \classpmd[n]{k}$, then it outputs \accept with probability at least $3/5$;
         \item if $\totalvardist{\p}{\classpmd[n]{k}} > \eps$, then it outputs \reject with probability at least $3/5$.
@@ -409,7 +409,7 @@ and $\widetilde{\mu}$, an approximation to $\shortexpect_{X \sim \p}[X]$ to with
 
 \begin{lemma} If Algorithm \texttt{Project-k-SIIRV} is given inputs that satisfy its assumptions and we have that $\sum_{\xi \in S} |\fourier{\h}-\fourier{\p}|^2 \leq (3\eps/25)^2$, $\totalvardist{\p}{\h} \leq 6\eps/25$, and that if $\p\in\classksiirv[n]{k}$ then $\widetilde{\sigma}^2$ is a factor-$1.5$ approximation to $\var_{X \sim \p}[X]+1$, then it distinguishes between (i) $\p\in\classksiirv[n]{k}$ and (ii) $ \totalvardist{\p}{\classksiirv[n]{k}}>\eps$. The algorithm runs in time $n\left( k/\eps \right)^{O(k\log(k/\epsilon))}$.\end{lemma}
 \begin{proof}
-By Theorem 3.7 of \cite{DKS:15}, there is an algorithm that can compute an $\eps$-cover of all $(n,k)$-SIIRVs of size $n\left( k/\eps \right)^{O(k\log(1/\epsilon))}$ that runs in time $n\left( k/\eps \right)^{O(k\log(1/\epsilon))}$. Note the way the cover is given, allows us to compute the Fourier coefficients $\fourier{\q}(\xi)$ for any $\xi$ for each $\q \in \mathcal{C}$ in time $\poly(k/\eps)$.
+By Theorem 3.7 of~\cite{DKS:15}, there is an algorithm that can compute an $\eps$-cover of all $(n,k)$-SIIRVs of size $n\left( k/\eps \right)^{O(k\log(1/\epsilon))}$ that runs in time $n\left( k/\eps \right)^{O(k\log(1/\epsilon))}$. Note the way the cover is given, allows us to compute the Fourier coefficients $\fourier{\q}(\xi)$ for any $\xi$ for each $\q \in \mathcal{C}$ in time $\poly(k/\eps)$.
 
  Since $\eps/\sqrt{|S|}=1/\poly(k/\eps)$, Step~\ref{step:cover:ksiirv} takes time $n\left( k/\eps \right)^{O(k\log(k/\epsilon))}$ and outputs a cover of size $n\left( k/\eps \right)^{O(k\log(k/\epsilon))}$. As each iteration takes time $|S|$, the whole algorithm takes $n\left( k/\eps \right)^{O(k\log(k/\epsilon))}$ time.
 
@@ -430,7 +430,7 @@ For $x \notin S$, $\fourier{\h}(\xi)=0$ and so $\sum_{\xi \notin S} |\fourier{\h
 \end{proof}
 
 \subsubsection{The case $k=2$}
-For the important case of Poisson Binomial distributions, that is $(n,2)$-SIIRVs, we can dispense with using a cover at all. \cite{DKS:15b} gives an algorithm that can properly learn Poisson binomial distributions in time $(1/\eps)^{O(\log \log 1/\eps)}$. The algorithm works by first learning the Fourier coefficients in $S$, which we have already computed here, and checks if one of many systems of polynomial inequalities has a solution: if the Fourier coefficients are close to those of a $(n,2)$-SIIRV, then there will be a solution to one of these systems. This allows us to test whether or not we are close to a $(n,2)$-SIIRV.
+For the important case of Poisson Binomial distributions, that is $(n,2)$-SIIRVs, we can dispense with using a cover at all.~\cite{DKS:15b} gives an algorithm that can properly learn Poisson binomial distributions in time $(1/\eps)^{O(\log \log 1/\eps)}$. The algorithm works by first learning the Fourier coefficients in $S$, which we have already computed here, and checks if one of many systems of polynomial inequalities has a solution: if the Fourier coefficients are close to those of a $(n,2)$-SIIRV, then there will be a solution to one of these systems. This allows us to test whether or not we are close to a $(n,2)$-SIIRV.
 
 More precisely, we can handle this in two cases: the first, when the variance $s^2$ of $\p$ is relatively small, corresponding to $\widetilde{\sigma} \leq \alpha/\eps^2$ (for some absolute constant $\alpha >0$).
 
@@ -441,7 +441,7 @@ Let  $\fourier{\h}(\xi)$ be approximations to $\fourier{\p}(\xi)$ for all $\xi \
  There is an algorithm that, given $n$,$\eps$,$\widetilde{\mu}$, $\widetilde{\sigma}$ and $\fourier{\h}(\xi)$, distinguishes between (i) $\p\in\classpbd[n]$ and (ii) $ \totalvardist{\p}{\classpbd[n]}>\eps$, in time at most $(1/\eps)^{O(\log \log 1/\eps)}$.
  \end{lemma}
  \begin{proof}
-We use Steps 4 and 5 of Algorithm \texttt{Proper-Learn-PBD} in \cite{DKS:15b}. Step 5 checks if one of a system of polynomials has a solution. If such a solution is found, it corresponds to an $(n,2)$-SIIRV $\q$ that has $\sum_{|\xi| \leq \ell} |\fourier{\h}(\xi) - \fourier{\q}(\xi)|^2 \leq \eps^2/4$ and so we accept. If no systems have a solution, then there is no such $(n,2)$-SIIRV and so we reject. The conditions of this lemma are enough to satisfy the conditions of Theorem 11 of \cite{DKS:15b}, though we need that the constant $C'$ used to define $|S|$ is sufficiently large to cover the $\ell=O(\log(1/\eps)$ from that paper. This theorem means that if $\p$ is a $(n,2)$-SIIRV, then we accept.
+We use Steps 4 and 5 of Algorithm \texttt{Proper-Learn-PBD} in~\cite{DKS:15b}. Step 5 checks if one of a system of polynomials has a solution. If such a solution is found, it corresponds to an $(n,2)$-SIIRV $\q$ that has $\sum_{|\xi| \leq \ell} |\fourier{\h}(\xi) - \fourier{\q}(\xi)|^2 \leq \eps^2/4$ and so we accept. If no systems have a solution, then there is no such $(n,2)$-SIIRV and so we reject. The conditions of this lemma are enough to satisfy the conditions of Theorem 11 of~\cite{DKS:15b}, though we need that the constant $C'$ used to define $|S|$ is sufficiently large to cover the $\ell=O(\log(1/\eps)$ from that paper. This theorem means that if $\p$ is a $(n,2)$-SIIRV, then we accept.
 
 We need to show that if the algorithm finds a solution, then it is within $\eps$ of a Poisson Binomial distribution.  The system of equations ensures that $\sum_{|\xi| \leq \ell} |\fourier{\h}(\xi) - \fourier{\q}(\xi)|^2 \leq \eps^2/4$. Now the argument is similar to that for $(n,k)$-SIIRVs.
 For $x \notin S$, $\fourier{\h}(\xi)=0$ and so $\sum_{\xi \notin S} |\fourier{\h}-\fourier{\q}|^2 = \sum_{\xi \notin S} |\fourier{\q}|^2 \leq \eps^2/100$ by~\cref{claim:ksiirv:fourier:concentrated}. By Plancherel, the distributions $\q'\eqdef \q \bmod M$, $\h'\eqdef \h \bmod M$ satisfy 
@@ -450,7 +450,7 @@ For $x \notin S$, $\fourier{\h}(\xi)=0$ and so $\sum_{\xi \notin S} |\fourier{\h
 \] Thus $\totalvardist{\q'}{\h'} \leq \frac{\eps}{4}$. By definition $\h$ has probability $0$ outside $I$ and by (\ref{eq:bennett:application}), $\q$ has at most $\frac{\eps}{5}$ probability outside $I$, Thus $\totalvardist{\q}{\h} \leq \frac{\eps}{4}+\frac{\eps}{5} \leq \frac{\eps}{2}$ and by the triangle inequality $ \totalvardist{\p}{\q} \leq \totalvardist{\q}{\h} +  \totalvardist{\p}{\h} \leq \eps/2 + 6\eps/25 \leq \eps$ as required.
  \end{proof}
  
- If $\widetilde{\sigma} \geq \alpha/\eps^2$ (corresponding to a ``big variance'' $s^2 = \Omega(1/\eps^2)$), then we take an additional $O(|S|/\eps^2)$ samples from $\p$ and use them to learn a shifted binomial using algorithms \texttt{Learn-Poisson} and \texttt{Locate-Binomial} from \cite{DDS:PBD:15} that is within $O(\eps/\sqrt{|S|})$ total variation distance from $\p$. If these succeed,  we can check if its Fourier coefficients are close using the method in~\cref{algo:ksiirv-easy-projection} (\texttt{Project-k-SIIRV}). As we can compute the Fourier coefficients of a shifted binomial easily, this overall takes time $\poly(1/\eps)$.
+ If $\widetilde{\sigma} \geq \alpha/\eps^2$ (corresponding to a ``big variance'' $s^2 = \Omega(1/\eps^2)$), then we take an additional $O(|S|/\eps^2)$ samples from $\p$ and use them to learn a shifted binomial using algorithms \texttt{Learn-Poisson} and \texttt{Locate-Binomial} from~\cite{DDS:PBD:15} that is within $O(\eps/\sqrt{|S|})$ total variation distance from $\p$. If these succeed,  we can check if its Fourier coefficients are close using the method in~\cref{algo:ksiirv-easy-projection} (\texttt{Project-k-SIIRV}). As we can compute the Fourier coefficients of a shifted binomial easily, this overall takes time $\poly(1/\eps)$.
  
 
  
@@ -540,7 +540,7 @@ A union bound completes the proof, giving a probability of error at most $\frac{
   \begin{equation}\label{eq:bennett:application}
     \Pr[ X > \mu+t ] \leq \exp\left(- \frac{s^2}{k^2} \vartheta\left( \frac{kt}{s^2} \right) \right)
   \end{equation}
-  for any $t>0$, where $\vartheta\colon\mathbb{R}_+^\ast\to\mathbb{R}$ is defined by $\vartheta(x) = (1+x)\ln(1+x)-x$.
+  for any $t>0$, where $\vartheta\colon\R_+^\ast\to\R$ is defined by $\vartheta(x) = (1+x)\ln(1+x)-x$.
 \begin{itemize}
   \item If the algorithm reaches Step~\ref{algo:step:effectivesupport:smallvariance}, then $s\leq 4k \sqrt{\ln\frac{10}{\eps}}$. Setting $t=\alpha\cdot k \ln\frac{10}{\eps}$ in~\cref{eq:bennett:application} (for $\alpha>0$ to be determined shortly), and $u = \frac{kt}{s^2} = \alpha\frac{k^2}{s^2}\ln\frac{10}{\eps} \geq \frac{\alpha}{16}$, 
   \[
@@ -780,14 +780,14 @@ Since the algorithm passed Step~\ref{algo:general:step:effectivesupportcheck}, w
 In this section, we generalize our Fourier testing approach to higher dimensions, and leverage it to design a testing algorithm for the class of Poisson Multinomial distributions -- thus establishing~\cref{theo:testing:pmd} (restated below).
 
 \begin{theorem}[Testing PMDs]
-    Given parameters $k,n\in\mathbb{N}$, $\eps\in(0,1]$, and sample access to a distribution $\p$ over $\N$, there exists an algorithm (\cref{algo:pmd:tester}) which outputs either \accept or \reject, and satisfies the following.
+    Given parameters $k,n\in\N$, $\eps\in(0,1]$, and sample access to a distribution $\p$ over $\N$, there exists an algorithm (\cref{algo:pmd:tester}) which outputs either \accept or \reject, and satisfies the following.
     \begin{enumerate}
         \item if $\p \in \classpmd[n]{k}$, then it outputs \accept with probability at least $3/5$;
         \item if $\totalvardist{\p}{\classpmd[n]{k}} > \eps$, then it outputs \reject with probability at least $3/5$.
     \end{enumerate}
     Moreover, the algorithm takes $\bigO{\frac{n^{(k-1)/4} k^{2k} \log(k/\eps)^k}{\eps^2}}$ samples from $\p$, and runs in time $n^{O(k^3)} \cdot (1/\eps)^{O(k^3\frac{\log(k/\eps)}{\log\log(k/\eps)})^{k-1}}$ or alternatively in time $n^{O(k)} \cdot  2^{O(k^{5k} \log(1/\eps)^{k+2}}$.
 \end{theorem}
-The reason for the two different running times is that, for the projection step, one can use either the cover given by \cite{DKS:15b} or that given by \cite{DDKT:16}, which yield the two statements.
+The reason for the two different running times is that, for the projection step, one can use either the cover given by~\cite{DKS:15b} or that given by~\cite{DDKT:16}, which yield the two statements.
 In contrast to~\cref{sec:siirv:testing} and~\cref{sec:general:testing}, for PMDs we will have to use a \emph{multidimensional} Fourier transform, which is a little more complicated -- and we define next.
 
 
@@ -858,7 +858,7 @@ of the form $\xi = (M^T)^{-1} \cdot v {+\Z^k},$ for some $v\in \Z^k$ with $\|v\|
 
 	\State\label{algo:step:fourier:support:pmd} Simulating sample access to $\p'\eqdef \p\bmod M$, call~\cref{algo:ft:pmd:effective:support:high-dim} on $\p'$ with parameters $M$, $\frac{\eps}{5\sqrt{\det(M)}}$, $b=\frac{|S|+1}{\det(M)}$, and $S$. If it outputs \reject, then \Return \reject; otherwise, let $\fourier{\h}=(\fourier{\h}(\xi))_{\xi\in S}$ denote the collection of Fourier coefficients it outputs, and $\h$ their inverse Fourier transform (modulo $M$) onto $I$. \Comment{Do not actually compute $\h$} 
 
-    \State \label{algo:step:cover:pmd} Compute a proper $\eps/6\sqrt{|S|}$-cover $\mathcal{C}$ of all PMDs using the algorithm from \cite{DKS:15c}.
+    \State \label{algo:step:cover:pmd} Compute a proper $\eps/6\sqrt{|S|}$-cover $\mathcal{C}$ of all PMDs using the algorithm from~\cite{DKS:15c}.
 	
 	\For{each $\q \in \mathcal{C}$}
 		\If{ the mean $\mu_\q$ and covariance matrix $\Sigma_\q$ satisfy $(\widehat{\mu}-\mu_\q)^T(\Sigma+I)^{-1}(\widehat{\mu}-\mu_\q) \leq 1$ and $2(\Sigma_\q+I) \geq \widehat{\Sigma}+I \geq (\Sigma_\q+I)/2.$}
@@ -873,10 +873,10 @@ of the form $\xi = (M^T)^{-1} \cdot v {+\Z^k},$ for some $v\in \Z^k$ with $\|v\|
   \caption{Algorithm \texttt{Test-PMD}}\label{algo:pmd:tester}
 \end{algorithm}
 
-The proof of correctness of~\cref{algo:pmd:tester} is very similar to that of~\cref{algo:ksiirv:tester}, except that we need results from the proof of correctness of the PMD Fourier learning algorithm of~\cite{DKS:15c}; we will only sketch these ingredients here. That $I$ is an effective support of a PMD whose mean and covariance matrix we have estimated to within approprate error with high probability follows from Lemmas 3.3--3.6 of \cite{DKS:15c}, the last of which gives that the probability mass outside of $I$ is at most $\eps/10$, smaller than that claimed for $I$ in the $(n,k)$-SIIRV algorithm. Lemma 3.3 gives, if $\p$ is a PMD, that the mean and covariance satisfy $(\widehat{\mu}-\mu)^T(\Sigma+I)^{-1}(\widehat{\mu}-\mu) = O(1)$ and $2(\Sigma_\q+I) \geq \widehat{\Sigma}+I \geq (\Sigma_q+I)/2.$ Again, with more samples, we can strengthen this to $(\widehat{\mu}-\mu)^T(\Sigma+I)^{-1}(\widehat{\mu}-\mu) = \frac{1}{2}$ and $(3/2)(\Sigma+I) \geq \widehat{\Sigma}+I \geq (\Sigma+I)/(3/2)$ with $O(k^4)$ samples.
+The proof of correctness of~\cref{algo:pmd:tester} is very similar to that of~\cref{algo:ksiirv:tester}, except that we need results from the proof of correctness of the PMD Fourier learning algorithm of~\cite{DKS:15c}; we will only sketch these ingredients here. That $I$ is an effective support of a PMD whose mean and covariance matrix we have estimated to within approprate error with high probability follows from Lemmas 3.3--3.6 of~\cite{DKS:15c}, the last of which gives that the probability mass outside of $I$ is at most $\eps/10$, smaller than that claimed for $I$ in the $(n,k)$-SIIRV algorithm. Lemma 3.3 gives, if $\p$ is a PMD, that the mean and covariance satisfy $(\widehat{\mu}-\mu)^T(\Sigma+I)^{-1}(\widehat{\mu}-\mu) = O(1)$ and $2(\Sigma_\q+I) \geq \widehat{\Sigma}+I \geq (\Sigma_q+I)/2.$ Again, with more samples, we can strengthen this to $(\widehat{\mu}-\mu)^T(\Sigma+I)^{-1}(\widehat{\mu}-\mu) = \frac{1}{2}$ and $(3/2)(\Sigma+I) \geq \widehat{\Sigma}+I \geq (\Sigma+I)/(3/2)$ with $O(k^4)$ samples.
 
 \noindent The effective support of the Fourier transform of a PMD is given by the following proposition:
-\begin{proposition}[Proposition 2.4 of \cite{DKS:15c}] \label{prop:ft-effective-support}
+\begin{proposition}[Proposition 2.4 of~\cite{DKS:15c}] \label{prop:ft-effective-support}
 Let $S$ be as in the algorithm. With probability at least $99/100$, the Fourier coefficients of $\p$ outside $S$ satisfy
 $\sum_{\xi \in (L^{\ast}/\Z^k)  \setminus S }|\widehat{\p}(\xi)| < \eps/10.$
 
@@ -913,10 +913,10 @@ With high constant probability, the number of samples we need is then
   \frac{1}{\eps^2}\sqrt{k\log\frac{k}{\eps}}\cdot \bigO{nk^2 \log\frac{k}{\eps}}^{\frac{k-1}{4}} + \frac{O(k^2\log(k/\eps))^{k}}{\eps^2} + O(k^4) \\
  &= O(n^{(k-1)/4} k^{2k} \log(k/\eps)^k/\eps^2)
  \end{align*}
- The time complexity of the algorithm is dominated by the projection step. By Proposition 4.9 and Corollary 4.12 of \cite{DKS:15c}, we can produce a proper
+ The time complexity of the algorithm is dominated by the projection step. By Proposition 4.9 and Corollary 4.12 of~\cite{DKS:15c}, we can produce a proper
  $\eps$-cover of $\classpmd[n]{k}$ of size $n^{O(k^3)} \cdot (1/\eps)^{O(k^3\frac{\log(k/\eps)}{\log\log(k/\eps)})^{k-1}}$ in time also $n^{O(k^3)} \cdot (1/\eps)^{O(k^3\frac{\log(k/\eps)}{\log\log(k/\eps)})^{k-1}}$. Note that producing an $(\eps/6\sqrt{|S|})$-cover, as $=\eps/O(k^2\log(k/\eps))^{k/2}$, takes time $n^{O(k^3)} \cdot (1/\eps)^{O(k^3\frac{\log(k/\eps)}{\log\log(k/\eps)})^{k-1}}$ (which is also the size of the resulting cover). Hence the running time of the algorithm is at most $n^{O(k^3)} \cdot (1/\eps)^{O(k^3\frac{\log(k/\eps)}{\log\log(k/\eps)})^{k-1}}$.
 
- Alternatively, \cite{DDKT:16} gives an $\eps$-cover of size $n^{O(k)} \cdot \min{2^{\poly(k/\eps)}, 2^{O(k^{5k} \log(1/\eps)^{k+2}}}$ that can also be constructed in polynomial time. By using this result, one needs to take time $n|S|\poly(\log(1/\eps))$ to compute the Fourier coefficients. Applying this to get an $\eps/O(k^2\log(k/\eps))^{k/2}$-cover means that unfortunately we are always doubly exponential in $k$. In this case, the running time of the algorithm is $n^{O(k)} \cdot  2^{O(k^{5k} \log(1/\eps)^{k+2}}$.
+ Alternatively,~\cite{DDKT:16} gives an $\eps$-cover of size $n^{O(k)} \cdot \min{2^{\poly(k/\eps)}, 2^{O(k^{5k} \log(1/\eps)^{k+2}}}$ that can also be constructed in polynomial time. By using this result, one needs to take time $n|S|\poly(\log(1/\eps))$ to compute the Fourier coefficients. Applying this to get an $\eps/O(k^2\log(k/\eps))^{k/2}$-cover means that unfortunately we are always doubly exponential in $k$. In this case, the running time of the algorithm is $n^{O(k)} \cdot  2^{O(k^{5k} \log(1/\eps)^{k+2}}$.
  
  
 
@@ -1009,7 +1009,7 @@ Similarly, we can show that $\sum_{j=-\infty}^{m-1} \p(j) \exp(-2\pi i \xi j/M)=
 \noindent Then we can get a bound on the size of the effective support:
 \begin{lemma} \label{lem:S-unimodal}
 Let $\p$ be a unimodal distribution supported on $\Z$ such that the probability of the mode is $\p_{\max}$ and let $\eps \leq 1/M$. 
-Then the DFT modulo $M$ of $\p$ has $\sum_{|\xi| > \ell} |\fourier{\p}|^2 \leq \eps^2/100$, where $\ell= \Theta(\p_{\max}^2M^2/\eps^2)$.
+Then the DFT modulo $M$ of $\p$ has $\sum_{|\xi| > \ell} |\fourier{\p}|^2 \leq \eps^2/100$, where $\ell= \bigTheta{\p_{\max}^2M^2/\eps^2}$.
 \end{lemma}
 \begin{proof}
 \begin{align*}
@@ -1231,7 +1231,7 @@ i.e. $g^j_m$ is $g$ ``rounded up'' (resp. down) to the near multiple of $\frac{\
 showing that we get (up to a constant factor loss in the distance) (iii) as well. Given this, we get that specifying $(\tilde{g}^\ell,\tilde{g}^u)$ can be done by the list of the $O(1/\sqrt{\eps})$ endpoints along with the value of each $\tilde{g}^j$ for all of these endpoints. Now, given the two endpoints, one gets the size of the corresponding interval $I_m$ (which is at most $n$), and the two values to specify are a multiple of $\eps^2/(M\abs{I_m})$ in $[0,1]$. (If we were to stop here, we would get the existence of an $\eps$-cover $\class'_\eps$ of $\classlogconcave[n]$ in Hellinger distance of size $(n/\eps)^{O(1/\sqrt{\eps})}$.)
 
 
-\paragraph{One last step: outside $[a,b]$.} To get the bracketing bound we seek, we need to do one last modification to our pair $(\tilde{g}^\ell,\tilde{g}^u)$. Specifically, in the above we have one issue when approximating $p$: namely, that outside of their common support $\{a,\dots,b\}$, both $\tilde{g}^j$'s are $0$. While this is fine for the lower bound $\tilde{g}^\ell$, this is not for $\tilde{g}^u$, as it needs to dominate $p$ outside of $\{a,\dots,b\}$ as well, where $p$ may have $O(\eps^2)$  probability mass. Thus, we need to adapt the construction above, as follows (we treat the setting of $\tilde{g}^u$ on $\{b+1,\dots,n\}$, the definition on $\{0,\dots, a-1\}$ is similar).
+\paragraph{One last step: outside $[a,b]$} To get the bracketing bound we seek, we need to do one last modification to our pair $(\tilde{g}^\ell,\tilde{g}^u)$. Specifically, in the above we have one issue when approximating $p$: namely, that outside of their common support $\{a,\dots,b\}$, both $\tilde{g}^j$'s are $0$. While this is fine for the lower bound $\tilde{g}^\ell$, this is not for $\tilde{g}^u$, as it needs to dominate $p$ outside of $\{a,\dots,b\}$ as well, where $p$ may have $O(\eps^2)$  probability mass. Thus, we need to adapt the construction above, as follows (we treat the setting of $\tilde{g}^u$ on $\{b+1,\dots,n\}$, the definition on $\{0,\dots, a-1\}$ is similar).
 
 First, observe if $p(b+1)=0$, we are done, as then by monotonicity we must have $(k)=0$ for all $k\geq b+1$, and so setting $\tilde{g}^u=0$ on $\{b+1,\dots,n\}$ suffices. Thus, we hereafter assume $p(b+1)>0$; and, for $b+1\leq k\leq n$, set
 \[

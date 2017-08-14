@@ -6,21 +6,21 @@ From a different perspective, a recent line of work in Theoretical Computer Scie
 
 In this paper, we focus on the following general property testing problem: given a class (property) of distributions \property and sample access to an \emph{arbitrary} distribution $\D$, one must distinguish between the case that \textsf{(a)} $\D\in\property$, versus \textsf{(b)} $\normone{\D-\D^\prime} >\eps$ for all $\D^\prime\in\property$ (i.e., $\D$ is either in the class, or far from it). While many of the previous works have focused on the testing of specific properties of distributions or obtained algorithms and lower bounds on a case-by-case basis, an emerging trend in distribution testing is to design general frameworks that can be applied to \emph{several} property testing problems~\cite{Valiant:11,VV:11:stoc, DKN:15, DKN:15:FOCS}. This direction, the testing analog of a similar movement in distribution learning~\cite{CDSS:13,CDSS:14:NIPS,CDSS:14,ADLS:15}, aims at abstracting the minimal assumptions that are shared by a large variety of problems, and giving algorithms that can be used for any of these problems. In this work, we make significant progress in this direction by providing a unified framework for the question of testing various properties of probability distributions. More specifically, we describe a generic technique to obtain upper bounds on the sample complexity of this question, which applies to a broad range of structured classes. Our technique yields sample near-optimal and computationally efficient testers for a wide range of distribution families. Conversely, we also develop a general approach to prove lower bounds on these sample complexities, and use it to derive tight or nearly tight bounds for many of these classes.
 
-\subparagraph{Related work.} Batu et al.~\cite{BKR:04} initiated the study of efficient property testers for monotonicity and obtained (nearly) matching upper and lower bounds for this problem; while~\cite{AD:15} later considered testing the class of Poisson Binomial Distributions, and settled the sample complexity of this problem (up to the precise dependence on $\eps$). Indyk, Levi, and Rubinfeld~\cite{ILR:12}, focusing on distributions that are piecewise constant on $t$ intervals (``$t$-histograms'') described a $\tilde{O}(\sqrt{tn}/\eps^5)$-sample algorithm for testing membership to this class. Another body of work by~\cite{BDKR:05},~\cite{BKR:04}, and~\cite{DDSVV:13} shows how assumptions on the shape of the distributions can lead to significantly more efficient algorithms. They describe such improvements in the case of identity and closeness testing as well as for entropy estimation, under monotonicity or $k$-modality constraints. Specifically, Batu et al. show in~\cite{BKR:04} how to obtain a $O\big({\log^3 n/\eps^3}\big)$-sample tester for closeness in this setting, in stark contrast to the $\Omega\big({{n}^{2/3}}\big)$ general lower bound. Daskalakis et al.~\cite{DDSVV:13} later gave ${O}(\sqrt{\log n})$ and ${O}({\log^{2/3} n})$-sample testing algorithms for testing respectively identity and closeness of monotone distributions, and obtained similar results for $k$-modal distributions. Finally, we briefly mention two related results, due respectively to~\cite{BDKR:05} and~\cite{DDS:12}. The first one states that for the task of getting a multiplicative \emph{estimate} of the entropy of a distribution, assuming monotonicity enables exponential savings in sample complexity -- $O\big({\log^6 n}\big)$, instead of $\bigOmega{n^c}$ for the general case. The second describes how to test if an unknown $k$-modal distribution is in fact monotone, using only $\bigO{k/\eps^2}$ samples. Note that the latter line of work differs from ours in that it \emph{presupposes} the distributions satisfy some structural property, and uses this knowledge to test something else about the distribution; while we are given \textit{a priori} arbitrary distributions, and must \emph{check} whether the structural property holds. Except for the properties of monotonicity and being a PBD, nothing was previously known on testing the shape restricted properties that we study.
+\subparagraph{Related work} Batu et al.~\cite{BKR:04} initiated the study of efficient property testers for monotonicity and obtained (nearly) matching upper and lower bounds for this problem; while~\cite{AD:15} later considered testing the class of Poisson Binomial Distributions, and settled the sample complexity of this problem (up to the precise dependence on $\eps$). Indyk, Levi, and Rubinfeld~\cite{ILR:12}, focusing on distributions that are piecewise constant on $t$ intervals (``$t$-histograms'') described a $\tilde{O}(\sqrt{tn}/\eps^5)$-sample algorithm for testing membership to this class. Another body of work by~\cite{BDKR:05},~\cite{BKR:04}, and~\cite{DDSVV:13} shows how assumptions on the shape of the distributions can lead to significantly more efficient algorithms. They describe such improvements in the case of identity and closeness testing as well as for entropy estimation, under monotonicity or $k$-modality constraints. Specifically, Batu et al. show in~\cite{BKR:04} how to obtain a $O\big({\log^3 n/\eps^3}\big)$-sample tester for closeness in this setting, in stark contrast to the $\Omega\big({{n}^{2/3}}\big)$ general lower bound. Daskalakis et al.~\cite{DDSVV:13} later gave ${O}(\sqrt{\log n})$ and ${O}({\log^{2/3} n})$-sample testing algorithms for testing respectively identity and closeness of monotone distributions, and obtained similar results for $k$-modal distributions. Finally, we briefly mention two related results, due respectively to~\cite{BDKR:05} and~\cite{DDS:12}. The first one states that for the task of getting a multiplicative \emph{estimate} of the entropy of a distribution, assuming monotonicity enables exponential savings in sample complexity -- $O\big({\log^6 n}\big)$, instead of $\bigOmega{n^c}$ for the general case. The second describes how to test if an unknown $k$-modal distribution is in fact monotone, using only $\bigO{k/\eps^2}$ samples. Note that the latter line of work differs from ours in that it \emph{presupposes} the distributions satisfy some structural property, and uses this knowledge to test something else about the distribution; while we are given \textit{a priori} arbitrary distributions, and must \emph{check} whether the structural property holds. Except for the properties of monotonicity and being a PBD, nothing was previously known on testing the shape restricted properties that we study.
 
 Moreover, for the specific problems of identity and closeness testing,\footnote{Recall that the identity testing problem asks, given the explicit description of a distribution $\D^\ast$ and sample access to an unknown distribution $\D$, to decide whether $\D$ is equal to $\D^\ast$ or far from it; while in closeness testing both distributions to compare are unknown.} recent results of~\cite{DKN:15,DKN:15:FOCS} describe a general algorithm which applies to a large range of shape or structural constraints, and yields optimal identity testers for classes of distributions that satisfy them. We observe that while the question they answer can be cast as a specialized instance of membership testing, our results are incomparable to theirs, both because of the distinction above (testing \emph{with} versus testing \emph{for} structure) and as the structural assumptions they rely on are fundamentally different from ours.
 
-\subparagraph{Concurrent and followup work.} 
-Independently and concurrently to this work, Acharya, Daskalakis, and Kamath~\cite{ADK:15} obtained a sample near-optimal efficient algorithm for testing log-concavity, as well as sample-optimal algorithms for testing the classes of monotone, unimodal, and monotone hazard rate distributions \new{(along with matching lower bounds on the sample complexity of these tasks)}. Their work builds on ideas from~\cite{AD:15} and their techniques are orthogonal to ours: namely, while at some level both works follow a ``testing-by-learning'' paradigm, theirs rely on first learning in the (more stringent) $\chi^2$ distance, then applying a testing algorithm which is robust to some amount of noise (i.e., tolerant testing) in this $\chi^2$ sense (as opposed to noise in an $\lp[1]$ sense, which is known to be impossible without a near-linear number of samples~\cite{ValiantValiant:10lb}).
+\subparagraph{Concurrent and followup work} 
+Independently and concurrently to this work, Acharya, Daskalakis, and Kamath~\cite{ADK:15} obtained a sample near-optimal efficient algorithm for testing log-concavity, as well as sample-optimal algorithms for testing the classes of monotone, unimodal, and monotone hazard rate distributions (along with matching lower bounds on the sample complexity of these tasks). Their work builds on ideas from~\cite{AD:15} and their techniques are orthogonal to ours: namely, while at some level both works follow a ``testing-by-learning'' paradigm, theirs rely on first learning in the (more stringent) $\chi^2$ distance, then applying a testing algorithm which is robust to some amount of noise (i.e., tolerant testing) in this $\chi^2$ sense (as opposed to noise in an $\lp[1]$ sense, which is known to be impossible without a near-linear number of samples~\cite{ValiantValiant:10lb}).
 
 Subsequent to the publication of the conference version of this work,~\cite{Canonne:16} improved on both~\cite{ILR:12} and our results for the specific class of $t$-histograms, providing nearly tight upper and lower bounds on testing membership to this class. Specifically, it obtains an upper bound of $\tilde{O}(\sqrt{n}/\eps^2 + t/\eps^3)$, complemented with an $\Omega(\sqrt{n}/\eps^2+t/(\eps\log t))$ lower bound on the sample complexity.
 
-Building on our work, Fischer, Lachish, and Vasudev recently generalized in~\cite{FischerLV:16} our approach and algorithm to the \emph{conditional sampling model} of~\cite{CFGM:13,CRS:15}, obtaining analogues of our testing results in this different setting of distribution testing where the algorithm is allowed to condition the samples it receives on subsets of the domain of its choosing. In the ``standard'' sampling setting,~\cite{FischerLV:16} additionally provides an alternative to the first subroutine of our testing algorithm: this yields a simpler and non-recursive algorithm, with \new{a factor $\log n$ shaved off at the price of a worse} dependency on the distance parameter $\eps$. (Namely, their sample complexity is dominated by $O(\sqrt{nL}\log^2(1/\eps)/{\eps^5})$, to be compared to the $O(\sqrt{nL}\log n/{\eps^3})$ term of~\cref{theo:main:testing:detailed}.)
+Building on our work, Fischer, Lachish, and Vasudev recently generalized in~\cite{FischerLV:16} our approach and algorithm to the \emph{conditional sampling model} of~\cite{CFGM:13,CRS:15}, obtaining analogues of our testing results in this different setting of distribution testing where the algorithm is allowed to condition the samples it receives on subsets of the domain of its choosing. In the ``standard'' sampling setting,~\cite{FischerLV:16} additionally provides an alternative to the first subroutine of our testing algorithm: this yields a simpler and non-recursive algorithm, with a factor $\log n$ shaved off at the price of a worse dependency on the distance parameter $\eps$. (Namely, their sample complexity is dominated by $O(\sqrt{nL}\log^2(1/\eps)/{\eps^5})$, to be compared to the $O(\sqrt{nL}\log n/{\eps^3})$ term of~\cref{theo:main:testing:detailed}.)
 
 \subsubsection{Results and Techniques}
 
 \noindent \textbf{Upper Bounds.} A natural way to tackle our membership testing problem would be to first learn the unknown distribution $\D$ \emph{as if} it satisfied the property, before checking if the hypothesis obtained is indeed both close to the original distribution and to the property. Taking advantage of the purported structure, the first step could presumably be conducted with a small number of samples; things break down, however, in the second step. 
-Indeed, most approximation results leading to the improved learning algorithms one would apply in the first stage only provide very weak guarantees, \new{that is} in the $\lp[1]$ sense \new{only}. For this reason, they lack the robustness that would be required for the second part, where it becomes necessary to perform \emph{tolerant} testing between the hypothesis and $\D$ -- a task that would then entail a number of samples almost linear in the domain size. To overcome this difficulty, we need to move away from these global $\lp[1]$ closeness results and instead work with stronger requirements, this time in $\lp[2]$ norm. 
+Indeed, most approximation results leading to the improved learning algorithms one would apply in the first stage only provide very weak guarantees, that is in the $\lp[1]$ sense only. For this reason, they lack the robustness that would be required for the second part, where it becomes necessary to perform \emph{tolerant} testing between the hypothesis and $\D$ -- a task that would then entail a number of samples almost linear in the domain size. To overcome this difficulty, we need to move away from these global $\lp[1]$ closeness results and instead work with stronger requirements, this time in $\lp[2]$ norm. 
 
 At the core of our approach is an idea of Batu et al.~\cite{BKR:04}, which show that monotone distributions can be well-approximated (in a certain technical sense) 
 by piecewise constant densities on a suitable interval partition of the domain; and leverage this fact to reduce monotonicity testing to uniformity testing on each interval of this partition. 
@@ -80,16 +80,16 @@ The algorithm \textsc{TestSplittable} can test the classes of Binomial and Poiss
   
 
 We remark that the aforementioned sample upper bounds are information-theoretically near-optimal in the domain size $n$ (up to logarithmic factors). See~\cref{fig:table:secshaperestrictions:results} and the following subsection for the corresponding lower bounds. We did not attempt to optimize the dependence on the parameter $\eps$,
-though a more careful analysis \new{might} lead to such improvements.
+though a more careful analysis might lead to such improvements.
 
 We stress that prior to our work, no non-trivial testing bound was known for most of these classes~--~specifically, our nearly-tight bounds for
 $t$-modal with $t>1$, log-concave, concave, convex, MHR, and piecewise polynomial distributions are new. Moreover, although a few of our applications 
 were known in the literature (the $\tildeO{\sqrt{n}/\eps^6}$ upper and $\bigOmega{\sqrt{n}/\eps^2}$ lower bounds on testing monotonicity can be found in~\cite{BKR:04}, while the $\Theta\big({n^{1/4}}\big)$ sample complexity of testing PBDs was recently given\footnotemark{} in~\cite{AD:15}, and the task of testing $t$-histograms is considered in~\cite{ILR:12}), the crux here is that we are able to derive them in a \emph{unified} way, by applying the same generic algorithm to all these different distribution families. 
-We note that our upper bound for $t$-histograms (\cref{coro:main:testing:piecewise}) also \new{significantly} improves on the previous $\tildeO{\sqrt{tn}/\eps^5}$-sample tester \new{with regard to the dependence on the proximity parameter $\eps$}. In addition to its generality, our framework yields much cleaner and conceptually simpler proofs of the upper and lower bounds from~\cite{AD:15}.
+We note that our upper bound for $t$-histograms (\cref{coro:main:testing:piecewise}) also significantly improves on the previous $\tildeO{\sqrt{tn}/\eps^5}$-sample tester with regard to the dependence on the proximity parameter $\eps$. In addition to its generality, our framework yields much cleaner and conceptually simpler proofs of the upper and lower bounds from~\cite{AD:15}.
 \footnotetext{For the sample complexity of testing monotonicity,~\cite{BKR:04} originally states an $\tildeO{{\sqrt{n}}/{\eps^4}}$ upper bound, but the proof seems to only result in an $\tildeO{{\sqrt{n}}/{\eps^6}}$ bound. Regarding the class of PBDs,~\cite{AD:15} obtain an ${n^{1/4}}\cdot\tilde{O}\big({1/\eps^2}\big) + \tilde{O}\big({1/\eps^6}\big)$ sample complexity, to be compared with our $\tilde{O}\big({n^{1/4}/\eps^{7/2}}) + \bigO{\log^4 n/\eps^4 }$ upper bound; as well as an $\Omega\big({n^{1/4}/\eps^2}\big)$ lower bound.}
 
 \cmargin{Move this.}
-\subparagraph{Lower Bounds.} To complement our upper bounds, we give a generic framework for proving lower bounds against testing classes of distributions. In more detail, we describe how to {\em reduce} -- under a mild assumption on the property \class{} -- the problem of testing \emph{membership to $\class$} (``does $\D\in\class$?'') to testing \emph{identity to $\D^\ast$} (``does $\D=\D^\ast$?''), for any explicit distribution $\D^\ast$ in $\class$. While these two problems need not in general be related,\footnote{As a simple example, consider the class $\class$ of \emph{all} distributions, for which testing membership is trivial.} we show that our reduction-based approach applies to a large number of natural properties, and obtain lower bounds that nearly match our upper bounds for all of them. 
+\subparagraph{Lower Bounds} To complement our upper bounds, we give a generic framework for proving lower bounds against testing classes of distributions. In more detail, we describe how to {\em reduce} -- under a mild assumption on the property \class{} -- the problem of testing \emph{membership to $\class$} (``does $\D\in\class$?'') to testing \emph{identity to $\D^\ast$} (``does $\D=\D^\ast$?''), for any explicit distribution $\D^\ast$ in $\class$. While these two problems need not in general be related,\footnote{As a simple example, consider the class $\class$ of \emph{all} distributions, for which testing membership is trivial.} we show that our reduction-based approach applies to a large number of natural properties, and obtain lower bounds that nearly match our upper bounds for all of them. 
 Moreover, this lets us derive a 
 simple proof of the lower bound of~\cite{AD:15} on testing the class of PBDs.
 The reader is referred to \cref{theo:main:testing:lb} for the formal statement of our reduction-based lower bound theorem.
@@ -107,7 +107,7 @@ In this section, we state the concrete corollaries we obtain for specific struct
   There exist absolute constants $c>0$ and $\eps_0 > 0$ such that testing the class of $(n,k)$-SIIRV distributions requires $\Omega\big( k^{1/2}n^{1/4}/\eps^2 \big)$ samples, for any $k=\littleO{n^c}$ and ${1}/{n^{O(1)}} \leq \eps \leq \eps_0$.
 \end{restatable}
 
-\subparagraph{Tolerant Testing.} 
+\subparagraph{Tolerant Testing} 
 Using our techniques, we also establish nearly--tight upper and lower bounds on tolerant testing\footnotetext{\emph{Tolerant testing} of a property \property is defined as follows: given $0 \leq \eps_1 < \eps_2 \leq 1$, one must distinguish between \textsf{(a)} $\lp[1](\D,\property) \leq \eps_1$ and \textsf{(b)} $\lp[1](\D,\property) \geq \eps_2$. This turns out to be, in general, a much harder task than that of ``regular'' testing (where we take $\eps_1=0$).} for shape restrictions. 
 Similarly, our upper and lower bounds are matching as a function of the domain size.
 More specifically, we give a simple generic upper bound approach (namely, a learning followed by tolerant testing algorithm).
@@ -130,7 +130,7 @@ Tolerant testing of the classes of Binomial and Poisson Binomial Distributions c
   Tolerant testing of the classes of Binomial and Poisson Binomial Distributions each require $\bigOmega{\frac{1}{(\eps_2-\eps_1)}\frac{\sqrt{n}}{\log n}}$ samples.
 \end{restatable}
 
-\subparagraph{On the scope of our results.} We point out that our main theorem is likely to apply to many other classes of structured distributions, 
+\subparagraph{On the scope of our results} We point out that our main theorem is likely to apply to many other classes of structured distributions, 
 due to the mild structural assumptions it requires. However, we did not attempt here to be comprehensive; but rather to illustrate the generality of our approach. Moreover, for all properties considered in this paper the generic upper and lower bounds we derive through our methods turn out to be optimal up to at most polylogarithmic factors (with regard to the support size). The reader is referred to~\cref{fig:table:secshaperestrictions:results} for a summary of our results and related work.
 
 \subsubsection{Organization of the Paper}
@@ -143,7 +143,7 @@ In~\cref{sec:structural}, we establish the necessary structural theorems for eac
 In this section, we obtain our main result, restated below:
 \mainthmtestingalgo*
 
-\subparagraph{Intuition.} Before diving into the proof of this theorem, we first provide a high-level description of the argument. The algorithm proceeds in 3 stages: the first, the \emph{decomposition step}, attempts to recursively construct a partition of the domain in a small number of intervals, with a very strong guarantee. If the decomposition succeeds, then the unknown distribution $\D$ will be close (in $\lp[1]$ distance) to its ``flattening'' on the partition; while if it fails (too many intervals have to be created), this serves as evidence that $\D$ does not belong to the class and we can reject. The second stage, the \emph{approximation step}, then learns this flattening of the distribution -- which can be done with few samples since by construction we do not have many intervals. The last stage is purely computational, the \emph{projection step}: where we verify that the flattening we have learned is indeed close to the class \class. If all three stages succeed, then by the triangle inequality it must be the case that $\D$ is close to \class; and by the structural assumption on the class, if $\D\in\class$ then it will admit succinct enough partitions, and all three stages will go through.\medskip
+\subparagraph{Intuition} Before diving into the proof of this theorem, we first provide a high-level description of the argument. The algorithm proceeds in 3 stages: the first, the \emph{decomposition step}, attempts to recursively construct a partition of the domain in a small number of intervals, with a very strong guarantee. If the decomposition succeeds, then the unknown distribution $\D$ will be close (in $\lp[1]$ distance) to its ``flattening'' on the partition; while if it fails (too many intervals have to be created), this serves as evidence that $\D$ does not belong to the class and we can reject. The second stage, the \emph{approximation step}, then learns this flattening of the distribution -- which can be done with few samples since by construction we do not have many intervals. The last stage is purely computational, the \emph{projection step}: where we verify that the flattening we have learned is indeed close to the class \class. If all three stages succeed, then by the triangle inequality it must be the case that $\D$ is close to \class; and by the structural assumption on the class, if $\D\in\class$ then it will admit succinct enough partitions, and all three stages will go through.\medskip
 
 \noindent Turning to the proof, we start by defining formally the ``structural criterion'' we shall rely on, before describing the algorithm at the heart of our result in~\cref{ssec:main:algorithm}. (We note that a modification of this algorithm will be described in~\cref{sec:effectivesupport}, and will allow us to derive~\cref{coro:main:testing:pbd}.)
 
@@ -182,10 +182,10 @@ In order to complete the proof of the lemma, notice that the two conditions in~\
       \item there exists a procedure $\estimdist$ which, given as input a parameter $\alpha\in(0,1)$ and the explicit description of a distribution $\D$ over $[n]$, 
       returns \yes if the distance $\lp[1](\D,\class)$ to $\class$ is at most $\alpha/10$, and \no if $\lp[1](\D,\class) \geq 9\alpha/10$ (and either \yes or \no otherwise).
     \end{enumerate}
-  Then the algorithm \textsc{TestSplittable} (\cref{algo:test:splittable}) is a $\bigO{ \max\mleft({\sqrt{nL}}\log n/{\eps^3}, L/{\eps^2}\mright) }$-sample tester for $\class$, for \new{$L=L(O(\eps),O(\eps),n)$}. 
+  Then the algorithm \textsc{TestSplittable} (\cref{algo:test:splittable}) is a $\bigO{ \max\mleft({\sqrt{nL}}\log n/{\eps^3}, L/{\eps^2}\mright) }$-sample tester for $\class$, for $L=L(O(\eps),O(\eps),n)$. 
   (Moreover, if $\estimdist$ is computationally efficient, then so is \textsc{TestSplittable}.)
 \end{theorem}
-%  Then, \new{if we set $\gamma=\zeta=\varepsilon$}, the algorithm \textsc{TestSplittable} (\cref{algo:test:splittable}) is a $\bigO{ \max\mleft({\sqrt{nL}}\log n/{\eps^3}, L/{\eps^2}\mright) }$-sample tester for $\class$. %, for $L=L(\eps,\eps,n)$. 
+%  Then, if we set $\gamma=\zeta=\varepsilon$, the algorithm \textsc{TestSplittable} (\cref{algo:test:splittable}) is a $\bigO{ \max\mleft({\sqrt{nL}}\log n/{\eps^3}, L/{\eps^2}\mright) }$-sample tester for $\class$. %, for $L=L(\eps,\eps,n)$. 
 
 \begin{algorithm}[h!t]
   \algblock[block]{Start}{Start}
@@ -243,7 +243,7 @@ The sample complexity is immediate, and comes from Steps~\ref{step:get:samples} 
 \subsubsection{Correctness.}
 Say an interval $I$ considered during the execution of the ``Decomposition'' step is \emph{heavy} if $m_I$ is big enough on Step~\ref{step:recursion}, and \emph{light} otherwise; and let $\mathscr{H}$ and $\mathscr{L}$ denote the sets of heavy and light intervals respectively. By choice of $m$, we can assume that with probability at least $9/10$ the guarantees of~\cref{fact:ilr12} hold simultaneously for all intervals considered. We hereafter condition on this event.\medskip 
 
-We first argue that if the algorithm does not reject in Step~\ref{step:check:succinctness}, then with probability at least $9/10$ we have $\normone{\D-\Phi(\D,\mathcal{I})} \leq \eps/20$ \new{(where $\Phi(\D,\mathcal{I})$ denotes the flattening of $\D$ over the partition $\mathcal{I}$)}. Indeed, we can write
+We first argue that if the algorithm does not reject in Step~\ref{step:check:succinctness}, then with probability at least $9/10$ we have $\normone{\D-\Phi(\D,\mathcal{I})} \leq \eps/20$ (where $\Phi(\D,\mathcal{I})$ denotes the flattening of $\D$ over the partition $\mathcal{I}$). Indeed, we can write
 \begin{align*}
   \normone{\D-\Phi(\D,\mathcal{I})} &= 
             \sum_{k\colon I_k \in \mathscr{L} } \D(I_k)\cdot \normone{\D_{I_k} - \uniform_{I_k}} 
@@ -323,7 +323,7 @@ For all $\gamma, \zeta > 0$, the class $\classmon$ of monotone distributions on 
 We define the $\mathcal{I}$ recursively as follows: $\mathcal{I}^{(0)}=([1,n])$, and for $j \geq 0$ the partition $\mathcal{I}^{(j+1)}$ is obtained from $\mathcal{I}^{(j)}=(I_1^{(j)},\dots,I_{\ell_j}^{(j)})$ by going over the $I^{(j)}_i=[a^{(j)}_i, b^{(j)}_i]$ in order, and:
 \begin{enumerate}[(a)]
   \item\label{theo:struct:proof:item:light} if $\D(I^{(j)}_i)\leq \frac{\zeta}{L}$, then $I^{(j)}_i$ is added as element of $\mathcal{I}^{(j+1)}$ (``marked as leaf'');
-  \item\label{theo:struct:proof:item:flat} else, if \new{$\D(a^{(j)}_i) \leq (1+\gamma)\D(b^{(j)}_i)$}, then $I^{(j)}_i$ is added as element of $\mathcal{I}^{(j+1)}$ (``marked as leaf'');
+  \item\label{theo:struct:proof:item:flat} else, if $\D(a^{(j)}_i) \leq (1+\gamma)\D(b^{(j)}_i)$, then $I^{(j)}_i$ is added as element of $\mathcal{I}^{(j+1)}$ (``marked as leaf'');
   \item otherwise, bisect $I^{(j)}$ in $I^{(j)}_{\rm L}$, $I^{(j)}_{\rm R}$ (with $\abs{I^{(j)}_{\rm L}}=\clg{\abs{I^{(j)}}/2}$) and add both $I^{(j)}_{\rm L}$ and $I^{(j)}_{\rm R}$ as elements of $\mathcal{I}^{(j+1)}$.
 \end{enumerate}
 and repeat until convergence (that is, whenever the last item is not applied for any of the intervals). Clearly, this process is well-defined, and will eventually terminate (as $(\ell_j)_j$ is a non-decreasing sequence of natural numbers, upper bounded by $n$). Let $\mathcal{I}=(I_1,\dots,I_{\ell})$ (with $I_i=[a_i,a_{i+1})$) be its outcome, so that the $I_i$'s are consecutive intervals all satisfying either \ref{theo:struct:proof:item:light} or \ref{theo:struct:proof:item:flat}. As \ref{theo:struct:proof:item:flat} clearly implies \ref{def:struct:item:flat}, we only need to show that $\ell \leq L$; for this purpose, we shall leverage as in~\cite{BKR:04} the fact that $\D$ is monotone to bound the number of recursion steps.
@@ -375,7 +375,7 @@ The last part of the statement is obvious, so we focus on the first claim. Obser
 \subsubsection{Projection Step: computing the distances} 
 This section contains details of the distance estimation procedures for these classes, required in the last stage of \cref{algo:test:splittable}. (Note that some of these results are phrased in terms of distance approximation, as estimating the distance $\lp[1](\D,\class)$ to sufficient accuracy in particular yields an algorithm for this stage.)
 
-We focus in this section on achieving the sample complexities stated in~\cref{coro:main:testing}, \cref{coro:main:testing:tmod}, and~\cref{coro:main:testing:piecewise} -- \new{that is, our procedures will not require any additional sample from the distribution}. While almost all the distance estimation procedures we give in this section are efficient, running in time polynomial in all the parameters or even with only a polylogarithmic dependence on $n$, there are two exceptions -- namely, the procedures for monotone hazard rate (\cref{lemma:distance:mhr}) and log-concave (\cref{lemma:distance:log}) distributions. We \emph{do} describe computationally efficient procedures for these two cases as well in~\cref{ssec:efficient:logconcave:mhr}, at a modest additive cost in the sample complexity \new{(that is, these more efficient procedures \emph{will} require some additional samples from the distribution)}.
+We focus in this section on achieving the sample complexities stated in~\cref{coro:main:testing}, \cref{coro:main:testing:tmod}, and~\cref{coro:main:testing:piecewise} -- that is, our procedures will not require any additional sample from the distribution. While almost all the distance estimation procedures we give in this section are efficient, running in time polynomial in all the parameters or even with only a polylogarithmic dependence on $n$, there are two exceptions -- namely, the procedures for monotone hazard rate (\cref{lemma:distance:mhr}) and log-concave (\cref{lemma:distance:log}) distributions. We \emph{do} describe computationally efficient procedures for these two cases as well in~\cref{ssec:efficient:logconcave:mhr}, at a modest additive cost in the sample complexity (that is, these more efficient procedures \emph{will} require some additional samples from the distribution).
 
 \begin{lemma}[Monotonicity {\cite[Lemma 8]{BKR:04}}]\label{lemma:distance:mon}
 There exists a procedure $\estimdist[\classmon]$ that, on input $n$ as well as the full (succinct) specification of an $\ell$-histogram $\D$ on $[n]$, computes the (exact) distance $\lp[1](\D,\classmon)$ in time $\poly(\ell)$.
@@ -404,7 +404,7 @@ There exists a procedure $\estimdist[\classpoly]$ that, on input $n$ as well as 
 Moreover, for the special case of $t$-histograms ($d=0$) there exists a procedure $\estimdist[\classhist]$, which, given inputs as above, computes an approximation $\Delta$ of the distance $\lp[1](\D,\classhist)$ such that  $\lp[1](\D,\classhist) \leq \Delta \leq 4\lp[1](\D,\classhist)+\eps$, and runs in time $\poly(\ell,t,\frac{1}{\eps})$, independent of $n$.
 \end{lemma}
 \begin{proof}
-We begin with $\estimdist[\classhist]$. Fix any distribution $\D$ on $[n]$. Given any explicit partition of $[n]$ into intervals $\mathcal{I}=(I_1,\dots,I_t)$, one can easily show that $\normone{\D - \Phi(\D,\mathcal{I})} \leq 2\opt_{\mathcal{I}}$, where $\opt_{\mathcal{I}}$ is the optimal distance of $\D$ to any histogram on $\mathcal{I}$ \new{(recall that we write $\Phi(\D,\mathcal{I})$ for the flattening of $\D$ over the partition $\mathcal{I}$)}. To get a $2$-approximation of $\lp[1](\D,\classhist)$, it thus suffices to find the minimum, over all possible partitionings $\mathcal{I}$ of $[n]$ into $t$ intervals, of the quantity $\normone{\D - \Phi(\D,\mathcal{I})}$ (which itself can be computed in time $T=O(\min(t\ell,n))$). By a simple dynamic programming approach, this can be performed in time $\bigO{t n^2 \cdot T}$. The quadratic dependence on $n$, which follows from allowing the endpoints of the $t$ intervals to be at any point of the domain, is however far from optimal and can be reduced to $(t/\eps)^2$, as we show below.
+We begin with $\estimdist[\classhist]$. Fix any distribution $\D$ on $[n]$. Given any explicit partition of $[n]$ into intervals $\mathcal{I}=(I_1,\dots,I_t)$, one can easily show that $\normone{\D - \Phi(\D,\mathcal{I})} \leq 2\opt_{\mathcal{I}}$, where $\opt_{\mathcal{I}}$ is the optimal distance of $\D$ to any histogram on $\mathcal{I}$ (recall that we write $\Phi(\D,\mathcal{I})$ for the flattening of $\D$ over the partition $\mathcal{I}$). To get a $2$-approximation of $\lp[1](\D,\classhist)$, it thus suffices to find the minimum, over all possible partitionings $\mathcal{I}$ of $[n]$ into $t$ intervals, of the quantity $\normone{\D - \Phi(\D,\mathcal{I})}$ (which itself can be computed in time $T=O(\min(t\ell,n))$). By a simple dynamic programming approach, this can be performed in time $\bigO{t n^2 \cdot T}$. The quadratic dependence on $n$, which follows from allowing the endpoints of the $t$ intervals to be at any point of the domain, is however far from optimal and can be reduced to $(t/\eps)^2$, as we show below.
 
 For $\eta > 0$, define an \emph{$\eta$-granular decomposition} of a distribution $\D$ over $[n]$ to be a partition of $[n]$ into $s=\bigO{1/\eta}$ intervals $J_1,\dots,J_s$ such that each interval $J_i$ is either a singleton or satisfies $\D(J_i) \leq \eta$. (Note that if $\D$ is a known $\ell$-histogram, one can compute an $\eta$-granular decomposition of $\D$ in time $\bigO{\ell/\eta}$ in a greedy fashion.)
 
@@ -472,7 +472,7 @@ If we could use that observation to first reduce the domain to the \emph{effecti
 Given $\eps > 0$, the \emph{\eps-effective support} of a distribution $\D$ is the smallest interval $I$ such that $\D(I) \geq 1-\eps$.
 \end{definition}
 
-The last definition we shall require is \new{that of} the \emph{conditioned distributions} of a class \class:
+The last definition we shall require is that of the \emph{conditioned distributions} of a class \class:
 \begin{definition}
 For any class of distributions \class over $[n]$, define the set of \emph{conditioned distributions of \class} (with respect to $\eps > 0$ and interval $I\subseteq[n]$) as $\class^{\eps,I}\eqdef \setOfSuchThat{\D_I}{\D\in\class, \D(I) \geq 1-\eps}$.
 \end{definition}
@@ -540,10 +540,10 @@ By the choice of $m$ and the DKW inequality, with probability at least $23/24$ t
 
 Finally, note that since $\D(I) = \bigOmega{1}$ by our conditioning, the simulation of samples by rejection sampling will succeed with probability at least $23/24$ and the algorithm will not output \fail.
 
-\subparagraph{Sample complexity.}
+\subparagraph{Sample complexity}
 The sample complexity is the sum of the $\bigO{1/\eps^2}$ in Step~\ref{step:effesupp:get:samples} and the $\bigO{q}$ in Step~\ref{step:effesupp:main:test:call}. From~\cref{theo:main:testing} and the choice of $I$, this latter quantity is $\bigO{ \max\mleft(\frac{1}{\eps^3} \sqrt{m\ell} \log m, \frac{\ell}{\eps^2}\mright) }$ where $m = M(n,\frac{\eps}{60})$ and $\ell=L(\frac{\eps}{1200},\frac{\eps}{1200}, M(n,\frac{\eps}{60}))$.
 
-\subparagraph{Correctness.} If $\D\in\class$, then by the setting of $\tau$ (set to be an upper bound on the $\frac{\eps}{60}$-effective support size of any distribution in \class) the algorithm will go beyond Step~\ref{step:effesupp:test:support}. The call to $\textsc{TestSplittable}$ will then end up in the algorithm returning \accept in Step~\ref{step:effesupp:main:test}, with probability at least $2/3$ by~\cref{lemma:conditioned:class},~\cref{theo:main:testing} and our choice of parameters.
+\subparagraph{Correctness} If $\D\in\class$, then by the setting of $\tau$ (set to be an upper bound on the $\frac{\eps}{60}$-effective support size of any distribution in \class) the algorithm will go beyond Step~\ref{step:effesupp:test:support}. The call to $\textsc{TestSplittable}$ will then end up in the algorithm returning \accept in Step~\ref{step:effesupp:main:test}, with probability at least $2/3$ by~\cref{lemma:conditioned:class},~\cref{theo:main:testing} and our choice of parameters.
 
 Similarly, if $\D$ is \eps-far from \class, then either its effective support is too large (and then the test on Step~\ref{step:effesupp:test:support} fails), or the main tester will detect that its conditional distribution on $I$ is $\frac{7\eps}{10}$-far from $\class$ and output \reject in Step~\ref{step:effesupp:main:test}.
 
@@ -605,7 +605,7 @@ By a calculation similar to that of~\cref{lemma:conditioned:class}, we have
   &\in [ \normone{ P - Q } - {5\gamma}/{2}, (1+2\eps)\left( \normone{ P - Q } + {5\gamma}/{2} \right) ]
   \end{align*}
 where we used the fact that $\sum_{i\notin I}\abs{ P(i) - Q(i) } = 2\left(\sum_{i\notin I\colon P(i) > Q(i)} (P(i)-Q(i))\right) + Q(I)-P(I) \in [-2\gamma,2\gamma]$.
-By the triangle inequality, this implies that the minimum of $\normone{P_I-\D_I}$ over the distributions $P$ of $\mathcal{S}_\eps$ with $P(I)\geq 1-(\eps+\gamma/2)$ will be within an additive $\bigO{\eps}$ of $\lp[1](\D,\classpbd[n]^{\eps,I})$. The fact that the former can be found \new{(by enumerating over the cover of size $\left( {1/\eps} \right)^{\bigO{\log{1/\eps}}}$ by the above discussion, and for each distribution in the cover computing the vector of probabilities and the distance to $\D$)} in time \new{$O(n^2)\cdot\abs{S_\eps}=n^2 \cdot \left( {1/\eps} \right)^{\bigO{\log{1/\eps}}}$} concludes the proof.
+By the triangle inequality, this implies that the minimum of $\normone{P_I-\D_I}$ over the distributions $P$ of $\mathcal{S}_\eps$ with $P(I)\geq 1-(\eps+\gamma/2)$ will be within an additive $\bigO{\eps}$ of $\lp[1](\D,\classpbd[n]^{\eps,I})$. The fact that the former can be found (by enumerating over the cover of size $\left( {1/\eps} \right)^{\bigO{\log{1/\eps}}}$ by the above discussion, and for each distribution in the cover computing the vector of probabilities and the distance to $\D$) in time $O(n^2)\cdot\abs{S_\eps}=n^2 \cdot \left( {1/\eps} \right)^{\bigO{\log{1/\eps}}}$ concludes the proof.
 \end{proof}
 As previously mentioned, this approximation guarantee for $\lp[1](\D,\classpbd[n]^{\eps,I})$ is sufficient for the purpose of~\cref{algo:test:splittable}.
 
@@ -634,7 +634,7 @@ Then, there exists an algorithm that, for any fixed $\kappa > 1$ and on input $\
 Applying now the theorem with $M(n,\eps)=\sqrt{n\log(1/\eps)}$ (as per~\cref{coro:main:testing:effective:support:pbd}), we obtain an improved upper bound for Binomial and Poisson Binomial distributions: 
 \coromaintoltestingpbd*
 
-\subparagraph{High-level idea.} Somewhat similar to the lower bound framework developed in~\cref{sec:lowerbounds}, the gist of the approach is to reduce the problem of tolerant testing membership of $\D$ to the \emph{class} \class to that of tolerant testing identity to a known \emph{distribution} -- namely, the distribution $\hat{\D}$ obtained after trying to agnostically learn $\D$. Intuitively, an agnostic learner for \class should result in a good enough hypothesis $\hat{\D}$ (i.e., $\hat{\D}$ close enough to both $\D$ and $\class$) when $\D$ is $\eps_1$-close to \class; but output a $\hat{\D}$ that is significantly far from either $\D$ or $\class$ when $\D$ is $\eps_2$-far from \class~--~sufficiently for us to be able to tell.
+\subparagraph{High-level idea} Somewhat similar to the lower bound framework developed in~\cref{sec:lowerbounds}, the gist of the approach is to reduce the problem of tolerant testing membership of $\D$ to the \emph{class} \class to that of tolerant testing identity to a known \emph{distribution} -- namely, the distribution $\hat{\D}$ obtained after trying to agnostically learn $\D$. Intuitively, an agnostic learner for \class should result in a good enough hypothesis $\hat{\D}$ (i.e., $\hat{\D}$ close enough to both $\D$ and $\class$) when $\D$ is $\eps_1$-close to \class; but output a $\hat{\D}$ that is significantly far from either $\D$ or $\class$ when $\D$ is $\eps_2$-far from \class~--~sufficiently for us to be able to tell.
 Besides the many technical details one has to control for the parameters to work out, one key element is the use of a tolerant testing algorithm for closeness of two distributions due to~\cite{ValiantValiant:11}, whose (tight) sample complexity scales as $n/\log n$ for a domain of size $n$. In order to get the right dependence on the effective support (required in particular for~\cref{coro:main:tol:testing:pbd}), we have to perform a first test to identify the effective support of the distribution and check its size, in order to only call this tolerant closeness testing algorithm on this much smaller subset. (This additional preprocessing step itself has to be carefully done, and comes at the price of a slightly worse constant $C=C(c,\kappa)$ in the statement of the theorem.)
 
 \subsubsection{Proof of~\cref{theo:main:tol:testing:ub:almost}}
@@ -691,7 +691,7 @@ The algorithm proceeds as follows, where we set $\eps\eqdef\frac{\eps_2-\eps_1}{
 \end{enumerate}
 The claimed sample complexity is immediate from Steps~\ref{algo:effectivesupport:toltest:step:1} and~\ref{algo:effectivesupport:toltest:step:2}, along with~\cref{theo:samp:closeness:tolerant}. Turning to correctness, we condition on both subroutines meeting their guarantee (i.e., $\normone{\D-\hat{\D}} \leq c\cdot\opt+\eps$ and $\normone{\D-\hat{\D}} \in [\hat{\Delta} - \eps,\hat{\Delta} + \eps]$), which happens with probability at least $8/10-1/\poly(n)\geq 3/4$ by a union bound. 
 
-\subparagraph{Completeness.} If $\lp[1](\D,\class) \leq \eps_1$, then $\D$ is $\eps_1$-close to some $P\in\class$, for which there exists an interval $J\subseteq[n]$ of size at most $M(n,\eps_1)$ such that $P(J) \geq 1-\eps_1$. It follows that $\D(J) \geq 1-\frac{3}{2}\eps_1$ (since $\abs{\D(J)-P(J)} \leq \frac{\eps_1}{2}$) and $\tilde{\D}(J) \geq 1-\frac{3}{2}\eps_1-2\cdot\frac{\eps}{2}\eps$; establishing existence of a good interval $I$ to be found (and Step~\ref{algo:effectivesupport:toltest:step:0} does not end with \reject). Additionally, $\normone{\D-\hat{\D}} \leq c\cdot\eps_1+\eps$ and by the triangle inequality this implies $\lp[1](\hat{\D},\class) \leq (1+c)\eps_1+\eps$.
+\subparagraph{Completeness} If $\lp[1](\D,\class) \leq \eps_1$, then $\D$ is $\eps_1$-close to some $P\in\class$, for which there exists an interval $J\subseteq[n]$ of size at most $M(n,\eps_1)$ such that $P(J) \geq 1-\eps_1$. It follows that $\D(J) \geq 1-\frac{3}{2}\eps_1$ (since $\abs{\D(J)-P(J)} \leq \frac{\eps_1}{2}$) and $\tilde{\D}(J) \geq 1-\frac{3}{2}\eps_1-2\cdot\frac{\eps}{2}\eps$; establishing existence of a good interval $I$ to be found (and Step~\ref{algo:effectivesupport:toltest:step:0} does not end with \reject). Additionally, $\normone{\D-\hat{\D}} \leq c\cdot\eps_1+\eps$ and by the triangle inequality this implies $\lp[1](\hat{\D},\class) \leq (1+c)\eps_1+\eps$.
   
   Moreover, as $\D(I) \geq \tilde{\D}(I) - 2\cdot\frac{\eps}{2} \geq 1-\frac{3}{2}\eps_1-2\eps$ and $\abs{\hat{\D}(I) - \D(I)} \leq \frac{1}{2}\normone{\D-\hat{\D}}$, we do have
   \[
@@ -703,7 +703,7 @@ The claimed sample complexity is immediate from Steps~\ref{algo:effectivesupport
       \normone{\D_I-\hat{\D}_I} \leq \frac{3}{2}\frac{\normone{\D-\hat{\D}}}{\D(I)} \leq \frac{3}{2}\frac{(c\eps_1+\eps)}{1-\frac{3}{2}\eps_1-2\eps} \leq 3(c\eps_1+\eps) \tag{for $\eps_1 < 1/4$, as $\eps < 1/17$}
   \]
   Therefore, $\Delta+\hat{\Delta} \leq \lp[1](\hat{\D},\class)+\eps + \normone{\D_I-\hat{\D}_I}+\eps \leq (4c+1)\eps_1+6\eps \leq \eps_2 - ((6+c)\eps_1+11\eps) = \theta$ (the last inequality by the assumption on $\eps_2,\eps_1$), and the tester accepts.
-\subparagraph{Soundness.} If $\lp[1](\D,\class) > \eps_2$, then we must have $\normone{\D-\hat{\D}} + \lp[1](\hat{\D},\class) > \eps_2$. If the algorithm does not already reject in Step~\ref{algo:effectivesupport:toltest:step:2.5}, then $\hat{\D}(I) \geq 1-\tau$. But, by~\cref{lemma:conditioned:distr:distances},
+\subparagraph{Soundness} If $\lp[1](\D,\class) > \eps_2$, then we must have $\normone{\D-\hat{\D}} + \lp[1](\hat{\D},\class) > \eps_2$. If the algorithm does not already reject in Step~\ref{algo:effectivesupport:toltest:step:2.5}, then $\hat{\D}(I) \geq 1-\tau$. But, by~\cref{lemma:conditioned:distr:distances},
   \begin{align*}
       \normone{\D_I-\hat{\D}_I} &\geq \normone{ \D - \hat{\D} } - 2(\D(I^c) + \hat{\D}(I^c)) \geq \normone{\D_I-\hat{\D}_I} - 2\Big(\frac{3}{2}\eps_1 + 2\eps+\tau\Big) \\
       &= \normone{ \D - \hat{\D} } - ((6+c)\eps_1+9\eps) 
@@ -737,7 +737,7 @@ so that
 \end{equation}
 (after expanding and since $\sum_{k=1}^n \Delta_k = 0$).
 
-\subparagraph{Soundness.} \textit{\emph{Almost} straight from~\cite{DKN:15}, but the threshold has changed.}
+\subparagraph{Soundness} \textit{\emph{Almost} straight from~\cite{DKN:15}, but the threshold has changed.}
 Assume $\Delta^2\eqdef\normtwo{\D-\uniform}^2 \geq \eps^2/n$; we will show that $\probaOf{ Z < \tau } \leq 1/3$. By Chebyshev's inequality, it is sufficient to show that
 $\tau \leq \shortexpect Z - \sqrt{3}\sqrt{\var Z}$, as \[
     \probaOf{ \shortexpect Z - Z > \sqrt{3}\sqrt{\var Z} } \leq 1/3\;.
@@ -767,7 +767,7 @@ For any sequence $x=(x_1,\dots,x_n)\in\R^n$, $p > 0 \mapsto \norm{x}_p$ is non-i
 \] To see why, one can easily prove that if $\norm{x}_p = 1$, then $\norm{x}_q^q \leq 1$ (bounding each term $\abs{x_i}^q \leq \abs{x_i}^p$), and therefore $\norm{x}_q \leq 1 = \norm{x}_p$. Next, for the general case, apply this to $y = x/\norm{x}_p$, which has unit $\lp[p]$ norm, and conclude by homogeneity of the norm.
 }
 
-\subparagraph{Completeness.} Assume $\Delta^2=\normtwo{\D-\uniform}^2 < \eps^2/(4n)$. We need to show that $\probaOf{ Z \geq \tau } \leq 1/3$. Chebyshev's inequality implies
+\subparagraph{Completeness} Assume $\Delta^2=\normtwo{\D-\uniform}^2 < \eps^2/(4n)$. We need to show that $\probaOf{ Z \geq \tau } \leq 1/3$. Chebyshev's inequality implies
 \[
     \probaOf{ Z - \shortexpect Z > \sqrt{3}\sqrt{\var Z} } \leq 1/3
 \]
@@ -871,7 +871,9 @@ such that $\normone{p-q} \leq 3 \lp[1](p,\classpoly[d]) + O(\eps)$.
 As mentioned in~\cref{sec:structural}, the proof of this statement is a rather straightforward adaptation of the proof of~\cite[Theorem 9]{CDSS:14}, with two differences: first, in our setting there is no uncertainty or probabilistic argument due to sampling, as we are provided with an explicit description of the histogram $p$. Second, Chan et al. require some ``well-behavedness'' assumption on the distribution $p$ (for technical reasons essentially due to the sampling access), that we remove here. Besides these two points, the proof is almost identical to theirs, and we only reproduce (our modification of) it here for the sake of completeness.
 (Any error introduced in the process, however, is solely our responsibility.)
 \begin{proof}
-\newcommand{\rr}{{r}} \newcommand{\pp}{{p}} Some preliminary definitions will be helpful:
+\newcommand{\rr}{{r}}
+\newcommand{\pp}{{p}}
+Some preliminary definitions will be helpful:
 \begin{definition}[Uniform partition]
   Let $p$ be a subdistribution on an interval $I \subseteq [-1,1)$.
   A partition $\mathcal{I} = \{I_1, \dots, I_\ell\}$ of $I$ is
@@ -1254,7 +1256,7 @@ $
 $.
 This means that for the points $i$ in $[n]\setminus I$, we can write constraints asking for multiplicative closeness (within $1\pm \eps)$ between $e^{\sum_{j=1}^{i-1} y_j}$ and $\D([i,n])$, which is very easy to write down as linear constraints on the $y_i$'s.
 
-\subparagraph{The linear program.} 
+\subparagraph{The linear program} 
 Let $T$ and $S$ be respectively the sets of ``light'' and ``heavy'' points, defined as $T=\setOfSuchThat{ i\in \{1,\dots,b\} }{ \D(i) \leq \eps^2 }$ and  $S=\setOfSuchThat{ i\in \{1,\dots,b\} }{ \D(i) > \eps^2 }$, where $b$ is as above. (In particular, $\abs{S} \leq 1/\eps^2$.)
 
 \begin{algorithm}
@@ -1274,7 +1276,7 @@ Let $T$ and $S$ be respectively the sets of ``light'' and ``heavy'' points, defi
 
 Given a solution to the linear program above, define $\tilde{P}$ (a non-normalized probability distribution) by setting $\tilde{P}(i) = (1-e^{y_i})e^{\sum_{j=1}^{i-1} y_j}$ for $i\in \{1,\dots,b\}$, and $\tilde{P}(i) = 0$ for $i\in I = \{b+1,\dots, n\}$. A MHR distribution is then obtained by normalizing $\tilde{P}$. 
 
-\subparagraph{Completeness.} Suppose $P\in\classmhr$ is as promised. In particular, by the Kolmogorov distance assumption we know that every $i\in T$ has $P(i) \leq \eps^2+2\alpha < 2\eps^2$.
+\subparagraph{Completeness} Suppose $P\in\classmhr$ is as promised. In particular, by the Kolmogorov distance assumption we know that every $i\in T$ has $P(i) \leq \eps^2+2\alpha < 2\eps^2$.
 \begin{itemize}
   \item For any $i\in T$, we have that $\frac{P(i)}{P[i,n]} \leq \frac{2\eps^2}{(1-\eps)\eps} \leq 4\eps$, and 
 \begin{equation}
@@ -1287,7 +1289,7 @@ where we used~\cref{eq:mhr:mult:approx:cdf} for the two outer inequalities; and 
     \subseteq \left[\frac{\D(i)-2\alpha}{(1+\eps)\D([i,n])},\frac{\D(i)+2\alpha}{(1-\eps)\D([i,n])}\right]$.
 \end{itemize}
 
-\subparagraph{Soundness.}
+\subparagraph{Soundness}
 \noindent Assume a feasible solution to the linear program is found. We argue that this implies $\D$ is $\bigO{\eps}$-close to some MHR distribution, namely to the distribution obtained by renormalizing $\tilde{P}$.
 
 In order to do so, we bound separately the $\lp[1]$ distance between $\D$ and $\tilde{P}$, from $I$, $S$, and $T$. 
@@ -1337,7 +1339,7 @@ $
 $
 which finally implies by the triangle inequality that the $\lp[1]$ distance between $\D$ and the normalized version of $\tilde{P}$ (a valid MHR distribution) is at most $32\eps$.
 
-\subparagraph{Running time.} The running time is immediate, from executing the two linear programs on $\poly(n,1/\eps)$ variables and constraints.
+\subparagraph{Running time} The running time is immediate, from executing the two linear programs on $\poly(n,1/\eps)$ variables and constraints.
 \end{proof}
 
 
@@ -1354,7 +1356,7 @@ Given the explicit description of a distribution $\D$ on $[n]$, which a $k$-hist
 \end{enumerate} 
 If we are willing to pay an extra factor of $\bigO{n}$, we can assume without loss of generality that we know the mode of the closest log-concave distribution (which is implicitly assumed in the following: the final algorithm will simply try all possible modes).
 
-\subparagraph{Outline.} First, we argue that we can simplify to the case where $\D$ is unimodal. Then, reduce to the case where where $\D$ and $\D^\prime$ are only one distribution, satisfying both requirements from the completeness case. Both can be done efficiently (\cref{stage:1}), and make the rest much easier.
+\subparagraph{Outline} First, we argue that we can simplify to the case where $\D$ is unimodal. Then, reduce to the case where where $\D$ and $\D^\prime$ are only one distribution, satisfying both requirements from the completeness case. Both can be done efficiently (\cref{stage:1}), and make the rest much easier.
 Then, perform some \emph{ad hoc} partitioning of $[n]$, using our knowledge of $\D$, into $\tildeO{1/\eps^2}$ pieces such that each piece is either a ``heavy'' singleton, or an interval $I$ with weight very close (multiplicatively) to $\D(I)$ \emph{under the target log-concave distribution, if it exists} (\cref{stage:2}). This in particular simplifies the type of log-concave distribution we are looking for: it is sufficient to look for distributions putting that very specific weight on each piece, up to a $(1+o(1))$ factor. Then, in \cref{stage:3}, we write and solve a linear program to try and find such a ``simplified'' log-concave distribution, and reject if no feasible solution exists.
 
 Note that the first two sections allow us to argue that instead of additive (in $\lp[1]$) closeness, we can enforce constraints on \emph{multiplicative} (within a $(1+\eps)$ factor) closeness between $\D$ and the target log-concave distribution. This is what enables a linear program with variables being the logarithm of the probabilities, which plays very nicely with the log-concavity constraints. \medskip
@@ -1368,7 +1370,7 @@ Let $\D$ be a distribution over $[n]$, log-concave and non-decreasing over $\{1,
 
 \paragraph{Step 1}\label{stage:1}
 
-\subparagraph{Reducing to $\D$ unimodal.}
+\subparagraph{Reducing to $\D$ unimodal}
 Using a linear program, find a closest \emph{unimodal} distribution $\tilde{\D}$ to $\D$ (also a $k$-histogram on $\mathcal{I}$) under the constraint that $\kolmogorov{\D}{P} \leq \alpha$: this can be done in time $\poly(k)$. If $\normone{\D-\tilde{\D}} > \eps$, output \reject.
 
 \begin{itemize}
@@ -1376,7 +1378,7 @@ Using a linear program, find a closest \emph{unimodal} distribution $\tilde{\D}$
   \item If $\D$ is $100\eps$-far from log-concave and we do not reject, then $\lp[1](\tilde{\D},\classlogconcave) \geq 99\eps$.
 \end{itemize}
 
-\subparagraph{Reducing to $\D=\D^\prime$.}
+\subparagraph{Reducing to $\D=\D^\prime$}
 First, we note that it is easy to reduce our problem to the case where, in the completeness case, we have $P\in\classlogconcave$ such that $\normone{\D-P} \leq 4\eps$  and $\kolmogorov{\D}{P} \leq 4\alpha$; while in the soundness case $\lp[1](\D,\classlogconcave) \geq 97\eps$. Indeed, this can be done with a linear program on $\poly(k,\ell)$ variables and constraints, asking to find a $(k+\ell)$-histogram $\D^{\prime\prime}$ on a refinement of $\D$ and $\D^\prime$ minimizing the $\lp[1]$ distance to $\D$, under the constraint that the Kolmogorov distance to $\D^\prime$ be bounded by $2\alpha$. (In the completeness case, clearly a feasible solution exists, as (the flattening on this $(k+\ell)$-interval partition) of $P$ is one.) We therefore follow with this new formulation: either
   \begin{enumerate}[\sf(a)]
     \item $\D$ is $4\eps$-close to a log-concave $P$ (in $\lp[1]$ distance) \emph{and} $\D$ is $4\alpha$-close to $P$ (in Kolmogorov distance); and
@@ -1386,7 +1388,7 @@ where $\D$ is a $(k+\ell)$-histogram.\medskip
 
 \noindent This way, we have reduced the problem to a slightly more convenient one, that of~\cref{stage:2}.
 
-\subparagraph{Reducing to knowing the support $[a,b]$.}
+\subparagraph{Reducing to knowing the support $[a,b]$}
 The next step is to compute a good approximation of the support of any target log-concave distribution. This is easily obtained in time $O(k)$ as the interval $\{a,\cdots,b\}$ such that
 \begin{itemize}
   \item $\D(\{1,\dots,a-1\}) \leq \alpha$ but $\D(\{1,\dots,a\}) > \alpha$; and
