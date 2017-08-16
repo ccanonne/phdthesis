@@ -5,7 +5,7 @@ If it once becomes dark, there's no chance of a Snark--\\
 We have hardly a minute to waste!''}{Lewis Carroll, \textit{The Hunting of the Snark}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Notation.} We write $[n]$ for the (ordered) set of integers $\{1,\dots,n\}$, and $\ln$, $\log$ for respectively the natural and binary logarithms. We use the notation $\tildeOmega{f}$ to hide polylogarithmic dependencies on the argument, i.e. for expressions of the form $\bigOmega{f \log^c f}$ (for some absolute constant $c$). All throughout the paper, we denote by $\distribs{\domain[\Omega]}$ the set of discrete probability distributions over domain $\domain[\Omega]$. When the domain is a subset of the natural numbers $\N$, we shall identify a distribution $\p\in\distribs{\domain[\Omega]}$ with the sequence $(\p_i)_{i\in\N}\in\lp[1]$ corresponding to its probability mass function (pmf). For a subset $S \subseteq \Omega$, we denote by $\p|_S$ the normalized projection of $\p$ to $S$ (so $\p|_S$ is a probability distribution).
+\section{Notation.} We write $[n]$ for the (ordered) set of integers $\{1,\dots,n\}$, and $\llbracket n\rrbracket$ for $\{0,\dots,n-1\}$. We will denote by $\log$ (resp. $\ln$) the binary logarithm (resp. the natural logarithm). We use the notation $\tildeOmega{f}$ to hide polylogarithmic dependencies on the argument, i.e. for expressions of the form $\bigOmega{f \log^c f}$ (for some absolute constant $c$). All throughout the paper, we denote by $\distribs{\domain[\Omega]}$ the set of discrete probability distributions over domain $\domain[\Omega]$. When the domain is a subset of the natural numbers $\N$, we shall identify a distribution $\p\in\distribs{\domain[\Omega]}$ with the sequence $(\p_i)_{i\in\N}\in\lp[1]$ corresponding to its probability mass function (pmf). For a subset $S \subseteq \Omega$, we denote by $\p|_S$ the normalized projection of $\p$ to $S$ (so $\p|_S$ is a probability distribution).
 
 For an alphabet $\Sigma$, we denote the projection of $x \in \Sigma^n$ to a subset of
   coordinates $I \subseteq [n]$ by $x|_I$. For $i \in [n]$, we write
@@ -22,7 +22,7 @@ For an alphabet $\Sigma$, we denote the projection of $x \in \Sigma^n$ to a subs
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \paragraph{Distributions and metrics} 
-For $m \in \N$, we write $[m]$ for the set $\{0,1,\dots,m-1\}$, and $\log$ (resp. $\ln$) for the binary logarithm (resp. the natural logarithm). A probability distribution over (discrete) domain $\Omega$ is a function $\p\colon\Omega\to[0,1]$ such that $\normone{\p}\eqdef \sum_{\omega\in\Omega}\p(\omega)=1$; we denote by $\distribs{\Omega}$ the set of all probability distributions over domain $\Omega$. 
+A probability distribution over (discrete) domain $\Omega$ is a function $\p\colon\Omega\to[0,1]$ such that $\normone{\p}\eqdef \sum_{\omega\in\Omega}\p(\omega)=1$; we denote by $\distribs{\Omega}$ the set of all probability distributions over domain $\Omega$. 
 Recall that for two probability distributions $\p,\q\in\distribs{\Omega}$, their \emph{total variation distance} (or statistical distance) is defined as 
 $
      \totalvardist{\p}{\q} \eqdef \sup_{S\subseteq\Omega} (\p(S)-\q(S)) = \frac{1}{2}\sum_{\omega\in\Omega} \abs{\p(\omega)-\q(\omega)},
@@ -54,7 +54,7 @@ In other words, \Tester must accept with high probability if the unknown distrib
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Distributions and metrics} 
-Hereafter, we write $[n]$ for the set $\{1,\dots,n\}$, and $\log$ for the logarithm in base $2$. A \emph{probability distribution} over a finite domain $\domain$ is a non-negative function $\D\colon\domain\to[0,1]$ such that $\sum_{x\in\domain} \D(x) = 1$; we denote by $\uniform_{\domain}$ the uniform distribution on \domain. Moreover, given a distribution $\D$ over $\domain$ and a set $S\subseteq\domain$, we write $\D(S)$ for the total probability weight $\sum_{x\in S} \D(x)$ assigned to $S$ by $\D$.
+A \emph{probability distribution} over a finite domain $\domain$ is a non-negative function $\D\colon\domain\to[0,1]$ such that $\sum_{x\in\domain} \D(x) = 1$; we denote by $\uniform_{\domain}$ the uniform distribution on \domain. Moreover, given a distribution $\D$ over $\domain$ and a set $S\subseteq\domain$, we write $\D(S)$ for the total probability weight $\sum_{x\in S} \D(x)$ assigned to $S$ by $\D$.
 
 \paragraph{Previous tools from probability.}
 As previously mentioned, in this work we will be concerned with the total variation distance between distributions. Of interest for the analysis of some of our algorithms, and assuming \domain is totally ordered (in our case, $\domain=[n]$), one can also define the \emph{Kolmogorov distance} between $\D_1$ and $\D_2$ as
@@ -174,7 +174,7 @@ A random variable $X$ is said to follow a \emph{Poisson Binomial Distribution} (
 \end{definition}
 \noindent It is not hard to show that Poisson Binomial Distributions are in particular log-concave. One can generalize even further, by allowing each random variable of the summation to be integer-valued:
 \begin{definition}\label{def:siirv}
-Fix any $k\geq 0$. We say a random variable $X$ is a \emph{$k$-Sum of Independent Integer Random Variables} with parameter $n\in\N$ ($(n,k)$-SIIRV) if it can be written as $X=\sum_{j=1}^n X_j$, where $X_1\dots,X_n$ are independent, non-necessarily identically distributed random variables taking value in $\{0,1,\dots,k-1\}$. We denote by $\classksiirv[n]{k}$ the class of all such $(n,k)$-SIIRVs.
+Fix any $k\geq 0$. We say a random variable $X$ is a \emph{$k$-Sum of Independent Integer Random Variables} with parameter $n\in\N$ ($(n,k)$-SIIRV) if it can be written as $X=\sum_{j=1}^n X_j$, where $X_1\dots,X_n$ are independent, non-necessarily identically distributed random variables taking value in $\modulo{k}$. We denote by $\classksiirv[n]{k}$ the class of all such $(n,k)$-SIIRVs.
 \end{definition}
 \noindent (The class of Poisson Binomial Distributions thus corresponds to the case $k=2$, that is $(n,2)$-SIIRVS.) A different type of generalization is that of Poisson Multinomial Distributions, where each summand is a random variable supported on the $k$ vectors of the standard basis of $\R^k$, instead of $[k]$:
 \begin{definition}\label{def:pmd}
@@ -342,13 +342,13 @@ For our SIIRV testing algorithm, we will need the following definition of the Fo
 
 \begin{definition}[Discrete Fourier Transform]
 For $x \in \R$, we let $e(x) \eqdef  \exp(-2i\pi x)$. The \emph{Discrete Fourier Transform (DFT) modulo $M$} of a function
-$F\colon[n] \to \C$ is  the function $\fourier{F}\colon[M]\to \C$ defined as
+$F\colon\modulo{n} \to \C$ is  the function $\fourier{F}\colon\modulo{M}\to \C$ defined as
 \[
     \fourier{F}(\xi)=\sum_{j=0}^{n-1} e\!\left(\frac{\xi j}{M}\right) F(j)
 \]
-for $\xi \in [M]$. The DFT modulo $M$ of a distribution $\p$, $\fourier{\p}$, is then the DFT modulo $M$ of its probability mass function (note that one can then equivalently see $\fourier{\p}(\xi)$ as the expectation $\fourier{\p}(\xi) = \shortexpect_{X\sim F}[e\!\left(\frac{\xi X}{M}\right)]$, for $\xi\in[M]$).
+for $\xi \in \modulo{M}$. The DFT modulo $M$ of a distribution $\p$, $\fourier{\p}$, is then the DFT modulo $M$ of its probability mass function (note that one can then equivalently see $\fourier{\p}(\xi)$ as the expectation $\fourier{\p}(\xi) = \shortexpect_{X\sim F}[e\!\left(\frac{\xi X}{M}\right)]$, for $\xi\in\modulo{M}$).
 
-The \emph{inverse DFT modulo $M$} onto the range $[m,m+M-1]$ of $\fourier{F}\colon [M] \to \C$, is the function $F\colon [m, m+M-1] \cap \Z \to \C$ defined by 
+The \emph{inverse DFT modulo $M$} onto the range $[m,m+M-1]$ of $\fourier{F}\colon \modulo{M} \to \C$, is the function $F\colon [m, m+M-1] \cap \Z \to \C$ defined by 
 \[
     F(j)= \frac{1}{M} \sum_{\xi=0}^{M-1} e\!\left(-\frac{\xi j}{M}\right) \fourier{F}(\xi),
 \]
@@ -357,7 +357,7 @@ for $j \in [m, m+M-1] \cap \Z$.
 
 Note that the DFT (modulo $M$) is a linear operator; moreover, we recall the standard fact relating the norms of a function and of its Fourier transform, that we will use extensively:
 \begin{theorem}[Plancherel's Theorem]
-For $M\geq 1$ and $F,G\colon[n] \to \C$, we have (i) $\sum_{j=0}^{n-1} F(j)\overline{G(j)} =  \frac{1}{M}\sum_{\xi=0}^{M-1} \fourier{F}(\xi)\overline{\fourier{G}(\xi)}$; and (ii) $\normtwo{F}= \frac{1}{\sqrt{M}}\normtwo{\fourier{F}}$, 
+For $M\geq 1$ and $F,G\colon\modulo{n} \to \C$, we have (i) $\sum_{j=0}^{n-1} F(j)\overline{G(j)} =  \frac{1}{M}\sum_{\xi=0}^{M-1} \fourier{F}(\xi)\overline{\fourier{G}(\xi)}$; and (ii) $\normtwo{F}= \frac{1}{\sqrt{M}}\normtwo{\fourier{F}}$, 
 where $\fourier{F},\fourier{G}$ are the DFT modulo $M$ of $F,G$, respectively.
 \end{theorem}
 \noindent(The latter equality is sometimes referred to as Parseval's theorem.) We also note that, for our PMD testing, we shall need the appropriate generalization of the Fourier transform to the multivariate setting. We leave this generalization to the corresponding section,~\cref{sec:pmd:testing}.
@@ -390,7 +390,7 @@ By Plancherel, we have
 $
   \normtwo{\p'}^2 = \frac{1}{M} \sum_{\xi=0}^{M-1} \dabs{\fourier{\p'}(\xi)}^2 = \frac{1}{M} \sum_{\xi=0}^{M-1} \dabs{\fourier{\p}(\xi)}^2
 $, 
-the second equality due to the definition of $\fourier{\p'}$. Indeed, for any $\xi\in[M]$, 
+the second equality due to the definition of $\fourier{\p'}$. Indeed, for any $\xi\in\modulo{M}$, 
 \begin{align*}
     \fourier{\p'}(\xi) &= \sum_{j=0}^{M-1} e^{-2i\pi \frac{j\xi}{M}} \p'(j) = \sum_{j=0}^{M-1} e^{-2i\pi \frac{j\xi}{M}} \sum_{\substack{j'\in\mathbb{N}\\j' = j \bmod M}} \p(j')
     = \sum_{j=0}^{M-1} \sum_{\substack{j'\in\mathbb{N}\\j' = j \bmod M}} e^{-2i\pi \frac{j'\xi}{M}} \p(j')
@@ -398,12 +398,12 @@ the second equality due to the definition of $\fourier{\p'}$. Indeed, for any $\
     &= \sum_{j\in\mathbb{N}} e^{-2i\pi \frac{j'\xi}{M}} \p(j')
     = \fourier{\p}(\xi)
 \end{align*}
-as $u\mapsto e^{-2i\pi u}$ is $1$-periodic. Since $\abs{\fourier{\p}(\xi)}\leq 1$ for every $\xi\in[M]$ (as $\fourier{\p}(\xi) = \shortexpect_{j\sim \p}[e^{-2i\pi \frac{j\xi}{M}}]$), we can upper bound the RHS as
+as $u\mapsto e^{-2i\pi u}$ is $1$-periodic. Since $\abs{\fourier{\p}(\xi)}\leq 1$ for every $\xi\in\modulo{M}$ (as $\fourier{\p}(\xi) = \shortexpect_{j\sim \p}[e^{-2i\pi \frac{j\xi}{M}}]$), we can upper bound the RHS as
 \[
     \frac{1}{M} \sum_{\xi=0}^{M-1} \dabs{\fourier{\p}(\xi)}^2 \leq \frac{1}{M} \sum_{r\geq 0} \sum_{\xi : \frac{1}{2^{r+1}} < \abs{\fourier{\p}(\xi)} \leq \frac{1}{2^{r}}} \abs{\fourier{\p}(\xi)}^2
-    \leq \frac{1}{M} \sum_{r\geq 0} \frac{1}{2^{2r}} \abs{\setOfSuchThat{ \xi\in[M] }{ \frac{1}{2^{r+1}} < \abs{\fourier{\p}(\xi)} }}\;.
+    \leq \frac{1}{M} \sum_{r\geq 0} \frac{1}{2^{2r}} \abs{\setOfSuchThat{ \xi\in\modulo{M} }{ \frac{1}{2^{r+1}} < \abs{\fourier{\p}(\xi)} }}\;.
 \]
-Invoking~\cref{lemma:FourierSupportLem}(ii) with parameter $\delta$ set to $\frac{1}{2^{r+1}}$, we get that $\abs{\setOfSuchThat{ \xi\in[M] }{ \frac{1}{2^{r+1}} < \abs{\fourier{\p}(\xi)} }} \leq 4Mk s^{-1} \sqrt{r+1}$, from which \[
+Invoking~\cref{lemma:FourierSupportLem}(ii) with parameter $\delta$ set to $\frac{1}{2^{r+1}}$, we get that $\abs{\setOfSuchThat{ \xi\in\modulo{M} }{ \frac{1}{2^{r+1}} < \abs{\fourier{\p}(\xi)} }} \leq 4Mk s^{-1} \sqrt{r+1}$, from which \[
     \normtwo{\p'}^2 \leq \frac{4k}{s} \sum_{r\geq 0} \frac{\sqrt{r+1}}{2^{2r}} \leq \frac{8k}{s}
 \]
 as desired.

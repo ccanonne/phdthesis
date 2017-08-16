@@ -2271,14 +2271,14 @@ As described above we partition the domain elements $[n]$ into
 to their probability weight in $\D^\ast$.
 Specifically, for $j = 1,\dots, \lceil \log(n/\eta)+1\rceil$, we let
 \begin{equation} \label{eq:Bj-def}
-B_j \eqdef \{x \in [n]: 2^{j-1}\cdot \eta/n \leq \D^\ast(x) < 2^j\cdot \eta/n\}
+B_j \eqdef \setOfSuchThat{ x \in [n] }{ 2^{j-1}\cdot \eta/n \leq \D^\ast(x) < 2^j\cdot \eta/n }
 \end{equation}
 and we let $B_0 \eqdef \{x \in [n]: \D^\ast(x) < \eta/n\}$.
 Let $b \eqdef \lceil \log(n/\eta)+1\rceil +1$ denote the number of buckets.
 
 We further define $J^h \eqdef \{j: \D^\ast(B_j) \geq \eta/b\}$ to denote the set of indices
 of ``heavy'' buckets, and let
-$J^\ell \eqdef\{j: \D^\ast(B_j)< \eta/b\}$ denote the set of indices
+$J^\ell \eqdef\setOfSuchThat{j }{ \D^\ast(B_j)< \eta/b }$ denote the set of indices
 of ``light'' buckets.  Note that we have
 \begin{equation} \label{eq:Jell-light}
 \sum_{j\in J^\ell\cup \{0\}}\D^\ast(B_j) < 2\eta.
@@ -3003,7 +3003,7 @@ where the last inequality holds since $k^\ast \leq j-1$.
 
 Next, consider the case that $\D^\ast(j) < {\eps_1}.$  In this case we build our
 intervals iteratively from right to left, as follows.  Let $j_1=j-1$
-and let $j_2$ be the minimum index in $\{0,\dots,j_1-1\}$
+and let $j_2$ be the minimum index in $\modulo{j_1}$
 such that
 \[ \D^\ast(\{j_2+1,\dots,j_1\}) \leq \D^\ast(j). \]
 (Observe that we must have $j_2 \geq 1$, because $\D^\ast(\{1,\dots,k^\ast\})
@@ -3018,11 +3018,11 @@ a ${\frac{1}2}$-\good witness for $j$ as desired.
 
 We continue in this fashion from right to left; i.e. if
 we have defined $j_2,\dots,j_t$ as above and there is an index $j'
-\in \{0,\dots,j_t-1\}$ such that
+\in \modulo{j_t}$ such that
 $
 \D^\ast(\{j'+1,\dots,j_t\}) > \D^\ast(j),
 $
-then we define $j_{t+1}$ to be the minimum index in $\{0,\dots,j_{t}-1\}$
+then we define $j_{t+1}$ to be the minimum index in $\modulo{j_t}$
 such that
 \[
 \D^\ast(\{j_{t+1}+1,\dots,j_t\}) \leq \D^\ast(j),
@@ -3040,7 +3040,7 @@ and hence $S_{t}$ is an ${\frac{1}2}$-\good witness for $j$.
 
 At some point, after intervals $S_1 = \{j_2+1,\dots,j_1\},\dots,S_t
 = \{j_{t+1}+1,\dots,j_t\}$ have been defined in this way, it will be the
-case that there is no index $j' \in \{0,\dots,j_{t+1}-1\}$ such that
+case that there is no index $j' \in \modulo{j_{t+1}}$ such that
 \mbox{$\D^\ast(\{j' + 1,\dots,j_{t+1}\}) > \D^\ast(j).$}
 At this point there are two possibilities:  first, if $j_{t+1}+1=1$,
 then $S_1,\dots,S_t$ give the desired partition of $\{1,\dots,j-1\}$.

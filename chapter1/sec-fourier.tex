@@ -32,8 +32,7 @@ a number of well-studied distribution families.
 
 Our first concrete application is a nearly sample-optimal algorithm for testing
 sums of independent integer random variables (SIIRVs). 
-Formally, an $(n, k)$-SIIRV is a sum of independent integer random variables each supported
-in $\{0, 1, \ldots, k-1\}$.
+Formally, an $(n, k)$-SIIRV is a sum of independent integer random variables each supported in $\modulo{k}=\{0,\dots,k-1\}$.
 SIIRVs comprise a rich class of distributions that arise in many settings. The special case of $k=2$, $\classksiirv[n]{2}$,
 was first considered by Poisson~\cite{Poisson:37} as a non-trivial extension of the Binomial distribution,
 and is known as Poisson binomial distribution (PBD). In application domains, SIIRVs have many uses in research areas
@@ -156,11 +155,11 @@ Lastly, we note that instead of $\sqrt{n}/\eps^2$ in the sample complexity above
 In this section, we prove the following theorem, which will be invoked as a crucial ingredient of our testing algorithms. Broadly speaking, the theorem ensures one can efficiently test whether an unknown distribution $\q$ has its Fourier transform concentrated on some (small) effective support $S$ (and if this is the case, learn the vector $\fourier{\q}\indicSet{S}$, the restriction of this Fourier transform to $S$, in $L_2$ distance).
 
 \begin{theorem}\label{theo:ft:effective:support}
-    Given parameters $M\geq 1$, $\eps,b\in(0,1]$, as well as a subset $S\subseteq [M]$ and sample access to a distribution $\q$ over $[M]$, \cref{algo:ft:effective:support} outputs either \reject or a collection of Fourier coefficients $\fourier{\h'}=(\fourier{\h'}(\xi))_{\xi\in S}$ such that with probability at least $7/10$, all the following statements hold simultaneously.
+    Given parameters $M\geq 1$, $\eps,b\in(0,1]$, as well as a subset $S\subseteq \modulo{M}$ and sample access to a distribution $\q$ over $\modulo{M}$, \cref{algo:ft:effective:support} outputs either \reject or a collection of Fourier coefficients $\fourier{\h'}=(\fourier{\h'}(\xi))_{\xi\in S}$ such that with probability at least $7/10$, all the following statements hold simultaneously.
     \begin{enumerate}
         \item\label{theo:ft:effective:support:i} if $\normtwo{\q}^2 > 2b$, then it outputs \reject;
-        \item\label{theo:ft:effective:support:ii} if $\normtwo{\q}^2 \leq 2b$ and every function $\q^\ast\colon[M]\to\R$ with $\fourier{\q^\ast}$ supported entirely on $S$ is such that $\normtwo{\q-\q^\ast} > \eps$, then it outputs \reject;
-        \item\label{theo:ft:effective:support:iii} if $\normtwo{\q}^2 \leq b$ and there exists a function $\q^\ast\colon[M]\to\R$ with $\fourier{\q^\ast}$ supported entirely on $S$ such that $\normtwo{\q-\q^\ast} \leq \frac{\eps}{2}$, then it does not output \reject;
+        \item\label{theo:ft:effective:support:ii} if $\normtwo{\q}^2 \leq 2b$ and every function $\q^\ast\colon\modulo{M}\to\R$ with $\fourier{\q^\ast}$ supported entirely on $S$ is such that $\normtwo{\q-\q^\ast} > \eps$, then it outputs \reject;
+        \item\label{theo:ft:effective:support:iii} if $\normtwo{\q}^2 \leq b$ and there exists a function $\q^\ast\colon\modulo{M}\to\R$ with $\fourier{\q^\ast}$ supported entirely on $S$ such that $\normtwo{\q-\q^\ast} \leq \frac{\eps}{2}$, then it does not output \reject;
         \item\label{theo:ft:effective:support:iv} if it does not output \reject, then $\normtwo{\fourier{\q}\indicSet{S}-\fourier{\h'}} \leq \frac{\eps\sqrt{M}}{10}$ and the inverse Fourier transform (modulo $M$) $\h'$ of the Fourier coefficients $\fourier{\h'}$ it outputs satisfies $\normtwo{\q-\h'} \leq \frac{6\eps}{5}$.
     \end{enumerate}
     Moreover, the algorithm takes $m=\bigO{\frac{\sqrt{b}}{\eps^2}+ \frac{\abs{S}}{M\eps^2} +\sqrt{M}}$ samples from $\q$, and runs in time $\bigO{m\abs{S}}$.
@@ -177,7 +176,7 @@ and the inequality is tight for $\q^\ast$ being the inverse Fourier transform (m
 \medskip
 
 \noindent \textbf{High-level idea.} 
-Let $\q$ be an unknown distribution supported on $M$ consecutive integers (we will later apply this to $\q\eqdef \p \bmod M$), and $S\subseteq[M]$ be a set of Fourier coefficients (symmetric with regard to $M$: $\xi\in S$ implies $-\xi \bmod M \in S$) such that $0\in S$. We can further assume that we know $b\geq 0$ such that $\normtwo{\q}^2 \leq b$.
+Let $\q$ be an unknown distribution supported on $M$ consecutive integers (we will later apply this to $\q\eqdef \p \bmod M$), and $S\subseteq\modulo{M}$ be a set of Fourier coefficients (symmetric with regard to $M$: $\xi\in S$ implies $-\xi \bmod M \in S$) such that $0\in S$. We can further assume that we know $b\geq 0$ such that $\normtwo{\q}^2 \leq b$.
 
 Given $\q$, we can consider its ``truncated Fourier expansion'' (with respect to $S$) $\fourier{\h}=\hat{\q}\indicSet{S}$ defined as
 \[
@@ -187,19 +186,19 @@ Given $\q$, we can consider its ``truncated Fourier expansion'' (with respect to
           0 & \text{ otherwise}
       \end{cases}
 \]
-for $\xi\in[M]$; and let $\h$ be the inverse Fourier transform (modulo $M$) of $\fourier{\h}$. Note that $\h$ is no longer in general a probability distribution.\medskip
+for $\xi\in\modulo{M}$; and let $\h$ be the inverse Fourier transform (modulo $M$) of $\fourier{\h}$. Note that $\h$ is no longer in general a probability distribution.\medskip
 
-To obtain the guarantees of~\cref{theo:ft:effective:support}, a natural idea is to take some number $m$ of samples from $\q$, and consider the empirical distribution $\q'$ they induce over $[M]$. By computing the Fourier coefficients (restricted to $S$) of this $\q'$, as well as the Fourier mass ``missed'' when doing so (i.e., the Fourier mass $\normtwo{\fourier{\q'}\indicSet{\bar{S}}}^2$ that $\q'$ puts outside of $S$) to sufficient accuracy, one may hope to prove~\cref{theo:ft:effective:support} with a reasonable bound on $m$.
+To obtain the guarantees of~\cref{theo:ft:effective:support}, a natural idea is to take some number $m$ of samples from $\q$, and consider the empirical distribution $\q'$ they induce over $\modulo{M}$. By computing the Fourier coefficients (restricted to $S$) of this $\q'$, as well as the Fourier mass ``missed'' when doing so (i.e., the Fourier mass $\normtwo{\fourier{\q'}\indicSet{\bar{S}}}^2$ that $\q'$ puts outside of $S$) to sufficient accuracy, one may hope to prove~\cref{theo:ft:effective:support} with a reasonable bound on $m$.
 
 The issue is that analyzing \emph{separately} the behavior of $\normtwo{\fourier{\q'}\indicSet{\bar{S}}}^2$ and $\normtwo{\fourier{\q'}\indicSet{S}-\fourier{\q'}\indicSet{S}}^2$ to show that they are both estimated sufficiently accurately, and both small enough, is not immediate. Instead, we will get a bound on both at the same time, by arguing concentration in a different manner -- namely, by analyzing a different tester for tolerant identity testing in $L_2$ norm.
 
 In more detail, letting $\h$ be as above, we have by Plancherel that
 \[
-  \sum_{i\in [M]} (\q'(i)-\h(i))^2 = \normtwo{\q'-\h}^2 = \frac{1}{M}\normtwo{\fourier{\q'}-\fourier{\h}}^2 = \frac{1}{M}\sum_{\xi=0}^{M-1} \dabs{\fourier{\q'}(\xi)-\fourier{\h}(\xi)}^2
+  \sum_{i\in \modulo{M}} (\q'(i)-\h(i))^2 = \normtwo{\q'-\h}^2 = \frac{1}{M}\normtwo{\fourier{\q'}-\fourier{\h}}^2 = \frac{1}{M}\sum_{\xi=0}^{M-1} \dabs{\fourier{\q'}(\xi)-\fourier{\h}(\xi)}^2
 \]
 and, expanding the definition of $\fourier{\h}$ and using Plancherel again, this can be rewritten as
 \begin{align*}
-  M\sum_{i\in [M]} (\q'(i)-\h(i))^2 &=  \normtwo{\fourier{\q}\indicSet{S}-\fourier{\q'}\indicSet{S}}^2 + \normtwo{\q'}^2 - \normtwo{\fourier{\q'}\indicSet{S}}^2.
+  M\sum_{i\in \modulo{M}} (\q'(i)-\h(i))^2 &=  \normtwo{\fourier{\q}\indicSet{S}-\fourier{\q'}\indicSet{S}}^2 + \normtwo{\q'}^2 - \normtwo{\fourier{\q'}\indicSet{S}}^2.
 \end{align*}
 (The full derivation will be given in the proof.) The left-hand side has two non-negative compound terms: the first, $\normtwo{\fourier{\p}\indicSet{S}-\fourier{\q'}\indicSet{S}}^2$, corresponds to the $L_2$ error obtained when learning the Fourier coefficients of $\q$ on $S$. The second, $\normtwo{\q'}^2 - \normtwo{\fourier{\q'}\indicSet{S}}^2 = \normtwo{\fourier{\q'}\indicSet{\bar{S}}}^2$, is the Fourier mass that our empirical $\q'$ puts ``outside of $S$.''
 
@@ -209,9 +208,9 @@ This is what we will do in~\cref{prop:l2:identity:tester}.
 
 \begin{algorithm}
   \begin{algorithmic}[1]
-    \Require parameters $M\geq 1$, $b,\eps\in(0,1]$; set $S\subseteq [M]$; sample access to distribution $\q$ over $[M]$
+    \Require parameters $M\geq 1$, $b,\eps\in(0,1]$; set $S\subseteq \modulo{M}$; sample access to distribution $\q$ over $\modulo{M}$
     \State\label{algo:ft:step:choosemprime} Set $m\gets \clg{C(\frac{\sqrt{b}}{\eps^2}+ \frac{\abs{S}}{M\eps^2}+ \sqrt{M})}$ \Comment{$C>0$ is an absolute constant}    \State Draw $m'\gets \poisson{m}$; if $m'>2m$, \Return \reject
-    \State\label{algo:ft:step:empr} Draw $m'$ samples from $\q$, and let $\q'$ be the corresponding empirical distribution over $[M]$
+    \State\label{algo:ft:step:empr} Draw $m'$ samples from $\q$, and let $\q'$ be the corresponding empirical distribution over $\modulo{M}$
     \State\label{algo:ft:step:norm} Compute $\normtwo{\q'}^2$, $\fourier{\q'}(\xi)$ for every $\xi\in S$, and $\normtwo{\fourier{\q'}\indicSet{S}}^2$ \Comment{Takes time $\bigO{m\abs{S}}$}
     \If{ $m'^2\normtwo{\q'}^2 - m' > \frac{3}{2}bm^2$ }\label{algo:ft:step:norm:check} \Return \reject
     \ElsIf{ $\normtwo{\q'}^2 - \frac{1}{M}\normtwo{\fourier{\q'}\indicSet{S}}^2 \geq 3\eps^2\left(\frac{m'}{m}\right)^2+\frac{1}{m'}$ } \Return \reject
@@ -226,11 +225,11 @@ This is what we will do in~\cref{prop:l2:identity:tester}.
 Given $m'\sim\poisson{m}$ samples from $\q$, let $\q'$ be the empirical distribution they define. 
 We first observe that with probability $2^{-\Omega(\eps^2m/b)}< \frac{1}{100}$, we have $m' \in [1\pm \frac{\eps}{100\sqrt{b}}]m$ and thus the algorithm does not output \reject in Step~\ref{algo:ft:step:choosemprime} (this follows from standard concentration bounds on Poisson random variables). We will afterwards assume this holds. By Plancherel, we have
 \[
-  \sum_{i\in [M]} (\q'(i)-\h(i))^2 = \normtwo{\q'-\h}^2 =  \frac{1}{M}\normtwo{\fourier{\q'}-\fourier{\h}}^2 = \frac{1}{M}\sum_{\xi=0}^{M-1} \dabs{\fourier{\q'}(\xi)-\fourier{\h}(\xi)}^2
+  \sum_{i\in \modulo{M}} (\q'(i)-\h(i))^2 = \normtwo{\q'-\h}^2 =  \frac{1}{M}\normtwo{\fourier{\q'}-\fourier{\h}}^2 = \frac{1}{M}\sum_{\xi=0}^{M-1} \dabs{\fourier{\q'}(\xi)-\fourier{\h}(\xi)}^2
 \]
 and, expanding the definition of $\fourier{\h}$, this yields
 \begin{align}
-  \sum_{i\in [M]} (\q'(i)-\h(i))^2 &=  \frac{1}{M}\sum_{\xi\in S} \dabs{\fourier{\q'}(\xi)-\fourier{\h}(\xi)}^2 + \frac{1}{M}\sum_{\xi\notin S} \dabs{\fourier{\q'}(\xi)}^2 \notag\\
+  \sum_{i\in \modulo{M}} (\q'(i)-\h(i))^2 &=  \frac{1}{M}\sum_{\xi\in S} \dabs{\fourier{\q'}(\xi)-\fourier{\h}(\xi)}^2 + \frac{1}{M}\sum_{\xi\notin S} \dabs{\fourier{\q'}(\xi)}^2 \notag\\
   &=  \frac{1}{M}\sum_{\xi\in S} \dabs{\fourier{\q'}(\xi)-\fourier{\q}(\xi)}^2 + \frac{1}{M}\sum_{\xi=0}^{M-1} \dabs{\fourier{\q'}(\xi)}^2 
   - \frac{1}{M}\sum_{\xi\in S} \dabs{\fourier{\q'}(\xi)}^2 \notag\\
   &=  \frac{1}{M}\left(\normtwo{\fourier{\q}\indicSet{S}-\fourier{\q'}\indicSet{S}}^2 + \normtwo{\fourier{\q'}}^2 - \normtwo{\fourier{\q'}\indicSet{S}}^2\right)  \notag\\
@@ -239,7 +238,7 @@ and, expanding the definition of $\fourier{\h}$, this yields
 where in the last step we invoked  Plancherel again to argue that $\frac{1}{M}\normtwo{\fourier{\q'}}^2=\normtwo{\q'}^2$.
 
 To analyze the correctness of the algorithm (specifically, the completeness), we will adopt the point of view suggested by~\eqref{eq:plancherel:statistic} and analyze instead the statistic
-$\sum_{i\in [M]} (\q'(i)-\h(i))^2$, when $\h$ is an explicit (pseudo) distribution on $[M]$ assumed known, and $\q'$ is the empirical distribution obtained by drawing $\poisson{m}$ samples from some unknown distribution $\q$. (Namely, we want to see this as a tolerant $L_2$ identity tester between $\q$ and $\h$.)
+$\sum_{i\in \modulo{M}} (\q'(i)-\h(i))^2$, when $\h$ is an explicit (pseudo) distribution on $\modulo{M}$ assumed known, and $\q'$ is the empirical distribution obtained by drawing $\poisson{m}$ samples from some unknown distribution $\q$. (Namely, we want to see this as a tolerant $L_2$ identity tester between $\q$ and $\h$.)
 
 \begin{itemize}
   \item We first show that, given that $m'=\bigOmega{\frac{\abs{S}}{M\eps^2}}$, with probability at least $\frac{99}{100}$ we have
@@ -272,7 +271,7 @@ and by Chebyshev,
     \leq 16\frac{\var[ X ]}{\shortexpect[ X ]^2}
     \leq \frac{32}{m^2\normtwo{\q}^2} + \frac{64 \norm{\q}_3^3}{m \normtwo{\q}^4 }
 \]
-Since $\q$ is supported on $[M]$, $\normtwo{\q}^2 \geq \frac{1}{M}$ and the first term is at most $\frac{32M}{m^2}$. The second term, by monotonicity of $\ell_p$-norms, is at most 
+Since $\q$ is supported on $\modulo{M}$, $\normtwo{\q}^2 \geq \frac{1}{M}$ and the first term is at most $\frac{32M}{m^2}$. The second term, by monotonicity of $\ell_p$-norms, is at most 
 $\frac{64 \normtwo{\q}^3}{m \normtwo{\q}^4 } = \frac{48}{m \normtwo{\q} } \leq \frac{48\sqrt{M}}{m}$. The RHS is then at most $\frac{1}{100}$ for a large enough choice of $C>0$ in the definition of $m$. Thus, with probability at least $1-\frac{1}{100}$ we have $m'^2\normtwo{\q'}^2 - m' > \frac{3}{2}b$, and the algorithm outputs \reject in Step~\ref{algo:ft:step:norm:check}.
 
 Moreover, if $\normtwo{\q}^2 \leq b$, then the same analysis shows that
@@ -286,7 +285,7 @@ and with probability at least $1-\frac{1}{100}$ the algorithm does not output \r
   
     By the remark following the statement of the theorem, it is sufficient to show that the algorithm outputs \reject (with high probability) if $\normtwo{\fourier{\q}\indicSet{\bar{S}}}^2 > \eps^2 M$, and that if both $\normtwo{\q}^2 \leq b$ and $\normtwo{\fourier{\q}\indicSet{\bar{S}}}^2 \leq \frac{\eps^2}{4}M$ then it does not output~\reject; and that whenever the algorithm does not output \reject, then $\normtwo{\fourier{\q}-\fourier{\h}} \leq \eps^2 M$.
     
-    Observe that calling~\cref{algo:tol:l2:identity:tester} with our $m'=\poisson{m}$ samples from $\q$ (distribution over $[M]$), parameters $\frac{\eps}{2}$ and $2b$, and the explicit description of the pseudo distribution $\p^\ast\eqdef \frac{m'}{m}\h$ (which one would obtain for $\h$ being the inverse Fourier transform of $\fourier{\q}\indicSet{S}$) would result by~\cref{prop:l2:identity:tester} (since $m \geq c\frac{\sqrt{2b}}{(\eps/2)^2} = 244\sqrt{2}\frac{\sqrt{b}}{\eps^2}$, where $c$ is as in~\cref{prop:l2:identity:tester}) in having the following guarantees on $\frac{\sqrt{Z}}{m}$, where $Z$ is the statistic defined in~\cref{algo:tol:l2:identity:tester}
+    Observe that calling~\cref{algo:tol:l2:identity:tester} with our $m'=\poisson{m}$ samples from $\q$ (distribution over $\modulo{M}$), parameters $\frac{\eps}{2}$ and $2b$, and the explicit description of the pseudo distribution $\p^\ast\eqdef \frac{m'}{m}\h$ (which one would obtain for $\h$ being the inverse Fourier transform of $\fourier{\q}\indicSet{S}$) would result by~\cref{prop:l2:identity:tester} (since $m \geq c\frac{\sqrt{2b}}{(\eps/2)^2} = 244\sqrt{2}\frac{\sqrt{b}}{\eps^2}$, where $c$ is as in~\cref{prop:l2:identity:tester}) in having the following guarantees on $\frac{\sqrt{Z}}{m}$, where $Z$ is the statistic defined in~\cref{algo:tol:l2:identity:tester}
     \begin{itemize}
       \item if $\normtwo{\q-\p^\ast} \leq \frac{\eps}{2}$, then $\frac{\sqrt{Z}}{m} \leq \sqrt{2.9}\eps$ with probability at least $3/4$;
       \item if $\normtwo{\q-\p^\ast} \geq \eps$, then $\frac{\sqrt{Z}}{m} \geq \sqrt{3.1}\eps$ with probability at least $3/4$;
@@ -469,7 +468,7 @@ and (b) $\widetilde{\mu}$, a tentative approximation to $\shortexpect_{X \sim \p
     \EndIf
     
     \If{ $\widetilde{\sigma}  \leq 2k\sqrt{\ln\frac{10}{\eps}}$ }\label{algo:step:small:variance}
-        \State\label{algo:step:def:interval:smallvariance} Set $M \gets 1+2\clg{15k \ln\frac{10}{\eps}}$, and let $I \gets [\flr{ \widetilde{\mu} }-\frac{M-1}{2},\flr{ \widetilde{\mu} }+\frac{M-1}{2}]$; and $S\gets [M]$
+        \State\label{algo:step:def:interval:smallvariance} Set $M \gets 1+2\clg{15k \ln\frac{10}{\eps}}$, and let $I \gets [\flr{ \widetilde{\mu} }-\frac{M-1}{2},\flr{ \widetilde{\mu} }+\frac{M-1}{2}]$; and $S\gets \modulo{M}$
         \State\label{algo:step:effectivesupport:smallvariance} Draw $O(1/\eps)$ samples from $\p$, to distinguish between $\p(I) \leq 1-\frac{\eps}{4}$ and $\p(I) > 1-\frac{\eps}{5}$.
         If the former is detected, \Return \reject
         \State\label{algo:step:empirical:smallvariance} Take $N=C\left( \frac{\abs{S}}{\eps^2} \right) = \bigO{ \frac{k}{\eps^2} \log\frac{1}{\eps} }$ samples from $\p$ to get an empirical distribution $\h$
@@ -566,7 +565,7 @@ To conclude and establish the conclusion of the first item, as well as the secon
 \begin{claim}[Learning when the effective support is small]\label{claim:learn:empirical}
   If $\p$ satisfies $\p(I)\geq 1-\frac{\eps}{4}$, and the ``If'' statement at Step~\ref{algo:step:small:variance} holds, then with probability at least $19/20$ the empirical distribution $\h$ obtained in Step~\ref{algo:step:empirical:smallvariance} satisfies (i) $\totalvardist{\p}{\h} \leq \frac{\eps}{2}$ and (ii) $\normtwo{\fourier{\p}-\fourier{\h}} \leq \frac{\eps^2}{100}$.
 \end{claim}
-\begin{proof}The first item, (i), follows from standard bounds on the rate of convergence of the empirical distribution (namely, that $O(r/\eps^2)$ samples suffice for it to approximate an arbitrary distribution over support of size $r$ up to total variation distance $\eps$). Recalling that in this branch of the algorithm, $S=[M]$ with $M=O(k\log(1/\eps))$, the second item, (ii), is proven by the same argument as in (the first bullet in) the proof of~\cref{theo:ft:effective:support}.
+\begin{proof}The first item, (i), follows from standard bounds on the rate of convergence of the empirical distribution (namely, that $O(r/\eps^2)$ samples suffice for it to approximate an arbitrary distribution over support of size $r$ up to total variation distance $\eps$). Recalling that in this branch of the algorithm, $S=\modulo{M}$ with $M=O(k\log(1/\eps))$, the second item, (ii), is proven by the same argument as in (the first bullet in) the proof of~\cref{theo:ft:effective:support}.
 \end{proof}
 
 \begin{claim}[Any $(n,k)$-SIIRV puts near all its Fourier mass in $S$]\label{claim:ksiirv:fourier:concentrated}
@@ -588,7 +587,7 @@ again at most $\frac{\eps^2}{100}$ for big enough $C''$ in the definition of $\d
 
 \subsubsection{Putting it together}
 
-In what follows, we implicitly assume that $I$ (as defined in Step~\ref{algo:step:def:interval} of~\cref{algo:ksiirv:tester}) is equal to $[M]$. This can be done without loss of generality, as this is just a shifting of the interval and all our Fourier arguments are made modulo $M$.
+In what follows, we implicitly assume that $I$ (as defined in Step~\ref{algo:step:def:interval} of~\cref{algo:ksiirv:tester}) is equal to $\modulo{M}$. This can be done without loss of generality, as this is just a shifting of the interval and all our Fourier arguments are made modulo $M$.
 
 \begin{lemma}[Putting it together: completeness]\label{lemma:completeness}
   If $\p \in \classksiirv[n]{k}$, then the algorithm outputs \accept with probability at least $3/5$.
@@ -601,7 +600,7 @@ Assume $\p \in \classksiirv[n]{k}$. We condition on the estimates obtained in St
 In this case, by~\cref{claim:estimate:effectivesupport} the algorithm does not output \reject in Step~\ref{algo:step:effectivesupport:smallvariance} with probability $19/20$. Since $\p(I)\geq 1-\frac{\eps}{4}$, by~\cref{claim:learn:empirical} we get that with probability at least $19/20$ it is the case that $\totalvardist{\p}{\h}\leq \frac{\eps}{2}$, and therefore the computational check in Step~\ref{algo:step:cover} will succeed, and return \accept. Overall, by a union bound the algorithm is successful with probability at least $1-3/20>3/5$.
 
 \item\textbf{Case 2:} the branch in Step~\ref{algo:step:big:variance} is taken.
-In this case, by~\cref{claim:estimate:effectivesupport} the algorithm does not output \reject in Step~\ref{algo:step:effectivesupport} with probability $19/20$. From~\cref{claim:ksiirv:l2:norm}, we know that $\p'$ as defined in Step~\ref{algo:step:fourier:support} satisfies $\normtwo{\p'}^2 \leq \frac{8k}{s}\leq \frac{16k}{\widetilde{\sigma}} = b$.  Moreover,~\cref{claim:ksiirv:fourier:concentrated} guarantees that $\normtwo{\fourier{\p'}\indicSet{\bar{S}}} \leq \frac{\eps}{10\sqrt{M}} = \frac{\eps'}{2}$ (for $\eps' = \frac{\eps}{5\sqrt{M}}$). Since Step~\ref{algo:step:fourier:support} calls~\cref{algo:ft:effective:support} with parameters $M, \eps', b$, and $S$, \cref{theo:ft:effective:support:iii} of~\cref{theo:ft:effective:support} ensures that (with probability at least $7/10$) the algorithm will not output \reject in Step~\ref{algo:step:fourier:support}, but instead return the $S$-sparse Fourier transform of some $\h$ supported on $[M]$ with $\normtwo{\p'-\h} \leq \frac{6}{5}\eps' = \frac{6\eps}{25\sqrt{M}}$. 
+In this case, by~\cref{claim:estimate:effectivesupport} the algorithm does not output \reject in Step~\ref{algo:step:effectivesupport} with probability $19/20$. From~\cref{claim:ksiirv:l2:norm}, we know that $\p'$ as defined in Step~\ref{algo:step:fourier:support} satisfies $\normtwo{\p'}^2 \leq \frac{8k}{s}\leq \frac{16k}{\widetilde{\sigma}} = b$.  Moreover,~\cref{claim:ksiirv:fourier:concentrated} guarantees that $\normtwo{\fourier{\p'}\indicSet{\bar{S}}} \leq \frac{\eps}{10\sqrt{M}} = \frac{\eps'}{2}$ (for $\eps' = \frac{\eps}{5\sqrt{M}}$). Since Step~\ref{algo:step:fourier:support} calls~\cref{algo:ft:effective:support} with parameters $M, \eps', b$, and $S$, \cref{theo:ft:effective:support:iii} of~\cref{theo:ft:effective:support} ensures that (with probability at least $7/10$) the algorithm will not output \reject in Step~\ref{algo:step:fourier:support}, but instead return the $S$-sparse Fourier transform of some $\h$ supported on $\modulo{M}$ with $\normtwo{\p'-\h} \leq \frac{6}{5}\eps' = \frac{6\eps}{25\sqrt{M}}$. 
 
 By Cauchy--Schwarz, we then have $\normone{\p'-\h} \leq \sqrt{M}\normtwo{\p'-\h} \leq \frac{6\eps}{25}$, i.e. $\totalvardist{\p'}{\h} \leq \frac{3\eps}{25}$. But since
 $\totalvardist{\p}{\p'} \leq \frac{\eps}{4}$, we get $\totalvardist{\p}{\h} \leq \frac{\eps}{4}+\frac{3\eps}{25} < \frac{\eps}{2}$, and the computational check in Step~\ref{algo:step:cover} will succeed, and return \accept.
@@ -633,9 +632,9 @@ In particular, we hereafter assume that $\widetilde{\sigma} \leq 2k\sqrt{n}$.
   $
        \normtwo{\h-\p'} \leq \frac{6\eps}{25\sqrt{M}}
   $ 
-  which by Cauchy--Schwarz implies, as both $\h$ and $\p'$ are supported on $[M]$, that $\normone{\h-\p'}\leq \frac{6\eps}{25}$, or equivalently $\totalvardist{\h}{\p'}\leq \frac{3\eps}{25}$.
+  which by Cauchy--Schwarz implies, as both $\h$ and $\p'$ are supported on $\modulo{M}$, that $\normone{\h-\p'}\leq \frac{6\eps}{25}$, or equivalently $\totalvardist{\h}{\p'}\leq \frac{3\eps}{25}$.
   
-  Finally, since the algorithm outputted \accept in Step~\ref{algo:step:cover}, there exists $\p^\ast\in\classksiirv[n]{k}$ (supported on $[M]$) such that $\totalvardist{\h}{\p^\ast}\leq \frac{\eps}{2}$, and by the triangle inequality
+  Finally, since the algorithm outputted \accept in Step~\ref{algo:step:cover}, there exists $\p^\ast\in\classksiirv[n]{k}$ (supported on $\modulo{M}$) such that $\totalvardist{\h}{\p^\ast}\leq \frac{\eps}{2}$, and by the triangle inequality
   \[
       \totalvardist{\p}{\p^\ast} \leq \totalvardist{\p}{\p'} + \totalvardist{\h}{\p'} + \totalvardist{\h}{\p^\ast} \leq \frac{\eps}{4} + \frac{3\eps}{25} + \frac{\eps}{2} \leq \eps
   \]
@@ -742,7 +741,7 @@ We remark that the statement of~\cref{theo:testing:general} can be made slightly
       = \frac{1}{M}\sum_{\xi\in S}\dabs{\fourier{\p}(\xi)}^2 + \normtwo{\fourier{\p}\indicSet{\bar{S}}}^2
       \leq \frac{\abs{S}}{M} + \frac{\eps^2}{100M} = \frac{\abs{S}+\frac{\eps^2}{100}}{M}
   \end{equation}
-  from~\cref{condition:1} and the fact that $\dabs{\fourier{\p}(\xi)}\leq 1$ for any $\xi\in[M]$. Then, we have $\sqrt{b}M \leq \sqrt{2\frac{\abs{S}}{M}}M = \sqrt{2\abs{S}M}$, concluding the remark. 
+  from~\cref{condition:1} and the fact that $\dabs{\fourier{\p}(\xi)}\leq 1$ for any $\xi\in\modulo{M}$. Then, we have $\sqrt{b}M \leq \sqrt{2\frac{\abs{S}}{M}}M = \sqrt{2\abs{S}M}$, concluding the remark. 
   
   The algorithm is given in~\cref{algo:general:tester}. Its sample complexity and running time are immediate from the assumptions on the input parameters, and its description; we thus focus on establishing its correctness.
   
@@ -766,7 +765,7 @@ Since the algorithm passed Step~\ref{algo:general:step:effectivesupportcheck}, w
   \]
   which by Cauchy--Schwarz implies that $\normone{\h-\p'}\leq \frac{6\eps}{25}$, or equivalently $\totalvardist{\h}{\p'}\leq \frac{3\eps}{25}$.
   
-  Finally, since the algorithm outputted \accept in Step~\ref{algo:general:step:project}, there exists $\p^\ast\in\property$ (supported on $[M]$) such that $\totalvardist{\h}{\p^\ast}\leq \frac{\eps}{2}$, and by the triangle inequality
+  Finally, since the algorithm outputted \accept in Step~\ref{algo:general:step:project}, there exists $\p^\ast\in\property$ (supported on $\modulo{M}$) such that $\totalvardist{\h}{\p^\ast}\leq \frac{\eps}{2}$, and by the triangle inequality
   \[
       \totalvardist{\p}{\p^\ast} \leq \totalvardist{\p}{\p'} + \totalvardist{\h}{\p'} + \totalvardist{\h}{\p^\ast} \leq \frac{\eps}{4} + \frac{3\eps}{25} + \frac{\eps}{2} \leq \eps
   \]
@@ -818,7 +817,7 @@ With this in hand, \cref{algo:ft:effective:support} easily generalizes to high d
     \Require parameters, a $k \times k$ matrix $M$, $b,\eps\in(0,1]$; a fundamental domain $A$ of $L(M)$; sample access to distribution $\q$ over $A$
     \State\label{algo:ft:pmd:step:choosemprime} Set $m\gets \clg{C(\frac{\sqrt{b}}{\eps^2}+ \sqrt{\det(M)})}$ \Comment{$C>0$ is an absolute constant; $C=2000$ works.}
     \State Draw $m'\gets \poisson{m}$; if $m'>2m$, \Return \reject
-    \State\label{algo:ft:pmd:step:empr} Draw $m'$ samples from $\q$, and let $\q'$ be the corresponding empirical distribution over $[M]$
+    \State\label{algo:ft:pmd:step:empr} Draw $m'$ samples from $\q$, and let $\q'$ be the corresponding empirical distribution over $\modulo{M}$
     \State\label{algo:ft:pmd:step:norm} Compute $\normtwo{\q'}^2$, $\fourier{\q'}(\xi)$ for every $\xi\in S$, and $\normtwo{\fourier{\q'}\indicSet{S}}^2$ \Comment{Takes time $\bigO{m\abs{S}}$}
     \If{ $m'^2\normtwo{\q'}^2 - m' > \frac{3}{2}bm^2$ }\label{algo:ft:pmd:step:norm:check} \Return \reject
     \ElsIf{ $\normtwo{\q'}^2 - \normtwo{\fourier{\q'}\indicSet{S}}^2 \geq 3\eps^2+\frac{1}{m'}$ } \Return \reject
@@ -829,7 +828,7 @@ With this in hand, \cref{algo:ft:effective:support} easily generalizes to high d
   \caption{Testing the Fourier Transform Effective Support in high dimension}\label{algo:ft:pmd:effective:support:high-dim}
 \end{algorithm}
 
-Crucially, we observe that the proof of~\cref{theo:ft:effective:support} nowhere requires that $[M]$ be a set of $M$ consecutive integers, but only that it is a fundamental domain of the lattice used in the DFT. Consequently,~\cref{theo:ft:effective:support} also applies in this high dimensional setting, with appropriate notation. Note that the size of any fundamental domain is $\det(M)$ which appears in place of $M$ in the sample complexity.
+Crucially, we observe that the proof of~\cref{theo:ft:effective:support} nowhere requires that $\modulo{M}$ be a set of $M$ consecutive integers, but only that it is a fundamental domain of the lattice used in the DFT. Consequently,~\cref{theo:ft:effective:support} also applies in this high dimensional setting, with appropriate notation. Note that the size of any fundamental domain is $\det(M)$ which appears in place of $M$ in the sample complexity.
 
 \begin{algorithm}[ht]
   \begin{algorithmic}[1]
@@ -928,12 +927,12 @@ Given parameters $n\in\N$, $\eps\in(0,1]$, and sample access to a distribution $
         \item if $\p \in \classlogconcave[n]$, then it outputs \accept with probability at least $3/5$;
         \item if $\totalvardist{\p}{\classlogconcave[n]} > \eps$, then it outputs \reject with probability at least $3/5$.
     \end{enumerate}
-where $\classlogconcave[n]$ denotes the class of (discrete) log-concave distributions over $\{0,\dots,n-1\}$. Moreover, the algorithm takes $O(\sqrt{n}/\eps^2) + \tildeO{(\log(n/\eps)/\eps)^{5/2}}$ samples from $\p$; and runs in time $O(\sqrt{n} \cdot \poly(1/\eps))$.
+where $\classlogconcave[n]$ denotes the class of (discrete) log-concave distributions over $\modulo{n}$. Moreover, the algorithm takes $O(\sqrt{n}/\eps^2) + \tildeO{(\log(n/\eps)/\eps)^{5/2}}$ samples from $\p$; and runs in time $O(\sqrt{n} \cdot \poly(1/\eps))$.
 \end{theorem}
 
 We will sketch the proof and algorithm here. We first remark that the Maximum Likelihood Estimator (MLE) for log-concave distributions can be formulated as a convex program~\cite{DR:11}, 
 which can be solved in sample polynomial time. One advantage of the MLE for log-concave distributions is that it properly learns log-concave distributions (over support size $M$) 
-to within Hellinger distance $\eps$ using $\tildeO{(\log M)/\eps^{5/2}}$ samples\footnote{We note that a similar, slightly stronger result is already known for \emph{continuous} log-concave distributions, which can be learned to Hellinger distance $\eps$ from only $O(\eps^{-5/2})$ samples~\cite{KS:16}. The proof of this result, however, does not seem to generalize to discrete log-concave distributions, which is our focus here; thus, we establish in~\cref{appendix:log:concave} the learning result we require, namely an upper bound on the sample complexity of the MLE estimator for learning the class of log-concave distributions over $\{0,\dots,M-1\}$ in Hellinger distance (\cref{theo:mle:logconcave}).}. Note that the squared Hellinger distance satisfies:
+to within Hellinger distance $\eps$ using $\tildeO{(\log M)/\eps^{5/2}}$ samples\footnote{We note that a similar, slightly stronger result is already known for \emph{continuous} log-concave distributions, which can be learned to Hellinger distance $\eps$ from only $O(\eps^{-5/2})$ samples~\cite{KS:16}. The proof of this result, however, does not seem to generalize to discrete log-concave distributions, which is our focus here; thus, we establish in~\cref{appendix:log:concave} the learning result we require, namely an upper bound on the sample complexity of the MLE estimator for learning the class of log-concave distributions over $\modulo{M}$ in Hellinger distance (\cref{theo:mle:logconcave}).}. Note that the squared Hellinger distance satisfies:
 \[
 \hellinger{\p}{\q}^2 = \sum_x (\sqrt(\p(x)-\sqrt{\q(x)})^2 = \sum_x \frac{(\p(x)-\q(x))^2}{(\sqrt{\p} +\sqrt{\q})^2} \geq \frac{\normtwo{\p-\q}}{2\max\{\p(x),\q(x)\}} \;.
 \]
@@ -1112,7 +1111,7 @@ Thus, the result above, while involving a logarithmic dependence on the support 
 
 In order to prove~\cref{theo:mle:logconcave}, we obtain along the way several interesting results on discrete (and continuous) log-concave distributions, namely a bound on their bracketing entropy (\cref{theo:bracketing:hellinger}) and an approximation result (\cref{theo:approx:hellinger}), which we believe are of independent interest.\medskip
 
-In what follows, $\domain$ will denote either $\R$ or $\Z$; we let $\classlogconcave[\domain]$ denote the set of log-concave distributions over $\domain$, and $\classlogconcave[n]\subseteq \classlogconcave[\Z]$ be the subset of log-concave distributions supported on $\{0,\dots,n-1\}$.
+In what follows, $\domain$ will denote either $\R$ or $\Z$; we let $\classlogconcave[\domain]$ denote the set of log-concave distributions over $\domain$, and $\classlogconcave[n]\subseteq \classlogconcave[\Z]$ be the subset of log-concave distributions supported on $\modulo{n}$.
 \begin{theorem}\label{theo:bracketing:hellinger}
   For every $\eps\in(0,1)$,
   \[
@@ -1211,7 +1210,7 @@ establishing the third item. (By dividing $\eps$ by a sufficiently big absolute 
 
 \noindent We can finally prove~\cref{theo:bracketing:hellinger}:
 \begin{proofof}{\cref{theo:bracketing:hellinger}}
-We can slightly strengthen the proof of~\cref{theo:approx:hellinger} for the case of $\classlogconcave[n]$, by imposing some restriction on the form of the `approximating distributions'' $g$. Namely, for any $\eps\in(0,1)$, fix any $p\in\classlogconcave[n]$ and consider the construction of $g^\ell,g^u$ as in the proof of~\cref{theo:approx:hellinger}. Clearly, we can assume $[a,b]\subseteq\{0,\dots,n-1\}$. 
+We can slightly strengthen the proof of~\cref{theo:approx:hellinger} for the case of $\classlogconcave[n]$, by imposing some restriction on the form of the `approximating distributions'' $g$. Namely, for any $\eps\in(0,1)$, fix any $p\in\classlogconcave[n]$ and consider the construction of $g^\ell,g^u$ as in the proof of~\cref{theo:approx:hellinger}. Clearly, we can assume $[a,b]\subseteq\modulo{n}$. 
 
 Now, we modify $g^j$ as follows (for $j\in\{\ell,u\}$): for $1\leq m\leq M$, consider the interval $I_m=[a_m,b_m]$, and the corresponding ``piece'' $g^j_m$ of $g$ on $I_m$. We let $\tilde{g}^j_m$ be the pseudo-distribution defined from $g^j_m$ as follows: it is affine on $I_m$, with
 \[
@@ -1231,7 +1230,7 @@ i.e. $g^j_m$ is $g$ ``rounded up'' (resp. down) to the near multiple of $\frac{\
 showing that we get (up to a constant factor loss in the distance) (iii) as well. Given this, we get that specifying $(\tilde{g}^\ell,\tilde{g}^u)$ can be done by the list of the $O(1/\sqrt{\eps})$ endpoints along with the value of each $\tilde{g}^j$ for all of these endpoints. Now, given the two endpoints, one gets the size of the corresponding interval $I_m$ (which is at most $n$), and the two values to specify are a multiple of $\eps^2/(M\abs{I_m})$ in $[0,1]$. (If we were to stop here, we would get the existence of an $\eps$-cover $\class'_\eps$ of $\classlogconcave[n]$ in Hellinger distance of size $(n/\eps)^{O(1/\sqrt{\eps})}$.)
 
 
-\paragraph{One last step: outside $[a,b]$} To get the bracketing bound we seek, we need to do one last modification to our pair $(\tilde{g}^\ell,\tilde{g}^u)$. Specifically, in the above we have one issue when approximating $p$: namely, that outside of their common support $\{a,\dots,b\}$, both $\tilde{g}^j$'s are $0$. While this is fine for the lower bound $\tilde{g}^\ell$, this is not for $\tilde{g}^u$, as it needs to dominate $p$ outside of $\{a,\dots,b\}$ as well, where $p$ may have $O(\eps^2)$  probability mass. Thus, we need to adapt the construction above, as follows (we treat the setting of $\tilde{g}^u$ on $\{b+1,\dots,n\}$, the definition on $\{0,\dots, a-1\}$ is similar).
+\paragraph{One last step: outside $[a,b]$} To get the bracketing bound we seek, we need to do one last modification to our pair $(\tilde{g}^\ell,\tilde{g}^u)$. Specifically, in the above we have one issue when approximating $p$: namely, that outside of their common support $\{a,\dots,b\}$, both $\tilde{g}^j$'s are $0$. While this is fine for the lower bound $\tilde{g}^\ell$, this is not for $\tilde{g}^u$, as it needs to dominate $p$ outside of $\{a,\dots,b\}$ as well, where $p$ may have $O(\eps^2)$  probability mass. Thus, we need to adapt the construction above, as follows (we treat the setting of $\tilde{g}^u$ on $\{b+1,\dots,n\}$, the definition on $\modulo{a}$ is similar).
 
 First, observe if $p(b+1)=0$, we are done, as then by monotonicity we must have $(k)=0$ for all $k\geq b+1$, and so setting $\tilde{g}^u=0$ on $\{b+1,\dots,n\}$ suffices. Thus, we hereafter assume $p(b+1)>0$; and, for $b+1\leq k\leq n$, set
 \[
