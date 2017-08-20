@@ -462,7 +462,7 @@ Yet, one can also correct the distribution by simulating samples directly from i
 \subsection{From correcting to agnostic learning}\label{ssec:connections:agnostic}
 
 Let $\class$  and $\mathcal{H}$ be two classes of probability distributions over $\domain$. Recall that a \emph{(semi-)agnostic learner for \class} (using hypothesis class $\mathcal{H}$) is a learning algorithm \Algo which, given sample access to an arbitrary distribution $\D$ 
-and parameter $\eps$, outputs a hypothesis $\hat{\D}\in\mathcal{H}$ such that, with high probability, $\hat{\D}$ does ``as much as well as the best approximation from $ \class$:''
+and parameter $\eps$, outputs a hypothesis $\hat{\D}\in\mathcal{H}$ such that, with high probability, $\hat{\D}$ does ``as well as the best approximation from $ \class$:''
 \[
 	\totalvardist{\D}{\hat{\D}} \leq c\cdot\opt_{\class,\D} + \bigO{\eps}
 \]
