@@ -5,7 +5,11 @@ If it once becomes dark, there's no chance of a Snark--\\
 We have hardly a minute to waste!''}{Lewis Carroll, \textit{The Hunting of the Snark}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Notation.} We write $[n]$ for the (ordered) set of integers $\{1,\dots,n\}$, and $\llbracket n\rrbracket$ for $\{0,\dots,n-1\}$. We will denote by $\log$ (resp. $\ln$) the binary logarithm (resp. the natural logarithm). We use the notation $\tildeOmega{f}$ to hide polylogarithmic dependencies on the argument, i.e. for expressions of the form $\bigOmega{f \log^c f}$ (for some absolute constant $c$). All throughout the paper, we denote by $\distribs{\domain[\Omega]}$ the set of discrete probability distributions over domain $\domain[\Omega]$. When the domain is a subset of the natural numbers $\N$, we shall identify a distribution $\p\in\distribs{\domain[\Omega]}$ with the sequence $(\p_i)_{i\in\N}\in\lp[1]$ corresponding to its probability mass function (pmf). For a subset $S \subseteq \Omega$, we denote by $\p|_S$ the normalized projection of $\p$ to $S$ (so $\p|_S$ is a probability distribution).
+\section{Notation.} 
+
+All throughout this thesis, we denote by $[n]$ the set $\{1,\dots,n\}$, and by $\llbracket n\rrbracket$ the set $\{0,\dots,n-1\}$. We will denote by $\log$  (resp. $\ln$) the binary logarithm (resp. the natural logarithm); we use the notations $\tildeO{f},\tildeOmega{f}$ to hide polylogarithmic dependencies on the argument, and will sometimes write $O_\eps(f)$ to signify that the hidden constant depends on the parameter $\eps$ (while $f$ does not). A \emph{probability distribution} over a (countable) domain\footnote{For the sake of this survey, all distributions will be supported on a finite or at least discrete domain; thus, we do not consider the fully general definitions from measure theory.} $\domain$ is a non-negative function $\D\colon\domain\to[0,1]$ such that $\sum_{x\in\domain} \D(x) = 1$. We denote by $\distribs{\domain}$ the (convex) polytope of all such distributions, and by $\uniformOn{\domain}$ the uniform distribution on \domain (when well-defined). Given a distribution $\D$ over $\domain$ and a set $S\subseteq\domain$, we write $\D(S)$ for the total probability weight $\sum_{x\in S} \D(x)$ assigned to $S$ by $\D$; and let $\supp\D\eqdef\setOfSuchThat{ x\in\Omega }{ \D(x) > 0 }$ be the \emph{(effective) support} of the distribution. Moreover, for $S \subseteq \domain$ such that $\D(S)>0$, we denote by $\D_S$ the conditional distribution of $\D$ restricted to $S$, that is $\D_S(x) = \frac{\D(x)}{\D(S)}$ for $x \in S$ and $\D_S(x)=0$ otherwise. Finally, for a probability distribution $\D\in\distribs{\domain}$ and integer $m$, we write $\D^{\otimes m}\in\distribs{\domain^m}$ for the $m$-fold product distribution obtained by drawing $m$ independent samples $s_1,\dots,s_m\sim \D$ and outputting $(s_1,\dots,s_m)$.
+%
+% When the domain is a subset of the natural numbers $\N$, we shall identify a distribution $\p\in\distribs{\domain[\Omega]}$ with the sequence $(\p_i)_{i\in\N}\in\lp[1]$ corresponding to its probability mass function (pmf). For a subset $S \subseteq \Omega$, we denote by $\p|_S$ the normalized projection of $\p$ to $S$ (so $\p|_S$ is a probability distribution).
 
 For an alphabet $\Sigma$, we denote the projection of $x \in \Sigma^n$ to a subset of
   coordinates $I \subseteq [n]$ by $x|_I$. For $i \in [n]$, we write
@@ -21,43 +25,122 @@ For an alphabet $\Sigma$, we denote the projection of $x \in \Sigma^n$ to a subs
   $S$, and otherwise we say that $x$ is \emph{$\eps$-far} from $S$.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\paragraph{Distributions and metrics} 
-A probability distribution over (discrete) domain $\Omega$ is a function $\p\colon\Omega\to[0,1]$ such that $\normone{\p}\eqdef \sum_{\omega\in\Omega}\p(\omega)=1$; we denote by $\distribs{\Omega}$ the set of all probability distributions over domain $\Omega$. 
-Recall that for two probability distributions $\p,\q\in\distribs{\Omega}$, their \emph{total variation distance} (or statistical distance) is defined as 
-$
-     \totalvardist{\p}{\q} \eqdef \sup_{S\subseteq\Omega} (\p(S)-\q(S)) = \frac{1}{2}\sum_{\omega\in\Omega} \abs{\p(\omega)-\q(\omega)},
-$
-i.e. $ \totalvardist{\p}{\q} = \frac{1}{2}\normone{\p-\q}$. Given a subset $\property\subseteq \distribs{\Omega}$ of distributions, the \emph{distance from $\p$ to $\property$} is then defined as $ \totalvardist{\p}{\property}\eqdef \inf_{\q\in\property}  \totalvardist{\p}{\q}$. If $ \totalvardist{\p}{\property} > \eps$, we say that $\p$ is \emph{$\eps$-far} from $\property$; otherwise, it is \emph{$\eps$-close}.
+\section{Property testing, distributions, and metrics.} 
 
+As is usual in property testing of distributions, throughout this survey the distance between two distributions $\D_1, \D_2\in \distribs{\domain}$ will be the \emph{total variation distance}:
+\begin{equation}\label{def:distance:tv}
+\totalvardist{\D_1}{\D_2 } \eqdef \max_{S \subseteq \domain} (\D_1(S)-\D_2(S)) = \frac{1}{2} \sum_{x \in \domain}\abs{\D_1(i)-\D_2(i)} = \frac{1}{2} \normone{\D_1 - \D_2}
+\end{equation}
+which takes value in $[0,1]$. In some cases, it is useful to consider (either as a proxy towards total variation, or for the sake of the analysis) different metrics, such as $\lp[2]$, Kolmogorov, Earthmover's or Hellinger distances. More on these can be found in~\autoref{appendix:metrics}.\medskip
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Distribution Testing.} 
+A property $\property$ of distributions over $\domain$ is a subset of $\distribs{\domain}$, consisting of all distributions that have the property. The distance from $\D$ to a property $\property$, denoted $\totalvardist{\D}{\property}$, is then defined as $\inf_{\D^\prime \in \property} \totalvardist{\D}{\D^\prime}$.\medskip
 
-\paragraph{Property testing}
-We work in the standard setting of distribution testing: a \emph{testing algorithm for a property $\property\subseteq\distribs{\Omega}$} is an algorithm which, granted access to independent samples from an unknown distribution $\p\in\distribs{\Omega}$ as well as distance parameter $\eps\in(0,1]$, outputs either \accept or \reject, with the following guarantees.
+We recall the standard definition of testing algorithms for properties of distributions over $\domain$, where $n$ is the relevant parameter for $\domain$ (i.e., in most cases, its size $\abs{\domain}$). To be consistent with the rest of this dissertation, we chose to phrase it in the most general setting possible, with regard to how the unknown distribution is ``queried'': and will specify this aspect further in the relevant chapters (sampling access, conditional access, etc.).
+\begin{definition}\label{def:testing}
+Let $\property$ be a property of distributions over $\domain$.  Let $\ORACLE_\D$ be an oracle providing some type of access to $\D$. A \emph{$q$-query testing algorithm for $\property$} (for this type of oracle) is a randomized algorithm $\Tester$ which takes as input $n\in\N$, $\eps\in(0,1)$, as well as access to $\ORACLE_\D$.  After making at most $q(\eps,n)$ calls to the oracle, \Tester either outputs \accept or \reject, such that the following holds:
 \begin{itemize}
-  \item if $\p\in\property$, then it outputs \accept with probability at least $2/3$;
-  \item if $ \totalvardist{\p}{\property}>\eps$, then it outputs \reject with probability at least $2/3$.
+\item if $\D \in \property$, then with probability at least $2/3$, \Tester outputs \accept;
+\item if $\totalvardist{\D}{\property} > \eps$, then with probability at least $2/3$, \Tester outputs \reject;
 \end{itemize}
-The two measures of interest here are the \emph{sample complexity} of the algorithm (i.e., the number of samples from the distribution it takes in the worst case), and its running time.
+\new{where the probability is taken over the algorithm's randomness and (if any) the randomness from the oracle's answers.}
+\end{definition}
+We sometimes write $\Tester^{\ORACLE_\D}$ to indicate that $\Tester$ has access to $\ORACLE_\D$. Additionally, we will also be interested in \emph{tolerant} testers -- roughly, algorithms robust to a relaxation of the first item above:
+\begin{definition}\label{def:tol:testing}
+  Let $\property$ and $\ORACLE_\D$ be as above. A \emph{$q$-query tolerant testing algorithm for $\property$} is a randomized algorithm $\Tester$ which takes as input $n\in\N$, $0 \leq \eps_1 < \eps_2 \leq 1$, as well as access to $\ORACLE_D$. After making at most $q(\eps_1,\eps_2,n)$ calls to the oracle, \Tester outputs either \accept or \reject, such that the following holds:
+  \begin{itemize}
+    \item if $\totalvardist{\D}{\property} \leq \eps_1$, then with probability at least $2/3$, \Tester outputs \accept;
+    \item if $\totalvardist{\D}{\property} \geq \eps_2$, then with probability at least $2/3$, \Tester outputs \reject;
+  \end{itemize}
+\new{where the probability is taken over the algorithm's randomness and (if any) the randomness from the oracle's answers.}
+\end{definition}
+Note that these definitions in particular do not specify the behavior of the algorithms when $\totalvardist{\D}{\property} \in (0,\eps)$ (resp. $\totalvardist{\D}{\property} \in (\eps_1,\eps_2)$): in this case, any answer from the tester is considered valid. Furthermore, we stress that the two definitions above only deal with the query complexity, and not the running time. Almost every lower bound will however apply to computationally unbounded algorithms, while most upper bounds we will cover are achieved by testing algorithms whose running time is polynomial in the number of queries they make.\medskip
+\footnotetext{Note that, as standard in property testing, the threshold $2/3$ is arbitrary: any $1-\delta$ confidence can be achieved at the cost of a multiplicative factor $\log(1/\delta)$ in the query complexity, by repeating the test and outputting the majority vote.}
 
-\paragraph{Property testing}
+%%%%%%%%%%%%%%%
+\definecolor{yolk}{RGB}{249, 208, 16}
+\begin{figure}[H]\centering
+  \begin{tikzpicture}[decoration={random steps,segment length=1mm,amplitude=1.2pt}, scale=1.5]%[decoration=penciline]
+    \draw[decorate] (2,2) ellipse (12mm and 14.4mm);
+    \draw[decorate,fill=white] (2,2) ellipse (6mm and 7.2mm);
+    \draw[decorate,pattern=north east lines, pattern color=gray] (2,2) ellipse (6mm and 7.2mm);
+    \filldraw[decorate,color=yolk] (2,2) ellipse (4.5mm and 5.4mm);
+    \draw[decorate] (2,2) ellipse (4.5mm and 5.4mm);
+    \node at (2,2) {$\property$};
+    
+    \draw[decorate] (6,2) ellipse (12mm and 14.4mm);
+    \draw[decorate,fill=white, draw=none] (6,2) ellipse (8mm and 9.6mm);
+    \draw[decorate,pattern=north east lines, pattern color=gray] (6,2) ellipse (8mm and 9.6mm);
+    \draw[decorate,fill=white] (6,2) ellipse (6mm and 7.2mm);
+    \filldraw[decorate,fill=yolk] (6,2) ellipse (4.5mm and 5.4mm);
+    \node at (6,2) {$\property$};
+  \end{tikzpicture}
+  \caption{\label{fig:testing:tolerant:testing}Testing vs. tolerant testing. It is like eggs, only harder.\index{egg}\index{egg|see {testing algorithm (tolerant)}}}%One more ring, and all hell breaks loose.}
+\end{figure}
+%%%%%%%%%%%%%%%
 
-A \emph{property} of distributions over $\domain[\Omega]$ is a subset $\property\subseteq \distribs{\domain[\Omega]}$, consisting of all distributions that have the property. Given two distributions $\p,\q\in\distribs{\domain[\Omega]}$, the $\lp[1]$ distance between $\p$ and $\q$ is defined as the $\lp[1]$ distance between their pmf's, namely $\normone{\p-\q} = \sum_{i\in\domain[\Omega]} \abs{\p_i-\q_i}$.\footnote{Note that this is equal, up to a factor $2$, to the total variation distance between $\p$ and $\q$.}{} Given a property $\property\subseteq \distribs{\domain[\Omega]}$ and a distribution $\p\in\distribs{\domain[\Omega]}$, we then define the distance of $\p$ to $\property$ as $\lp[1](\p,\property) = \inf_{\q\in\property} \normone{\p-\q}$.
+The last definition we state here is one of \emph{distance estimators}; that is, of algorithms which compute an approximation of the distance of the unknown distribution to a property.
+\begin{definition}\label{def:distance:estimation}
+  Let $\property$ and $\ORACLE_\D$ be as above. A \emph{$q$-query distance estimation algorithm for $\property$} is a randomized algorithm $\Algo$ which takes as input $n\in\N$, $\eps\in(0,1]$, as well as access to $\ORACLE_D$. After making at most $q(\eps,n)$ calls to the oracle, \Tester outputs a value $\gamma\in[0,1]$ such that,  with probability at least $2/3$, it holds that $\totalvardist{\D}{\property}\in[\gamma-\eps, \gamma+\eps]$.
+\end{definition}
 
-A \emph{testing algorithm} for a fixed property $\property$ is then a randomized algorithm $\Tester$ which takes as input $n$, $\eps\in(0,1]$, and is granted access to independent samples from an unknown distribution $\p$; and satisfies the following.
-\begin{enumerate}[(i)]
-\item if $\p \in \property$, the algorithm outputs \accept with probability at least $2/3$;
-\item if $\lp[1](\p,\property) \geq \eps$, it outputs \reject with probability at least $2/3$.
-\end{enumerate}
-In other words, \Tester must accept with high probability if the unknown distribution has the property, and reject if it is \emph{\eps-far} from having it. The  \emph{sample complexity} of the algorithm is the number of samples it draws from the distribution in the worst case.
+\begin{remark}[Tolerant testing and distance approximation]
+Parnas, Ron, and Rubinfeld define and formalize in \cite{PRR:06} the notion of tolerant testing, and show that distance approximation and (fully)\footnote{I.e., tolerant testing algorithms as above that allow \emph{any} inputs $0 \leq \eps_1 < \eps_2 \leq 1$, without further restriction on the range of authorized values.} tolerant testing are equivalent, up to a logarithmic factor in $1/\eps$ in the sample complexity (Claims 1 and 2, Section 3.1).
+\end{remark}
+
+\paragraph{Generalization.} These definitions can easily be extended to cover situations in which there are two ``unknown'' distributions $\D_1,\D_2$ that are accessible respectively via $\ORACLE_{\D_1}$ and $\ORACLE_{\D_2}$ oracles. For instance, we shall consider algorithms for testing whether $\D_1 = \D_2$ versus  $\totalvardist{\D_1}{\D_2} > \eps$ in such a setting, the property now being formally a subset of $\distribs{\domain}\times\distribs{\domain}$.
+
+\paragraph{On adaptivity and one-sidedness.} As usual in property testing, it is possible to specialize these definitions for some classes of algorithms. In particular, a tester which never errs when $\D\in\property$ (but is only allowed to be wrong with probability $1/3$ when $\D$ is far from \property) is said to be \emph{one-sided}; as defined above, testers are \emph{two-sided}. More important in this survey is the notion of \emph{adaptive} testers: if an algorithm's queries do not depend on the previous answers made to the oracle(s), it is said to be \emph{non-adaptive}. However, if the $i$-th query can be a function of the $j$-th answer for $j< i$, then it is \emph{adaptive}. (Roughly speaking, a non-adaptive algorithm is one that can write down all the queries it is going to make ``in advance,'' only after tossing its own random coins).
+
+\paragraph{On the domain and parameters.} Unless specified otherwise, $\domain$ will hereafter by default be the $n$-element set $[n]$. When stating the results, the accuracy parameter $\eps\in(0,1]$ is to be understood as taking small values, either a fixed (small) constant or a quantity tending to $0$ as $n\to\infty$; however, the actual parameter of interest will always be $n$, viewed as ``going to infinity.'' Hence any dependence on $n$, no matter how mild, shall be considered as more expensive than any function of $\eps$ only.
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Distributions and metrics} 
-A \emph{probability distribution} over a finite domain $\domain$ is a non-negative function $\D\colon\domain\to[0,1]$ such that $\sum_{x\in\domain} \D(x) = 1$; we denote by $\uniform_{\domain}$ the uniform distribution on \domain. Moreover, given a distribution $\D$ over $\domain$ and a set $S\subseteq\domain$, we write $\D(S)$ for the total probability weight $\sum_{x\in S} \D(x)$ assigned to $S$ by $\D$.
+\section{Classes of distributions}\label{ssec:class:definitions}
 
-\paragraph{Previous tools from probability.}
-As previously mentioned, in this work we will be concerned with the total variation distance between distributions. Of interest for the analysis of some of our algorithms, and assuming \domain is totally ordered (in our case, $\domain=[n]$), one can also define the \emph{Kolmogorov distance} between $\D_1$ and $\D_2$ as
+We give here the formal descriptions of the classes of distributions involved in this dissertation, starting with that of monotone distributions.
+\begin{definition}[monotone]\label{def:monotone}
+A distribution $\D$ over $[n]$ is \emph{monotone} (non-increasing) if its probability mass function (pmf) satisfies $\D(1) \geq \D(2) \geq \dots \D(n)$.
+\end{definition}
+ A natural generalization of the class $\classmon$ of monotone distributions is the set of $t$-modal distributions, i.e. distributions whose pmf can go ``up and down'' or ``down and up'' up to $t$ times:\footnote{Note that this slightly deviates from the Statistics literature, where only the peaks are counted as modes (so that what is usually referred to as a bimodal distribution is, according to our definition, $3$-modal).}
+
+\begin{definition}[$t$-modal]\label{def:tmodal}
+  Fix any distribution $\D$ over $[n]$, and integer $t$. $\D$ is said to have $t$ \emph{modes} if there exists a sequence $i_0 < \dots < i_{t+1}$ such 
+  that either $(-1)^j \D(i_j) < (-1)^j \D(i_{j+1})$ for all $0\leq j \leq t$, or $(-1)^j \D(i_j) > (-1)^j \D(i_{j+1})$ for all $0\leq j \leq t$. We call $\D$ \emph{$t$-modal} if it has at most $t$ modes, and write $\classtmo$ for the class of all $t$-modal distributions. The particular case of $t=1$ corresponds to the set $\classuni$ of \emph{unimodal} distributions.
+\end{definition}
+
+\begin{definition}[Log-concave]\label{def:logconcave}
+  A distribution $\D$ over $[n]$ is said to be \emph{log-concave} if it satisfies the following conditions: \textsf{(i)} for any $1 \leq i < j < k \leq n$ such that $\D(i)\D(k) > 0$, $\D(j) > 0$; and \textsf{(ii)} for all $1 < k < n$, $\D(k)^2 \geq \D(k-1)\D(k+1)$. We write $\classlogconcave$ for the class of all log-concave distributions.
+\end{definition}
+
+\begin{definition}[Concave and Convex]\label{def:concave}
+  A distribution $\D$ over $[n]$ is said to be \emph{concave} if it satisfies the following conditions: \textsf{(i)} for any $1 \leq i < j < k \leq n$ such that $\D(i)\D(k) > 0$, $\D(j) > 0$; and \textsf{(ii)} for all $1 < k < n$ such that $\D(k - 1)\D(k + 1)>0$, $2\D(k) \geq \D(k - 1)+\D(k + 1)$; it is \emph{convex} if the reverse inequality holds in \textsf{(ii)}. We write $\classcve$ (resp. $\classcvx$) for the class of all concave (resp. convex) distributions.
+\end{definition}
+It is not hard to see that convex and concave distributions are unimodal; moreover, every concave distribution is also log-concave, i.e. $\classcve\subseteq\classlogconcave$. Note that in both \cref{def:logconcave} and \cref{def:concave}, condition \textsf{(i)} is equivalent to enforcing that the distribution be supported on an interval.
+
+\begin{definition}[Monotone Hazard Rate]\label{def:mhr}
+  A distribution $\D$ over $[n]$ is said to have \emph{monotone hazard rate} (MHR) if its \emph{hazard rate} $H(i)\eqdef \frac{\D(i)}{\sum_{j=i}^{n} \D(j)}$ is a non-decreasing function. We write $\classmhr$ for the class of all MHR distributions.
+\end{definition}
+It is known that every log-concave distribution is both unimodal and MHR (see e.g.~\cite[Proposition 10]{An:96}), and that monotone distributions are MHR. Two other classes of distributions have elicited significant interest in the context of density estimation, those of \emph{histograms} (piecewise constant) and \emph{piecewise polynomial densities}:
+\begin{definition}[Piecewise Polynomials~\cite{CDSS:14}]\label{def:piecewise}
+  A distribution $\D$ over $[n]$ is said to be a \emph{$t$-piecewise degree-$d$ distribution} if there is a partition of $[n]$ into $t$ disjoint intervals $I_1,\dots,I_t$ such that $\D(i) = p_j(i)$ for all $i \in I_j$, where each $p_1,\dots p_t$ is a univariate polynomial of degree at most $d$. We write $\classpoly$ for the class of all $t$-piecewise degree-$d$ distributions. (We note that {$t$-piecewise degree-$0$ distributions} are also commonly referred to as \emph{$t$-histograms}, and write $\classhist$ for $\classpoly[t,0]$.)
+\end{definition}
+
+Finally, we recall the definition of the two following classes, which both extend the family of Binomial distributions $\classbin[n]$: the first, by removing the need for each of the independent Bernoulli summands to share the same bias parameter.
+\begin{definition}\label{def:pbd}
+A random variable $X$ is said to follow a \emph{Poisson Binomial Distribution} (with parameter $n\in\N$) if it can be written as $X=\sum_{k=1}^n X_k$, where $X_1\dots,X_n$ are independent, non-necessarily identically distributed Bernoulli random variables. We denote by $\classpbd[n]$ the class of all such Poisson Binomial Distributions.
+\end{definition}
+\noindent It is not hard to show that Poisson Binomial Distributions are in particular log-concave. One can generalize even further, by allowing each random variable of the summation to be integer-valued:
+\begin{definition}\label{def:siirv}
+Fix any $k\geq 0$. We say a random variable $X$ is a \emph{$k$-Sum of Independent Integer Random Variables} with parameter $n\in\N$ ($(n,k)$-SIIRV) if it can be written as $X=\sum_{j=1}^n X_j$, where $X_1\dots,X_n$ are independent, non-necessarily identically distributed random variables taking value in $\modulo{k}$. We denote by $\classksiirv[n]{k}$ the class of all such $(n,k)$-SIIRVs.
+\end{definition}
+\noindent (The class of Poisson Binomial Distributions thus corresponds to the case $k=2$, that is $(n,2)$-SIIRVS.) A different type of generalization is that of Poisson Multinomial Distributions, where each summand is a random variable supported on the $k$ vectors of the standard basis of $\R^k$, instead of $[k]$:
+\begin{definition}\label{def:pmd}
+Fix any $k\geq 0$. We say a random variable $X$ is a \emph{$(n,k)$-Poisson Multinomial Distribution ($(n,k)$-PMD)} with parameter $n\in\N$ if it can be written as $X=\sum_{j=1}^n X_j$, where $X_1\dots,X_n$ are independent, non-necessarily identically distributed random variables taking value in $\{e_1,\dots,e_k\}$ (where $(e_i)_{i\in[k]}$ is the canonical basis of $\R^k$). We denote by $\classpmd[n]{k}$ the class of all such $(n,k)$-PMDs.
+\end{definition}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Previous tools from the literature.}
+As previously mentioned, in this thesis we will be concerned with the total variation distance between distributions. Of interest for the analysis of some of our algorithms, and assuming \domain is totally ordered (in our case, $\domain=[n]$), one can also define the \emph{Kolmogorov distance} between $\D_1$ and $\D_2$ as
 \begin{equation}\label{eq:def:dk}
   \kolmogorov{\D_1}{\D_2} \eqdef \max_{x\in \domain}\abs{F_1(x)-F_2(x)}
 \end{equation}
@@ -100,13 +183,6 @@ Then, for all $\eps > 0$, $\probaOf{ \kolmogorov{\D}{\hat{\D}} > \eps } \leq 2e^
 (we remark that Eq.~\eqref{eq:Birge:tv} could also be obtained directly by applying the data processing inequality for total variation distance (\cref{lemma:data:processing:inequality:total:variation}) to $\D_1$, $\D_2$, for the transformation $\Psi_{\mathcal{I}}(\cdot)$.)
 \end{proof}
 
-\paragraph{Monotone distributions.}
-We say that a distribution $\D$ on $[n]$ is \emph{monotone} (non-increasing) if its probability mass function is non-increasing, that is if $\D(1)\geq \dots \geq \D(n)$. 
-When dealing with monotone distributions, it will be useful to consider the \emph{Birg\'e decomposition}, which is a way to approximate any monotone distribution $\D$ by a histogram, where the latter is supported by logarithmically many intervals \emph{which crucially do not depend on $\D$ itself}:
-\begin{definition}[Birg\'e decomposition]\label{def:birge:decomposition}
-  Given a parameter $\alpha>0$, the corresponding (oblivious) \emph{Birg\'e decomposition of $[n]$} is the partition $\mathcal{I}_\alpha=(I_1,\dots,I_\ell)$, where $\ell=\bigTheta{\frac{\ln( \alpha n + 1)}{\alpha}}=\bigTheta{\frac{\log n }{\alpha}}$ and $\abs{I_{k}}=\flr{(1+\alpha)^k}$, $1\leq k \leq \ell$. 
-\end{definition}
-
 \noindent {For a distribution $\D$ and parameter $\alpha$, define $\birge[\D]{\alpha}$ to be the ``flattened'' distribution with relation to the oblivious decomposition $\mathcal{I}_\alpha$, that is $\birge[\D]{\alpha} = \Psi_{\mathcal{I}_\alpha}(\D)$.} 
 The next theorem states that every monotone distribution can be well-approximated by its flattening on the Birg\'e decomposition's intervals:     
 \begin{theorem}[\cite{Birge:87,DDSVV:13}]\label{theorem:Birge:obl:decomp}
@@ -133,77 +209,11 @@ The next theorem states that every monotone distribution can be well-approximate
   where the last inequality uses the assumption on $\D^\prime$ and~\cref{theorem:Birge:obl:decomp} applied to it.
 \end{proof}
   
-\paragraph{Access to the distributions.} While we will mostly be concerned in this work with the standard model of access to the probability distributions, where the algorithm is provided with independent samples from an unknown distribution $\D$, the concepts we introduce and some of our results apply to some other types of access as well. One in particular, the \Cdfsamp access model, grants the algorithms the ability to query the value of the cumulative distribution function (cdf) of $\D$, in addition to regular sampling.\footnote{See also~\cite{Canonne:15:Survey} for a summary and comparison of the different existing access models.} (We observe, as in~\cite{CR:14}, that this type of query access is for instance justified when the distribution originates from a sorted dataset, in which case such queries can be implemented with only a logarithmic overhead.)
+\paragraph{Access to the distributions.} While we will mostly be concerned in this dissertation with the standard model of access to the probability distributions, where the algorithm is provided with independent samples from an unknown distribution $\D$, the concepts we introduce and some of our results apply to some other types of access as well. One in particular, the \Cdfsamp access model, grants the algorithms the ability to query the value of the cumulative distribution function (cdf) of $\D$, in addition to regular sampling.\footnote{See also~\cite{Canonne:15:Survey} for a summary and comparison of the different existing access models.} (We observe, as in~\cite{CR:14}, that this type of query access is for instance justified when the distribution originates from a sorted dataset, in which case such queries can be implemented with only a logarithmic overhead.)
 
 Unless explicitly specified otherwise, our algorithms only assume standard sampling access; the formal definitions of the two models mentioned above can be found in~\cref{appendix:definitions}.
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Classes of distributions}\label{ssec:class:definitions}
-
-We give here the formal descriptions of the classes of distributions involved in this work, starting with that of monotone distributions.
-\begin{definition}[monotone]\label{def:monotone}
-A distribution $\D$ over $[n]$ is \emph{monotone} (non-increasing) if its probability mass function (pmf) satisfies $\D(1) \geq \D(2) \geq \dots \D(n)$.
-\end{definition}
- A natural generalization of the class $\classmon$ of monotone distributions is the set of $t$-modal distributions, i.e. distributions whose pmf can go ``up and down'' or ``down and up'' up to $t$ times:\footnote{Note that this slightly deviates from the Statistics literature, where only the peaks are counted as modes (so that what is usually referred to as a bimodal distribution is, according to our definition, $3$-modal).}
-
-\begin{definition}[$t$-modal]\label{def:tmodal}
-  Fix any distribution $\D$ over $[n]$, and integer $t$. $\D$ is said to have $t$ \emph{modes} if there exists a sequence $i_0 < \dots < i_{t+1}$ such 
-  that either $(-1)^j \D(i_j) < (-1)^j \D(i_{j+1})$ for all $0\leq j \leq t$, or $(-1)^j \D(i_j) > (-1)^j \D(i_{j+1})$ for all $0\leq j \leq t$. We call $\D$ \emph{$t$-modal} if it has at most $t$ modes, and write $\classtmo$ for the class of all $t$-modal distributions. The particular case of $t=1$ corresponds to the set $\classuni$ of \emph{unimodal} distributions.
-\end{definition}
-
-\begin{definition}[Log-concave]\label{def:logconcave}
-  A distribution $\D$ over $[n]$ is said to be \emph{log-concave} if it satisfies the following conditions: \textsf{(i)} for any $1 \leq i < j < k \leq n$ such that $\D(i)\D(k) > 0$, $\D(j) > 0$; and \textsf{(ii)} for all $1 < k < n$, $\D(k)^2 \geq \D(k-1)\D(k+1)$. We write $\classlogconcave$ for the class of all log-concave distributions.
-\end{definition}
-
-\begin{definition}[Concave and Convex]\label{def:concave}
-  A distribution $\D$ over $[n]$ is said to be \emph{concave} if it satisfies the following conditions: \textsf{(i)} for any $1 \leq i < j < k \leq n$ such that $\D(i)\D(k) > 0$, $\D(j) > 0$; and \textsf{(ii)} for all $1 < k < n$ such that $\D(k - 1)\D(k + 1)>0$, $2\D(k) \geq \D(k - 1)+\D(k + 1)$; it is \emph{convex} if the reverse inequality holds in \textsf{(ii)}. We write $\classcve$ (resp. $\classcvx$) for the class of all concave (resp. convex) distributions.
-\end{definition}
-It is not hard to see that convex and concave distributions are unimodal; moreover, every concave distribution is also log-concave, i.e. $\classcve\subseteq\classlogconcave$. Note that in both \cref{def:logconcave} and \cref{def:concave}, condition \textsf{(i)} is equivalent to enforcing that the distribution be supported on an interval.
-
-\begin{definition}[Monotone Hazard Rate]\label{def:mhr}
-  A distribution $\D$ over $[n]$ is said to have \emph{monotone hazard rate} (MHR) if its \emph{hazard rate} $H(i)\eqdef \frac{\D(i)}{\sum_{j=i}^{n} \D(j)}$ is a non-decreasing function. We write $\classmhr$ for the class of all MHR distributions.
-\end{definition}
-It is known that every log-concave distribution is both unimodal and MHR (see e.g.~\cite[Proposition 10]{An:96}), and that monotone distributions are MHR. Two other classes of distributions have elicited significant interest in the context of density estimation, those of \emph{histograms} (piecewise constant) and \emph{piecewise polynomial densities}:
-\begin{definition}[Piecewise Polynomials~\cite{CDSS:14}]\label{def:piecewise}
-  A distribution $\D$ over $[n]$ is said to be a \emph{$t$-piecewise degree-$d$ distribution} if there is a partition of $[n]$ into $t$ disjoint intervals $I_1,\dots,I_t$ such that $\D(i) = p_j(i)$ for all $i \in I_j$, where each $p_1,\dots p_t$ is a univariate polynomial of degree at most $d$. We write $\classpoly$ for the class of all $t$-piecewise degree-$d$ distributions. (We note that {$t$-piecewise degree-$0$ distributions} are also commonly referred to as \emph{$t$-histograms}, and write $\classhist$ for $\classpoly[t,0]$.)
-\end{definition}
-
-Finally, we recall the definition of the two following classes, which both extend the family of Binomial distributions $\classbin[n]$: the first, by removing the need for each of the independent Bernoulli summands to share the same bias parameter.
-\begin{definition}\label{def:pbd}
-A random variable $X$ is said to follow a \emph{Poisson Binomial Distribution} (with parameter $n\in\N$) if it can be written as $X=\sum_{k=1}^n X_k$, where $X_1\dots,X_n$ are independent, non-necessarily identically distributed Bernoulli random variables. We denote by $\classpbd[n]$ the class of all such Poisson Binomial Distributions.
-\end{definition}
-\noindent It is not hard to show that Poisson Binomial Distributions are in particular log-concave. One can generalize even further, by allowing each random variable of the summation to be integer-valued:
-\begin{definition}\label{def:siirv}
-Fix any $k\geq 0$. We say a random variable $X$ is a \emph{$k$-Sum of Independent Integer Random Variables} with parameter $n\in\N$ ($(n,k)$-SIIRV) if it can be written as $X=\sum_{j=1}^n X_j$, where $X_1\dots,X_n$ are independent, non-necessarily identically distributed random variables taking value in $\modulo{k}$. We denote by $\classksiirv[n]{k}$ the class of all such $(n,k)$-SIIRVs.
-\end{definition}
-\noindent (The class of Poisson Binomial Distributions thus corresponds to the case $k=2$, that is $(n,2)$-SIIRVS.) A different type of generalization is that of Poisson Multinomial Distributions, where each summand is a random variable supported on the $k$ vectors of the standard basis of $\R^k$, instead of $[k]$:
-\begin{definition}\label{def:pmd}
-Fix any $k\geq 0$. We say a random variable $X$ is a \emph{$(n,k)$-Poisson Multinomial Distribution ($(n,k)$-PMD)} with parameter $n\in\N$ if it can be written as $X=\sum_{j=1}^n X_j$, where $X_1\dots,X_n$ are independent, non-necessarily identically distributed random variables taking value in $\{e_1,\dots,e_k\}$ (where $(e_i)_{i\in[k]}$ is the canonical basis of $\R^k$). We denote by $\classpmd[n]{k}$ the class of all such $(n,k)$-PMDs.
-\end{definition}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Error-Correcting Codes.} Let $k,n\in\N$, and let $\Sigma$ be a finite alphabet. A \emph{code} is a one-to-one function $C\colon\Sigma^k \to \Sigma^n$ that maps \emph{messages} to \emph{codewords}, where $k$ and $n$ are called the code's \emph{dimension} and \emph{block length}, respectively. The \emph{rate} of the code, measuring the redundancy of the encoding, is defined to be $\rho \eqdef k/n$. We will sometime identify the code $C$ with its image $C(\Sigma^k)$. In particular, we shall write $c \in C$ to indicate that there exists $x\in\bitset^k$ such that $c = C(x)$, and say that $c$ is a codeword of $C$.  The \emph{relative distance} of a code is the minimal relative distance between two codewords of $C$, and is denoted by $\delta \eqdef \min_{c \neq c' \in C}\{\dist{c}{c'}\}$. 
-
-We say that $C$ is an \emph{asymptotically good code} if it has constant rate and constant relative distance. We shall make an extensive use of asymptotically good codes that are \emph{balanced}, that is, codes in which each codeword consists of the same number of $0$'s and $1$'s
-
-\begin{proposition}[Good Balanced Codes]\label{lemma:good:balanced:hamming:codes}
-  For any constant $\delta \in [0,1/3)$, there exists a good balanced code $C\colon \bitset^k \to \bitset^n$ with relative distance $\delta$ and constant rate. Namely, there exists a constant $\rho>0$ such that the following holds.
-  \begin{enumerate}[(i)]
-    \item Balance: $\abs{C(x)} = \frac{n}{2}$ for all $x\in \bitset^k$;
-    \item Relative distance: $\dist{C(x)}{C(y)} > \delta$ for all distinct $x,y\in \bitset^k$;
-    \item Constant rate: $\frac{k}{n} \geq \rho$.
-  \end{enumerate}
-\end{proposition}
-\begin{proof}
-  Fix any code $C'$ with linear distance $\delta$ and constant rate (denoted $\rho'$). We transform $C'\colon \bitset^k \to \bitset^{n'}$ to a balanced code $C\colon \bitset^k \to \bitset^{2n'}$ by representing $0$ and $1$ as the balanced strings $01$ and $10$ (respectively). More accurately, we let $C(x) \eqdef C'(x)\odot\overline{C'(x)}\in\bitset^n$ for all $x\in\bitset^k$, where  $\odot$ denotes the concatenation and $\bar{z}$ is the bitwise negation of $z$. It is immediate to check that this transformation preserves the distance, and that $C$ is a balanced code with rate $\rho\eqdef 2\rho'$.
-\end{proof}
-
-\subparagraph{On uniformity.} For the sake of notation and clarity, throughout this work we define all algorithms and objects non-uniformly. Namely, we fix the relevant parameter (typically $n\in\N$), and restrict ourselves to inputs or domains of size $n$ (for instance, probability distributions over domain $[n]$). However, we still view it as a generic parameter and allow ourselves to write asymptotic expressions such as $\bigO{n}$. Moreover, although our results are stated in terms of non-uniform algorithms, they can be extended to the uniform setting in a straightforward manner.
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Tools from previous work}
-
-We first restate a result of Batu et al. relating closeness to uniformity in $\lp[2]$ and $\lp[1]$ norms to ``overall flatness'' of the probability mass function, and which will be one of the ingredients of the proof of \cref{theo:main:testing}:
+We now restate a result of Batu et al. relating closeness to uniformity in $\lp[2]$ and $\lp[1]$ norms to ``overall flatness'' of the probability mass function, and which will be one of the ingredients of the proof of \cref{theo:main:testing}:
 
 \begin{lemma}[{\cite{BFRSW:00,BFFKRW:01}}]\label{lemma:small:l2:close:uniform:l1}
 Let $\D$ be a distribution on a domain $S$. \textsf{(a)} If $\max_{i\in S} \D(i) \leq (1+\eps)\min_{i\in S} \D(i)$, then $\normtwo{\D}^2 \leq (1+\eps^2)/\abs{S}$. \textsf{(b)} If $\normtwo{\D}^2 \leq (1+\eps^2)/\abs{S}$, then $\normone{\D-\uniform_{S}} \leq \eps$.
@@ -409,6 +419,26 @@ Invoking~\cref{lemma:FourierSupportLem}(ii) with parameter $\delta$ set to $\fra
 as desired.
 \end{proof}
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Error-Correcting Codes.} Let $k,n\in\N$, and let $\Sigma$ be a finite alphabet. A \emph{code} is a one-to-one function $C\colon\Sigma^k \to \Sigma^n$ that maps \emph{messages} to \emph{codewords}, where $k$ and $n$ are called the code's \emph{dimension} and \emph{block length}, respectively. The \emph{rate} of the code, measuring the redundancy of the encoding, is defined to be $\rho \eqdef k/n$. We will sometime identify the code $C$ with its image $C(\Sigma^k)$. In particular, we shall write $c \in C$ to indicate that there exists $x\in\bitset^k$ such that $c = C(x)$, and say that $c$ is a codeword of $C$.  The \emph{relative distance} of a code is the minimal relative distance between two codewords of $C$, and is denoted by $\delta \eqdef \min_{c \neq c' \in C}\{\dist{c}{c'}\}$. 
+
+We say that $C$ is an \emph{asymptotically good code} if it has constant rate and constant relative distance. We shall make an extensive use of asymptotically good codes that are \emph{balanced}, that is, codes in which each codeword consists of the same number of $0$'s and $1$'s
+
+\begin{proposition}[Good Balanced Codes]\label{lemma:good:balanced:hamming:codes}
+  For any constant $\delta \in [0,1/3)$, there exists a good balanced code $C\colon \bitset^k \to \bitset^n$ with relative distance $\delta$ and constant rate. Namely, there exists a constant $\rho>0$ such that the following holds.
+  \begin{enumerate}[(i)]
+    \item Balance: $\abs{C(x)} = \frac{n}{2}$ for all $x\in \bitset^k$;
+    \item Relative distance: $\dist{C(x)}{C(y)} > \delta$ for all distinct $x,y\in \bitset^k$;
+    \item Constant rate: $\frac{k}{n} \geq \rho$.
+  \end{enumerate}
+\end{proposition}
+\begin{proof}
+  Fix any code $C'$ with linear distance $\delta$ and constant rate (denoted $\rho'$). We transform $C'\colon \bitset^k \to \bitset^{n'}$ to a balanced code $C\colon \bitset^k \to \bitset^{2n'}$ by representing $0$ and $1$ as the balanced strings $01$ and $10$ (respectively). More accurately, we let $C(x) \eqdef C'(x)\odot\overline{C'(x)}\in\bitset^n$ for all $x\in\bitset^k$, where  $\odot$ denotes the concatenation and $\bar{z}$ is the bitwise negation of $z$. It is immediate to check that this transformation preserves the distance, and that $C$ is a balanced code with rate $\rho\eqdef 2\rho'$.
+\end{proof}
+
+\subparagraph{On uniformity.} For the sake of notation and clarity, throughout this work we define all algorithms and objects non-uniformly. Namely, we fix the relevant parameter (typically $n\in\N$), and restrict ourselves to inputs or domains of size $n$ (for instance, probability distributions over domain $[n]$). However, we still view it as a generic parameter and allow ourselves to write asymptotic expressions such as $\bigO{n}$. Moreover, although our results are stated in terms of non-uniform algorithms, they can be extended to the uniform setting in a straightforward manner.
+
  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Formal definitions: learning and testing}\label{appendix:definitions}
 In this appendix, we define precisely the notions of \emph{testing}, \emph{tolerant testing}, \emph{learning} and \emph{proper learning} of distributions over a domain $[n]$.
@@ -428,7 +458,7 @@ In this appendix, we define precisely the notions of \emph{testing}, \emph{toler
   \end{itemize}
 \end{definition}
 
-Note that the above definition is quite general, and can be instantiated for different types of oracle access to the unknown distribution. In this work, we are mainly concerned with two such settings, namely the \emph{sampling oracle access} and \emph{\Cdfsamp oracle access}:
+Note that the above definition is quite general, and can be instantiated for different types of oracle access to the unknown distribution. In this thesis, we are mainly concerned with two such settings, namely the \emph{sampling oracle access} and \emph{\Cdfsamp oracle access}:
   \begin{definition}[Standard access model (sampling)]\label{def:sampling:oracle}
       Let $\D$ be a fixed distribution over $[n]$. A \emph{sampling oracle for $\D$} is an oracle $\SAMP_\D$ defined as follows: when queried, $\SAMP_\D$ returns an element $x\in[n]$, where the probability that $x$ is returned is $\D(x)$ independently of all previous calls to the oracle.
   \end{definition}
