@@ -1,44 +1,43 @@
-\subsection{Introduction}  \label{sec:introduction:fourier}
-\subsubsection{Background and Motivation} \label{ssec:background}
+ \subsection{Introduction}  \label{sec:introduction:fourier}
+% \subsubsection{Background and Motivation} \label{ssec:background}
 
-The prototypical inference question in the area of \emph{distribution property testing}~\cite{BFRSW:00}
-is the following: Given a set of samples from a collection of probability distributions, can we
-determine whether these distributions satisfy a certain property?
-During the past two decades, this broad
-question -- whose roots lie in statistical hypothesis testing~\cite{NeymannPearson:33,Lehmann:2005:book} --
-has received considerable attention by the computer science community,
-see~\cite{Rubinfeld:12:Survey, Canonne:15:Survey} for two recent surveys.
-After two decades of study, for many properties of interest there exist
-sample-optimal testers (matched by information-theoretic lower bounds)
-~\cite{Paninski:08, CDVV:14, VV:14, DKN:15, DK:16}.
+% The prototypical inference question in the area of \emph{distribution property testing}~\cite{BFRSW:00}
+% is the following: Given a set of samples from a collection of probability distributions, can we
+% determine whether these distributions satisfy a certain property?
+% During the past two decades, this broad
+% question -- whose roots lie in statistical hypothesis testing~\cite{NeymannPearson:33,Lehmann:2005:book} --
+% has received considerable attention by the computer science community,
+% see~\cite{Rubinfeld:12:Survey, Canonne:15:Survey} for two recent surveys.
+% After two decades of study, for many properties of interest there exist
+% sample-optimal testers (matched by information-theoretic lower bounds)
+% ~\cite{Paninski:08, CDVV:14, VV:14, DKN:15, DK:16}.
 
-In this work, we focus on the problem of testing whether the unknown distribution
-belongs to a given family of discrete \emph{structured} distributions.
-Let $\property$ be a family of discrete distributions over a total order (e.g., $[n]$)
+% In this work, we focus on the problem of testing whether the unknown distribution
+% belongs to a given family of discrete \emph{structured} distributions.
+
+As before, let $\property$ be a family of discrete distributions over a total order (e.g., $[n]$)
 or a partial order (e.g., $[n]^k$). 
-The problem of \emph{membership testing for $\property$} is the following:
+Recall that the problem of \emph{membership testing for $\property$} is the following:
 Given sample access to an unknown distribution $\p$ (effectively supported 
 on the same domain as $\property$),
-we want to distinguish between the case that $\p \in \property$ versus $\totalvardist{\p}{\property} \geq \eps$. 
-The sample complexity of this problem depends on the underlying family
-$\property$. For example, if $\cal P$ contains a single distribution over a domain of size $n$,
-the sample complexity of the testing problem is $\bigTheta{n^{1/2}/\eps^2}$~\cite{CDVV:14, DKN:15}.
+we want to distinguish between the case that $\p \in \property$ versus $\totalvardist{\p}{\property} \geq \eps$. Clearly, the sample complexity of this problem depends on the underlying family $\property$. For example, if $\property$ contains a single distribution over a domain of size $n$,
+the sample complexity of the testing problem is $\bigTheta{n^{1/2}/\eps^2}$~\cite{Paninski:08,CDVV:14, DKN:15}; while if $\property$ is the set of \emph{all} probability distributions over this domain, the sample complexity drops quite drastically to zero. Thus, in view of~\cref{problem:ub:general} our goal is to abstract a minimal set of structural assumptions on $\property$ that captures this sample complexity.
 
-In this work, we give a general technique to test membership in various distribution families over discrete domains.
+We give a general technique to test membership in various distribution families over discrete domains, based on properties of the \emph{Fourier spectrum} of the distributions they contain.
 Before we state our results in full generality, we present concrete applications to 
 a number of well-studied distribution families.
 
 \subsubsection{Our Results} \label{ssec:results}
 
 Our first concrete application is a nearly sample-optimal algorithm for testing
-sums of independent integer random variables (SIIRVs). 
-Formally, an $(n, k)$-SIIRV is a sum of independent integer random variables each supported in $\modulo{k}=\{0,\dots,k-1\}$.
+sums of independent integer random variables (SIIRVs). \todonote{Check consistency of these definitions with preliminaries? Handle.} 
+Recall from~\cref{ssec:class:definitions} that an $(n, k)$-SIIRV is a sum of independent integer random variables, each supported in $\modulo{k}=\{0,\dots,k-1\}$.
 SIIRVs comprise a rich class of distributions that arise in many settings. The special case of $k=2$, $\classksiirv[n]{2}$,
 was first considered by Poisson~\cite{Poisson:37} as a non-trivial extension of the Binomial distribution,
 and is known as Poisson binomial distribution (PBD). In application domains, SIIRVs have many uses in research areas
 such as survey sampling, case-control studies, and survival analysis, see e.g.,~\cite{CL:97} for a survey of the many practical uses of these distributions.
 We remark that these distributions are of fundamental interest and have been extensively 
-studied in probability and statistics~\cite{Chernoff:52,Hoeffding:63,DP:09, Presman:83,Kruopis:86,BHJ:92, CL10,CGS11}.
+studied in probability and statistics~\cite{Chernoff:52,Hoeffding:63,DP:09, Presman:83,Kruopis:86,BHJ:92,CGS11}.
 We show the following:
 
 \begin{theorem}[Testing SIIRVs]\label{theo:testing:ksiirv}
@@ -100,7 +99,7 @@ from several perspectives of theoretical computer science,including learning~\ci
     Moreover, the algorithm takes $\bigO{\frac{n^{(k-1)/4} k^{2k} \log(k/\eps)^k}{\eps^2}}$ samples from $\p$, 
     and runs in time $n^{O(k^3)} \cdot (1/\eps)^{O(k^3\frac{\log(k/\eps)}{\log\log(k/\eps)})^{k-1}}$ or alternatively in time $n^{O(k)} \cdot  2^{O(k^{5k} \log(1/\eps)^{k+2})}$.
 \end{theorem}
-We also show a nearly matching sample lower bound\footnote{Here, we use the notation $\Omega_k(\cdot)$, $O_k(\cdot)$ to indicate that the parameter $k$ is seen as a constant, focusing on the asymptotics with regard to $n,\eps$.}\ of $\Omega_k( n^{{(k-1)}/{4}}/\eps^2 )$ (\cref{theo:lb:pmd}). Finally, we demonstrate the versatility of our techniques by obtaining in~\cref{sec:log:concaves} a testing algorithm for discrete log-concavity with sample complexity $O(\sqrt{n}/\eps^2 + (\log(1/\eps)/\eps)^{5/2})$; improving on the previous bounds of~$\bigO{{\sqrt{n}}/{\eps^{2}}+{1}/{\eps^5}}$~\cite{ADK:15} and $\tildeO{{\sqrt{n}}/{\eps^{7/2}}}$~\cite{CDGR:16}.
+We also show a nearly matching sample lower bound\footnote{As mentioned in~\cref{chap:preliminaries}, we use the notation $\Omega_k(\cdot)$, $O_k(\cdot)$ to indicate that the parameter $k$ is seen as a constant, focusing on the asymptotics with regard to $n,\eps$.}\ of $\Omega_k( n^{{(k-1)}/{4}}/\eps^2 )$ (\cref{theo:lb:pmd}). Finally, we demonstrate the versatility of our techniques by obtaining in~\cref{sec:log:concaves} a testing algorithm for discrete log-concavity with sample complexity $O(\sqrt{n}/\eps^2 + (\log(1/\eps)/\eps)^{5/2})$; improving on the previous bounds of~$\bigO{{\sqrt{n}}/{\eps^{2}}+{1}/{\eps^5}}$~\cite{ADK:15} and $\tildeO{{\sqrt{n}}/{\eps^{7/2}}}$~\cite{CDGR:16}.
 
 
 \subsubsection{Our Techniques and Comparison to Previous Work} \label{ssec:techniques}

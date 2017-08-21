@@ -10,8 +10,8 @@ We shall need all our strength for the job!''}{Lewis Carroll, \textit{The Huntin
 \newcommand{\RightComment}[1]{\Comment{\parbox[t]{.30\linewidth}{\small#1}}} % For algorithms
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-In this chapter, we focus on obtaining algorithmic upper bounds in distribution testing. Our goal, however, departs from most of the previous literature, in that it is not to solve a specific testing problem by coming up with a bespoke\cmargin{Idiomatic? Tailor-made?}{} algorithm for that task. We take instead a different path, and set out to provide \emph{general} algorithms applicable across-the-board to a variety of problems \emph{at once}. Marginally more formally, here is the objective we will address:
-\begin{problem}
+In this chapter, we focus on obtaining algorithmic upper bounds in distribution testing. Our goal, however, departs from most of the previous literature, in that it is not to solve a specific testing problem by coming up with a bespoke\cmargin{Idiomatic? Tailor-made?}{} algorithm for that task. We take instead a different path, and set out to provide \emph{general} algorithms applicable across-the-board to a variety of problems \emph{at once}. Marginally more formally, here is the objective we seek to address:
+\begin{problem}\label{problem:ub:general}
 Design general-purpose testing algorithms, that when applied to a property \property would have (tight, or near-tight, or not absolutely laughable) sample complexity $q(\eps, \tau)$ as long as \property satisfies some ``structural assumption'' $\mathcal{S}_\tau$ parameterized by $\tau$.
 \end{problem}
 \noindent For instance, one could think of $\mathcal{S}_\tau$ as ``every $\D\in\property$ is close to some piecewise-constant distribution on $1/\tau$ intervals'' (as is e.g. the case for monotone distributions, with $\tau=\frac{1}{\poly(\log n, 1/\eps)}$ by~\cref{theorem:Birge:obl:decomp}); or, in another vein, ``all $\D\in\property$ have $\norm{\D}_{17/4} \leq \tau$'' (technically, one \emph{could} think of that one).  
