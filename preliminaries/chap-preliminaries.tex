@@ -14,7 +14,7 @@ We now formally introduce the main actor of this dissertation. A \emph{probabili
 When the domain is a subset of the natural numbers $\N$, we shall often abuse notation and identify a distribution $\p\in\distribs{\domain[\Omega]}$ with the sequence $(\p_i)_{i\in\domain}\in\lp[1]$ corresponding to its probability mass function (pmf).
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Property testing, distributions, and metrics.} 
+\section{Property testing, distributions, and metrics.}\label{sec:preliminaries:basics}
 
 As is usual in property testing of distributions, throughout this dissertation the distance between two distributions $\D_1, \D_2\in \distribs{\domain}$ will be the \emph{total variation distance}:
 \begin{equation}\label{def:distance:tv}
@@ -173,7 +173,7 @@ Then we have
 \end{fact}
 
 Finally, we recall below a fundamental fact from probability theory that will be useful to us, the \emph{Dvoretzky--Kiefer--Wolfowitz (DKW) inequality}. Informally, this result says that one can learn the cumulative distribution function of a distribution up to an additive error $\eps$ in $\lp[\infty]$ distance, by taking only $\bigO{1/\eps^2}$ samples from it.
-\begin{theorem}[\cite{DKW:56,Massart:90}]\label{theo:dkw}
+\begin{theorem}[\cite{DKW:56,Massart:90}]\label{theo:dkw:ineq}
 Let $\D$ be a distribution over $[n]$. Given $m$ independent samples $x_1,\dots ,x_m$ from $\D$, define the empirical distribution $\hat{\D}$ as follows:
 \[
 \hat{\D}(i) \eqdef \frac{\abs{ \setOfSuchThat{j\in[m]}{x_j=i} } }{m}, \quad i\in[n].
@@ -197,6 +197,12 @@ Then, for all $\eps > 0$, $\probaOf{ \kolmogorov{\D}{\hat{\D}} > \eps } \leq 2e^
       \end{align*}
 (we remark that Eq.~\eqref{eq:Birge:tv} could also be obtained directly by applying the data processing inequality for total variation distance (\cref{lemma:data:processing:inequality:total:variation}) to $\D_1$, $\D_2$, for the transformation $\Psi_{\mathcal{I}}(\cdot)$.)
 \end{proof}
+
+We state here a few facts about monotone distributions, namely that they admit a \emph{succinct} approximation, itself monotone, close in total variation distance. This theorem, originally from \cite{Birge:87}, has recently been pivotal in several results on learning and testing $k$-modal distributions \cite{DDS:12,DDSVV:13}. 
+\begin{definition}[Birg\'e decomposition]\label{def:birge:decomposition}
+  Given a parameter $\alpha>0$, the corresponding (oblivious) \emph{Birg\'e decomposition of $[n]$} is the partition $\mathcal{I}_\alpha=(I_1,\dots,I_\ell)$, where $\ell=\bigTheta{\frac{\ln( \alpha n + 1)}{\alpha}}=\bigTheta{\frac{\log n }{\alpha}}$ and $\abs{I_{k}}=\flr{(1+\alpha)^k}$, $1\leq k \leq \ell$. 
+\end{definition}
+Note that this partition consists of logarithmically many intervals \emph{and crucially only depends on $n$ and $\eps$} (and not on any specific distribution $\D$): for this reason, we will often refer to it as the ``oblivious'' decomposition.
 
 \noindent {For a distribution $\D$ and parameter $\alpha$, define $\birge[\D]{\alpha}$ to be the ``flattened'' distribution with relation to the oblivious decomposition $\mathcal{I}_\alpha$, that is $\birge[\D]{\alpha} = \Psi_{\mathcal{I}_\alpha}(\D)$.} 
 The next theorem states that every monotone distribution can be well-approximated by its flattening on the Birg\'e decomposition's intervals:     

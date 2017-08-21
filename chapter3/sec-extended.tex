@@ -455,35 +455,21 @@ Conditioning on $\bar{B}_1\cup \bar{B}_2$, we get that $\Tester$ sees exactly th
 \subsubsection{Upper bound: exponential speedup for \cdfsamp oracles}
 We now establish the positive result in the case of algorithms given \cdfsamp query access. Note that Batu et al.~\cite{BDKR:05} already consider the problem of getting a (multiplicative) estimate of the entropy of $\D$, under the assumption that the distribution is monotone; and describe (both in the evaluation-only and sample-only models) $\poly\!\log(n)$-query algorithms for this task, which work by recursively splitting the domain in a suitable fashion to get a partition into near uniform and negligible intervals.
 
-The main insight here (in addition to the mere fact that we allow ourself a stronger type of access to $\D$) is to use, instead of an \emph{ad hoc} partition of the domain, a specific one tailored for monotone distributions, introduced by Birg\'e~\cite{Birge:87} -- and which crucially \emph{does not depend on the distribution itself}.
+The main insight here (in addition to the mere fact that we allow ourself a stronger type of access to $\D$) is to use, instead of an \emph{ad hoc} partition of the domain, a specific one tailored for monotone distributions, introduced by Birg\'e~\cite{Birge:87} -- and which crucially \emph{does not depend on the distribution itself}. Namely, for a given parameter $\eps$ we will rely on the oblivious (Birg\'e) decomposition $\mathcal{I}_\eps$ from~\cref{def:birge:decomposition}, and the \emph{flattened distribution} $\birge[\D]{\eps}$ of $\D$ with relation to this partition, as defined in~\cref{chap:preliminaries:previous:tools}:
+\[ \forall k\in [\ell], \forall i\in I_k,\quad \birge[\D]{\eps}(i) = \frac{\D(I_k)}{\abs{I_k}} \]
+We insist that while $\birge[\D]{\eps}$ (obviously) depends on $\D$, the partition $\mathcal{I}_\eps$ itself does not; in particular, it can be computed prior to getting any sample or information about $\D$. Before proceeding further, we recall one of the main properties of this ``Birg\'e flattening'':
+%%%%%%%%
 
-\begin{definition}[Oblivious decomposition]\label{def:birge:obl:decomp}
-  Given a parameter $\eps>0$, the corresponding \emph{oblivious decomposition of $[n]$} is the partition $\mathcal{I}_\eps=(I_1,\dots,I_\ell)$, where $\ell=\clg{\frac{\log( \eps n + 1)}{\eps}}=\bigTheta{\frac{\log n }{\eps}}$ and $\abs{I_{k+1}}=(1+\eps)\abs{I_{k}}$, $1\leq k < \ell$.
-\end{definition}
-
-\noindent For a distribution $\D$ and parameter \eps, define $\bar{\D}_\eps$ to be the \emph{flattened distribution} with relation to the oblivious decomposition $\mathcal{I}_\eps$:
-\[ \forall k\in [\ell], \forall i\in I_k,\quad \bar{\D}_\eps(i) = \frac{\D(I_k)}{\abs{I_k}} \]
-We insist that while $\bar{\D}_\eps$ (obviously) depends on $\D$, the partition $\mathcal{I}_\eps$ itself does not; in particular, it can be computed prior to getting any sample or information about $\D$.
-
-\begin{theorem}[\cite{Birge:87}]\label{theorem:birge:obl:decomp}
- If $\D$ is monotone non-increasing, then $\totalvardist{\D}{\bar{\D}_\eps} \leq \eps$.
-\end{theorem}
-
-\begin{remark} A proof of this theorem, self-contained and phrased in terms of discrete distributions (whereas the original paper by Birg\'e is primarily intended for continuous ones) can be found in~\cite{DDSVV:13} -- Theorem 3.1.
-\end{remark}
-
-\begin{corollary}\label{coro:birge:decomposition:robust}
-  Suppose $\D$ is \eps-close to monotone non-increasing. Then $\totalvardist{\D}{\bar{\D}_\eps} \leq 3\eps$; furthermore,  $\bar{\D}_\eps$ is also \eps-close to monotone non-increasing.
-\end{corollary}
+\birgerobustcorollary*
 
 Finally, we shall also need the following well-known result relating total variation distance and difference of entropies (see e.g.~\cite{Zhang:07}, Eq. (4)):
 \begin{fact}[Total variation and Entropy]\label{fact:tv:entropy}
 Let $\D_1$, $\D_2$ be two distributions on $[n]$ such that $\totalvardist{\D_1}{\D_2} \leq \alpha$, for $\alpha\in[0,1]$. Then $\abs{H(\D_1)-H(\D_2)} \leq \alpha\log(n-1) +h_2(\alpha) \leq \alpha\log\frac{n}{\alpha} + (1-\alpha)\log\frac{1}{1-\alpha}$, where $h_2$ is the binary entropy function.\footnote{That is, $h_2(p)=-p\log p - (1-p)\log(1-p)$ is the entropy of a Bernoulli random variable with parameter $p$.}
 \end{fact}
 
-\subparagraph{High-level idea} Suppose we use the oblivious decomposition from~\cref{def:birge:obl:decomp}, with small parameter $\alpha$ (to be determined later), to reduce the domain into $\ell=\littleO{n}$ intervals. Then, we can set out to approximate the entropy of the induced \emph{flat} distribution -- that we can efficiently simulate from the \cdfsamp oracles, roughly reducing the complexity parameter from $n$ to $\ell$; it only remains to use the previous approach, slightly adapted, on this flat distribution. Of course, we have to be careful not to incur too much a loss at each step, where we first approximate $H(D)$ by $H(\bar{\D})$, and then specify our cutoff threshold to only consider significant contributions to $H(\bar{\D})$.
+\subparagraph{High-level idea} Suppose we use the oblivious decomposition from~\cref{def:birge:decomposition}, with small parameter $\alpha$ (to be determined later), to reduce the domain into $\ell=\littleO{n}$ intervals. Then, we can set out to approximate the entropy of the induced \emph{flat} distribution -- that we can efficiently simulate from the \cdfsamp oracles, roughly reducing the complexity parameter from $n$ to $\ell$; it only remains to use the previous approach, slightly adapted, on this flat distribution. Of course, we have to be careful not to incur too much a loss at each step, where we first approximate $H(D)$ by $H(\bar{\D})$, and then specify our cutoff threshold to only consider significant contributions to $H(\bar{\D})$.
 
-\subparagraph{Details} Consider the Birg\'e decomposition of $[n]$ into $\ell=\bigTheta{\log(n\alpha)/\alpha}$ intervals (for $\alpha$ to be defined shortly).~\cref{theorem:birge:obl:decomp} ensures the corresponding (unknown) flattened distribution $\bar{\D}$ is $\alpha$-close to $\D$; which, by the fact above, implies that
+\subparagraph{Details} Consider the Birg\'e decomposition of $[n]$ into $\ell=\bigTheta{\log(n\alpha)/\alpha}$ intervals (for $\alpha$ to be defined shortly).~\cref{theorem:Birge:obl:decomp} ensures the corresponding (unknown) flattened distribution $\bar{\D}$ is $\alpha$-close to $\D$; which, by the fact above, implies that
 \begin{equation}
   \abs{ H(\bar{\D}) - H(D) } \leq \alpha\left(\log\frac{n}{\alpha} + 2\right)
 \end{equation}
@@ -505,7 +491,7 @@ In the \cdfsamp access model, there exists an algorithm for monotone distributio
 \end{theorem}
 
 \begin{remark}\label{remark:entropy:estimation:additive:monotone:close}
-We remark that the above result and algorithm (after some minor changes in the constants) still applies if $\D$ is only guaranteed to be $\bigO{1/\log n}$-\emph{close} to monotone; indeed, as stated in~\cref{coro:birge:decomposition:robust}, the oblivious decomposition is (crucially) {robust}, and $\bar{\D}$ will still be $\bigO{\eps}$-close to $\D$.
+We remark that the above result and algorithm (after some minor changes in the constants) still applies if $\D$ is only guaranteed to be $\bigO{1/\log n}$-\emph{close} to monotone; indeed, as stated in~\cref{coro:Birge:decomposition:robust}, the oblivious decomposition is (crucially) {robust}, and $\bar{\D}$ will still be $\bigO{\eps}$-close to $\D$.
 \end{remark}
  
 \subsubsection{Additive estimation of support size}

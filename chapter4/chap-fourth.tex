@@ -50,10 +50,7 @@ In what follows, \domain is a finite
 domain, \property is any fixed property of 
 distributions, i.e., a subset of distributions,  over \domain
 and distances between distributions are measured according
-to their \emph{total variation distance}.
-
-
-\medskip 
+to their \emph{total variation distance}. 
 
 A \emph{sampling corrector} for \property 
 is a randomized algorithm which gets samples from 
@@ -75,8 +72,55 @@ For this reason, we also consider the weaker notion of
 which is similar to a sampling corrector but is only required to
 transform the distribution into a new distribution which is 
  \emph{closer} to having the property \property.
+ 
+ 
+ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[ht]\centering
+\begin{tikzpicture}[decoration=penciline]
 
-\smallskip
+          \pgfplotsset{every axis/.append style={line width=1pt}}
+
+          \begin{axis}[%
+              xtick={1, 3, 5},
+              xticklabels={,,},
+              yticklabels={},
+              axis x line=bottom,
+              axis y line=left,
+              scale=0.6,
+              name=source
+          ]
+%           % 1st plot
+%           \addplot [purple!80!white, samples=200, domain=0:6] {0.75*exp(-(x-3)^2)};
+          % 2nd plot
+          \addplot [NavyBlue!80!white, samples=200, domain=0:6] {0.05*(rnd-0.5)+0.01*sin(cos(x)+rnd*x^5)+0.75*exp(-(x-3)^2)}; 
+          
+          \node (d) at (axis cs:4,.7) {\color{NavyBlue}$\D$};
+          \end{axis}
+          \tikzstyle{int}=[draw, decorate, minimum height=5em, minimum width=5em]
+          \node[int,circle,dotted] (filter) at (7,1.7) {\; Corrector\; };
+          \tikzstyle{int}=[draw, decorate, minimum height=5em, minimum width=5em]
+          \node[int,circle] (algo) at (11,1.7) {Algorithm};          
+          \begin{axis}[%
+              xtick={},
+              xticklabels={},
+              yticklabels={},
+              axis x line=bottom,
+              axis y line=left,
+              scale=0.2,
+              name=corrected,
+              at={(0.425\linewidth,-0.05\linewidth)}
+          ]
+          \addplot [draw=none, samples=200, domain=0:6] {0.1*(rnd-0.5)+0.01*sin(cos(x)+rnd*x^5)+0.75*exp(-(x-3)^2)}; 
+          \addplot [red!80!white, samples=200, domain=0:6] {0.75*exp(-(x-3)^2)};          
+          \node (dtilde) at (axis cs:4.5,.7) {\color{red}$\tilde{\D}$};
+          \end{axis}
+          
+            \path[->] (source.east) edge[decorate] node[above=4pt] {\color{NavyBlue}\scriptsize $s_1,\dots,s_k\sim \D$} (filter.west);
+            \path[->] (filter.east) edge[decorate] node[above=4pt] {\color{red}\scriptsize $s_1,\dots,s_m\sim \tilde{\D}$} (algo.west);
+\end{tikzpicture}
+\caption{\label{fig:sampling:corrector} A sampling corrector acts as a filter being an imperfect source of data $\D$, which is only \emph{close} to having a prespecified property $\property$, and an algorithm which requires data from a source with this property.}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
  
 
 One naive way to solve these problems, the ``learning approach,''
@@ -106,7 +150,7 @@ returning a hypothesis at a distance at most $\opt+\eps$ from $\D$
 -- where $\opt$ is the distance from $\D$ to the class, 
 it is said to be \emph{agnostic}.
 For a formal definition of these concepts, 
-the reader is referred to~\cref{ssec:connections:agnostic} and~\cref{appendix:definitions}.}
+the reader is referred to~\cref{sec:preliminaries:basics} and~\cref{ssec:connections:agnostic}.}
 
 In our model, we wish to optimize the following 
 two parameters of our correcting algorithms:
@@ -129,7 +173,6 @@ For any property $\property$, the main question is whether one
 can achieve improved complexity  in terms of
 these parameters over the use of the naive (agnostic) learning approach
 for $\property$.
-
 
 \subsection{Our results}
 
@@ -177,7 +220,7 @@ as in the latter the algorithm is able to leverage structural properties of the 
 Our third result in this section,~\cref{theo:connection:corrector:testing}, shows that an efficient property tester, 
 an efficient distance estimator (which computes an additive estimate of the distance between two distributions) and an efficient sampling corrector for
 a distribution class imply a tolerant property tester with complexity
-equal to the complexity of correcting the number of samples required to run both the tester and estimator.\footnote{Recall that the difference between  testing and tolerant testing lies in that the former asks to distinguish whether an unknown distribution \emph{has} a property, or is far from it, while the latter requires to decide whether the distribution is \emph{close} to the property versus far from it. (See~\cref{appendix:definitions} for the rigorous definition.)}
+equal to the complexity of correcting the number of samples required to run both the tester and estimator.\footnote{Recall that the difference between  testing and tolerant testing lies in that the former asks to distinguish whether an unknown distribution \emph{has} a property, or is far from it, while the latter requires to decide whether the distribution is \emph{close} to the property versus far from it. (See~\cref{sec:preliminaries:basics} for the rigorous definition.)}
 As tolerant property testing can be much more difficult than
 property testing~\cite{GRexp:00,BFRSW:10,Paninski:08,ValiantValiant:10lb}, this gives a general purpose way of getting
 both upper bounds on tolerant property testing and lower bounds
@@ -430,7 +473,7 @@ since $\alpha \leq \eps$ by assumption.
 \end{proof}
  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Connections to learning and testing}\label{sec:connections}
-	In this section, we draw connections between sampling improvers and other areas, namely testing and learning. These connections shed light on the relation between our model and these other lines of work, and provide a way to derive new algorithms and impossibility results for both testing or learning problems. (For the formal definition of the testing and learning notions used in this section, the reader is referred to~\cref{appendix:definitions} and the relevant subsections.)
+	In this section, we draw connections between sampling improvers and other areas, namely testing and learning. These connections shed light on the relation between our model and these other lines of work, and provide a way to derive new algorithms and impossibility results for both testing or learning problems. (For the formal definition of the testing and learning notions used in this section, the reader is referred to~\cref{sec:preliminaries:basics} and the relevant subsections.)
 
 \subsection{From learning to correcting}\label{ssec:connection:learning:approach}As a first observation, it is not difficult to see that, under the assumption that the unknown distribution $\D$ belongs to some specific class \class, correcting (or improving) a property $\property$ requires at most as many samples as learning the class \class; that is, \emph{learning (a class of distributions) is at least as hard as correcting (distributions of this class).} Here, \property and \class need not be related.
 
@@ -768,7 +811,7 @@ where the last inequality derives from the fact that $k^2\eps = \bigO{\eps^\prim
 An interesting feature of the above construction is that does not
 \emph{only} yields a $\bigO{1}$-query corrector from {sampling to sampling}: it
 similarly implies a corrector from \ORACLE to \ORACLE with query complexity
-$\bigO{1}$, for \ORACLE being (for instance) an evaluation or \Cdfsamp oracle (cf.~\cref{appendix:definitions}). 
+$\bigO{1}$, for \ORACLE being (for instance) an evaluation or \Cdfsamp oracle (cf.~\cref{sec:extended}). 
 This follows from the fact that the corrected distribution $\tilde{\D}$ is of the form $\tilde{\D} = \lambda\D+(1-\lambda)P$, where
 both $\lambda$ and $P$ are fully known.
 \end{remark}
@@ -776,7 +819,7 @@ both $\lambda$ and $P$ are fully known.
 \subsection{Correcting with \Cdfsamp{access}}\label{sec:monotonicity:cdf}
 \newcommand{\supb}{S}
 
-In this section we prove the following result, which shows that correcting monotonicity with $\littleO{\log n}$ queries (on expectation) is possible when one allows a stronger type of access to the original distribution. In particular, recall that in the \Cdfsamp model (as defined in~\cref{appendix:definitions}) the algorithm is allowed to make, in addition to the usual draws from the distribution, \emph{evaluation queries} to its cumulative distribution function.\footnote{We remark that our algorithm will in fact only use this latter type of access, and will not rely on its ability to draw samples from $\D$.}
+In this section we prove the following result, which shows that correcting monotonicity with $\littleO{\log n}$ queries (on expectation) is possible when one allows a stronger type of access to the original distribution. In particular, recall that in the \Cdfsamp model (as defined in~\cref{sec:extended}) the algorithm is allowed to make, in addition to the usual draws from the distribution, \emph{evaluation queries} to its cumulative distribution function.\footnote{We remark that our algorithm will in fact only use this latter type of access, and will not rely on its ability to draw samples from $\D$.}
 
 \begin{theorem}\label{theo:samp:corrector:monotonicity:cdf}
 For any $\eps \in (0,1]$, any number of queries $m$ and $\eps_1 = \bigO{\eps}$ as in the definition, there exists a sampling corrector for monotonicity from \Cdfsamp to \SAMP with \emph{expected} sample complexity $\bigO{\sqrt{m\log n/\eps}}$.
