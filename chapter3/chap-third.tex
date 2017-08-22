@@ -4,6 +4,16 @@
    You may hunt it with forks and hope;\\
 You may threaten its life with a railway-share;\\
    You may charm it with smiles and soap--}{Lewis Carroll, \textit{The Hunting of the Snark}}
+   
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+In the standard distribution testing setting considered so far, the ``massive object'' is an arbitrary probability distribution $\D$ over an $n$-element set, and the algorithm accesses the distribution by drawing independent samples from it. One broad insight that has emerged from this past decade of work in this setting is that, while sublinear-sample algorithms do exist for many distribution testing problems, the number of samples required remains in general quite large.  Indeed, even the basic problem of testing whether $\D$ is the uniform distribution $\uniform$ over $[n]$ versus $\eps$-far from uniform requires $\Omega_\eps(\sqrt{n})$ samples, and most other problems have sample complexities at least this high, and in some cases \emph{almost linear in the domain size $n$}~\cite{RRSS:09,Valiant:11,ValiantValiant:11}. Since such sample complexities could be and routinely are prohibitively high in real-world settings where $n$ can be extremely large (see e.g.~\cite{BFRSW:00,GRexp:00,Ma:81:Physics,Rubinfeld:12:Survey}, and references within), it is natural to explore problem variants  where it may be possible for algorithms to succeed using fewer samples.  
+
+Indeed, researchers have studied distribution testing in settings where the unknown distribution is guaranteed to have some special structure, such as being monotone, $k$-modal or a \mbox{``$k$-histogram''} over $[n]$ \cite{BKR:04,DDSVV:13,ILR:12}, or being monotone over $\bool^n$ \cite{RS:09} or over other posets~\cite{BFRV:11}, and have obtained significantly more sample-efficient algorithms using these additional assumptions.
+
+In this chapter we pursue a different line of investigation: rather than restricting the \emph{class} of probability distributions under consideration, we consider testing algorithms that may use a more powerful form of \emph{access} to the unknown distribution $\D$. In particular, we introduce and analyze two of these stronger types of access, the \emph{conditional} and \emph{extended} models (and some of their variants), where the algorithm can respectively obtain samples conditioned on certain events of its choosing, and inspect directly the probability mass or cumulative distribution function of the unknown probability distribution. The conditional sampling model will be the focus of~\cref{sec:conditional}; then,~\cref{sec:extended} contains the details of our work on the extended access model.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Conditional Sampling: Focusing on What Matters}\label{sec:conditional}
 \input{chapter3/sec-conditional}

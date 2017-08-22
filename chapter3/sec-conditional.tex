@@ -1,69 +1,67 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Introduction}
 
-\subsubsection{Background: Distribution testing in the standard model}
+%  \subsubsection{Background: Distribution testing in the standard model}
 
-One of the most fundamental problem paradigms in statistics is that of
-inferring some information about an unknown probability distribution
-$\D$ given access to independent samples drawn from it. More than a
-decade ago,
-Batu et al.~\cite{BFRSW:00}\footnote{There is a more recent full version of
- this work~\cite{BFRSW:10} and we henceforth reference this recent version.}
-initiated the study of problems of this type
-from within the framework of \emph{property testing}~\cite{RS:96,GGR:98}.
-In a property testing problem
-there is an unknown ``massive object'' that an algorithm can access
-only by making a small number of local inspections of the object,
-and the goal is to determine whether the object has a
-particular property.  The algorithm must output $\accept$ if the object
-has the desired property and output $\reject$ if the object is far from
-every object with the property. (See~\cite{Fischer:01,Ron:08,Ron:10,Goldreich:10} for detailed surveys and overviews of the broad field of property testing.)%;we give precise definitions tailored to our setting in~\cref{sec:prelim}.)
+% One of the most fundamental problem paradigms in statistics is that of
+% inferring some information about an unknown probability distribution
+% $\D$ given access to independent samples drawn from it. More than a
+% decade ago,
+% Batu et al.~\cite{BFRSW:00}\footnote{There is a more recent full version of
+%  this work~\cite{BFRSW:10} and we henceforth reference this recent version.}
+% initiated the study of problems of this type
+% from within the framework of \emph{property testing}~\cite{RS:96,GGR:98}.
+% In a property testing problem
+% there is an unknown ``massive object'' that an algorithm can access
+% only by making a small number of local inspections of the object,
+% and the goal is to determine whether the object has a
+% particular property.  The algorithm must output $\accept$ if the object
+% has the desired property and output $\reject$ if the object is far from
+% every object with the property. (See~\cite{Fischer:01,Ron:08,Ron:10,Goldreich:10} for detailed surveys and overviews of the broad field of property testing.)%;we give precise definitions tailored to our setting in~\cref{sec:prelim}.)
+%
+% In distribution property testing the ``massive object'' is an unknown
+% probability distribution $\D$ over
+% an $n$-element set, and the algorithm accesses the distribution by drawing
+% independent samples from it.
+% A wide range of different properties of
+% probability distributions have been investigated in this setting,
+% and upper and lower bounds on the number of samples required have by now
+% been obtained for many problems.  These include testing whether $\D$ is
+% uniform~\cite{GRexp:00,BFRSW:10,Paninski:08}, testing whether $\D$ is identical to a given known
+% distribution $\D^\ast$~\cite{BFFKRW:01}, testing whether two distributions $\D_1$, $\D_2$
+% (both available via sample access) are identical~\cite{BFRSW:00,Valiant:11}, and
+% testing whether $\D$ has a monotonically increasing probability mass function~\cite{BFRV:11},
+%        as well as related problems such as estimating the entropy of $\D$~\cite{BDKR:05,ValiantValiant:11},
+% and estimating its support size~\cite{RRSS:09,Valiant:11,ValiantValiant:11}. Similar problems have also been studied by
+% researchers in other communities, see e.g.,~\cite{Ma:81:Physics,Paninski:04,Paninski:08}.
+%
+% One broad insight that has emerged from this past decade of work is that while sublinear-sample
+% algorithms do exist for many distribution testing problems, the number of samples required
+% is in general quite large.  Even the
+% basic problem of testing whether $\D$ is the uniform distribution $\uniform$
+% over $[n]=\{1,\dots,n\}$ versus $\eps$-far from uniform
+% requires $\Omega(\sqrt{n})$ samples\footnote{To verify this, consider the
+% family of all distributions that are uniform over half of the domain, and $0$
+% elsewhere. Each distribution in this family is $\Theta(1)$-far from the uniform
+% distribution. However, it is not possible to distinguish with sufficiently high probability between
+% the uniform distribution and a distribution selected randomly from this family, given a
+%    sample of size $\sqrt{n}/c$ (for a sufficiently large constant $c>1$). This is the case
+%    because for the uniform distribution as well as each
+%    distribution in this family, the probability of observing the same element more than once
+%     is very small. Conditioned on such a collision event not occurring, the samples
+%     are distributed identically.}
+%  for constant $\eps$, and the other problems mentioned above have sample complexities at least this high,
+% and in some cases \emph{almost linear in $n$}~\cite{RRSS:09,Valiant:11,ValiantValiant:11}.
+% Since such sample complexities could be prohibitively high in real-world settings where $n$ can be extremely large,  it is natural to explore problem variants  where it may be possible for algorithms to succeed
+% using fewer samples.  Indeed, researchers have studied distribution testing in settings where
+% the unknown distribution is guaranteed to have some special structure, such as being monotone, $k$-modal or a \mbox{``$k$-histogram''} over $[n]$
+% \cite{BKR:04,DDSVV:13,ILR:12}, or being monotone over $\{0,1\}^n$
+% \cite{RS:09} or over other posets~\cite{BFRV:11},
+% and have obtained significantly more sample-efficient algorithms using these additional assumptions.
 
-In distribution property testing the ``massive object'' is an unknown
-probability distribution $\D$ over
-an $n$-element set, and the algorithm accesses the distribution by drawing
-independent samples from it.
-A wide range of different properties of
-probability distributions have been investigated in this setting,
-and upper and lower bounds on the number of samples required have by now
-been obtained for many problems.  These include testing whether $\D$ is
-uniform~\cite{GRexp:00,BFRSW:10,Paninski:08}, testing whether $\D$ is identical to a given known
-distribution $\D^\ast$~\cite{BFFKRW:01}, testing whether two distributions $\D_1$, $\D_2$
-(both available via sample access) are identical~\cite{BFRSW:00,Valiant:11}, and
-testing whether $\D$ has a monotonically increasing probability mass function~\cite{BFRV:11},
-       as well as related problems such as estimating the entropy of $\D$~\cite{BDKR:05,ValiantValiant:11},
-and estimating its support size~\cite{RRSS:09,Valiant:11,ValiantValiant:11}. Similar problems have also been studied by
-researchers in other communities, see e.g.,~\cite{Ma:81:Physics,Paninski:04,Paninski:08}.
+%\subsubsection{The conditional sampling model}
 
-One broad insight that has emerged from this past decade of work is that while sublinear-sample
-algorithms do exist for many distribution testing problems, the number of samples required
-is in general quite large.  Even the
-basic problem of testing whether $\D$ is the uniform distribution $\uniform$
-over $[n]=\{1,\dots,n\}$ versus $\eps$-far from uniform
-requires $\Omega(\sqrt{n})$ samples\footnote{To verify this, consider the
-family of all distributions that are uniform over half of the domain, and $0$
-elsewhere. Each distribution in this family is $\Theta(1)$-far from the uniform
-distribution. However, it is not possible to distinguish with sufficiently high probability between
-the uniform distribution and a distribution selected randomly from this family, given a
-   sample of size $\sqrt{n}/c$ (for a sufficiently large constant $c>1$). This is the case
-   because for the uniform distribution as well as each
-   distribution in this family, the probability of observing the same element more than once
-    is very small. Conditioned on such a collision event not occurring, the samples
-    are distributed identically.}
- for constant $\eps$, and the other problems mentioned above have sample complexities at least this high,
-and in some cases \emph{almost linear in $n$}~\cite{RRSS:09,Valiant:11,ValiantValiant:11}.
-Since such sample complexities could be prohibitively high in real-world settings where $n$ can be extremely large,  it is natural to explore problem variants  where it may be possible for algorithms to succeed
-using fewer samples.  Indeed, researchers have studied distribution testing in settings where
-the unknown distribution is guaranteed to have some special structure, such as being monotone, $k$-modal or a \mbox{``$k$-histogram''} over $[n]$
-\cite{BKR:04,DDSVV:13,ILR:12}, or being monotone over $\{0,1\}^n$
-\cite{RS:09} or over other posets~\cite{BFRV:11},
-and have obtained significantly more sample-efficient algorithms using these additional assumptions.
-
-\subsubsection{The conditional sampling model}
-
-In this work we pursue a different line of investigation: rather than restricting the class of probability
-distributions under consideration, we consider testing algorithms that may use a more powerful form of
-access to the unknown distribution $\D$. This is a \emph{conditional sampling oracle}, which
+In this section, we consider our first generalization of the standard sampling model of distribution testing, granting the testing algorithms a more flexible access to the underlying probability distribution. This is a \emph{conditional sampling oracle}, which
 allows the algorithm to obtain a draw from $\D_S$, the conditional distribution of $\D$
 restricted to a subset $S$ of the domain (where $S$ is specified by the algorithm).  More
 precisely, we have:
@@ -88,8 +86,8 @@ will be on a set $S$ which contains an element $i$ which
 has been returned as the output of an earlier call to $\COND_\D$.)}
 \end{definition}
 
-As mentioned earlier, a recent work of Chakraborty et al.~\cite{CFGM:13} introduced a very similar conditional model; we discuss their results and how
-they relate to our results in~\cref{subsec:CFGM}.
+We remark that a recent work of Chakraborty et al.~\cite{CFGM:13} introduced a very similar conditional model; we discuss their results and how
+they relate to ours in~\cref{subsec:CFGM}.
 For compatibility with our $\COND_\D$ notation we will write $\SAMP_\D$ to
 denote an oracle that takes no input and, each time it is invoked, returns
 an element from $[n]$ drawn according to $\D$ independently from
@@ -5960,8 +5958,8 @@ which have been well-studied in the standard model, are monotonicity
 {(for which we have preliminary results)},
 independence between marginals of a joint distribution, and entropy.
 Yet another goal is to study distributions over other structured
-domains such as the Boolean hypercube $\{0,1\}^n$~--~here it would seem
+domains such as the Boolean hypercube $\bool^n$~--~here it would seem
 natural to consider ``subcube'' queries, analogous to the $\ICOND$ queries
 we considered when the structured domain is the linearly ordered set $[n]$.
 A final broad goal is to study distribution \emph{learning}
-(rather than testing) problems in the conditional sampling framework.
+(rather than testing) problems in the conditional sampling framework.\footnote{We note that, subsequent to our work and concurrent to the writing of this thesis, some of the directions and questions outlined here were addressed in several papers, some by the author of this dissertation. Specifically, our conjecture on the query complexity of testing identity of two unknown distributions was answered in the affirmative, and resolved up to a quadratic factor~\cite{ACK:14,FJOPS:15}. Monotonicity testing of distributions under the $\COND$, $\PCOND$, and $\ICOND$ models (as well as in the oracle models we shall cover in~\cref{sec:extended}) was studied in~\cite{Canonne:15} and~\cite{Canonne:15:Survey}. Finally, recent work of Bhattacharyya and Chakraborty~\cite{CB:17} set out to pursue the particular direction of ``subcube queries'' over $\bool^n$, and more generally $\Sigma^n$.} 
