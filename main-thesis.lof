@@ -1,0 +1,29 @@
+\boolfalse {citerequest}\boolfalse {citetracker}\boolfalse {pagetracker}\boolfalse {backtracker}\relax 
+\defcounter {refsection}{0}\relax 
+\select@language {american}
+\defcounter {refsection}{0}\relax 
+\addvspace {10pt}
+\defcounter {refsection}{0}\relax 
+\addvspace {10pt}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {1.1}{\ignorespaces Testing vs. tolerant testing: the algorithm is off the hook whenever the unknown distribution belongs to the gray area. It looks like eggs, really.}}{7}{figure.1.1}
+\defcounter {refsection}{0}\relax 
+\addvspace {10pt}
+\defcounter {refsection}{0}\relax 
+\addvspace {10pt}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Communicating has been somewhat hard for Alice and Bob lately.}}{107}{figure.3.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {3.2}{\ignorespaces {The reduction from equality in the SMP model to uniformity testing of distributions.} In (A) we see that the uniform distribution is obtained when $x=y$, whereas in (B) we see that when $x \not =y$, we obtain a distribution that is ``far'' from uniform.}}{111}{figure.3.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {3.3}{\ignorespaces Holmstedt's upper bound (in blue) vs. true behavior of $\kappa _{\ensuremath {\mathbf {p}}}$ (in red).}}{129}{figure.3.3}
+\defcounter {refsection}{0}\relax 
+\addvspace {10pt}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {4.1}{\ignorespaces The \textsf {yes}-instance $\ensuremath {\mathbf {p}}^+$ (for a fixed $\Pi $, taken to be consecutive intervals).}}{235}{figure.4.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {4.2}{\ignorespaces An instance of distribution $\ensuremath {\mathbf {p}}_p$ with $p=4/10$.}}{243}{figure.4.2}
+\defcounter {refsection}{0}\relax 
+\addvspace {10pt}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {5.1}{\ignorespaces A sampling corrector acts as a filter being an imperfect source of data $\ensuremath {\mathbf {p}}$, which is only \emph {close} to having a prespecified property $\ensuremath {\mathcal {P}}\xspace $, and an algorithm which requires data from a source with this property.}}{249}{figure.5.1}

@@ -1,3 +1,7 @@
+The upper bound framework presented in the previous section relied on a \emph{shape} condition on the distributions of the property to be tested, which made it particularly appealing when considering shape-restricted properties such as monotonicity or convexity. In this section, we pursue a different direction, focusing on a completely orthogonal type of structural property: namely, one capturing the \emph{sparsity} of the (discrete) Fourier transform. As an illustration of the difference between the two approaches: monotone distributions admit, as we saw earlier, very succinct decompositions (in the sense of~\cref{def:struct:dec:split}); yet in general their discrete Fourier transform need not be sparse by any means. On the other hand, it is easy to see that, for $k>2$, $(n, k)$-SIIRVs cannot be well-approximated by succinct decompositions; however, as we shall see they enjoy very good sparsity in the ``Fourier world.''
+
+Our two Swiss Army Knife approaches -- the shape restriction one from the previous section, and the ``Fourier knife'' we are about to describe -- can thus be seen as complementary; in conjunction, they provide a thorough and widely applicable toolbox to tackle distribution testing questions.
+
  \subsection{Introduction}  \label{sec:introduction:fourier}
 % \subsubsection{Background and Motivation} \label{ssec:background}
 
@@ -50,12 +54,11 @@ We show the following:
 \end{theorem}
 
 Prior to our work, no non-trivial tester was known for $(n, k)$-SIIRVs for any $k>2$. 
-\cite{CDGR:16} showed a sample lower bound of $\bigOmega{\frac{k^{1/2}n^{1/4}}{\eps^2}}$, but their techniques
+Canonne et al.~\cite{CDGR:16} showed a sample lower bound of $\bigOmega{\frac{k^{1/2}n^{1/4}}{\eps^2}}$, that we shall cover in~\cref{chap:unified:lb}; however, their techniques
 did not yield a corresponding sample upper bound. The special case of PBDs ($k=2$) was studied by 
 Acharya and Daskalakis~\cite{AD:15} who obtained a tester with sample complexity 
 $\bigO{\frac{n^{1/4}}{\eps^2}\sqrt{\log1/\eps}+\frac{\log^{5/2}1/\eps}{\eps^6}}$ (and running time $\bigO{\frac{n^{1/4}}{\eps^2}\sqrt{\log1/\eps}+(1/\eps)^{O(\log^2 1/\eps})}$ and a sample lower bound of $\Omega(n^{1/4}/\eps^2)$. 
 Our techniques also yield the following corollary: 
-
 \begin{theorem}[Testing PBDs]\label{theo:testing:[bd}
     Given parameters $n\in\N$, $\eps\in(0,1]$, and sample access to a distribution $\p$ over $\N$, there exists an algorithm (\cref{algo:ft:effective:support}) which outputs either \accept or \reject, and satisfies the following.
     \begin{enumerate}

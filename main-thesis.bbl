@@ -1,0 +1,5308 @@
+% $ biblatex auxiliary file $
+% $ biblatex version 2.6 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated as
+% required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+\entry{ACK:14}{inproceedings}{}
+  \name{author}{3}{}{%
+    {{}%
+     {Acharya}{A.}%
+     {Jayadev}{J.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Canonne}{C.}%
+     {Cl\'ement~L.}{C.~L.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Kamath}{K.}%
+     {Gautam}{G.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{AJCCLKG1}
+  \strng{fullhash}{AJCCLKG1}
+  \field{sortinit}{A}
+  \field{booktitle}{{APPROX-RANDOM}}
+  \field{pages}{449\bibrangedash 466}
+  \field{series}{LIPIcs}
+  \field{title}{A Chasm Between Identity and Equivalence Testing with
+  Conditional Queries}
+  \field{volume}{40}
+  \field{year}{2015}
+\endentry
+
+\entry{AD:15}{inproceedings}{}
+  \name{author}{2}{}{%
+    {{}%
+     {Acharya}{A.}%
+     {Jayadev}{J.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Daskalakis}{D.}%
+     {Constantinos}{C.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{AJDC1}
+  \strng{fullhash}{AJDC1}
+  \field{sortinit}{A}
+  \field{booktitle}{Proceedings of SODA}
+  \field{chapter}{122}
+  \field{pages}{1829\bibrangedash 1840}
+  \field{title}{{Testing Poisson Binomial Distributions}}
+  \field{year}{2015}
+\endentry
+
+\entry{ADK:15}{incollection}{}
+  \name{author}{3}{}{%
+    {{}%
+     {Acharya}{A.}%
+     {Jayadev}{J.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Daskalakis}{D.}%
+     {Constantinos}{C.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Kamath}{K.}%
+     {Gautam~C.}{G.~C.}%
+     {}{}%
+     {}{}}%
+  }
+  \name{editor}{6}{}{%
+    {{}%
+     {Cortes}{C.}%
+     {C.}{C.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Lawrence}{L.}%
+     {N.D.}{N.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Lee}{L.}%
+     {D.D.}{D.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Sugiyama}{S.}%
+     {M.}{M.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Garnett}{G.}%
+     {R.}{R.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Garnett}{G.}%
+     {R.}{R.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {Curran Associates, Inc.}%
+  }
+  \strng{namehash}{AJDCKGC1}
+  \strng{fullhash}{AJDCKGC1}
+  \field{sortinit}{A}
+  \field{booktitle}{Advances in Neural Information Processing Systems 28}
+  \field{pages}{3577\bibrangedash 3598}
+  \field{title}{{Optimal Testing for Properties of Distributions}}
+  \verb{url}
+  \verb http://papers.nips.cc/paper/5839-optimal-testing-for-properties-of-dist
+  \verb ributions.pdf
+  \endverb
+  \field{year}{2015}
+\endentry
+
+\entry{ADJOP:11}{inproceedings}{}
+  \name{author}{5}{}{%
+    {{}%
+     {Acharya}{A.}%
+     {Jayadev}{J.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Das}{D.}%
+     {Hirakendu}{H.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Jafarpour}{J.}%
+     {Ashkan}{A.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Orlitsky}{O.}%
+     {Alon}{A.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Pan}{P.}%
+     {Shengjun}{S.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{AJ+1}
+  \strng{fullhash}{AJDHJAOAPS1}
+  \field{sortinit}{A}
+  \field{booktitle}{Proceedings of COLT}
+  \field{pages}{47\bibrangedash 68}
+  \field{title}{Competitive Closeness Testing}
+  \field{year}{2011}
+\endentry
+
+\entry{ADLS:15}{inproceedings}{}
+  \name{author}{4}{}{%
+    {{}%
+     {Acharya}{A.}%
+     {Jayadev}{J.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Diakonikolas}{D.}%
+     {Ilias}{I.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Li}{L.}%
+     {Jerry~Zheng}{J.~Z.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Schmidt}{S.}%
+     {Ludwig}{L.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {{SIAM}}%
+  }
+  \strng{namehash}{AJ+1}
+  \strng{fullhash}{AJDILJZSL1}
+  \field{sortinit}{A}
+  \field{booktitle}{Proceedings of SODA}
+  \field{pages}{1278\bibrangedash 1289}
+  \field{title}{Sample-Optimal Density Estimation in Nearly-Linear Time}
+  \field{year}{2017}
+\endentry
+
+\entry{AJOS:14:ISIT}{inproceedings}{}
+  \name{author}{4}{}{%
+    {{}%
+     {Acharya}{A.}%
+     {Jayadev}{J.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Jafarpour}{J.}%
+     {Ashkan}{A.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Orlitsky}{O.}%
+     {Alon}{A.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Suresh}{S.}%
+     {Ananda~T.}{A.~T.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{AJ+1}
+  \strng{fullhash}{AJJAOASAT1}
+  \field{sortinit}{A}
+  \field{booktitle}{Information Theory (ISIT), 2014 IEEE International
+  Symposium on}
+  \verb{doi}
+  \verb 10.1109/ISIT.2014.6875120
+  \endverb
+  \field{pages}{1682\bibrangedash 1686}
+  \field{title}{Sorting with adversarial comparators and application to density
+  estimation}
+  \field{month}{06}
+  \field{year}{2014}
+\endentry
+
+\entry{AdellJodra:06}{article}{}
+  \name{author}{2}{}{%
+    {{}%
+     {Adell}{A.}%
+     {Jos\'e~A.}{J.~A.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Jodra}{J.}%
+     {Pedro}{P.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{AJAJP1}
+  \strng{fullhash}{AJAJP1}
+  \field{sortinit}{A}
+  \verb{doi}
+  \verb 10.1155/JIA/2006/64307
+  \endverb
+  \field{issn}{1029-242X}
+  \field{number}{1}
+  \field{pages}{64307}
+  \field{title}{Exact {K}olmogorov and total variation distances between some
+  familiar discrete distributions}
+  \field{volume}{2006}
+  \field{journaltitle}{Journal of Inequalities and Applications}
+  \field{year}{2006}
+\endentry
+
+\entry{ACCL:08}{article}{}
+  \name{author}{4}{}{%
+    {{}%
+     {Ailon}{A.}%
+     {Nir}{N.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Chazelle}{C.}%
+     {Bernard}{B.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Comandur}{C.}%
+     {Seshadhri}{S.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Liu}{L.}%
+     {Ding}{D.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {Springer-Verlag}%
+  }
+  \strng{namehash}{AN+1}
+  \strng{fullhash}{ANCBCSLD1}
+  \field{sortinit}{A}
+  \verb{doi}
+  \verb 10.1007/s00453-007-9075-9
+  \endverb
+  \field{issn}{0178-4617}
+  \field{number}{2}
+  \field{pages}{160\bibrangedash 182}
+  \field{title}{Property-Preserving Data Reconstruction}
+  \verb{url}
+  \verb http://dx.doi.org/10.1007/s00453-007-9075-9
+  \endverb
+  \field{volume}{51}
+  \field{journaltitle}{Algorithmica}
+  \field{year}{2008}
+\endentry
+
+\entry{ABR:16}{inproceedings}{}
+  \name{author}{3}{}{%
+    {{}%
+     {Aliakbarpour}{A.}%
+     {Maryam}{M.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Blais}{B.}%
+     {Eric}{E.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Rubinfeld}{R.}%
+     {Ronitt}{R.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {JMLR.org}%
+  }
+  \strng{namehash}{AMBERR1}
+  \strng{fullhash}{AMBERR1}
+  \field{sortinit}{A}
+  \field{booktitle}{Proceedings of COLT}
+  \field{pages}{19\bibrangedash 46}
+  \field{series}{{JMLR} Workshop and Conference Proceedings}
+  \field{title}{Learning and Testing Junta Distributions}
+  \field{volume}{49}
+  \field{year}{2016}
+\endentry
+
+\entry{Alon:2007}{inproceedings}{}
+  \name{author}{6}{}{%
+    {{}%
+     {Alon}{A.}%
+     {Noga}{N.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Andoni}{A.}%
+     {Alexandr}{A.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Kaufman}{K.}%
+     {Tali}{T.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Matulef}{M.}%
+     {Kevin}{K.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Rubinfeld}{R.}%
+     {Ronitt}{R.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Xie}{X.}%
+     {Ning}{N.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{AN+2}
+  \strng{fullhash}{ANAAKTMKRRXN1}
+  \field{sortinit}{A}
+  \field{booktitle}{Proceedings of STOC}
+  \verb{doi}
+  \verb 10.1145/1250790.1250863
+  \endverb
+  \field{pages}{496\bibrangedash 505}
+  \field{title}{Testing $k$-wise and Almost $k$-wise Independence}
+  \verb{url}
+  \verb http://doi.acm.org/10.1145/1250790.1250863
+  \endverb
+  \list{location}{1}{%
+    {New York, NY, USA}%
+  }
+  \field{year}{2007}
+\endentry
+
+\entry{An:96}{report}{}
+  \name{author}{1}{}{%
+    {{}%
+     {An}{A.}%
+     {Mark~Y.}{M.~Y.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{AMY1}
+  \strng{fullhash}{AMY1}
+  \field{sortinit}{A}
+  \field{title}{Log-concave probability distributions: theory and statistical
+  testing}
+  \verb{url}
+  \verb http://EconPapers.repec.org/RePEc:fth:clmsre:96-01
+  \endverb
+  \list{institution}{2}{%
+    {Centre for Labour Market}%
+    {Social Research, Denmark}%
+  }
+  \field{type}{techreport}
+  \field{year}{1996}
+\endentry
+
+\entry{AK:03}{article}{}
+  \name{author}{2}{}{%
+    {{}%
+     {Arora}{A.}%
+     {Sanjeev}{S.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Khot}{K.}%
+     {Subhash}{S.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{ASKS1}
+  \strng{fullhash}{ASKS1}
+  \field{sortinit}{A}
+  \field{note}{Special Issue on {STOC} 2002}
+  \field{number}{2}
+  \field{pages}{325 \bibrangedash  340}
+  \field{title}{Fitting algebraic curves to noisy data}
+  \field{volume}{67}
+  \field{journaltitle}{Journal of Computer and System Sciences}
+  \field{year}{2003}
+\endentry
+
+\entry{Astashkin:2010}{article}{}
+  \name{author}{1}{}{%
+    {{}%
+     {Astashkin}{A.}%
+     {Sergey~V.}{S.~V.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {Springer Nature}%
+  }
+  \strng{namehash}{ASV1}
+  \strng{fullhash}{ASV1}
+  \field{sortinit}{A}
+  \verb{doi}
+  \verb 10.1007/s10958-010-0074-z
+  \endverb
+  \field{number}{6}
+  \field{pages}{725\bibrangedash 886}
+  \field{title}{Rademacher functions in symmetric spaces}
+  \verb{url}
+  \verb http://dx.doi.org/10.1007/s10958-010-0074-z
+  \endverb
+  \field{volume}{169}
+  \field{journaltitle}{Journal of Mathematical Sciences}
+  \field{month}{09}
+  \field{year}{2010}
+\endentry
+
+\entry{BB:05}{article}{}
+  \name{author}{2}{}{%
+    {{}%
+     {Bagnoli}{B.}%
+     {Mark}{M.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Bergstrom}{B.}%
+     {Ted}{T.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{language}{1}{%
+    {English}%
+  }
+  \list{publisher}{1}{%
+    {Springer-Verlag}%
+  }
+  \keyw{Log-concavity. Reliability; Hazard functions; Probability
+  distributions; Failure rates; Costly appraisals; Mean residual lifetime.}
+  \strng{namehash}{BMBT1}
+  \strng{fullhash}{BMBT1}
+  \field{sortinit}{B}
+  \verb{doi}
+  \verb 10.1007/s00199-004-0514-4
+  \endverb
+  \field{issn}{0938-2259}
+  \field{number}{2}
+  \field{pages}{445\bibrangedash 469}
+  \field{title}{Log-concave probability and its applications}
+  \verb{url}
+  \verb http://dx.doi.org/10.1007/s00199-004-0514-4
+  \endverb
+  \field{volume}{26}
+  \field{journaltitle}{Economic Theory}
+  \field{year}{2005}
+\endentry
+
+\entry{BarYossef:02}{thesis}{}
+  \name{author}{1}{}{%
+    {{}%
+     {Bar-Yossef}{B.-Y.}%
+     {Ziv}{Z.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{BYZ1}
+  \strng{fullhash}{BYZ1}
+  \field{sortinit}{B}
+  \field{note}{Adviser: Christos Papadimitriou. Available
+  at~\url{http://webee.technion.ac.il/people/zivby/index_files/Page1489.html}.}
+  \field{title}{The Complexity of Massive Data Set Computations}
+  \list{institution}{1}{%
+    {UC Berkeley}%
+  }
+  \field{type}{phdthesis}
+  \field{year}{2002}
+\endentry
+
+\entry{Barbour:88}{article}{}
+  \name{author}{1}{}{%
+    {{}%
+     {Barbour}{B.}%
+     {Andrew~D.}{A.~D.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{BAD1}
+  \strng{fullhash}{BAD1}
+  \field{sortinit}{B}
+  \field{issn}{0021-9002}
+  \field{note}{A celebration of applied probability}
+  \field{number}{Special Vol. 25{\rm A}}
+  \field{pages}{175\bibrangedash 184}
+  \field{title}{Stein's method and {P}oisson process convergence}
+  \field{journaltitle}{J. Appl. Probab.}
+  \field{year}{1988}
+\endentry
+
+\entry{BHJ:92}{book}{}
+  \name{author}{3}{}{%
+    {{}%
+     {Barbour}{B.}%
+     {Andrew~D.}{A.~D.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Holst}{H.}%
+     {Lars}{L.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Janson}{J.}%
+     {Svante}{S.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {The Clarendon Press, Oxford University Press, New York}%
+  }
+  \strng{namehash}{BADHLJS1}
+  \strng{fullhash}{BADHLJS1}
+  \field{sortinit}{B}
+  \field{isbn}{0-19-852235-5}
+  \field{note}{Oxford Science Publications}
+  \field{pages}{x+277}
+  \field{series}{Oxford Studies in Probability}
+  \field{title}{Poisson approximation}
+  \field{volume}{2}
+  \field{year}{1992}
+\endentry
+
+\entry{BBBB:72}{book}{}
+  \name{author}{4}{}{%
+    {{}%
+     {Barlow}{B.}%
+     {Richard~E.}{R.~E.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {D.J}{D.}%
+     {Bartholomew}{B.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Bremner}{B.}%
+     {J.M}{J.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Brunk}{B.}%
+     {H.D}{H.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {J. Wiley}%
+  }
+  \strng{namehash}{BRE+1}
+  \strng{fullhash}{BREDBBJBH1}
+  \field{sortinit}{B}
+  \field{isbn}{0-471-04970-0}
+  \field{series}{Wiley Series in Probability and Mathematical Statistics}
+  \field{title}{Statistical Inference Under Order Restrictions: The Theory and
+  Application of Isotonic Regression}
+  \list{location}{1}{%
+    {London, New York}%
+  }
+  \field{year}{1972}
+\endentry
+
+\entry{article:outliers}{article}{}
+  \name{author}{1}{}{%
+    {{}%
+     {Barnett}{B.}%
+     {Vic}{V.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {JSTOR}%
+  }
+  \strng{namehash}{BV1}
+  \strng{fullhash}{BV1}
+  \field{sortinit}{B}
+  \field{pages}{242\bibrangedash 250}
+  \field{title}{The study of outliers: purpose and model}
+  \field{journaltitle}{Applied Statistics}
+  \field{year}{1978}
+\endentry
+
+\entry{BKR:04}{inproceedings}{}
+  \name{author}{3}{}{%
+    {{}%
+     {Batu}{B.}%
+     {Tu\u{g}kan}{T.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Kumar}{K.}%
+     {Ravi}{R.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Rubinfeld}{R.}%
+     {Ronitt}{R.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {ACM}%
+  }
+  \strng{namehash}{BTKRRR1}
+  \strng{fullhash}{BTKRRR1}
+  \field{sortinit}{B}
+  \field{booktitle}{Proceedings of STOC}
+  \verb{doi}
+  \verb 10.1145/1007352.1007414
+  \endverb
+  \field{isbn}{1-58113-852-0}
+  \field{pages}{381\bibrangedash 390}
+  \field{title}{Sublinear algorithms for testing monotone and unimodal
+  distributions}
+  \verb{url}
+  \verb http://doi.acm.org/10.1145/1007352.1007414
+  \endverb
+  \list{location}{1}{%
+    {New York, NY, USA}%
+  }
+  \field{year}{2004}
+\endentry
+
+\entry{BFRSW:10}{article}{}
+  \name{author}{5}{}{%
+    {{}%
+     {Batu}{B.}%
+     {Tu\u{g}kan}{T.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Fortnow}{F.}%
+     {Lance}{L.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Rubinfeld}{R.}%
+     {Ronitt}{R.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Smith}{S.}%
+     {Warren~D.}{W.~D.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {White}{W.}%
+     {Patrick}{P.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{BT+1}
+  \strng{fullhash}{BTFLRRSWDWP1}
+  \field{sortinit}{B}
+  \field{note}{This is a long version of~\cite{BFRSW:00}.}
+  \field{title}{Testing Closeness of Discrete Distributions}
+  \field{volume}{abs/1009.5397}
+  \field{journaltitle}{ArXiV}
+  \field{year}{2010}
+\endentry
+
+\entry{BFFKRW:01}{inproceedings}{}
+  \name{author}{6}{}{%
+    {{}%
+     {Batu}{B.}%
+     {Tu\u{g}kan}{T.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Fischer}{F.}%
+     {Eldar}{E.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Fortnow}{F.}%
+     {Lance}{L.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Kumar}{K.}%
+     {Ravi}{R.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Rubinfeld}{R.}%
+     {Ronitt}{R.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {White}{W.}%
+     {Patrick}{P.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{BT+1}
+  \strng{fullhash}{BTFEFLKRRRWP1}
+  \field{sortinit}{B}
+  \field{booktitle}{Proceedings of FOCS}
+  \field{pages}{442\bibrangedash 451}
+  \field{title}{Testing random variables for independence and identity}
+  \field{year}{2001}
+\endentry
+
+\entry{BFRSW:00}{inproceedings}{}
+  \name{author}{5}{}{%
+    {{}%
+     {Batu}{B.}%
+     {Tu\u{g}kan}{T.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Fortnow}{F.}%
+     {Lance}{L.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Rubinfeld}{R.}%
+     {Ronitt}{R.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Smith}{S.}%
+     {Warren~D.}{W.~D.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {White}{W.}%
+     {Patrick}{P.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{BT+1}
+  \strng{fullhash}{BTFLRRSWDWP1}
+  \field{sortinit}{B}
+  \field{booktitle}{Proceedings of FOCS}
+  \field{pages}{189\bibrangedash 197}
+  \field{title}{Testing that distributions are close}
+  \field{year}{2000}
+\endentry
+
+\entry{BDKR:05}{article}{}
+  \name{author}{4}{}{%
+    {{}%
+     {Batu}{B.}%
+     {Tu\u{g}kan}{T.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Dasgupta}{D.}%
+     {Sanjoy}{S.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Kumar}{K.}%
+     {Ravi}{R.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Rubinfeld}{R.}%
+     {Ronitt}{R.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{2}{%
+    {Society for Industrial}%
+    {Applied Mathematics (SIAM)}%
+  }
+  \strng{namehash}{BT+1}
+  \strng{fullhash}{BTDSKRRR1}
+  \field{sortinit}{B}
+  \field{number}{1}
+  \field{pages}{132\bibrangedash 150}
+  \field{title}{The complexity of approximating the entropy}
+  \field{volume}{35}
+  \field{journaltitle}{SIAM Journal on Computing}
+  \field{year}{2005}
+\endentry
+
+\entry{BCLR:08}{article}{}
+  \name{author}{4}{}{%
+    {{}%
+     {Ben-Or}{B.-O.}%
+     {Michael}{M.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Coppersmith}{C.}%
+     {Don}{D.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Luby}{L.}%
+     {Michael}{M.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Rubinfeld}{R.}%
+     {Ronitt}{R.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{BOM+1}
+  \strng{fullhash}{BOMCDLMRR1}
+  \field{sortinit}{B}
+  \field{number}{1}
+  \field{pages}{49\bibrangedash 70}
+  \field{title}{Non-abelian homomorphism testing, and distributions close to
+  their self-convolutions}
+  \field{volume}{32}
+  \field{journaltitle}{Random Struct. Algorithms}
+  \field{year}{2008}
+\endentry
+
+\entry{BennettS:88}{book}{}
+  \name{author}{2}{}{%
+    {{}%
+     {Bennett}{B.}%
+     {Colin}{C.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Sharpley}{S.}%
+     {Robert~C.}{R.~C.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {Elsevier Science}%
+  }
+  \strng{namehash}{BCSRC1}
+  \strng{fullhash}{BCSRC1}
+  \field{sortinit}{B}
+  \field{isbn}{9780080874487}
+  \field{series}{Pure and Applied Mathematics}
+  \field{title}{Interpolation of Operators}
+  \verb{url}
+  \verb https://books.google.com/books?id=HpqF9zjZWMMC
+  \endverb
+  \field{year}{1988}
+\endentry
+
+\entry{Bentkus:03}{article}{}
+  \name{author}{1}{}{%
+    {{}%
+     {Bentkus}{B.}%
+     {Vidmantas}{V.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{BV2}
+  \strng{fullhash}{BV2}
+  \field{sortinit}{B}
+  \verb{doi}
+  \verb 10.1016/S0378-3758(02)00094-0
+  \endverb
+  \field{issn}{0378-3758}
+  \field{number}{2}
+  \field{pages}{385\bibrangedash 402}
+  \field{title}{On the dependence of the {B}erry-{E}sseen bound on dimension}
+  \verb{url}
+  \verb http://dx.doi.org/10.1016/S0378-3758(02)00094-0
+  \endverb
+  \field{volume}{113}
+  \field{journaltitle}{J. Statist. Plann. Inference}
+  \field{year}{2003}
+\endentry
+
+\entry{BDS:12}{inproceedings}{}
+  \name{author}{3}{}{%
+    {{}%
+     {Bhaskara}{B.}%
+     {Aditya}{A.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Desai}{D.}%
+     {Devendra}{D.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Srinivasan}{S.}%
+     {Srikanth}{S.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{BADDSS1}
+  \strng{fullhash}{BADDSS1}
+  \field{sortinit}{B}
+  \field{booktitle}{15th International Workshop, {APPROX} 2012, and 16th
+  International Workshop, {RANDOM} 2012}
+  \field{pages}{423\bibrangedash 434}
+  \field{title}{Optimal Hitting Sets for Combinatorial Shapes}
+  \field{year}{2012}
+\endentry
+
+\entry{BV:15}{inproceedings}{}
+  \name{author}{2}{}{%
+    {{}%
+     {Bhattacharya}{B.}%
+     {Bhaswar~B.}{B.~B.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Valiant}{V.}%
+     {Gregory}{G.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{BBBVG1}
+  \strng{fullhash}{BBBVG1}
+  \field{sortinit}{B}
+  \field{booktitle}{{Proceedings of NIPS}}
+  \field{pages}{2611\bibrangedash 2619}
+  \field{title}{Testing Closeness With Unequal Sized Samples}
+  \field{year}{2015}
+\endentry
+
+\entry{BY:17}{book}{}
+  \name{author}{2}{}{%
+    {{}%
+     {Bhattacharyya}{B.}%
+     {Arnab}{A.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Yoshida}{Y.}%
+     {Yuichi}{Y.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {Forthcoming}%
+  }
+  \strng{namehash}{BAYY1}
+  \strng{fullhash}{BAYY1}
+  \field{sortinit}{B}
+  \field{title}{Property Testing}
+  \verb{url}
+  \verb https://propertytestingbook.wordpress.com/
+  \endverb
+  \field{year}{2017}
+\endentry
+
+\entry{BGJRW:12}{article}{}
+  \name{author}{6}{}{%
+    {{}%
+     {Bhattacharyya}{B.}%
+     {Arnab}{A.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Grigorescu}{G.}%
+     {Elena}{E.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Jha}{J.}%
+     {Madhav}{M.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Jung}{J.}%
+     {Kyomin}{K.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Raskhodnikova}{R.}%
+     {Sofya}{S.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Woodruff}{W.}%
+     {David~P.}{D.~P.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{BA+1}
+  \strng{fullhash}{BAGEJMJKRSWDP1}
+  \field{sortinit}{B}
+  \verb{doi}
+  \verb 10.1137/100808186
+  \endverb
+  \verb{eprint}
+  \verb http://dx.doi.org/10.1137/100808186
+  \endverb
+  \field{number}{2}
+  \field{pages}{618\bibrangedash 646}
+  \field{title}{Lower Bounds for Local Monotonicity Reconstruction from
+  Transitive-Closure Spanners}
+  \verb{url}
+  \verb http://dx.doi.org/10.1137/100808186
+  \endverb
+  \field{volume}{26}
+  \field{journaltitle}{SIAM Journal on Discrete Mathematics}
+  \field{year}{2012}
+\endentry
+
+\entry{BFRV:11}{inproceedings}{}
+  \name{author}{4}{}{%
+    {{}%
+     {Bhattacharyya}{B.}%
+     {Arnab}{A.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Fischer}{F.}%
+     {Eldar}{E.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Rubinfeld}{R.}%
+     {Ronitt}{R.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Valiant}{V.}%
+     {Paul}{P.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{BA+1}
+  \strng{fullhash}{BAFERRVP1}
+  \field{sortinit}{B}
+  \field{booktitle}{Proceedings of ITCS}
+  \field{pages}{239\bibrangedash 252}
+  \field{title}{Testing monotonicity of distributions over general partial
+  orders}
+  \field{year}{2011}
+\endentry
+
+\entry{Birge:87}{article}{}
+  \name{author}{1}{}{%
+    {{}%
+     {Birg\'e}{B.}%
+     {Lucien}{L.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {Institute of Mathematical Statistics}%
+  }
+  \strng{namehash}{BL1}
+  \strng{fullhash}{BL1}
+  \field{sortinit}{B}
+  \field{issn}{00905364}
+  \field{number}{3}
+  \field{pages}{pp. 1013\bibrangedash 1022}
+  \field{title}{On the Risk of Histograms for Estimating Decreasing Densities}
+  \verb{url}
+  \verb http://www.jstor.org/stable/2241812
+  \endverb
+  \field{volume}{15}
+  \field{journaltitle}{The Annals of Statistics}
+  \field{year}{1987}
+\endentry
+
+\entry{BBM:12}{article}{}
+  \name{author}{3}{}{%
+    {{}%
+     {Blais}{B.}%
+     {Eric}{E.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Brody}{B.}%
+     {Joshua}{J.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Matulef}{M.}%
+     {Kevin}{K.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{BEBJMK1}
+  \strng{fullhash}{BEBJMK1}
+  \field{sortinit}{B}
+  \verb{doi}
+  \verb 10.1007/s00037-012-0040-x
+  \endverb
+  \field{number}{2}
+  \field{pages}{311\bibrangedash 358}
+  \field{title}{Property Testing Lower Bounds via Communication Complexity}
+  \verb{url}
+  \verb http://dx.doi.org/10.1007/s00037-012-0040-x
+  \endverb
+  \field{volume}{21}
+  \field{journaltitle}{Computational Complexity}
+  \field{year}{2012}
+\endentry
+
+\entry{BCG:17}{inproceedings}{}
+  \name{author}{3}{}{%
+    {{}%
+     {Blais}{B.}%
+     {Eric}{E.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Canonne}{C.}%
+     {Cl{\'{e}}ment~L.}{C.~L.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Gur}{G.}%
+     {Tom}{T.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {Schloss Dagstuhl - Leibniz-Zentrum fuer Informatik}%
+  }
+  \strng{namehash}{BECCLGT1}
+  \strng{fullhash}{BECCLGT1}
+  \field{sortinit}{B}
+  \field{booktitle}{Computational Complexity Conference}
+  \field{pages}{28:1\bibrangedash 28:40}
+  \field{series}{LIPIcs}
+  \field{title}{Distribution Testing Lower Bounds via Reductions from
+  Communication Complexity}
+  \field{volume}{79}
+  \field{year}{2017}
+\endentry
+
+\entry{BLR:13}{article}{}
+  \name{author}{3}{}{%
+    {{}%
+     {Blum}{B.}%
+     {Avrim}{A.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Ligett}{L.}%
+     {Katrina}{K.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Roth}{R.}%
+     {Aaron}{A.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{BALKRA1}
+  \strng{fullhash}{BALKRA1}
+  \field{sortinit}{B}
+  \verb{doi}
+  \verb 10.1145/2450142.2450148
+  \endverb
+  \field{number}{2}
+  \field{pages}{12:1\bibrangedash 12:25}
+  \field{title}{A learning theory approach to noninteractive database privacy}
+  \verb{url}
+  \verb http://doi.acm.org/10.1145/2450142.2450148
+  \endverb
+  \field{volume}{60}
+  \field{journaltitle}{Journal of the ACM}
+  \field{year}{2013}
+\endentry
+
+\entry{BLR:90}{inproceedings}{}
+  \name{author}{3}{}{%
+    {{}%
+     {Blum}{B.}%
+     {Manuel}{M.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Luby}{L.}%
+     {Michael}{M.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Rubinfeld}{R.}%
+     {Ronitt}{R.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {ACM}%
+  }
+  \strng{namehash}{BMLMRR1}
+  \strng{fullhash}{BMLMRR1}
+  \field{sortinit}{B}
+  \field{booktitle}{Proceedings of the Twenty-second Annual ACM Symposium on
+  Theory of Computing}
+  \verb{doi}
+  \verb 10.1145/100216.100225
+  \endverb
+  \field{isbn}{0-89791-361-2}
+  \field{pages}{73\bibrangedash 83}
+  \field{series}{STOC '90}
+  \field{title}{Self-testing/Correcting with Applications to Numerical
+  Problems}
+  \verb{url}
+  \verb http://doi.acm.org/10.1145/100216.100225
+  \endverb
+  \list{location}{1}{%
+    {New York, NY, USA}%
+  }
+  \field{year}{1990}
+\endentry
+
+\entry{Boucheron:13}{book}{}
+  \name{author}{3}{}{%
+    {{}%
+     {Boucheron}{B.}%
+     {St\'{e}phane}{S.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Lugosi}{L.}%
+     {G\'{a}bor}{G.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Massart}{M.}%
+     {Pascal}{P.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {OUP Oxford}%
+  }
+  \strng{namehash}{BSLGMP1}
+  \strng{fullhash}{BSLGMP1}
+  \field{sortinit}{B}
+  \field{title}{{Concentration Inequalities: A Nonasymptotic Theory of
+  Independence}}
+  \field{year}{2013}
+\endentry
+
+\entry{Brakerski:08}{unpublished}{}
+  \name{author}{1}{}{%
+    {{}%
+     {Brakerski}{B.}%
+     {Zvika}{Z.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{BZ1}
+  \strng{fullhash}{BZ1}
+  \field{sortinit}{B}
+  \field{note}{Manuscript}
+  \field{title}{Local Property Restoring}
+  \field{year}{2008}
+\endentry
+
+\entry{BMW:11}{inproceedings}{}
+  \name{author}{3}{}{%
+    {{}%
+     {Brody}{B.}%
+     {Joshua}{J.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Matulef}{M.}%
+     {Kevin}{K.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Wu}{W.}%
+     {Chenggang}{C.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {Springer}%
+  }
+  \strng{namehash}{BJMKWC1}
+  \strng{fullhash}{BJMKWC1}
+  \field{sortinit}{B}
+  \field{booktitle}{{TAMC}}
+  \field{pages}{320\bibrangedash 331}
+  \field{series}{Lecture Notes in Computer Science}
+  \field{title}{Lower Bounds for Testing Computability by Small Width {OBDD}s}
+  \field{volume}{6648}
+  \field{year}{2011}
+\endentry
+
+\entry{CGR:12}{article}{}
+  \name{author}{3}{}{%
+    {{}%
+     {Campagna}{C.}%
+     {Andrea}{A.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Guo}{G.}%
+     {Alan}{A.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Rubinfeld}{R.}%
+     {Ronitt}{R.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{CAGARR1}
+  \strng{fullhash}{CAGARR1}
+  \field{sortinit}{C}
+  \field{title}{Local reconstructors and tolerant testers for connectivity and
+  diameter}
+  \field{volume}{abs/1208.2956}
+  \field{journaltitle}{CoRR}
+  \field{year}{2012}
+\endentry
+
+\entry{Canonne:15:Survey}{article}{}
+  \name{author}{1}{}{%
+    {{}%
+     {Canonne}{C.}%
+     {Cl{\'e}ment~L.}{C.~L.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{CCL1}
+  \strng{fullhash}{CCL1}
+  \field{sortinit}{C}
+  \field{pages}{63}
+  \field{title}{A {S}urvey on {D}istribution {T}esting: your Data is {B}ig.
+  {B}ut is it {B}lue?}
+  \field{volume}{22}
+  \field{journaltitle}{Electronic Colloquium on Computational Complexity
+  (ECCC)}
+  \field{month}{04}
+  \field{year}{2015}
+\endentry
+
+\entry{Canonne:16}{inproceedings}{}
+  \name{author}{1}{}{%
+    {{}%
+     {Canonne}{C.}%
+     {Cl\'ement~L.}{C.~L.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {Association for Computing Machinery ({ACM})}%
+  }
+  \strng{namehash}{CCL2}
+  \strng{fullhash}{CCL2}
+  \field{sortinit}{C}
+  \field{booktitle}{Proceedings of PODS}
+  \verb{doi}
+  \verb 10.1145/2902251.2902274
+  \endverb
+  \field{title}{{Are Few Bins Enough: Testing Histogram Distributions}}
+  \verb{url}
+  \verb http://dx.doi.org/10.1145/2902251.2902274
+  \endverb
+  \field{year}{2016}
+\endentry
+
+\entry{Canonne:15}{inproceedings}{}
+  \name{author}{1}{}{%
+    {{}%
+     {Canonne}{C.}%
+     {Cl\'ement~L.}{C.~L.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {Springer}%
+  }
+  \strng{namehash}{CCL2}
+  \strng{fullhash}{CCL2}
+  \field{sortinit}{C}
+  \field{booktitle}{Proceedings of ICALP}
+  \verb{doi}
+  \verb 10.1007/978-3-662-47672-7_24
+  \endverb
+  \field{pages}{294\bibrangedash 305}
+  \field{title}{{Big Data on the Rise? Testing Monotonicity of Distributions}}
+  \verb{url}
+  \verb http://dx.doi.org/10.1007/978-3-662-47672-7_24
+  \endverb
+  \field{year}{2015}
+\endentry
+
+\entry{CanonneDS:17}{article}{}
+  \name{author}{3}{}{%
+    {{}%
+     {Canonne}{C.}%
+     {Cl{\'{e}}ment~L.}{C.~L.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Diakonikolas}{D.}%
+     {Ilias}{I.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Stewart}{S.}%
+     {Alistair}{A.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{CCLDISA1}
+  \strng{fullhash}{CCLDISA1}
+  \field{sortinit}{C}
+  \field{pages}{75}
+  \field{title}{Fourier-Based Testing for Families of Distributions}
+  \verb{url}
+  \verb http://eccc.hpi-web.de/report/2017/075
+  \endverb
+  \field{volume}{24}
+  \field{journaltitle}{Electronic Colloquium on Computational Complexity
+  (ECCC)}
+  \field{year}{2017}
+\endentry
+
+\entry{CGR:16}{inproceedings}{}
+  \name{author}{3}{}{%
+    {{}%
+     {Canonne}{C.}%
+     {Cl\'ement~L.}{C.~L.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Gouleakis}{G.}%
+     {Themis}{T.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Rubinfeld}{R.}%
+     {Ronitt}{R.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {{ACM}}%
+  }
+  \strng{namehash}{CCLGTRR1}
+  \strng{fullhash}{CCLGTRR1}
+  \field{sortinit}{C}
+  \field{pages}{93\bibrangedash 102}
+  \field{title}{{Sampling Correctors}}
+  \field{year}{2016}
+\endentry
+
+\entry{CRS:14}{inproceedings}{}
+  \name{author}{3}{}{%
+    {{}%
+     {Canonne}{C.}%
+     {Cl\'ement~L.}{C.~L.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Ron}{R.}%
+     {Dana}{D.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Servedio}{S.}%
+     {Rocco~A.}{R.~A.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{2}{%
+    {Society for Industrial}%
+    {Applied Mathematics (SIAM)}%
+  }
+  \strng{namehash}{CCLRDSRA2}
+  \strng{fullhash}{CCLRDSRA2}
+  \field{sortinit}{C}
+  \field{booktitle}{Proceedings of SODA}
+  \field{isbn}{978-1-611973-38-9}
+  \field{pages}{1174\bibrangedash 1192}
+  \field{title}{Testing equivalence between distributions using conditional
+  samples}
+  \verb{url}
+  \verb http://dl.acm.org/citation.cfm?id=2634074.2634161
+  \endverb
+  \list{location}{1}{%
+    {Portland, Oregon}%
+  }
+  \field{year}{2014}
+\endentry
+
+\entry{CRS:15}{article}{}
+  \name{author}{3}{}{%
+    {{}%
+     {Canonne}{C.}%
+     {Cl{\'e}ment~L.}{C.~L.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Ron}{R.}%
+     {Dana}{D.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Servedio}{S.}%
+     {Rocco~A.}{R.~A.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{CCLRDSRA1}
+  \strng{fullhash}{CCLRDSRA1}
+  \field{sortinit}{C}
+  \verb{doi}
+  \verb 10.1137/130945508
+  \endverb
+  \field{number}{3}
+  \field{pages}{540\bibrangedash 616}
+  \field{title}{Testing probability distributions using conditional samples}
+  \field{volume}{44}
+  \field{journaltitle}{{SIAM} {J}ournal on {C}omputing ({SICOMP})}
+  \field{year}{2015}
+\endentry
+
+\entry{CR:14}{inproceedings}{}
+  \name{author}{2}{}{%
+    {{}%
+     {Canonne}{C.}%
+     {Cl\'ement~L.}{C.~L.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Rubinfeld}{R.}%
+     {Ronitt}{R.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{CCLRR1}
+  \strng{fullhash}{CCLRR1}
+  \field{sortinit}{C}
+  \field{booktitle}{Proceedings of ICALP}
+  \field{pages}{283\bibrangedash 295}
+  \field{title}{Testing Probability Distributions Underlying Aggregated Data.}
+  \field{year}{2014}
+\endentry
+
+\entry{CDGR:16}{inproceedings}{}
+  \name{author}{4}{}{%
+    {{}%
+     {Canonne}{C.}%
+     {Cl\'ement~L.}{C.~L.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Diakonikolas}{D.}%
+     {Ilias}{I.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Gouleakis}{G.}%
+     {Themis}{T.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Rubinfeld}{R.}%
+     {Ronitt}{R.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{CCL+1}
+  \strng{fullhash}{CCLDIGTRR1}
+  \field{sortinit}{C}
+  \field{booktitle}{{Proceedings of STACS}}
+  \verb{doi}
+  \verb 10.4230/LIPIcs.STACS.2016.25
+  \endverb
+  \field{note}{See also \cite{CDGR:17:journal} (full version)}
+  \field{title}{{Testing Shape Restrictions of Discrete Distributions}}
+  \verb{url}
+  \verb https://doi.org/10.4230/LIPIcs.STACS.2016.25
+  \endverb
+  \field{year}{2016}
+\endentry
+
+\entry{CDGR:17:journal}{article}{}
+  \name{author}{4}{}{%
+    {{}%
+     {Canonne}{C.}%
+     {Cl\'ement~L.}{C.~L.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Diakonikolas}{D.}%
+     {Ilias}{I.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Gouleakis}{G.}%
+     {Themis}{T.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Rubinfeld}{R.}%
+     {Ronitt}{R.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{CCL+1}
+  \strng{fullhash}{CCLDIGTRR1}
+  \field{sortinit}{C}
+  \verb{doi}
+  \verb 10.1007/s00224-017-9785-6
+  \endverb
+  \field{pages}{1\bibrangedash 59}
+  \field{title}{Testing Shape Restrictions of Discrete Distributions}
+  \verb{url}
+  \verb http://dx.doi.org/10.1007/s00224-017-9785-6
+  \endverb
+  \field{journaltitle}{Theory of Computing Systems}
+  \field{year}{2017}
+\endentry
+
+\entry{CGM:11}{inproceedings}{}
+  \name{author}{3}{}{%
+    {{}%
+     {Chakraborty}{C.}%
+     {Sourav}{S.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Garc{\'{\i}}a{-}Soriano}{G.}%
+     {David}{D.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Matsliah}{M.}%
+     {Arie}{A.}%
+     {}{}%
+     {}{}}%
+  }
+  \name{editor}{3}{}{%
+    {{}%
+     {Aceto}{A.}%
+     {Luca}{L.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Henzinger}{H.}%
+     {Monika}{M.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Sgall}{S.}%
+     {Jiri}{J.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {Springer}%
+  }
+  \strng{namehash}{CSGDMA1}
+  \strng{fullhash}{CSGDMA1}
+  \field{sortinit}{C}
+  \field{booktitle}{Automata, Languages and Programming - 38th International
+  Colloquium, {ICALP} 2011, Zurich, Switzerland, July 4-8, 2011, Proceedings,
+  Part {I}}
+  \field{pages}{545\bibrangedash 556}
+  \field{series}{Lecture Notes in Computer Science}
+  \field{title}{Efficient Sample Extractors for Juntas with Applications}
+  \field{volume}{6755}
+  \field{year}{2011}
+\endentry
+
+\entry{CFGM:13}{inproceedings}{}
+  \name{author}{4}{}{%
+    {{}%
+     {Chakraborty}{C.}%
+     {Sourav}{S.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Fischer}{F.}%
+     {Eldar}{E.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Goldhirsh}{G.}%
+     {Yonatan}{Y.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Matsliah}{M.}%
+     {Arie}{A.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {ACM}%
+  }
+  \strng{namehash}{CS+1}
+  \strng{fullhash}{CSFEGYMA1}
+  \field{sortinit}{C}
+  \field{booktitle}{Proceedings of ITCS}
+  \verb{doi}
+  \verb 10.1145/2422436.2422497
+  \endverb
+  \field{isbn}{978-1-4503-1859-4}
+  \field{pages}{561\bibrangedash 580}
+  \field{title}{On the Power of Conditional Samples in Distribution Testing}
+  \list{location}{1}{%
+    {Berkeley, California, USA}%
+  }
+  \field{year}{2013}
+  \warn{\item Can't use 'location' + 'address'}
+\endentry
+
+\entry{CDSS:14}{inproceedings}{}
+  \name{author}{4}{}{%
+    {{}%
+     {Chan}{C.}%
+     {Siu{-}on}{S.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Diakonikolas}{D.}%
+     {Ilias}{I.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Servedio}{S.}%
+     {Rocco~A.}{R.~A.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Sun}{S.}%
+     {Xiaorui}{X.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {{ACM}}%
+  }
+  \strng{namehash}{CS+2}
+  \strng{fullhash}{CSDISRASX1}
+  \field{sortinit}{C}
+  \field{booktitle}{Proceedings of STOC}
+  \field{pages}{604\bibrangedash 613}
+  \field{title}{Efficient density estimation via piecewise polynomial
+  approximation}
+  \field{year}{2014}
+\endentry
+
+\entry{CDSS:13}{inproceedings}{}
+  \name{author}{4}{}{%
+    {{}%
+     {Chan}{C.}%
+     {Siu{-}on}{S.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Diakonikolas}{D.}%
+     {Ilias}{I.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Servedio}{S.}%
+     {Rocco~A.}{R.~A.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Sun}{S.}%
+     {Xiaorui}{X.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{CS+2}
+  \strng{fullhash}{CSDISRASX1}
+  \field{sortinit}{C}
+  \field{booktitle}{Proceedings of SODA}
+  \field{pages}{1380\bibrangedash 1394}
+  \field{title}{Learning mixtures of structured distributions over discrete
+  domains}
+  \field{year}{2013}
+\endentry
+
+\entry{CDSS:14:NIPS}{inproceedings}{}
+  \name{author}{4}{}{%
+    {{}%
+     {Chan}{C.}%
+     {Siu{-}on}{S.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Diakonikolas}{D.}%
+     {Ilias}{I.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Servedio}{S.}%
+     {Rocco~A.}{R.~A.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Xiaorui}{X.}%
+     {Sun.}{S.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{CS+2}
+  \strng{fullhash}{CSDISRAXS1}
+  \field{sortinit}{C}
+  \field{booktitle}{Advances in Neural Information Processing Systems 27:
+  Annual Conference on Neural Information Processing Systems 2014, December
+  8-13 2014, Montreal, Quebec, Canada}
+  \field{pages}{1844\bibrangedash 1852}
+  \field{title}{Near-Optimal Density Estimation in Near-Linear Time Using
+  Variable-Width Histograms}
+  \field{year}{2014}
+\endentry
+
+\entry{CDVV:14}{inproceedings}{}
+  \name{author}{4}{}{%
+    {{}%
+     {Chan}{C.}%
+     {Siu{-}on}{S.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Diakonikolas}{D.}%
+     {Ilias}{I.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Valiant}{V.}%
+     {Gregory}{G.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Valiant}{V.}%
+     {Paul}{P.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{CS+2}
+  \strng{fullhash}{CSDIVGVP1}
+  \field{sortinit}{C}
+  \field{booktitle}{Proceedings of SODA}
+  \field{pages}{1193\bibrangedash 1203}
+  \field{title}{Optimal Algorithms for Testing Closeness of Discrete
+  Distributions}
+  \field{year}{2014}
+\endentry
+
+\entry{CGS11}{book}{}
+  \name{author}{3}{}{%
+    {{}%
+     {Chen}{C.}%
+     {Louis H.~Y.}{L.~H.~Y.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Goldstein}{G.}%
+     {Larry}{L.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Shao}{S.}%
+     {Qi-Man}{Q.-M.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {Springer, Heidelberg}%
+  }
+  \strng{namehash}{CLHYGLSQM1}
+  \strng{fullhash}{CLHYGLSQM1}
+  \field{sortinit}{C}
+  \verb{doi}
+  \verb 10.1007/978-3-642-15007-4
+  \endverb
+  \field{isbn}{978-3-642-15006-7}
+  \field{pages}{xii+405}
+  \field{series}{Probability and its Applications (New York)}
+  \field{title}{Normal approximation by {S}tein's method}
+  \verb{url}
+  \verb http://dx.doi.org/10.1007/978-3-642-15007-4
+  \endverb
+  \field{year}{2011}
+\endentry
+
+\entry{CL:97}{article}{}
+  \name{author}{2}{}{%
+    {{}%
+     {Chen}{C.}%
+     {Sean~X.}{S.~X.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Liu}{L.}%
+     {Jun~S.}{J.~S.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{CSXLJS1}
+  \strng{fullhash}{CSXLJS1}
+  \field{sortinit}{C}
+  \field{number}{4}
+  \field{title}{{Statistical applications of the Poisson-Binomial and
+  conditional Bernoulli distributions}}
+  \verb{url}
+  \verb http://www3.stat.sinica.edu.tw/statistica/j7n4/j7n44/j7n44.htm
+  \endverb
+  \field{volume}{7}
+  \field{journaltitle}{Statistica Sinica}
+  \field{year}{1997}
+\endentry
+
+\entry{CDS:17}{inproceedings}{}
+  \name{author}{3}{}{%
+    {{}%
+     {Cheng}{C.}%
+     {Yu}{Y.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Diakonikolas}{D.}%
+     {Ilias}{I.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Stewart}{S.}%
+     {Alistair}{A.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{2}{%
+    {Society for Industrial}%
+    {Applied Mathematics}%
+  }
+  \strng{namehash}{CYDISA1}
+  \strng{fullhash}{CYDISA1}
+  \field{sortinit}{C}
+  \field{booktitle}{Proceedings of the Twenty-Eighth Annual ACM-SIAM Symposium
+  on Discrete Algorithms}
+  \field{pages}{616\bibrangedash 631}
+  \field{series}{Proceedings of SODA}
+  \field{title}{Playing Anonymous Games Using Simple Strategies}
+  \verb{url}
+  \verb http://dl.acm.org/citation.cfm?id=3039686.3039726
+  \endverb
+  \list{location}{1}{%
+    {Barcelona, Spain}%
+  }
+  \field{year}{2017}
+  \warn{\item Can't use 'location' + 'address'}
+\endentry
+
+\entry{Chernoff:52}{article}{}
+  \name{author}{1}{}{%
+    {{}%
+     {Chernoff}{C.}%
+     {Herman}{H.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{CH1}
+  \strng{fullhash}{CH1}
+  \field{sortinit}{C}
+  \field{pages}{493\bibrangedash 507}
+  \field{title}{A measure of asymptotic efficiency for tests of a hypothesis
+  based on the sum of observations}
+  \field{volume}{23}
+  \field{journaltitle}{The Annals of Mathematical Statistics}
+  \field{year}{1952}
+\endentry
+
+\entry{DDS:12}{article}{}
+  \name{author}{3}{}{%
+    {{}%
+     {Daskalakis}{D.}%
+     {Constantinos}{C.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Diakonikolas}{D.}%
+     {Ilias}{I.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Servedio}{S.}%
+     {Rocco~A.}{R.~A.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {Theory of Computing}%
+  }
+  \strng{namehash}{DCDISRA1}
+  \strng{fullhash}{DCDISRA1}
+  \field{sortinit}{D}
+  \verb{doi}
+  \verb 10.4086/toc.2014.v010a020
+  \endverb
+  \field{number}{20}
+  \field{pages}{535\bibrangedash 570}
+  \field{title}{Learning $k$-Modal Distributions via Testing}
+  \field{volume}{10}
+  \field{journaltitle}{Theory of Computing}
+  \field{year}{2014}
+\endentry
+
+\entry{DDS:PBD:12}{inproceedings}{}
+  \name{author}{3}{}{%
+    {{}%
+     {Daskalakis}{D.}%
+     {Constantinos}{C.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Diakonikolas}{D.}%
+     {Ilias}{I.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Servedio}{S.}%
+     {Rocco~A.}{R.~A.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {ACM}%
+  }
+  \strng{namehash}{DCDISRA1}
+  \strng{fullhash}{DCDISRA1}
+  \field{sortinit}{D}
+  \field{booktitle}{Proceedings of STOC}
+  \field{isbn}{978-1-4503-1245-5}
+  \field{pages}{709\bibrangedash 728}
+  \field{series}{STOC '12}
+  \field{title}{{Learning Poisson Binomial Distributions}}
+  \list{location}{1}{%
+    {New York, New York, USA}%
+  }
+  \field{year}{2012}
+  \warn{\item Can't use 'location' + 'address'}
+\endentry
+
+\entry{DDS:PBD:15}{article}{}
+  \name{author}{3}{}{%
+    {{}%
+     {Daskalakis}{D.}%
+     {Constantinos}{C.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Diakonikolas}{D.}%
+     {Ilias}{I.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Servedio}{S.}%
+     {Rocco~A.}{R.~A.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{DCDISRA1}
+  \strng{fullhash}{DCDISRA1}
+  \field{sortinit}{D}
+  \field{number}{1}
+  \field{pages}{316\bibrangedash 357}
+  \field{title}{{Learning Poisson Binomial Distributions}}
+  \field{volume}{72}
+  \field{journaltitle}{Algorithmica}
+  \field{year}{2015}
+\endentry
+
+\entry{DK:13}{inproceedings}{}
+  \name{author}{2}{}{%
+    {{}%
+     {Daskalakis}{D.}%
+     {Constantinos}{C.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Kamath}{K.}%
+     {Gautam}{G.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{DCKG1}
+  \strng{fullhash}{DCKG1}
+  \field{sortinit}{D}
+  \field{booktitle}{Proceedings of The 27th Conference on Learning Theory,
+  Barcelona, Spain, June 13-15, 2014}
+  \field{pages}{1183\bibrangedash 1213}
+  \field{series}{COLT '14}
+  \field{title}{Faster and Sample Near-Optimal Algorithms for Proper Learning
+  Mixtures of {G}aussians}
+  \field{year}{2014}
+\endentry
+
+\entry{DKT:15}{inproceedings}{}
+  \name{author}{3}{}{%
+    {{}%
+     {Daskalakis}{D.}%
+     {Constantinos}{C.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Kamath}{K.}%
+     {Gautam}{G.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Tzamos}{T.}%
+     {Christos}{C.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{DCKGTC1}
+  \strng{fullhash}{DCKGTC1}
+  \field{sortinit}{D}
+  \field{booktitle}{Proceedings of FOCS}
+  \field{title}{On the Structure, Covering, and Learning of Poisson Multinomial
+  Distributions}
+  \field{year}{2015}
+\endentry
+
+\entry{DP:14:AGT}{article}{}
+  \name{author}{2}{}{%
+    {{}%
+     {Daskalakis}{D.}%
+     {Constantinos}{C.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Papadimitriou}{P.}%
+     {Christos~H}{C.~H.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{DCPCH1}
+  \strng{fullhash}{DCPCH1}
+  \field{sortinit}{D}
+  \field{title}{{Approximate Nash equilibria in anonymous games}}
+  \field{journaltitle}{Journal of Economic Theory}
+  \field{year}{2014}
+\endentry
+
+\entry{DP:07:AGT}{inproceedings}{}
+  \name{author}{2}{}{%
+    {{}%
+     {Daskalakis}{D.}%
+     {Constantinos}{C.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Papadimitriou}{P.}%
+     {Christos~H}{C.~H.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{DCPCH1}
+  \strng{fullhash}{DCPCH1}
+  \field{sortinit}{D}
+  \field{booktitle}{Proceedings of FOCS}
+  \field{pages}{83\bibrangedash 93}
+  \field{title}{Computing Equilibria in Anonymous Games}
+  \field{year}{2007}
+\endentry
+
+\entry{DP:08:AGT}{inproceedings}{}
+  \name{author}{2}{}{%
+    {{}%
+     {Daskalakis}{D.}%
+     {Constantinos}{C.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Papadimitriou}{P.}%
+     {Christos~H}{C.~H.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{DCPCH1}
+  \strng{fullhash}{DCPCH1}
+  \field{sortinit}{D}
+  \field{booktitle}{Proceedings of FOCS}
+  \field{pages}{25\bibrangedash 34}
+  \field{title}{Discretized Multinomial Distributions and Nash Equilibria in
+  Anonymous Games}
+  \field{year}{2008}
+\endentry
+
+\entry{DP:09:AGT}{inproceedings}{}
+  \name{author}{2}{}{%
+    {{}%
+     {Daskalakis}{D.}%
+     {Constantinos}{C.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Papadimitriou}{P.}%
+     {Christos~H}{C.~H.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{DCPCH1}
+  \strng{fullhash}{DCPCH1}
+  \field{sortinit}{D}
+  \field{booktitle}{Proceedings of STOC}
+  \field{pages}{75\bibrangedash 84}
+  \field{title}{{On Oblivious PTAS's for Nash Equilibrium}}
+  \field{year}{2009}
+\endentry
+
+\entry{DDKT:16}{inproceedings}{}
+  \name{author}{4}{}{%
+    {{}%
+     {Daskalakis}{D.}%
+     {Constantinos}{C.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {De}{D.}%
+     {Anindya}{A.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Kamath}{K.}%
+     {Gautam}{G.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Tzamos}{T.}%
+     {Christos}{C.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{DC+1}
+  \strng{fullhash}{DCDAKGTC1}
+  \field{sortinit}{D}
+  \field{booktitle}{Proceedings of STOC}
+  \field{title}{A Size-Free {CLT} for Poisson Multinomials and its
+  Applications}
+  \field{year}{2016}
+\endentry
+
+\entry{DDOST:13}{inproceedings}{}
+  \name{author}{5}{}{%
+    {{}%
+     {Daskalakis}{D.}%
+     {Constantinos}{C.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Diakonikolas}{D.}%
+     {Ilias}{I.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {O'Donnell}{O.}%
+     {Ryan}{R.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Servedio}{S.}%
+     {Rocco~A.}{R.~A.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Tan}{T.}%
+     {Li{-}Yang}{L.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {{IEEE} Computer Society}%
+  }
+  \strng{namehash}{DC+1}
+  \strng{fullhash}{DCDIORSRATL1}
+  \field{sortinit}{D}
+  \field{booktitle}{Proceedings of FOCS}
+  \field{pages}{217\bibrangedash 226}
+  \field{title}{{Learning Sums of Independent Integer Random Variables}}
+  \field{year}{2013}
+\endentry
+
+\entry{DDSVV:13}{inproceedings}{}
+  \name{author}{5}{}{%
+    {{}%
+     {Daskalakis}{D.}%
+     {Constantinos}{C.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Diakonikolas}{D.}%
+     {Ilias}{I.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Servedio}{S.}%
+     {Rocco~A.}{R.~A.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Valiant}{V.}%
+     {Gregory}{G.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Valiant}{V.}%
+     {Paul}{P.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{2}{%
+    {Society for Industrial}%
+    {Applied Mathematics (SIAM)}%
+  }
+  \strng{namehash}{DC+1}
+  \strng{fullhash}{DCDISRAVGVP1}
+  \field{sortinit}{D}
+  \field{booktitle}{Proceedings of SODA}
+  \field{isbn}{978-1-611972-51-1}
+  \field{pages}{1833\bibrangedash 1852}
+  \field{title}{Testing $k$-modal Distributions: Optimal Algorithms via
+  Reductions}
+  \verb{url}
+  \verb http://dl.acm.org/citation.cfm?id=2627817.2627948
+  \endverb
+  \list{location}{1}{%
+    {New Orleans, Louisiana}%
+  }
+  \field{year}{2013}
+\endentry
+
+\entry{De:15}{inproceedings}{}
+  \name{author}{1}{}{%
+    {{}%
+     {De}{D.}%
+     {Anindya}{A.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{DA1}
+  \strng{fullhash}{DA1}
+  \field{sortinit}{D}
+  \field{booktitle}{Proceedings of FOCS}
+  \field{title}{Beyond the Central Limit Theorem: asymptotic expansions and
+  pseudorandomness for combinatorial sums}
+  \field{year}{2015}
+\endentry
+
+\entry{DLR:77}{article}{}
+  \name{author}{3}{}{%
+    {{}%
+     {Dempster}{D.}%
+     {Arthur~P.}{A.~P.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Laird}{L.}%
+     {Nan~M.}{N.~M.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Rubin}{R.}%
+     {Donald~B.}{D.~B.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{DAPLNMRDB1}
+  \strng{fullhash}{DAPLNMRDB1}
+  \field{sortinit}{D}
+  \field{issn}{0035-9246}
+  \field{note}{With discussion}
+  \field{number}{1}
+  \field{pages}{1\bibrangedash 38}
+  \field{title}{Maximum likelihood from incomplete data via the {EM} algorithm}
+  \verb{url}
+  \verb http://www.jstor.org/stable/2984875
+  \endverb
+  \field{volume}{39}
+  \field{journaltitle}{J. Roy. Statist. Soc. Ser. B}
+  \field{year}{1977}
+\endentry
+
+\entry{DL:01}{book}{}
+  \name{author}{2}{}{%
+    {{}%
+     {Devroye}{D.}%
+     {Luc}{L.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Lugosi}{L.}%
+     {G\'abor}{G.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {Springer New York}%
+  }
+  \strng{namehash}{DLLG1}
+  \strng{fullhash}{DLLG1}
+  \field{sortinit}{D}
+  \field{isbn}{9780387951171}
+  \field{series}{Springer Series in Statistics}
+  \field{title}{Combinatorial Methods in Density Estimation}
+  \verb{url}
+  \verb http://books.google.com/books?id=jvT-sUt1HZYC
+  \endverb
+  \field{year}{2001}
+\endentry
+
+\entry{Diaconis:88}{inbook}{}
+  \name{author}{1}{}{%
+    {{}%
+     {Diaconis}{D.}%
+     {Persi}{P.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {Institute of Mathematical Statistics}%
+  }
+  \strng{namehash}{DP1}
+  \strng{fullhash}{DP1}
+  \field{sortinit}{D}
+  \field{booktitle}{Group representations in probability and statistics}
+  \verb{doi}
+  \verb 10.1214/lnms/1215467411
+  \endverb
+  \field{pages}{5\bibrangedash 16}
+  \field{series}{Lecture Notes--Monograph Series}
+  \field{title}{Chapter 2: Basics of Representations and Characters}
+  \verb{url}
+  \verb http://dx.doi.org/10.1214/lnms/1215467411
+  \endverb
+  \field{volume}{Volume 11}
+  \list{location}{1}{%
+    {Hayward, CA}%
+  }
+  \field{year}{1988}
+\endentry
+
+\entry{Diakonikolas:CRC}{incollection}{}
+  \name{author}{1}{}{%
+    {{}%
+     {Diakonikolas}{D.}%
+     {Ilias}{I.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {CRC Press}%
+  }
+  \strng{namehash}{DI1}
+  \strng{fullhash}{DI1}
+  \field{sortinit}{D}
+  \field{booktitle}{Handbook of Big Data}
+  \field{title}{Learning Structured Distributions}
+  \field{year}{2016}
+\endentry
+
+\entry{DK:16}{inproceedings}{}
+  \name{author}{2}{}{%
+    {{}%
+     {{Diakonikolas}}{D.}%
+     {Ilias}{I.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {{Kane}}{K.}%
+     {Daniel~M.}{D.~M.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {{IEEE} Computer Society}%
+  }
+  \strng{namehash}{DIKDM1}
+  \strng{fullhash}{DIKDM1}
+  \field{sortinit}{D}
+  \field{booktitle}{Proceedings of FOCS}
+  \field{title}{A New Approach for Testing Properties of Discrete
+  Distributions}
+  \field{year}{2016}
+\endentry
+
+\entry{DKN:15:FOCS}{inproceedings}{}
+  \name{author}{3}{}{%
+    {{}%
+     {Diakonikolas}{D.}%
+     {Ilias}{I.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Kane}{K.}%
+     {Daniel~M.}{D.~M.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Nikishkin}{N.}%
+     {Vladimir}{V.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{DIKDMNV1}
+  \strng{fullhash}{DIKDMNV1}
+  \field{sortinit}{D}
+  \field{booktitle}{Proceedings of FOCS}
+  \field{title}{Optimal Algorithms and Lower Bounds for Testing Closeness of
+  Structured Distributions}
+  \field{year}{2015}
+\endentry
+
+\entry{DKN:15}{inproceedings}{}
+  \name{author}{3}{}{%
+    {{}%
+     {Diakonikolas}{D.}%
+     {Ilias}{I.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Kane}{K.}%
+     {Daniel~M.}{D.~M.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Nikishkin}{N.}%
+     {Vladimir}{V.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{DIKDMNV1}
+  \strng{fullhash}{DIKDMNV1}
+  \field{sortinit}{D}
+  \field{booktitle}{Proceedings of SODA}
+  \field{title}{{T}esting {I}dentity of {S}tructured {D}istributions}
+  \field{year}{2015}
+\endentry
+
+\entry{DKS:16}{article}{}
+  \name{author}{3}{}{%
+    {{}%
+     {Diakonikolas}{D.}%
+     {Ilias}{I.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Kane}{K.}%
+     {Daniel~M.}{D.~M.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Stewart}{S.}%
+     {Alistair}{A.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{DIKDMSA1}
+  \strng{fullhash}{DIKDMSA1}
+  \field{sortinit}{D}
+  \field{title}{Efficient Robust Proper Learning of Log-concave Distributions}
+  \verb{url}
+  \verb http://arxiv.org/abs/1606.03077
+  \endverb
+  \field{volume}{abs/1606.03077}
+  \field{journaltitle}{CoRR}
+  \field{year}{2016}
+\endentry
+
+\entry{DKS:15:arXiv}{article}{}
+  \name{author}{3}{}{%
+    {{}%
+     {Diakonikolas}{D.}%
+     {Ilias}{I.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Kane}{K.}%
+     {Daniel~M.}{D.~M.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Stewart}{S.}%
+     {Alistair}{A.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{DIKDMSA1}
+  \strng{fullhash}{DIKDMSA1}
+  \field{sortinit}{D}
+  \field{title}{Nearly Optimal Learning and Sparse Covers for Sums of
+  Independent Integer Random Variables}
+  \field{volume}{abs/1505.00662}
+  \field{journaltitle}{CoRR}
+  \field{year}{2015}
+\endentry
+
+\entry{DKS:15}{inproceedings}{}
+  \name{author}{3}{}{%
+    {{}%
+     {Diakonikolas}{D.}%
+     {Ilias}{I.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Kane}{K.}%
+     {Daniel~M.}{D.~M.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Stewart}{S.}%
+     {Alistair}{A.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {JMLR.org}%
+  }
+  \strng{namehash}{DIKDMSA1}
+  \strng{fullhash}{DIKDMSA1}
+  \field{sortinit}{D}
+  \field{booktitle}{Proceedings of COLT}
+  \field{note}{Full version in~\cite{DKS:15:arXiv}.}
+  \field{pages}{831\bibrangedash 849}
+  \field{series}{{JMLR} Workshop and Conference Proceedings}
+  \field{title}{{Optimal Learning via the Fourier Transform for Sums of
+  Independent Integer Random Variables}}
+  \field{volume}{49}
+  \field{year}{2016}
+\endentry
+
+\entry{DKS:15b}{inproceedings}{}
+  \name{author}{3}{}{%
+    {{}%
+     {Diakonikolas}{D.}%
+     {Ilias}{I.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Kane}{K.}%
+     {Daniel~M.}{D.~M.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Stewart}{S.}%
+     {Alistair}{A.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{DIKDMSA1}
+  \strng{fullhash}{DIKDMSA1}
+  \field{sortinit}{D}
+  \field{booktitle}{Proceedings of COLT}
+  \field{note}{Full version available at
+  \href{https://arxiv.org/abs/1511.04066}{arXiv:1511.04066}.}
+  \field{pages}{850\bibrangedash 878}
+  \field{title}{Properly Learning {P}oisson Binomial Distributions in Almost
+  Polynomial Time}
+  \field{year}{2016}
+\endentry
+
+\entry{DKS:15c}{inproceedings}{}
+  \name{author}{3}{}{%
+    {{}%
+     {Diakonikolas}{D.}%
+     {Ilias}{I.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Kane}{K.}%
+     {Daniel~M.}{D.~M.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Stewart}{S.}%
+     {Alistair}{A.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{DIKDMSA1}
+  \strng{fullhash}{DIKDMSA1}
+  \field{sortinit}{D}
+  \field{booktitle}{Proceedings of STOC}
+  \field{note}{Full version available at
+  \href{https://arxiv.org/abs/1511.03592}{arXiv:1511.03592}.}
+  \field{title}{{The Fourier Transform of Poisson Multinomial Distributions and
+  its Algorithmic Applications}}
+  \field{year}{2016}
+\endentry
+
+\entry{DN:03}{inproceedings}{}
+  \name{author}{2}{}{%
+    {{}%
+     {Dinur}{D.}%
+     {Irit}{I.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Nissim}{N.}%
+     {Kobbi}{K.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{organization}{1}{%
+    {ACM}%
+  }
+  \strng{namehash}{DINK1}
+  \strng{fullhash}{DINK1}
+  \field{sortinit}{D}
+  \field{booktitle}{Proceedings of PODS}
+  \field{pages}{202\bibrangedash 210}
+  \field{title}{Revealing information while preserving privacy}
+  \field{year}{2003}
+\endentry
+
+\entry{DP:09}{book}{}
+  \name{author}{2}{}{%
+    {{}%
+     {Dubhashi}{D.}%
+     {Devdatt~P.}{D.~P.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Panconesi}{P.}%
+     {Alessandro}{A.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {Cambridge University Press}%
+  }
+  \strng{namehash}{DDPPA1}
+  \strng{fullhash}{DDPPA1}
+  \field{sortinit}{D}
+  \field{title}{Concentration of measure for the analysis of randomized
+  algorithms}
+  \list{location}{1}{%
+    {Cambridge}%
+  }
+  \field{year}{2009}
+\endentry
+
+\entry{DR:11}{article}{}
+  \name{author}{2}{}{%
+    {{}%
+     {D\"{u}mbgen}{D.}%
+     {Lutz}{L.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Rufibach}{R.}%
+     {Kaspar}{K.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{DLRK1}
+  \strng{fullhash}{DLRK1}
+  \field{sortinit}{D}
+  \field{number}{6}
+  \field{title}{logcondens: Computations Related to Univariate Log-Concave
+  Density Estimation}
+  \field{volume}{39}
+  \field{journaltitle}{J. Statist. Software}
+  \field{year}{2011}
+\endentry
+
+\entry{DKW:56}{article}{}
+  \name{author}{3}{}{%
+    {{}%
+     {Dvoretzky}{D.}%
+     {Aryeh}{A.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Kiefer}{K.}%
+     {Jack}{J.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Wolfowitz}{W.}%
+     {Jacob}{J.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {The Institute of Mathematical Statistics}%
+  }
+  \strng{namehash}{DAKJWJ1}
+  \strng{fullhash}{DAKJWJ1}
+  \field{sortinit}{D}
+  \field{number}{3}
+  \field{pages}{642\bibrangedash 669}
+  \field{title}{Asymptotic Minimax Character of the Sample Distribution
+  Function and of the Classical Multinomial Estimator}
+  \field{volume}{27}
+  \field{journaltitle}{The Annals of Mathematical Statistics}
+  \field{year}{1956}
+\endentry
+
+\entry{Dwork:08}{incollection}{}
+  \name{author}{1}{}{%
+    {{}%
+     {Dwork}{D.}%
+     {Cynthia}{C.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {Springer}%
+  }
+  \strng{namehash}{DC1}
+  \strng{fullhash}{DC1}
+  \field{sortinit}{D}
+  \field{booktitle}{Theory and Applications of Models of Computation}
+  \field{isbn}{978-3-540-79227-7}
+  \field{pages}{1\bibrangedash 19}
+  \field{title}{Differential privacy: {A} survey of results}
+  \field{volume}{4978}
+  \field{year}{2008}
+\endentry
+
+\entry{DN:04}{inproceedings}{}
+  \name{author}{2}{}{%
+    {{}%
+     {Dwork}{D.}%
+     {Cynthia}{C.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Nissim}{N.}%
+     {Kobbi}{K.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{organization}{1}{%
+    {Springer}%
+  }
+  \strng{namehash}{DCNK1}
+  \strng{fullhash}{DCNK1}
+  \field{sortinit}{D}
+  \field{booktitle}{Advances in Cryptology--CRYPTO 2004}
+  \field{pages}{528\bibrangedash 544}
+  \field{title}{Privacy-preserving datamining on vertically partitioned
+  databases}
+  \field{year}{2004}
+\endentry
+
+\entry{FJOPS:15}{inproceedings}{}
+  \name{author}{5}{}{%
+    {{}%
+     {Falahatgar}{F.}%
+     {Moein}{M.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Jafarpour}{J.}%
+     {Ashkan}{A.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Orlitsky}{O.}%
+     {Alon}{A.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Pichapathi}{P.}%
+     {Venkatadheeraj}{V.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Suresh}{S.}%
+     {Ananda~Theertha}{A.~T.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{FM+1}
+  \strng{fullhash}{FMJAOAPVSAT1}
+  \field{sortinit}{F}
+  \field{booktitle}{Proceedings of COLT}
+  \field{pages}{607\bibrangedash 636}
+  \field{series}{{JMLR} Proceedings}
+  \field{title}{Faster Algorithms for Testing under Conditional Sampling}
+  \field{year}{2015}
+\endentry
+
+\entry{Fischer:01}{article}{}
+  \name{author}{1}{}{%
+    {{}%
+     {Fischer}{F.}%
+     {Eldar}{E.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{FE1}
+  \strng{fullhash}{FE1}
+  \field{sortinit}{F}
+  \field{pages}{97}
+  \field{title}{The Art of Uninformed Decisions: A primer to property testing}
+  \field{volume}{75}
+  \field{journaltitle}{Bulletin of the {EATCS}}
+  \field{year}{2001}
+\endentry
+
+\entry{FischerLV:16}{article}{}
+  \name{author}{3}{}{%
+    {{}%
+     {Fischer}{F.}%
+     {Eldar}{E.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Lachish}{L.}%
+     {Oded}{O.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Vasudev}{V.}%
+     {Yadu}{Y.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{FELOVY1}
+  \strng{fullhash}{FELOVY1}
+  \field{sortinit}{F}
+  \field{title}{Improving and extending the testing of distributions for
+  shape-restricted properties}
+  \field{volume}{abs/1609.06736}
+  \field{journaltitle}{ArXiV}
+  \field{year}{2016}
+\endentry
+
+\entry{FLV:16}{article}{}
+  \name{author}{3}{}{%
+    {{}%
+     {Fischer}{F.}%
+     {Eldar}{E.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Lachish}{L.}%
+     {Oded}{O.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Vasudev}{V.}%
+     {Yadu}{Y.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {Schloss Dagstuhl - Leibniz-Zentrum fuer Informatik}%
+  }
+  \strng{namehash}{FELOVY1}
+  \strng{fullhash}{FELOVY1}
+  \field{sortinit}{F}
+  \field{booktitle}{{Proceedings of STACS}}
+  \field{pages}{31:1\bibrangedash 31:14}
+  \field{series}{LIPIcs}
+  \field{title}{Improving and Extending the Testing of Distributions for
+  Shape-Restricted Properties}
+  \field{volume}{66}
+  \field{year}{2017}
+\endentry
+
+\entry{vdG:00}{book}{}
+  \name{author}{1}{}{%
+    {{}%
+     {Geer}{G.}%
+     {Sara~A.}{S.~A.}%
+     {van~de}{v.~d.}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {Cambridge University Press}%
+  }
+  \strng{namehash}{GSAvd1}
+  \strng{fullhash}{GSAvd1}
+  \field{sortinit}{G}
+  \field{title}{Empirical Processes in M-estimation}
+  \field{volume}{6}
+  \field{year}{2000}
+\endentry
+
+\entry{Gol:17}{book}{}
+  \name{author}{1}{}{%
+    {{}%
+     {Goldreich}{G.}%
+     {Oded}{O.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {Forthcoming}%
+  }
+  \strng{namehash}{GO1}
+  \strng{fullhash}{GO1}
+  \field{sortinit}{G}
+  \field{title}{Introduction to Property Testing}
+  \verb{url}
+  \verb http://www.wisdom.weizmann.ac.il/~oded/pt-intro.html
+  \endverb
+  \field{year}{2017}
+\endentry
+
+\entry{Goldreich:10}{book}{}
+  \name{editor}{1}{}{%
+    {{}%
+     {Goldreich}{G.}%
+     {Oded}{O.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {Springer}%
+  }
+  \strng{namehash}{GO1}
+  \strng{fullhash}{GO1}
+  \field{sortinit}{G}
+  \field{note}{LNCS 6390}
+  \field{title}{Property Testing: Current Research and Surveys}
+  \field{year}{2010}
+\endentry
+
+\entry{Gol:16}{article}{}
+  \name{author}{1}{}{%
+    {{}%
+     {Goldreich}{G.}%
+     {Oded}{O.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{GO1}
+  \strng{fullhash}{GO1}
+  \field{sortinit}{G}
+  \field{pages}{15}
+  \field{title}{The uniform distribution is complete with respect to testing
+  identity to a fixed distribution}
+  \field{volume}{23}
+  \field{journaltitle}{Electronic Colloquium on Computational Complexity
+  {(ECCC)}}
+  \field{year}{2016}
+\endentry
+
+\entry{GGR:98}{article}{}
+  \name{author}{3}{}{%
+    {{}%
+     {Goldreich}{G.}%
+     {Oded}{O.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Goldwasser}{G.}%
+     {Shafi}{S.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Ron}{R.}%
+     {Dana}{D.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {ACM}%
+  }
+  \strng{namehash}{GOGSRD1}
+  \strng{fullhash}{GOGSRD1}
+  \field{sortinit}{G}
+  \field{number}{4}
+  \field{pages}{653\bibrangedash 750}
+  \field{title}{Property Testing and Its Connection to Learning and
+  Approximation}
+  \field{volume}{45}
+  \list{location}{1}{%
+    {New York, NY, USA}%
+  }
+  \field{journaltitle}{Journal of the ACM}
+  \field{month}{07}
+  \field{year}{1998}
+\endentry
+
+\entry{GRexp:00}{report}{}
+  \name{author}{2}{}{%
+    {{}%
+     {Goldreich}{G.}%
+     {Oded}{O.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Ron}{R.}%
+     {Dana}{D.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{GORD1}
+  \strng{fullhash}{GORD1}
+  \field{sortinit}{G}
+  \field{number}{TR00-020}
+  \field{title}{On Testing Expansion in Bounded-Degree Graphs}
+  \list{institution}{1}{%
+    {Electronic Colloquium on Computational Complexity (ECCC)}%
+  }
+  \field{type}{techreport}
+  \field{year}{2000}
+\endentry
+
+\entry{GKM:15}{inproceedings}{}
+  \name{author}{3}{}{%
+    {{}%
+     {Gopalan}{G.}%
+     {Parikshit}{P.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Kane}{K.}%
+     {Daniel~M.}{D.~M.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Meka}{M.}%
+     {Raghu}{R.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{GPKDMMR1}
+  \strng{fullhash}{GPKDMMR1}
+  \field{sortinit}{G}
+  \field{booktitle}{Proceedings of FOCS}
+  \field{title}{Pseudorandomness via the discrete Fourier transform}
+  \field{year}{2015}
+\endentry
+
+\entry{Grenander:56}{article}{}
+  \name{author}{1}{}{%
+    {{}%
+     {Grenander}{G.}%
+     {Ulf}{U.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{GU1}
+  \strng{fullhash}{GU1}
+  \field{sortinit}{G}
+  \field{number}{1}
+  \field{pages}{70\bibrangedash 96}
+  \field{title}{On the theory of mortality measurement}
+  \field{volume}{1956}
+  \field{journaltitle}{Scandinavian Actuarial Journal}
+  \field{year}{1956}
+\endentry
+
+\entry{GMV:06}{inproceedings}{}
+  \name{author}{3}{}{%
+    {{}%
+     {Guha}{G.}%
+     {Sudipto}{S.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {McGregor}{M.}%
+     {Andrew}{A.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Venkatasubramanian}{V.}%
+     {Suresh}{S.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{2}{%
+    {Society for Industrial}%
+    {Applied Mathematics (SIAM)}%
+  }
+  \strng{namehash}{GSMAVS1}
+  \strng{fullhash}{GSMAVS1}
+  \field{sortinit}{G}
+  \field{booktitle}{Proceedings of SODA}
+  \field{isbn}{0-89871-605-5}
+  \field{pages}{733\bibrangedash 742}
+  \field{title}{Streaming and Sublinear Approximation of Entropy and
+  Information Distances}
+  \verb{url}
+  \verb http://dl.acm.org/citation.cfm?id=1109557.1109637
+  \endverb
+  \list{location}{1}{%
+    {Miami, Florida}%
+  }
+  \field{year}{2006}
+  \warn{\item Can't use 'location' + 'address'}
+\endentry
+
+\entry{book:outliers}{book}{}
+  \name{author}{1}{}{%
+    {{}%
+     {Hawkins}{H.}%
+     {Douglas~M}{D.~M.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {Springer}%
+  }
+  \strng{namehash}{HDM1}
+  \strng{fullhash}{HDM1}
+  \field{sortinit}{H}
+  \field{title}{Identification of outliers}
+  \field{volume}{11}
+  \field{year}{1980}
+\endentry
+
+\entry{HBTB:14}{article}{}
+  \name{author}{4}{}{%
+    {{}%
+     {Hefley}{H.}%
+     {Trevor~J.}{T.~J.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Baasch}{B.}%
+     {David~M.}{D.~M.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Tyre}{T.}%
+     {Andrew~J.}{A.~J.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Blankenship}{B.}%
+     {Erin~E.}{E.~E.}%
+     {}{}%
+     {}{}}%
+  }
+  \keyw{Grus americana, inhomogeneous Poisson point process, location errors,
+  measurement error, Nebraska, opportunistic sightings, Public Land Survey
+  System, regression calibration, whooping crane}
+  \strng{namehash}{HTJ+1}
+  \strng{fullhash}{HTJBDMTAJBEE1}
+  \field{sortinit}{H}
+  \verb{doi}
+  \verb 10.1111/2041-210X.12144
+  \endverb
+  \field{issn}{2041-210X}
+  \field{number}{3}
+  \field{pages}{207\bibrangedash 214}
+  \field{title}{Correction of location errors for presence-only species
+  distribution models}
+  \verb{url}
+  \verb http://dx.doi.org/10.1111/2041-210X.12144
+  \endverb
+  \field{volume}{5}
+  \field{journaltitle}{Methods in Ecology and Evolution}
+  \field{year}{2014}
+\endentry
+
+\entry{HK:94}{incollection}{}
+  \name{author}{2}{}{%
+    {{}%
+     {Hitczenko}{H.}%
+     {Pawe{\l}}{P.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Kwapie{\'n}}{K.}%
+     {Stanis{\l}aw}{S.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {Birkh\"auser Boston, Boston, MA}%
+  }
+  \strng{namehash}{HPKS1}
+  \strng{fullhash}{HPKS1}
+  \field{sortinit}{H}
+  \field{booktitle}{Probability in {B}anach spaces, 9 ({S}andjberg, 1993)}
+  \field{pages}{31\bibrangedash 36}
+  \field{series}{Progr. Probab.}
+  \field{title}{On the {R}ademacher series}
+  \field{volume}{35}
+  \field{year}{1994}
+\endentry
+
+\entry{Hoeffding:63}{article}{}
+  \name{author}{1}{}{%
+    {{}%
+     {Hoeffding}{H.}%
+     {Wassily}{W.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{HW1}
+  \strng{fullhash}{HW1}
+  \field{sortinit}{H}
+  \field{pages}{13\bibrangedash 30}
+  \field{title}{Probability inequalities for sums of bounded random variables}
+  \field{volume}{58}
+  \field{journaltitle}{Journal of the American Statistical Association}
+  \field{year}{1963}
+\endentry
+
+\entry{Holm:70}{article}{}
+  \name{author}{1}{}{%
+    {{}%
+     {Holmstedt}{H.}%
+     {Tord}{T.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{HT1}
+  \strng{fullhash}{HT1}
+  \field{sortinit}{H}
+  \field{issn}{1903-1807}
+  \field{number}{0}
+  \field{pages}{177\bibrangedash 199}
+  \field{title}{{Interpolation of Quasi-Normed Spaces.}}
+  \verb{url}
+  \verb http://www.mscand.dk/article/view/10976
+  \endverb
+  \field{volume}{26}
+  \field{journaltitle}{Mathematica Scandinavica}
+  \field{year}{1970}
+\endentry
+
+\entry{Hougaard:86:StableDistribs}{article}{}
+  \name{author}{1}{}{%
+    {{}%
+     {Hougaard}{H.}%
+     {Philip}{P.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{HP1}
+  \strng{fullhash}{HP1}
+  \field{sortinit}{H}
+  \field{pages}{397\bibrangedash 96}
+  \field{title}{Survival models for heterogeneous populations derived from
+  stable distributions}
+  \field{volume}{73}
+  \field{journaltitle}{Biometrika}
+  \field{year}{1986}
+\endentry
+
+\entry{book:outliers:detect}{book}{}
+  \name{author}{2}{}{%
+    {{}%
+     {Iglewicz}{I.}%
+     {Boris}{B.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Hoaglin}{H.}%
+     {David~Caster}{D.~C.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {Asq Press}%
+  }
+  \strng{namehash}{IBHDC1}
+  \strng{fullhash}{IBHDC1}
+  \field{sortinit}{I}
+  \field{title}{How to detect and handle outliers}
+  \field{volume}{16}
+  \field{year}{1993}
+\endentry
+
+\entry{IZ:89}{inproceedings}{}
+  \name{author}{2}{}{%
+    {{}%
+     {Impagliazzo}{I.}%
+     {Russell}{R.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Zuckerman}{Z.}%
+     {David}{D.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {IEEE Computer Society}%
+  }
+  \strng{namehash}{IRZD1}
+  \strng{fullhash}{IRZD1}
+  \field{sortinit}{I}
+  \field{booktitle}{Proceedings of the 30th Annual Symposium on Foundations of
+  Computer Science}
+  \verb{doi}
+  \verb 10.1109/SFCS.1989.63486
+  \endverb
+  \field{isbn}{0-8186-1982-1}
+  \field{pages}{248\bibrangedash 253}
+  \field{series}{SFCS '89}
+  \field{title}{How to Recycle Random Bits}
+  \verb{url}
+  \verb http://dx.doi.org/10.1109/SFCS.1989.63486
+  \endverb
+  \list{location}{1}{%
+    {Washington, DC, USA}%
+  }
+  \field{year}{1989}
+\endentry
+
+\entry{ILR:12}{inproceedings}{}
+  \name{author}{3}{}{%
+    {{}%
+     {Indyk}{I.}%
+     {Piotr}{P.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Levi}{L.}%
+     {Reut}{R.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Rubinfeld}{R.}%
+     {Ronitt}{R.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {ACM}%
+  }
+  \strng{namehash}{IPLRRR1}
+  \strng{fullhash}{IPLRRR1}
+  \field{sortinit}{I}
+  \field{booktitle}{Proceedings of the 31st Symposium on Principles of Database
+  Systems}
+  \verb{doi}
+  \verb 10.1145/2213556.2213561
+  \endverb
+  \field{isbn}{978-1-4503-1248-6}
+  \field{pages}{15\bibrangedash 22}
+  \field{series}{Proceedings of PODS}
+  \field{title}{Approximating and Testing K-histogram Distributions in
+  Sub-linear Time}
+  \verb{url}
+  \verb http://doi.acm.org/10.1145/2213556.2213561
+  \endverb
+  \list{location}{1}{%
+    {Scottsdale, Arizona, USA}%
+  }
+  \field{year}{2012}
+  \warn{\item Can't use 'location' + 'address'}
+\endentry
+
+\entry{JR:11}{inproceedings}{}
+  \name{author}{2}{}{%
+    {{}%
+     {Jha}{J.}%
+     {Madhav}{M.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Raskhodnikova}{R.}%
+     {Sofya}{S.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{JMRS1}
+  \strng{fullhash}{JMRS1}
+  \field{sortinit}{J}
+  \field{booktitle}{Proceedings of FOCS}
+  \verb{doi}
+  \verb 10.1109/FOCS.2011.13
+  \endverb
+  \field{issn}{0272-5428}
+  \field{pages}{433\bibrangedash 442}
+  \field{title}{Testing and Reconstruction of {L}ipschitz Functions with
+  Applications to Data Privacy}
+  \field{year}{2011}
+  \warn{\item Invalid format of field 'month'}
+\endentry
+
+\entry{JVW:14}{article}{}
+  \name{author}{4}{}{%
+    {{}%
+     {Jiao}{J.}%
+     {Jiantao}{J.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Venkat}{V.}%
+     {Kartik}{K.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Yanjun}{Y.}%
+     {Han}{H.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Weissman}{W.}%
+     {Tsachy}{T.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{JJ+1}
+  \strng{fullhash}{JJVKYHWT1}
+  \field{sortinit}{J}
+  \verb{doi}
+  \verb 10.1109/TIT.2015.2412945
+  \endverb
+  \field{issn}{0018-9448}
+  \field{number}{5}
+  \field{pages}{2835\bibrangedash 2885}
+  \field{title}{Minimax Estimation of Functionals of Discrete Distributions}
+  \field{volume}{61}
+  \field{journaltitle}{IEEE Transactions on Information Theory}
+  \field{month}{05}
+  \field{year}{2015}
+\endentry
+
+\entry{CK:15}{misc}{}
+  \name{author}{1}{}{%
+    {{}%
+     {Kamath}{K.}%
+     {Gautam}{G.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{KG1}
+  \strng{fullhash}{KG1}
+  \field{sortinit}{K}
+  \field{howpublished}{Private communication}
+  \field{year}{2015}
+\endentry
+
+\entry{Kearns:94}{inproceedings}{}
+  \name{author}{6}{}{%
+    {{}%
+     {Kearns}{K.}%
+     {Michael}{M.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Mansour}{M.}%
+     {Yishay}{Y.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Ron}{R.}%
+     {Dana}{D.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Rubinfeld}{R.}%
+     {Ronitt}{R.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Schapire}{S.}%
+     {Robert~E.}{R.~E.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Sellie}{S.}%
+     {Linda}{L.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {ACM}%
+  }
+  \strng{namehash}{KM+1}
+  \strng{fullhash}{KMMYRDRRSRESL1}
+  \field{sortinit}{K}
+  \field{booktitle}{Proceedings of the Twenty-sixth Annual ACM Symposium on
+  Theory of Computing}
+  \verb{doi}
+  \verb 10.1145/195058.195155
+  \endverb
+  \field{isbn}{0-89791-663-8}
+  \field{pages}{273\bibrangedash 282}
+  \field{series}{STOC '94}
+  \field{title}{On the Learnability of Discrete Distributions}
+  \verb{url}
+  \verb http://doi.acm.org/10.1145/195058.195155
+  \endverb
+  \list{location}{1}{%
+    {Montreal, Quebec, Canada}%
+  }
+  \field{year}{1994}
+  \warn{\item Can't use 'location' + 'address'}
+\endentry
+
+\entry{KG:71}{article}{}
+  \name{author}{2}{}{%
+    {{}%
+     {Keilson}{K.}%
+     {J.}{J.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Gerber}{G.}%
+     {H.}{H.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {Taylor \& Francis, Ltd. on behalf of the American Statistical
+  Association}%
+  }
+  \strng{namehash}{KJGH1}
+  \strng{fullhash}{KJGH1}
+  \field{sortinit}{K}
+  \field{issn}{01621459}
+  \field{number}{334}
+  \field{pages}{pp. 386\bibrangedash 389}
+  \field{title}{Some Results for Discrete Unimodality}
+  \verb{url}
+  \verb http://www.jstor.org/stable/2283941
+  \endverb
+  \field{volume}{66}
+  \field{journaltitle}{Journal of the American Statistical Association}
+  \field{year}{1971}
+\endentry
+
+\entry{KS:16}{article}{}
+  \name{author}{2}{}{%
+    {{}%
+     {Kim}{K.}%
+     {Arlene K.~H.}{A.~K.~H.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Samworth}{S.}%
+     {Richard~J.}{R.~J.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {The Institute of Mathematical Statistics}%
+  }
+  \strng{namehash}{KAKHSRJ1}
+  \strng{fullhash}{KAKHSRJ1}
+  \field{sortinit}{K}
+  \field{number}{6}
+  \field{pages}{2756\bibrangedash 2779}
+  \field{title}{Global rates of convergence in log-concave density estimation}
+  \verb{url}
+  \verb http://arxiv.org/abs/1404.2298
+  \endverb
+  \field{volume}{44}
+  \field{journaltitle}{Ann. Statist.}
+  \field{month}{12}
+  \field{year}{2016}
+\endentry
+
+\entry{Kruopis:86}{article}{}
+  \name{author}{1}{}{%
+    {{}%
+     {Kruopis}{K.}%
+     {Julius}{J.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{KJ1}
+  \strng{fullhash}{KJ1}
+  \field{sortinit}{K}
+  \field{number}{1}
+  \field{pages}{37\bibrangedash 49}
+  \field{title}{{Precision of approximation of the generalized binomial
+  distribution by convolutions of Poisson measures}}
+  \field{volume}{26}
+  \field{journaltitle}{Lithuanian Mathematical Journal}
+  \field{year}{1986}
+\endentry
+
+\entry{KR:94}{incollection}{}
+  \name{author}{2}{}{%
+    {{}%
+     {Kushilevitz}{K.}%
+     {Eyal}{E.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Rosén}{R.}%
+     {Adi}{A.}%
+     {}{}%
+     {}{}}%
+  }
+  \name{editor}{1}{}{%
+    {{}%
+     {Desmedt}{D.}%
+     {YvoG.}{Y.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{language}{1}{%
+    {English}%
+  }
+  \list{publisher}{1}{%
+    {Springer Berlin Heidelberg}%
+  }
+  \strng{namehash}{KERA1}
+  \strng{fullhash}{KERA1}
+  \field{sortinit}{K}
+  \field{booktitle}{Advances in Cryptology — CRYPTO ’94}
+  \verb{doi}
+  \verb 10.1007/3-540-48658-5_36
+  \endverb
+  \field{isbn}{978-3-540-58333-2}
+  \field{pages}{397\bibrangedash 410}
+  \field{series}{Lecture Notes in Computer Science}
+  \field{title}{A Randomness-Rounds Tradeoff in Private Computation}
+  \verb{url}
+  \verb http://dx.doi.org/10.1007/3-540-48658-5_36
+  \endverb
+  \field{volume}{839}
+  \field{year}{1994}
+\endentry
+
+\entry{LRR:13}{article}{}
+  \name{author}{3}{}{%
+    {{}%
+     {Levi}{L.}%
+     {Reut}{R.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Ron}{R.}%
+     {Dana}{D.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Rubinfeld}{R.}%
+     {Ronitt}{R.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{LRRDRR1}
+  \strng{fullhash}{LRRDRR1}
+  \field{sortinit}{L}
+  \verb{doi}
+  \verb 10.4086/toc.2013.v009a008
+  \endverb
+  \field{pages}{295\bibrangedash 347}
+  \field{title}{Testing Properties of Collections of Distributions}
+  \verb{url}
+  \verb http://dx.doi.org/10.4086/toc.2013.v009a008
+  \endverb
+  \field{volume}{9}
+  \field{journaltitle}{Theory of Computing}
+  \field{year}{2013}
+\endentry
+
+\entry{book:imputation}{book}{}
+  \name{author}{2}{}{%
+    {{}%
+     {Little}{L.}%
+     {Roderick J.~A.}{R.~J.~A.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Rubin}{R.}%
+     {Donald~B.}{D.~B.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {John Wiley \& Sons, Inc.}%
+  }
+  \strng{namehash}{LRJARDB1}
+  \strng{fullhash}{LRJARDB1}
+  \field{sortinit}{L}
+  \field{isbn}{9780471183860}
+  \field{note}{Second edition}
+  \field{series}{Wiley Series in Probability and Statistics}
+  \field{title}{Statistical Analysis with Missing Data}
+  \field{year}{2002}
+\endentry
+
+\entry{Loh:92}{article}{}
+  \name{author}{1}{}{%
+    {{}%
+     {Loh}{L.}%
+     {Wei-Liem}{W.-L.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{LWL1}
+  \strng{fullhash}{LWL1}
+  \field{sortinit}{L}
+  \field{issn}{1050-5164}
+  \field{number}{3}
+  \field{pages}{536\bibrangedash 554}
+  \field{title}{Stein's method and multinomial approximation}
+  \verb{url}
+  \verb http://links.jstor.org/sici?sici=1050-5164(199208)2:3<536:SMAMA>2.0.CO;
+  \verb 2-6&origin=MSN
+  \endverb
+  \field{volume}{2}
+  \field{journaltitle}{Ann. Appl. Probab.}
+  \field{year}{1992}
+\endentry
+
+\entry{Ma:81:Physics}{article}{}
+  \name{author}{1}{}{%
+    {{}%
+     {Ma}{M.}%
+     {Shang-{K}eng}{S.-K.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {Kluwer Academic Publishers-Plenum Publishers}%
+  }
+  \strng{namehash}{MSK1}
+  \strng{fullhash}{MSK1}
+  \field{sortinit}{M}
+  \verb{doi}
+  \verb 10.1007/BF01013169
+  \endverb
+  \field{issn}{0022-4715}
+  \field{number}{2}
+  \field{pages}{221\bibrangedash 240}
+  \field{title}{Calculation of entropy from data of motion}
+  \verb{url}
+  \verb http://dx.doi.org/10.1007/BF01013169
+  \endverb
+  \field{volume}{26}
+  \field{journaltitle}{Journal of Statistical Physics}
+  \field{year}{1981}
+\endentry
+
+\entry{MathOverflow:13:counterexample}{misc}{}
+  \name{author}{1}{}{%
+    {{}%
+     {Maciej}{M.}%
+     {S}{S}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{MS1}
+  \strng{fullhash}{MS1}
+  \field{sortinit}{M}
+  \verb{eprint}
+  \verb http://mathoverflow.net/q/148973
+  \endverb
+  \field{howpublished}{MathOverflow}
+  \field{note}{\url{http://mathoverflow.net/q/148973} (version: 2013-11-16)}
+  \field{title}{Anticoncentration of the convolution of two characteristic
+  functions}
+  \verb{url}
+  \verb http://mathoverflow.net/q/148973
+  \endverb
+  \field{year}{2013}
+\endentry
+
+\entry{MathOverflow:13:main}{misc}{}
+  \name{author}{1}{}{%
+    {{}%
+     {Maciej}{M.}%
+     {S}{S}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{MS1}
+  \strng{fullhash}{MS1}
+  \field{sortinit}{M}
+  \verb{eprint}
+  \verb http://mathoverflow.net/q/148779
+  \endverb
+  \field{howpublished}{MathOverflow}
+  \field{note}{\url{http://mathoverflow.net/q/148779} (version: 2013-11-13)}
+  \field{title}{Convergence rate of the convolution of almost uniform measures
+  on $\mathbb{Z}_p$}
+  \verb{url}
+  \verb http://mathoverflow.net/q/148779
+  \endverb
+  \field{year}{2013}
+\endentry
+
+\entry{Mandelbrot:63:FatTail}{article}{}
+  \name{author}{1}{}{%
+    {{}%
+     {Mandelbrot}{M.}%
+     {Benoit}{B.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {The University of Chicago Press}%
+  }
+  \strng{namehash}{MB1}
+  \strng{fullhash}{MB1}
+  \field{sortinit}{M}
+  \field{number}{5}
+  \field{pages}{pp. 421\bibrangedash 440}
+  \field{title}{New Methods in Statistical Economics}
+  \field{volume}{71}
+  \field{journaltitle}{Journal of Political Economy}
+  \field{year}{1963}
+\endentry
+
+\entry{Massart:90}{article}{}
+  \name{author}{1}{}{%
+    {{}%
+     {Massart}{M.}%
+     {Pascal}{P.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {The Institute of Mathematical Statistics}%
+  }
+  \strng{namehash}{MP1}
+  \strng{fullhash}{MP1}
+  \field{sortinit}{M}
+  \verb{doi}
+  \verb 10.1214/aop/1176990746
+  \endverb
+  \field{number}{3}
+  \field{pages}{1269\bibrangedash 1283}
+  \field{title}{The Tight Constant in the {D}voretzky--{K}iefer--{W}olfowitz
+  Inequality}
+  \verb{url}
+  \verb http://dx.doi.org/10.1214/aop/1176990746
+  \endverb
+  \field{volume}{18}
+  \field{journaltitle}{The Annals of Probability}
+  \field{month}{07}
+  \field{year}{1990}
+\endentry
+
+\entry{MP:03}{inproceedings}{}
+  \name{author}{2}{}{%
+    {{}%
+     {Massart}{M.}%
+     {Pascal}{P.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Picard}{P.}%
+     {Jean}{J.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {Springer}%
+  }
+  \strng{namehash}{MPPJ1}
+  \strng{fullhash}{MPPJ1}
+  \field{sortinit}{M}
+  \field{isbn}{978-3-540-48497-4}
+  \field{series}{Lecture Notes in Mathematics}
+  \field{title}{Concentration inequalities and model selection}
+  \verb{url}
+  \verb http://opac.inria.fr/record=b1122538
+  \endverb
+  \list{location}{1}{%
+    {33, Saint-Flour, Cantal}%
+  }
+  \field{year}{2007}
+\endentry
+
+\entry{MS:90}{article}{}
+  \name{author}{1}{}{%
+    {{}%
+     {Montgomery-Smith}{M.-S.}%
+     {Stephen~J.}{S.~J.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{MSSJ1}
+  \strng{fullhash}{MSSJ1}
+  \field{sortinit}{M}
+  \field{number}{2}
+  \field{pages}{517\bibrangedash 522}
+  \field{title}{{The distribution of Rademacher sums}}
+  \field{volume}{109}
+  \field{journaltitle}{Proceedings of the American Mathematical Society}
+  \field{year}{1990}
+\endentry
+
+\entry{MotwaniRaghavan:95}{book}{}
+  \name{author}{2}{}{%
+    {{}%
+     {Motwani}{M.}%
+     {Rajeev}{R.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Raghavan}{R.}%
+     {Prabhakar}{P.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {Cambridge University Press}%
+  }
+  \strng{namehash}{MRRP1}
+  \strng{fullhash}{MRRP1}
+  \field{sortinit}{M}
+  \field{title}{Randomized Algorithms}
+  \list{location}{1}{%
+    {New York, NY}%
+  }
+  \field{year}{1995}
+\endentry
+
+\entry{Newman:10}{inproceedings}{}
+  \name{author}{1}{}{%
+    {{}%
+     {Newman}{N.}%
+     {Ilan}{I.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {Springer}%
+  }
+  \strng{namehash}{NI1}
+  \strng{fullhash}{NI1}
+  \field{sortinit}{N}
+  \field{booktitle}{Property Testing}
+  \field{pages}{142\bibrangedash 157}
+  \field{series}{Lecture Notes in Computer Science}
+  \field{title}{Property Testing of Massively Parametrized Problems -- {A}
+  Survey}
+  \field{volume}{6390}
+  \field{year}{2010}
+\endentry
+
+\entry{newman1996public}{inproceedings}{}
+  \name{author}{2}{}{%
+    {{}%
+     {Newman}{N.}%
+     {Ilan}{I.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Szegedy}{S.}%
+     {Mario}{M.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{organization}{1}{%
+    {ACM}%
+  }
+  \strng{namehash}{NISM1}
+  \strng{fullhash}{NISM1}
+  \field{sortinit}{N}
+  \field{booktitle}{Proceedings of STOC}
+  \field{pages}{561\bibrangedash 570}
+  \field{title}{Public vs. private coin flips in one round communication games}
+  \field{year}{1996}
+\endentry
+
+\entry{Neyman:34:stratifiedsampling}{article}{}
+  \name{author}{1}{}{%
+    {{}%
+     {Neyman}{N.}%
+     {Jerzy}{J.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{NJ1}
+  \strng{fullhash}{NJ1}
+  \field{sortinit}{N}
+  \field{number}{4}
+  \field{pages}{558\bibrangedash 625}
+  \field{title}{On the Two Different Aspects of the Representative Method: The
+  Method of Stratified Sampling and the Method of Purposive Selection}
+  \field{volume}{97}
+  \field{journaltitle}{Journal of the Royal Statistical Society}
+  \field{year}{1934}
+\endentry
+
+\entry{Paninski:08}{article}{}
+  \name{author}{1}{}{%
+    {{}%
+     {Paninski}{P.}%
+     {Liam}{L.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{PL1}
+  \strng{fullhash}{PL1}
+  \field{sortinit}{P}
+  \field{number}{10}
+  \field{pages}{4750\bibrangedash 4755}
+  \field{title}{A Coincidence-Based Test for Uniformity Given Very Sparsely
+  Sampled Discrete Data}
+  \field{volume}{54}
+  \field{journaltitle}{IEEE Transactions on Information Theory}
+  \field{year}{2008}
+\endentry
+
+\entry{Paninski:04}{article}{}
+  \name{author}{1}{}{%
+    {{}%
+     {Paninski}{P.}%
+     {Liam}{L.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{PL1}
+  \strng{fullhash}{PL1}
+  \field{sortinit}{P}
+  \field{number}{9}
+  \field{pages}{2200\bibrangedash 2203}
+  \field{title}{Estimating entropy on $m$ bins given fewer than $m$ samples}
+  \field{volume}{50}
+  \field{journaltitle}{IEEE Transactions on Information Theory}
+  \field{year}{2004}
+\endentry
+
+\entry{Scholarpedia:2008}{article}{}
+  \name{author}{3}{}{%
+    {{}%
+     {Panzeri}{P.}%
+     {Stefano}{S.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Magri}{M.}%
+     {Cesare}{C.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Carraro}{C.}%
+     {Ludovico}{L.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{PSMCCL1}
+  \strng{fullhash}{PSMCCL1}
+  \field{sortinit}{P}
+  \field{note}{{revision \#91742}}
+  \field{number}{9}
+  \field{pages}{4258}
+  \field{title}{{S}ampling bias}
+  \field{volume}{3}
+  \field{journaltitle}{Scholarpedia}
+  \field{year}{2008}
+\endentry
+
+\entry{PRR:06}{article}{}
+  \name{author}{3}{}{%
+    {{}%
+     {Parnas}{P.}%
+     {Michal}{M.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Ron}{R.}%
+     {Dana}{D.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Rubinfeld}{R.}%
+     {Ronitt}{R.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{PMRDRR1}
+  \strng{fullhash}{PMRDRR1}
+  \field{sortinit}{P}
+  \field{number}{6}
+  \field{pages}{1012\bibrangedash 1042}
+  \field{title}{Tolerant property testing and distance approximation}
+  \field{volume}{72}
+  \field{journaltitle}{Journal of Computer and System Sciences}
+  \field{year}{2006}
+\endentry
+
+\entry{Peetre:68}{book}{}
+  \name{author}{1}{}{%
+    {{}%
+     {Peetre}{P.}%
+     {Jaak}{J.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {Instituto de Matem\'atica Pura e Aplicada, Conselho Nacional de Pesquisas,
+  Rio de Janeiro}%
+  }
+  \strng{namehash}{PJ1}
+  \strng{fullhash}{PJ1}
+  \field{sortinit}{P}
+  \field{pages}{iii+86}
+  \field{series}{Notas de Matem\'atica, No. 39}
+  \field{title}{A theory of interpolation of normed spaces}
+  \field{year}{1968}
+\endentry
+
+\entry{Poisson:37}{book}{}
+  \name{author}{1}{}{%
+    {{}%
+     {Poisson}{P.}%
+     {Sim{\'e}on~Denis}{S.~D.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {Bachelier}%
+  }
+  \strng{namehash}{PSD1}
+  \strng{fullhash}{PSD1}
+  \field{sortinit}{P}
+  \field{title}{Recherches sur la probabilit{\'e} des jugements en mati{\`e}re
+  criminelle et en mati{\`e}re civile: pr{\'e}c{\'e}d{\'e}es des r{\`e}gles
+  g{\'e}n{\'e}rales du calcul des probabilit{\'e}s}
+  \verb{url}
+  \verb http://books.google.fr/books?id=uB8OAAAAQAAJ
+  \endverb
+  \field{year}{1837}
+\endentry
+
+\entry{Pollard:2003}{misc}{}
+  \name{author}{1}{}{%
+    {{}%
+     {Pollard}{P.}%
+     {David}{D.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{PD1}
+  \strng{fullhash}{PD1}
+  \field{sortinit}{P}
+  \field{note}{Manuscript}
+  \field{title}{Asymptopia}
+  \verb{url}
+  \verb http://www.stat.yale.edu/~pollard/Books/Asymptopia/
+  \endverb
+  \field{year}{2003}
+  \field{urlday}{08}
+  \field{urlmonth}{11}
+  \field{urlyear}{2016}
+\endentry
+
+\entry{Presman:83}{article}{}
+  \name{author}{1}{}{%
+    {{}%
+     {Presman}{P.}%
+     {Ernst~L.}{E.~L.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{PEL1}
+  \strng{fullhash}{PEL1}
+  \field{sortinit}{P}
+  \field{pages}{393\bibrangedash 403}
+  \field{title}{Approximation of binomial distributions by infinitely divisible
+  ones}
+  \field{volume}{28}
+  \field{journaltitle}{Theory Probab. Appl.}
+  \field{year}{1983}
+\endentry
+
+\entry{RT:00}{article}{}
+  \name{author}{2}{}{%
+    {{}%
+     {Radhakrishnan}{R.}%
+     {Jaikumar}{J.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Ta-Shma}{T.-S.}%
+     {Amnon}{A.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{RJTSA1}
+  \strng{fullhash}{RJTSA1}
+  \field{sortinit}{R}
+  \field{pages}{2000}
+  \field{title}{Bounds For Dispersers, Extractors, And Depth-Two
+  Superconcentrators}
+  \field{volume}{13}
+  \field{journaltitle}{SIAM Journal on Discrete Mathematics}
+  \field{year}{2000}
+\endentry
+
+\entry{RRSS:09}{article}{}
+  \name{author}{4}{}{%
+    {{}%
+     {Raskhodnikova}{R.}%
+     {Sofya}{S.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Ron}{R.}%
+     {Dana}{D.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Shpilka}{S.}%
+     {Amir}{A.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Smith}{S.}%
+     {Adam}{A.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{RS+1}
+  \strng{fullhash}{RSRDSASA1}
+  \field{sortinit}{R}
+  \field{number}{3}
+  \field{pages}{813\bibrangedash 842}
+  \field{title}{Strong lower bounds for approximating distributions support
+  size and the distinct elements problem}
+  \field{volume}{39}
+  \field{journaltitle}{SIAM Journal on Computing}
+  \field{year}{2009}
+\endentry
+
+\entry{Rey:11}{misc}{}
+  \name{author}{1}{}{%
+    {{}%
+     {Reyzin}{R.}%
+     {Leo}{L.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{RL1}
+  \strng{fullhash}{RL1}
+  \field{sortinit}{R}
+  \field{howpublished}{\url{http://www.cs.bu.edu/~reyzin/teaching/s11cs937/notes-leo-1.pdf}}
+  \field{note}{Lecture notes}
+  \field{title}{{Extractors and the leftover hash lemma}}
+  \field{month}{03}
+  \field{year}{2011}
+\endentry
+
+\entry{RS:08:numbertheory}{article}{}
+  \name{author}{2}{}{%
+    {{}%
+     {{Richmond}}{R.}%
+     {L.~B.}{L.~B.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {{Shallit}}{S.}%
+     {Jeffrey}{J.}%
+     {}{}%
+     {}{}}%
+  }
+  \keyw{Mathematics - Combinatorics, 05A16}
+  \strng{namehash}{RLBSJ1}
+  \strng{fullhash}{RLBSJ1}
+  \field{sortinit}{R}
+  \verb{eprint}
+  \verb 0807.5028
+  \endverb
+  \field{title}{{Counting Abelian Squares}}
+  \field{journaltitle}{ArXiv e-prints}
+  \field{eprinttype}{arXiv}
+  \field{eprintclass}{math.CO}
+  \field{month}{07}
+  \field{year}{2008}
+\endentry
+
+\entry{Ron:10}{article}{}
+  \name{author}{1}{}{%
+    {{}%
+     {Ron}{R.}%
+     {Dana}{D.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{RD1}
+  \strng{fullhash}{RD1}
+  \field{sortinit}{R}
+  \field{issue}{2}
+  \field{pages}{73\bibrangedash 205}
+  \field{title}{Algorithmic and Analysis Techniques in Property Testing}
+  \field{volume}{5}
+  \field{journaltitle}{Foundations and Trends in Theoretical Computer Science}
+  \field{year}{2010}
+\endentry
+
+\entry{Ron:08}{article}{}
+  \name{author}{1}{}{%
+    {{}%
+     {Ron}{R.}%
+     {Dana}{D.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{RD1}
+  \strng{fullhash}{RD1}
+  \field{sortinit}{R}
+  \field{number}{3}
+  \field{pages}{307\bibrangedash 402}
+  \field{title}{{Property Testing: A Learning Theory Perspective}}
+  \field{volume}{1}
+  \field{journaltitle}{Foundations and Trends in Machine Learning}
+  \field{year}{2008}
+\endentry
+
+\entry{Roos:10}{article}{}
+  \name{author}{1}{}{%
+    {{}%
+     {Roos}{R.}%
+     {Bero}{B.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{RB1}
+  \strng{fullhash}{RB1}
+  \field{sortinit}{R}
+  \verb{doi}
+  \verb 10.3150/08-BEJ171
+  \endverb
+  \field{issn}{1350-7265}
+  \field{number}{1}
+  \field{pages}{23\bibrangedash 50}
+  \field{title}{Closeness of convolutions of probability measures}
+  \verb{url}
+  \verb http://dx.doi.org/10.3150/08-BEJ171
+  \endverb
+  \field{volume}{16}
+  \field{journaltitle}{Bernoulli}
+  \field{year}{2010}
+\endentry
+
+\entry{Roos:99}{article}{}
+  \name{author}{1}{}{%
+    {{}%
+     {Roos}{R.}%
+     {Bero}{B.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{RB1}
+  \strng{fullhash}{RB1}
+  \field{sortinit}{R}
+  \verb{doi}
+  \verb 10.1006/jmva.1998.1789
+  \endverb
+  \field{issn}{0047-259X}
+  \field{number}{1}
+  \field{pages}{120\bibrangedash 134}
+  \field{title}{On the rate of multivariate {P}oisson convergence}
+  \verb{url}
+  \verb http://dx.doi.org/10.1006/jmva.1998.1789
+  \endverb
+  \field{volume}{69}
+  \field{journaltitle}{J. Multivariate Anal.}
+  \field{year}{1999}
+\endentry
+
+\entry{Rubin:87}{book}{}
+  \name{author}{1}{}{%
+    {{}%
+     {Rubin}{R.}%
+     {Donald~B.}{D.~B.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {John Wiley \& Sons}%
+  }
+  \strng{namehash}{RDB1}
+  \strng{fullhash}{RDB1}
+  \field{sortinit}{R}
+  \field{title}{Multiple imputation for nonresponse in surveys}
+  \field{year}{1987}
+\endentry
+
+\entry{Rubinfeld:12:Survey}{article}{}
+  \name{author}{1}{}{%
+    {{}%
+     {Rubinfeld}{R.}%
+     {Ronitt}{R.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {Association for Computing Machinery ({ACM})}%
+  }
+  \strng{namehash}{RR1}
+  \strng{fullhash}{RR1}
+  \field{sortinit}{R}
+  \verb{doi}
+  \verb 10.1145/2331042.2331052
+  \endverb
+  \field{number}{1}
+  \field{pages}{24}
+  \field{title}{Taming big probability distributions}
+  \verb{url}
+  \verb http://dx.doi.org/10.1145/2331042.2331052
+  \endverb
+  \field{volume}{19}
+  \field{journaltitle}{{XRDS}: Crossroads, The {ACM} Magazine for Students}
+  \field{year}{2012}
+  \warn{\item Invalid format of field 'month'}
+\endentry
+
+\entry{RS:09}{article}{}
+  \name{author}{2}{}{%
+    {{}%
+     {Rubinfeld}{R.}%
+     {Ronitt}{R.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Servedio}{S.}%
+     {Rocco~A.}{R.~A.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {John Wiley \& Sons, Inc.}%
+  }
+  \strng{namehash}{RRSRA1}
+  \strng{fullhash}{RRSRA1}
+  \field{sortinit}{R}
+  \verb{doi}
+  \verb 10.1002/rsa.v34:1
+  \endverb
+  \field{issn}{1042-9832}
+  \field{number}{1}
+  \field{pages}{24\bibrangedash 44}
+  \field{title}{Testing monotone high-dimensional distributions}
+  \field{volume}{34}
+  \list{location}{1}{%
+    {New York, NY, USA}%
+  }
+  \field{journaltitle}{Random Structures and Algorithms}
+  \field{month}{01}
+  \field{year}{2009}
+\endentry
+
+\entry{RS:96}{article}{}
+  \name{author}{2}{}{%
+    {{}%
+     {Rubinfeld}{R.}%
+     {Ronitt}{R.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Sudan}{S.}%
+     {Madhu}{M.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{RRSM1}
+  \strng{fullhash}{RRSM1}
+  \field{sortinit}{R}
+  \field{number}{2}
+  \field{pages}{252\bibrangedash 271}
+  \field{title}{Robust Characterization of Polynomials with Applications to
+  Program Testing}
+  \field{volume}{25}
+  \field{journaltitle}{SIAM Journal on Computing}
+  \field{year}{1996}
+\endentry
+
+\entry{SMP:07}{article}{}
+  \name{author}{2}{}{%
+    {{}%
+     {Saar-Tsechansky}{S.-T.}%
+     {Maytal}{M.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Provost}{P.}%
+     {Foster}{F.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {JMLR.org}%
+  }
+  \strng{namehash}{STMPF1}
+  \strng{fullhash}{STMPF1}
+  \field{sortinit}{S}
+  \field{issn}{1532-4435}
+  \field{pages}{1623\bibrangedash 1657}
+  \field{title}{Handling Missing Values when Applying Classification Models}
+  \verb{url}
+  \verb http://dl.acm.org/citation.cfm?id=1314498.1314553
+  \endverb
+  \field{volume}{8}
+  \field{journaltitle}{J. Mach. Learn. Res.}
+  \field{month}{12}
+  \field{year}{2007}
+\endentry
+
+\entry{SV:98}{inproceedings}{}
+  \name{author}{2}{}{%
+    {{}%
+     {Sahai}{S.}%
+     {Amit}{A.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Vadhan}{V.}%
+     {Salil}{S.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {American Mathematical Society}%
+  }
+  \strng{namehash}{SAVS1}
+  \strng{fullhash}{SAVS1}
+  \field{sortinit}{S}
+  \field{booktitle}{DIMACS Series in Discrete Mathematics and Theoretical
+  Computer Science}
+  \field{pages}{251\bibrangedash 270}
+  \field{title}{Manipulating Statistical Difference}
+  \field{year}{1998}
+\endentry
+
+\entry{SS:10}{article}{}
+  \name{author}{2}{}{%
+    {{}%
+     {Saks}{S.}%
+     {Michael}{M.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Seshadhri}{S.}%
+     {Comandur}{C.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{SMSC1}
+  \strng{fullhash}{SMSC1}
+  \field{sortinit}{S}
+  \verb{doi}
+  \verb 10.1137/080728561
+  \endverb
+  \verb{eprint}
+  \verb http://dx.doi.org/10.1137/080728561
+  \endverb
+  \field{number}{7}
+  \field{pages}{2897\bibrangedash 2926}
+  \field{title}{Local Monotonicity Reconstruction}
+  \verb{url}
+  \verb http://dx.doi.org/10.1137/080728561
+  \endverb
+  \field{volume}{39}
+  \field{journaltitle}{SIAM Journal on Computing}
+  \field{year}{2010}
+\endentry
+
+\entry{book:incomplete:data}{book}{}
+  \name{author}{1}{}{%
+    {{}%
+     {Schafer}{S.}%
+     {Joseph~L.}{J.~L.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {CRC press}%
+  }
+  \strng{namehash}{SJL1}
+  \strng{fullhash}{SJL1}
+  \field{sortinit}{S}
+  \field{title}{Analysis of incomplete multivariate data}
+  \field{year}{1997}
+\endentry
+
+\entry{Senese:03}{article}{}
+  \name{author}{2}{}{%
+    {{}%
+     {Senese}{S.}%
+     {Paul~D.}{P.~D.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Vasquez}{V.}%
+     {John~A.}{J.~A.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {Wiley Online Library}%
+  }
+  \strng{namehash}{SPDVJA1}
+  \strng{fullhash}{SPDVJA1}
+  \field{sortinit}{S}
+  \field{number}{2}
+  \field{pages}{275\bibrangedash 298}
+  \field{title}{A unified explanation of territorial conflict: Testing the
+  impact of sampling bias, 1919--1992}
+  \field{volume}{47}
+  \field{journaltitle}{International Studies Quarterly}
+  \field{year}{2003}
+\endentry
+
+\entry{SN:99}{article}{}
+  \name{author}{2}{}{%
+    {{}%
+     {Sengupta}{S.}%
+     {Debasis}{D.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Nanda}{N.}%
+     {Asok~K.}{A.~K.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {John Wiley \& Sons, Inc.}%
+  }
+  \strng{namehash}{SDNAK1}
+  \strng{fullhash}{SDNAK1}
+  \field{sortinit}{S}
+  \verb{doi}
+  \verb 10.1002/(SICI)1520-6750(199906)46:4<419::AID-NAV5>3.0.CO;2-B
+  \endverb
+  \field{issn}{1520-6750}
+  \field{number}{4}
+  \field{pages}{419\bibrangedash 433}
+  \field{title}{Log-concave and concave distributions in reliability}
+  \verb{url}
+  \verb http://dx.doi.org/10.1002/(SICI)1520-6750(199906)46:4<419::AID-NAV5>3.0
+  \verb .CO;2-B
+  \endverb
+  \field{volume}{46}
+  \field{journaltitle}{Naval Research Logistics (NRL)}
+  \field{year}{1999}
+\endentry
+
+\entry{Signor:1982}{article}{}
+  \name{author}{2}{}{%
+    {{}%
+     {Signor}{S.}%
+     {Philip~W.}{P.~W.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Lipps}{L.}%
+     {Jere~H.}{J.~H.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {Geological Society of America}%
+  }
+  \strng{namehash}{SPWLJH1}
+  \strng{fullhash}{SPWLJH1}
+  \field{sortinit}{S}
+  \field{pages}{291\bibrangedash 296}
+  \field{title}{Sampling bias, gradual extinction patterns and catastrophes in
+  the fossil record}
+  \field{volume}{190}
+  \field{journaltitle}{Geological Society of America Special Papers}
+  \field{year}{1982}
+\endentry
+
+\entry{SS:01}{book}{}
+  \name{author}{2}{}{%
+    {{}%
+     {Silvapulle}{S.}%
+     {Mervyn~J.}{M.~J.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Sen}{S.}%
+     {Pranab~K.}{P.~K.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {John Wiley \& Sons, Inc.}%
+  }
+  \strng{namehash}{SMJSPK1}
+  \strng{fullhash}{SMJSPK1}
+  \field{sortinit}{S}
+  \verb{doi}
+  \verb 10.1002/9781118165614.fmatter
+  \endverb
+  \field{isbn}{9781118165614}
+  \field{pages}{i\bibrangedash xvii}
+  \field{title}{Constrained Statistical Inference}
+  \verb{url}
+  \verb http://dx.doi.org/10.1002/9781118165614.fmatter
+  \endverb
+  \field{year}{2001}
+\endentry
+
+\entry{PhysRevLett:95}{article}{}
+  \name{author}{4}{}{%
+    {{}%
+     {Tsallis}{T.}%
+     {Constantino}{C.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Levy}{L.}%
+     {Silvio V.~F.}{S.~V.~F.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Souza}{S.}%
+     {Andr\'e M.~C.}{A.~M.~C.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Maynard}{M.}%
+     {Roger}{R.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {American Physical Society}%
+  }
+  \strng{namehash}{TC+1}
+  \strng{fullhash}{TCLSVFSAMCMR1}
+  \field{sortinit}{T}
+  \verb{doi}
+  \verb 10.1103/PhysRevLett.75.3589
+  \endverb
+  \field{issue}{20}
+  \field{pages}{3589\bibrangedash 3593}
+  \field{title}{Statistical-Mechanical Foundation of the Ubiquity of {L}\'evy
+  Distributions in Nature}
+  \verb{url}
+  \verb http://link.aps.org/doi/10.1103/PhysRevLett.75.3589
+  \endverb
+  \field{volume}{75}
+  \field{journaltitle}{Phys. Rev. Lett.}
+  \field{month}{11}
+  \field{year}{1995}
+\endentry
+
+\entry{book:vadhan}{book}{}
+  \name{author}{1}{}{%
+    {{}%
+     {Vadhan}{V.}%
+     {Salil~P.}{S.~P.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {Now Publishers Inc.}%
+  }
+  \strng{namehash}{VSP1}
+  \strng{fullhash}{VSP1}
+  \field{sortinit}{V}
+  \verb{doi}
+  \verb 10.1561/0400000010
+  \endverb
+  \field{isbn}{1601985940, 9781601985941}
+  \field{issn}{1551-305X}
+  \field{pages}{1\bibrangedash 336}
+  \field{title}{Pseudorandomness}
+  \verb{url}
+  \verb http://dx.doi.org/10.1561/0400000010
+  \endverb
+  \field{volume}{7}
+  \field{journaltitle}{Foundations and Trends in Theoretical Computer Science}
+  \field{year}{2012}
+\endentry
+
+\entry{ValiantValiant:10lb}{article}{}
+  \name{author}{2}{}{%
+    {{}%
+     {Valiant}{V.}%
+     {Gregory}{G.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Valiant}{V.}%
+     {Paul}{P.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{VGVP1}
+  \strng{fullhash}{VGVP1}
+  \field{sortinit}{V}
+  \field{pages}{179}
+  \field{title}{A {CLT} and tight lower bounds for estimating entropy}
+  \field{volume}{17}
+  \field{journaltitle}{Electronic Colloquium on Computational Complexity
+  (ECCC)}
+  \field{year}{2010}
+\endentry
+
+\entry{VV:14:FOCS}{inproceedings}{}
+  \name{author}{2}{}{%
+    {{}%
+     {Valiant}{V.}%
+     {Gregory}{G.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Valiant}{V.}%
+     {Paul}{P.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{VGVP1}
+  \strng{fullhash}{VGVP1}
+  \field{sortinit}{V}
+  \field{booktitle}{Proceedings of FOCS}
+  \field{title}{An Automatic Inequality Prover and Instance Optimal Identity
+  Testing}
+  \field{year}{2014}
+\endentry
+
+\entry{VV:14}{article}{}
+  \name{author}{2}{}{%
+    {{}%
+     {Valiant}{V.}%
+     {Gregory}{G.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Valiant}{V.}%
+     {Paul}{P.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{VGVP1}
+  \strng{fullhash}{VGVP1}
+  \field{sortinit}{V}
+  \field{note}{Journal version of~\cite{VV:14:FOCS}.}
+  \field{number}{1}
+  \field{pages}{429\bibrangedash 455}
+  \field{title}{An Automatic Inequality Prover and Instance Optimal Identity
+  Testing}
+  \field{volume}{46}
+  \field{journaltitle}{SIAM Journal on Computing}
+  \field{year}{2017}
+\endentry
+
+\entry{ValiantValiant:10ub}{article}{}
+  \name{author}{2}{}{%
+    {{}%
+     {Valiant}{V.}%
+     {Gregory}{G.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Valiant}{V.}%
+     {Paul}{P.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{VGVP1}
+  \strng{fullhash}{VGVP1}
+  \field{sortinit}{V}
+  \field{pages}{180}
+  \field{title}{Estimating the unseen: A sublinear-sample canonical estimator
+  of distributions}
+  \field{volume}{17}
+  \field{journaltitle}{Electronic Colloquium on Computational Complexity
+  (ECCC)}
+  \field{year}{2010}
+\endentry
+
+\entry{VV:11:stoc}{inproceedings}{}
+  \name{author}{2}{}{%
+    {{}%
+     {Valiant}{V.}%
+     {Gregory}{G.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Valiant}{V.}%
+     {Paul}{P.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{VGVP1}
+  \strng{fullhash}{VGVP1}
+  \field{sortinit}{V}
+  \field{booktitle}{Proceedings of STOC}
+  \field{pages}{685\bibrangedash 694}
+  \field{title}{Estimating the Unseen: An $n/\log n$-sample Estimator for
+  Entropy and Support Size, Shown Optimal via New CLTs}
+  \field{year}{2011}
+\endentry
+
+\entry{ValiantValiant:11}{inproceedings}{}
+  \name{author}{2}{}{%
+    {{}%
+     {Valiant}{V.}%
+     {Gregory}{G.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Valiant}{V.}%
+     {Paul}{P.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{VGVP1}
+  \strng{fullhash}{VGVP1}
+  \field{sortinit}{V}
+  \field{booktitle}{Proceedings of FOCS}
+  \verb{doi}
+  \verb 10.1109/FOCS.2011.81
+  \endverb
+  \field{issn}{0272-5428}
+  \field{note}{See also \cite{ValiantValiant:10lb} and
+  \cite{ValiantValiant:10ub}}
+  \field{pages}{403\bibrangedash 412}
+  \field{title}{The Power of Linear Estimators}
+  \field{month}{10}
+  \field{year}{2011}
+\endentry
+
+\entry{Val:15:sketch}{misc}{}
+  \name{author}{1}{}{%
+    {{}%
+     {Valiant}{V.}%
+     {Paul}{P.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{VP1}
+  \strng{fullhash}{VP1}
+  \field{sortinit}{V}
+  \field{howpublished}{Private communication}
+  \field{month}{05}
+  \field{year}{2015}
+\endentry
+
+\entry{Valiant:11}{article}{}
+  \name{author}{1}{}{%
+    {{}%
+     {Valiant}{V.}%
+     {Paul}{P.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{2}{%
+    {Society for Industrial}%
+    {Applied Mathematics (SIAM)}%
+  }
+  \strng{namehash}{VP1}
+  \strng{fullhash}{VP1}
+  \field{sortinit}{V}
+  \field{number}{6}
+  \field{pages}{1927\bibrangedash 1968}
+  \field{title}{Testing symmetric properties of distributions}
+  \field{volume}{40}
+  \field{journaltitle}{SIAM Journal on Computing}
+  \field{year}{2011}
+\endentry
+
+\entry{Wal:09}{article}{}
+  \name{author}{1}{}{%
+    {{}%
+     {Walther}{W.}%
+     {Guenther}{G.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{WG1}
+  \strng{fullhash}{WG1}
+  \field{sortinit}{W}
+  \field{number}{3}
+  \field{pages}{319\bibrangedash 327}
+  \field{title}{Inference and Modeling with Log-concave Distributions}
+  \verb{url}
+  \verb http://projecteuclid.org/DPubS?service=UI&version=1.0&verb=Display&hand
+  \verb le=euclid.ss/1270041258
+  \endverb
+  \field{volume}{24}
+  \field{journaltitle}{Statistical Science}
+  \field{year}{2009}
+\endentry
+
+\entry{wiki:hypergeom}{misc}{}
+  \name{author}{1}{}{%
+    {{}%
+     {Wikipedia}{W.}%
+     {}{}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{W1}
+  \strng{fullhash}{W1}
+  \field{sortinit}{W}
+  \field{note}{[Online; accessed 28-May-2016]}
+  \field{title}{Hypergeometric distribution --- Wikipedia{,} The Free
+  Encyclopedia}
+  \verb{url}
+  \verb https://en.wikipedia.org/w/index.php?title=Hypergeometric_distribution&
+  \verb oldid=702419153#Multivariate_hypergeometric_distribution
+  \endverb
+  \field{year}{2016}
+\endentry
+
+\entry{wiki:13:stratifiedsampling}{unpublished}{}
+  \name{author}{1}{}{%
+    {{}%
+     {{Wikipedia contributors}}{W.}%
+     {}{}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {Wikipedia, The Free Encyclopedia}%
+  }
+  \strng{namehash}{W2}
+  \strng{fullhash}{W2}
+  \field{sortinit}{W}
+  \field{note}{\url{http://en.wikipedia.org/wiki/Stratified\_sampling}}
+  \field{title}{{Stratified Sampling}}
+  \field{year}{accessed July 1, 2013}
+\endentry
+
+\entry{WS:95}{article}{}
+  \name{author}{2}{}{%
+    {{}%
+     {Wong}{W.}%
+     {Wing~Hung}{W.~H.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Shen}{S.}%
+     {Xiaotong}{X.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{WWHSX1}
+  \strng{fullhash}{WWHSX1}
+  \field{sortinit}{W}
+  \verb{doi}
+  \verb 10.1214/aos/1176324524
+  \endverb
+  \field{issn}{0090-5364}
+  \field{number}{2}
+  \field{pages}{339\bibrangedash 362}
+  \field{title}{Probability inequalities for likelihood ratios and convergence
+  rates of sieve {MLE}s}
+  \verb{url}
+  \verb http://dx.doi.org/10.1214/aos/1176324524
+  \endverb
+  \field{volume}{23}
+  \field{journaltitle}{Ann. Statist.}
+  \field{year}{1995}
+\endentry
+
+\entry{WY:14}{article}{}
+  \name{author}{2}{}{%
+    {{}%
+     {Wu}{W.}%
+     {Yihong}{Y.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Yang}{Y.}%
+     {Pengkun}{P.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{WYYP1}
+  \strng{fullhash}{WYYP1}
+  \field{sortinit}{W}
+  \verb{doi}
+  \verb 10.1109/TIT.2016.2548468
+  \endverb
+  \field{issn}{0018-9448}
+  \field{number}{6}
+  \field{pages}{3702\bibrangedash 3720}
+  \field{title}{Minimax Rates of Entropy Estimation on Large Alphabets via Best
+  Polynomial Approximation}
+  \field{volume}{62}
+  \field{journaltitle}{IEEE Transactions on Information Theory}
+  \field{month}{06}
+  \field{year}{2016}
+\endentry
+
+\entry{book:yekhanin:ldc}{book}{}
+  \name{author}{1}{}{%
+    {{}%
+     {Yekhanin}{Y.}%
+     {Sergey}{S.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {Now Publishers Inc.}%
+  }
+  \strng{namehash}{YS1}
+  \strng{fullhash}{YS1}
+  \field{sortinit}{Y}
+  \field{title}{Locally decodable codes}
+  \verb{url}
+  \verb http://research.microsoft.com/apps/pubs/default.aspx?id=141304
+  \endverb
+  \field{year}{2010}
+\endentry
+
+\entry{Yu:97}{incollection}{}
+  \name{author}{1}{}{%
+    {{}%
+     {Yu}{Y.}%
+     {Bin}{B.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {Springer}%
+  }
+  \strng{namehash}{YB1}
+  \strng{fullhash}{YB1}
+  \field{sortinit}{Y}
+  \field{booktitle}{Festschrift for Lucien Le Cam}
+  \verb{doi}
+  \verb 10.1007/978-1-4612-1880-7_29
+  \endverb
+  \field{pages}{423\bibrangedash 435}
+  \field{title}{{Assouad, Fano, and Le Cam}}
+  \verb{url}
+  \verb http://dx.doi.org/10.1007/978-1-4612-1880-7_29
+  \endverb
+  \field{year}{1997}
+\endentry
+
+\entry{Zhang:07}{article}{}
+  \name{author}{1}{}{%
+    {{}%
+     {Zhang}{Z.}%
+     {Zhengmin}{Z.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{ZZ1}
+  \strng{fullhash}{ZZ1}
+  \field{sortinit}{Z}
+  \verb{doi}
+  \verb 10.1109/TIT.2007.903122
+  \endverb
+  \field{issn}{0018-9448}
+  \field{number}{9}
+  \field{pages}{3280\bibrangedash 3282}
+  \field{title}{Estimating Mutual Information Via {K}olmogorov Distance}
+  \field{volume}{53}
+  \field{journaltitle}{IEEE Transactions on Information Theory}
+  \field{year}{2007}
+\endentry
+
+\lossort
+\endlossort
+
+\endinput

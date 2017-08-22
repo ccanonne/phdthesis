@@ -1,10 +1,12 @@
-%
-% \subparagraph{Lower Bounds} To complement our upper bounds, we give a generic framework for proving lower bounds against testing classes of distributions. In more detail, we describe how to {\em reduce} -- under a mild assumption on the property \class{} -- the problem of testing \emph{membership to $\class$} (``does $\D\in\class$?'') to testing \emph{identity to $\D^\ast$} (``does $\D=\D^\ast$?''), for any explicit distribution $\D^\ast$ in $\class$. While these two problems need not in general be related,\footnote{As a simple example, consider the class $\class$ of \emph{all} distributions, for which testing membership is trivial.} we show that our reduction-based approach applies to a large number of natural properties, and obtain lower bounds that nearly match our upper bounds for all of them. 
-% Moreover, this lets us derive a 
-% simple proof of the lower bound of~\cite{AD:15} on testing the class of PBDs.
-% The reader is referred to \cref{theo:main:testing:lb} for the formal statement of our reduction-based lower bound theorem.
-% In this section, we state the concrete corollaries we obtain for specific structured distribution families:
-%
+In this section, we describe our first generic framework for proving lower bounds against testing classes of distributions. Specifically, we describe how to \emph{educe} -- under a mild assumption on the property \class{} -- the problem of testing \emph{membership to $\class$} (``does $\D\in\class$?'') to testing \emph{identity to $\D^\ast$} (``does $\D=\D^\ast$?''), for any explicit distribution $\D^\ast$ in $\class$. While these two problems need not in general be related,\footnote{As a simple example, consider the class $\class$ of \emph{all} distributions, for which testing membership is trivial.} we show that our reduction-based approach applies to a large number of natural properties, and obtain lower bounds that nearly match our upper bounds for all of them. Moreover, this lets us derive a simple proof of the lower bound of~\cite{AD:15} on testing the class of PBDs.
+The reader is referred to \cref{theo:main:testing:lb} for the formal statement of our reduction-based lower bound theorem; before proceeding further, we restate below some of the corollaries it lets us to easily derive, both in the standard and tolerant testing settings:
+
+\corolbsqrtn*
+\corolbpbd*
+\corolbksiirv*
+\corolbtolnlogn*
+\corolbtolpbd*
+
 % \begin{restatable}{corollary}{corolbsqrtn}\label{coro:lb:sqrtn}
 %   Testing log-concavity, convexity, concavity, MHR, unimodality, $t$-modality, $t$-histograms, and $t$-piecewise degree-$d$ distributions each require $\bigOmega{{\sqrt{n}}/{\eps^2}}$ samples (the last three for $t = o(\sqrt{n})$ and $t(d+1) = o(\sqrt{n})$, respectively), for any $\eps\geq 1/n^{O(1)}$.
 % \end{restatable}
@@ -34,8 +36,6 @@
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-We now turn to proving converses to our positive results -- namely, providing a general framework to establish distribution testing lower bounds, which -- once instantiated -- will allow us to easily show that many of the upper bounds we obtain cannot be significantly improved upon. 
 
 In order to state our results, we will require the usual definition of \emph{agnostic learning}. Recall that an algorithm is said to be a \emph{semi-agnostic learner} for a class \class if it satisfies the following. Given sample access to an arbitrary distribution $\D$ and parameter $\eps$, it outputs a hypothesis $\hat{\D}$ which (with high probability) does ``almost as well as it gets'':
 \[

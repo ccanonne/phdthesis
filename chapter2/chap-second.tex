@@ -6,6 +6,13 @@ In a hasty parenthesis cried,\\
 That the capture of Snarks should be tried!'')}{Lewis Carroll, \textit{The Hunting of the Snark}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+We now turn to proving converses to our positive results -- namely, providing two general frameworks to establish distribution testing lower bounds. As we shall see, both are \emph{reduction-based} frameworks -- put differently, general techniques enabling us to capitalize on someone else's hard work from a different setting or area, and carry over their impossibility results to our distribution testing problem.
+
+\cref{sec:learningreductions} describes our first reduction, which establishes a simple criterion under which hardness of testing a subproperty $\property'\subseteq \property$ carries over to testing $\property$ itself. This intuitive and seemingly ``obvious'' result -- \emph{``testing a class is at least as hard as testing anything it contains''} -- turns out to be false in general, as is easy to see even in trivial cases. To remedy this unfortunate state of affairs, we identify a relatively benign assumption sufficient to make it hold; and show how this assumption is satisfied by a large number of natural properties.
+
+In~\cref{sec:communication}, we reveal a connection between distribution testing and the simultaneous message passing communication model, leading to our second methodology for proving distribution testing lower bounds. Extending the property testing lower bound framework of Blais, Brody, and Matulef~\cite{BBM:12}, we show a simple way of reducing communication problems to distribution testing ones. (Or, in other words, how to harness Alice and Bob's communication issues in order to prove distribution testing lower bounds.)
+
+As an application, these two reduction-based approaches will allow us to show in a clean and painless fashion that most of the upper bounds obtained in~\cref{chap:unified:ub} are optimal or near-optimal, and cannot be significantly improved upon. In an unexpected turn of events, our second reduction will also reveal a connection between distribution testing and the field of interpolation theory, shedding light on an ``instance-optimal'' testing result of Valiant and Valiant~\cite{VV:14}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{The Agnostic Learning Reduction}\label{sec:learningreductions}
