@@ -34,7 +34,7 @@ a number of well-studied distribution families.
 \subsubsection{Our Results} \label{ssec:results}
 
 Our first concrete application is a nearly sample-optimal algorithm for testing
-sums of independent integer random variables (SIIRVs). \todonote{Check consistency of these definitions with preliminaries? Handle.} 
+sums of independent integer random variables (SIIRVs). 
 Recall from~\cref{ssec:class:definitions} that an $(n, k)$-SIIRV is a sum of independent integer random variables, each supported in $\modulo{k}=\{0,\dots,k-1\}$.
 SIIRVs comprise a rich class of distributions that arise in many settings. The special case of $k=2$, $\classksiirv[n]{2}$,
 was first considered by Poisson~\cite{Poisson:37} as a non-trivial extension of the Binomial distribution,
@@ -87,10 +87,7 @@ $\{e_1, e_2, \ldots, e_k \}$ of standard basis vectors in $\R^k$.
 PMDs comprise a broad class of discrete distributions of fundamental importance in computer science, probability, and statistics.
 A large body of work in the probability and statistics literature has been devoted to the study of the behavior
 of PMDs under various structural conditions~\cite{Barbour:88, Loh:92, BHJ:92, Bentkus:03, Roos:99, Roos:10}.
-PMDs generalize the familiar multinomial distribution, and describe many distributions commonly encountered in computer science (see, e.g.,~\cite{DP:07:AGT, DP:08:AGT, Valiant:11,VV:11:stoc}).
-Recent years have witnessed a flurry of research activity on PMDs and related distributions,
-from several perspectives of theoretical computer science,including learning~\cite{DDS:PBD:15, DDOST:13, DKS:15, DKT:15, DKS:15b}, property testing~\cite{Valiant:11, ValiantValiant:10lb, VV:11:stoc}, computational game theory~\cite{DP:07:AGT, DP:08:AGT, BorgsCIKMP08, DP:09:AGT, DP:14:AGT, GT14,CDS:17},
- and derandomization~\cite{GMRZ:11, BDS:12, De:15, GKM:15}. 
+PMDs generalize the familiar multinomial distribution, and describe many distributions commonly encountered in computer science (see, e.g.,~\cite{DP:07:AGT, DP:08:AGT, Valiant:11,VV:11:stoc}). Recent years have witnessed a flurry of research activity on PMDs and related distributions, from several perspectives of theoretical computer science, including learning~\cite{DDS:PBD:15, DDOST:13, DKS:15, DKT:15, DKS:15b}, property testing~\cite{Valiant:11, ValiantValiant:10lb, VV:11:stoc}, computational game theory~\cite{DP:07:AGT, DP:08:AGT,BorgsCIKMP:10,DP:09:AGT, DP:14:AGT, GT:15,CDS:17}, and derandomization~\cite{GMRZ:13, BDS:12, De:15, GKM:15}. 
 
 
 \begin{theorem}[Testing PMDs]\label{theo:testing:pmd}
