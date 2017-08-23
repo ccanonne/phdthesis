@@ -2,3 +2,16 @@
 \addcontentsline{toc}{chapter}{Conclusion} % Puts your conclusion in your table of contents even though we have used the asterisk in the \chapter command above.
 
 \epigraph{For the Snark \emph{was} a Boojum, you see.}{Lewis Carroll, \textit{The Hunting of the Snark}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+In this dissertation, we have pursued a three-pronged approach towards a better understanding of distribution testing and what lies beyond. First, placing ourselves in the standard setting of distribution testing, we advocated for a paradigm shift: by, instead of tackling each new distribution testing problem in an \textit{ad hoc} way, developing \emph{general} tools and algorithms that can be used for any of these problems. We contributed to that shift by providing two widely applicable algorithmic approaches -- one based on shape constraints, the other on properties of the Fourier transform, as well as two lower bound frameworks -- one based on reductions between distribution testing questions, and the other from communication complexity. 
+
+Second, we departed from this standard ``sample-only'' setting, which -- albeit the most natural and conservative -- fails  to capture many situations of interest, and can be for those significantly \emph{too} conservative. We introduced two incomparable generalizations of this setting, respectively the \emph{conditional} and \emph{extended} oracle access models; and explored the power and limitations of testing algorithms in these new models, for a wide range of fundamental questions.
+
+Finally, we went beyond distribution testing and described a new algorithmic primitive, that of a sampling \emph{corrector}. We studied some of the applications of this new notion, and investigated its relation to the fields of distribution testing and learning. Of an exploratory nature, our work opens the door to an entirely new research direction, which we believe will lead to new insights and applications in learning theory.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Open questions and future work}
+Results circumventing the worst-case analysis (as briefly mentioning in \autoref{subsec:samp:identity} with the results of \cite{ValiantValiant:14}), or bypassing hardness results by considering natural restrictions of testing problems (e.g., testing for a property \property, \emph{under the promise} that the distribution originates from some class \class) as in~\cite{DDSV:13,DKN:15,DKN:15:FOCS} both seem legitimate and exciting directions for future research.
+\paragraph{Connections to other fields.} Drawing connections between distribution testing and other paradigms, such as information complexity, sample-based or active testing; or exploring further the relations between distribution testing ``sampling correction'' introduced in~\cref{chap:correction} all seem to be thrilling and exciting directions, at least to the author of this dissertation.
