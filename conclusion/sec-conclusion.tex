@@ -13,5 +13,22 @@ Finally, we went beyond distribution testing and described a new algorithmic pri
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section*{Open questions and future work}
+
+In spite of the length of this dissertation and our best efforts, the results we obtained here leave many promising questions unanswered, of which we list a few below.
+
+\paragraph*{Instance-optimality, communication complexity, and interpolation theory}
+In~\cref{sec:communication}, we instantiated our communication complexity methodology to obtain an ``instance-optimal'' lower bound on the problem of \emph{identity testing}. This lower bound allowed us to establish a connection between distribution testing and the seemingly unrelated field of interpolation theory from functional analysis, leading to new insights on a result of Valiant and Valiant~\cite{VV:14}. Two questions immediately come to mind:
+\begin{question}
+  Can one leverage this methodology to obtain lower bounds on \emph{closeness testing}\footnote{Recall that closeness testing problem asks to distinguish $\p=\q$ from $\totalvardist{\p}{\q}>\eps$, where \emph{both} $\p,\q\in\distribs{[n]}$ are unknown.}{} \textit{via} a reduction from communication complexity?
+\end{question}
+\begin{question}
+  What other connections between distribution testing and interpolation theory can be made? As a concrete example, is there a analogous characterization of the sample complexity of \emph{tolerant} identity testing in terms of the $K$-functional between some $\lp[p]$ and $\lp[q]$ spaces?
+\end{question}
+As an aside, we remark that defining what ``instance-optimality'' should mean  in the case of identity testing (or even in the case of testing a given property $\property$ exhibiting some obvious structure) is rather intuitive: namely, the parameter is now a functional of the (known) reference distribution $\p$, instead of the (also known) domain size $n$. Defining instance-optimality for \emph{closeness} testing, however, is less straightforward: indeed, now there is no reference distribution, and both ``players'' $\p,\q$ are unknown. This leads to our next question:
+\begin{question}
+  How to define ``instance-optimality'' for closeness testing of two distributions in a meaningful and robust way? Does such a notion inherently require \emph{adaptivity} from the testing algorithms?
+\end{question}
+\noindent (We note that Diakonikolas and Kane do study this question in~\cite{DK:16}; it is not entirely obvious to us, however, that the notion of instance-optimality they rely on is the ``right'' one.)
+
 Results circumventing the worst-case analysis (as briefly mentioning in \autoref{subsec:samp:identity} with the results of \cite{ValiantValiant:14}), or bypassing hardness results by considering natural restrictions of testing problems (e.g., testing for a property \property, \emph{under the promise} that the distribution originates from some class \class) as in~\cite{DDSV:13,DKN:15,DKN:15:FOCS} both seem legitimate and exciting directions for future research.
 \paragraph{Connections to other fields.} Drawing connections between distribution testing and other paradigms, such as information complexity, sample-based or active testing; or exploring further the relations between distribution testing ``sampling correction'' introduced in~\cref{chap:correction} all seem to be thrilling and exciting directions, at least to the author of this dissertation.
