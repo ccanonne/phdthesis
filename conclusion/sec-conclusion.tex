@@ -24,11 +24,33 @@ In~\cref{sec:communication}, we instantiated our communication complexity method
 \begin{question}
   What other connections between distribution testing and interpolation theory can be made? As a concrete example, is there a analogous characterization of the sample complexity of \emph{tolerant} identity testing in terms of the $K$-functional between some $\lp[p]$ and $\lp[q]$ spaces?
 \end{question}
-As an aside, we remark that defining what ``instance-optimality'' should mean  in the case of identity testing (or even in the case of testing a given property $\property$ exhibiting some obvious structure) is rather intuitive: namely, the parameter is now a functional of the (known) reference distribution $\p$, instead of the (also known) domain size $n$. Defining instance-optimality for \emph{closeness} testing, however, is less straightforward: indeed, now there is no reference distribution, and both ``players'' $\p,\q$ are unknown. This leads to our next question:
+As an aside, we remark that defining what ``instance-optimality'' should mean  in the case of identity testing (or even in the case of testing a given property $\property$ exhibiting some obvious structure) is rather intuitive: namely, the parameter should now be a functional of the (known) reference distribution $\p$, instead of the (also known) domain size $n$. Defining instance-optimality for \emph{closeness} testing, however, is less straightforward: indeed, there is no longer any reference distribution, as both ``players'' $\p,\q$ are unknown. This leads to our next question:
 \begin{question}
   How to define ``instance-optimality'' for closeness testing of two distributions in a meaningful and robust way? Does such a notion inherently require \emph{adaptivity} from the testing algorithms?
 \end{question}
 \noindent (We note that Diakonikolas and Kane do study this question in~\cite{DK:16}; it is not entirely obvious to us, however, that the notion of instance-optimality they rely on is the ``right'' one.)
 
-Results circumventing the worst-case analysis (as briefly mentioning in \autoref{subsec:samp:identity} with the results of \cite{ValiantValiant:14}), or bypassing hardness results by considering natural restrictions of testing problems (e.g., testing for a property \property, \emph{under the promise} that the distribution originates from some class \class) as in~\cite{DDSV:13,DKN:15,DKN:15:FOCS} both seem legitimate and exciting directions for future research.
-\paragraph{Connections to other fields.} Drawing connections between distribution testing and other paradigms, such as information complexity, sample-based or active testing; or exploring further the relations between distribution testing ``sampling correction'' introduced in~\cref{chap:correction} all seem to be thrilling and exciting directions, at least to the author of this dissertation.
+\paragraph*{Coding Theory} The results of~\cref{sec:communication} crucially hinged on the use of ``good'' codes, with quite specific requirements -- which conveniently happened to exist. In a recent work with Tom Gur~\cite{CG:17} on property (not distribution) testing, we established an ``adaptivity hierarchy theorem'' for property testing: there too, several crucial arguments were contingent on the existence of error-correcting codes satisfying a plethora of unlikely conditions. There too, such codes turned out to be waiting for us in the literature, and the proofs went through.
+\begin{question}
+  Can we find more applications of coding theory in property (and specifically distribution) testing, or even two-way connections between testing and error-correcting codes?
+\end{question}
+
+\paragraph*{Sampling correction} In~\cref{chap:correction}, we introduced the notions of sampling correctors and improvers, and studied some of their applications. We believe investigating further this new paradigm and its interplay with other areas of computational learning to be a fruitful research direction; specifically, we ask the following two questions.
+\begin{question}
+   Is there a sampling corrector (or even improver) for \emph{independence} of probability distributions over $[n]^d$ with (amortized) rate $r<1/d$, in the sub-learning regime? That is, is there a sampling corrector which, on average, requires strictly fewer than $d$ samples from a close-to-product distribution $\p$ on $[n]^d$ to produce one sample from a corrected product distribution $\p'$ (and does not do so by first learning the distribution $\p$)?
+\end{question}
+\noindent The second leans towards more applied considerations; we consider it of significant practical interest:
+\begin{question}
+   Can one revisit the existing literature on data imputation under the viewpoint of sampling correction, and leverage results in the latter to obtain new methods to systematically and rigorously handle missing data?
+\end{question}
+
+\paragraph*{Lower bounds for conditional sampling} One punchline from~\cref{chap:newmodels} is that proving lower bounds in the conditional sampling model is \emph{hard}. Although the reduction technique from~\cref{sec:communication}, or the concept of ``adaptive core tester'' from~\cite{CFGM:13} (see also~\cite{ACK:14}) can be used to obtain such results, we have staggeringly few methods to argue about what adaptivity allows the testing algorithms to do.
+\begin{question}
+   Can we develop a general information-theoretic characterization of what an algorithm learns by interacting with a conditional sampling (\COND) oracle? Further, can we exploit this characterization to obtain a general lower bound technique in the conditional sampling setting?
+\end{question}
+
+\paragraph*{Distribution testing beyond the discrete setting} In contrast with the situation in distribution \emph{learning}, there is no clear notion of how to generalize distribution testing to \emph{continuous} distributions. Indeed, the stringency of the total variation metric implies that, for a na\"ive extension from the discrete to the continuous case, the sample complexity of most testing questions immediately becomes infinite. One workaround would be to restrict the class of probability distributions, asking that the unknown distribution $\p$ be ``smooth enough'' (instead of arbitrary). This solution, however, strikes us as lacking in generality; instead, we believe changing the \emph{metric} to be a more elegant path.
+\begin{question}
+   Let $\distribs{[0,1]}$ be the set of continuous probability distributions on $[0,1]$, \emph{without} smoothness assumptions. What is the ``right'' notion of metric to consider for distribution testing over $\distribs{[0,1]}$?
+\end{question}
+\noindent We note that a natural and promising idea is the Earth mover's distance (also known as Wasserstein), e.g. with regard to $L_1$.\footnote{The use of Earth mover's distance (EMD) in distribution testing \emph{was} considered in~\cite{BANNR:11}; however, the authors rely on discretization of the domain and use total variation as a proxy for testing in EMD, which strikes us as somehow sidestepping the question.}{} We would welcome a general theory of distribution testing of continuous distributions in Earth mover's distance with open arms, and great interest.
