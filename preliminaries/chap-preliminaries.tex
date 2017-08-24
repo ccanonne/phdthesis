@@ -235,7 +235,7 @@ We now restate a result of Batu et al. relating closeness to uniformity in $\lp[
 Let $\D$ be a distribution on a domain $S$. \textsf{(a)} If $\max_{i\in S} \D(i) \leq (1+\eps)\min_{i\in S} \D(i)$, then $\normtwo{\D}^2 \leq (1+\eps^2)/\abs{S}$. \textsf{(b)} If $\normtwo{\D}^2 \leq (1+\eps^2)/\abs{S}$, then $\normone{\D-\uniform_{S}} \leq \eps$.
 \end{lemma}
 
-\noindent Some of our algorithms will need to check that condition \textsf{(b)} above holds. To do so, they rely on the following, which one can derive from the techniques in~\cite{DKN:15} and whose proof we defer to \cref{app:l2:proof}:\todonote{Deal with this.}
+\noindent Some of our algorithms will need to check that condition \textsf{(b)} above holds. To do so, they rely on the following, which one can derive from the techniques in~\cite{DKN:15} and whose proof we defer to the appendix (p.~\pageref{app:deferred:proofs}):
 \begin{restatable}[Adapted from {\cite[Theorem 11]{DKN:15}}]{lemma}{lemmaestimateltwoadd}\label{lemma:estimate:l2:add}
 There exists an algorithm \textsc{Check-Small-$\lp[2]$} which, given parameters $\eps,\delta\in(0,1)$ and $c\cdot{\sqrt{\abs{I}}}/{\eps^2} \log(1/\delta)$ independent samples from a distribution $\D$ over $I$ (for some absolute constant $c>0$), outputs either \yes or \no, and satisfies the following.
   \begin{itemize}

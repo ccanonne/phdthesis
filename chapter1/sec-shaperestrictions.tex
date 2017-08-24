@@ -709,77 +709,6 @@ Finally, the testing algorithm defined above is computationally efficient as lon
 \end{proofof}
  
   
-%%%%%%%%%%%%%%%%%%%%%\appendix
-\subsection{Proof of \cref{lemma:estimate:l2:add}}\label{app:l2:proof}
-
-We now give the proof of~\cref{lemma:estimate:l2:add}, restated below:
-\lemmaestimateltwoadd*
-\begin{proof}
-We first describe an algorithm that distinguishes between $\normtwo{\D-\uniform}^2 \geq \eps^2/{n}$ and $\normtwo{\D-\uniform}^2 < \eps^2/(2n)$ with probability at least $2/3$, using $C\cdot\frac{\sqrt{n}}{\eps^2}$ samples. Boosting the success probability to $1-\delta$ at the price of a multiplicative $\log\frac{1}{\delta}$ factor can then be achieved by standard techniques.
-
-Similarly as in the proof of Theorem 11 (whose algorithm we use, but with a threshold $\tau\eqdef \frac{3}{4}\frac{m^2\eps^2}{n}$ instead of $\frac{4m}{\sqrt{n}}$), define the quantities
-\[
-Z_k \eqdef \left(X_k-\frac{m}{n}\right)^2 - X_k,\qquad k\in[n]
-\]
-and $Z\eqdef\sum_{k=1}^n Z_k$, where the $X_k$'s (and thus the $Z_k$'s) are independent by Poissonization, and $X_k\sim\poisson{m \D(k)}$. It is not hard to see that $\shortexpect Z_k = \Delta_k^2$, where $\Delta_k\eqdef (\frac{1}{n}-\D(k))$, so that $\shortexpect Z = m^2\normtwo{\D-\uniform}^2$. Furthermore, we also get
-\[
-  \var Z_k = 2m^2\left(\frac{1}{n}-\Delta_k\right)^2 + 4m^3\left(\frac{1}{n}-\Delta_k\right)\Delta_k
-\]
-so that
-\begin{equation}\label{eq:estimate:l2:add:variance}
-  \var Z = 2m^2\left( \sum_{k=1}^n \Delta_k^2 + \frac{1}{n} -2 m\sum_{k=1}^n \Delta_k^3\right)
-\end{equation}
-(after expanding and since $\sum_{k=1}^n \Delta_k = 0$).
-
-\subparagraph{Soundness} \textit{\emph{Almost} straight from~\cite{DKN:15}, but the threshold has changed.}
-Assume $\Delta^2\eqdef\normtwo{\D-\uniform}^2 \geq \eps^2/n$; we will show that $\probaOf{ Z < \tau } \leq 1/3$. By Chebyshev's inequality, it is sufficient to show that
-$\tau \leq \shortexpect Z - \sqrt{3}\sqrt{\var Z}$, as \[
-    \probaOf{ \shortexpect Z - Z > \sqrt{3}\sqrt{\var Z} } \leq 1/3\;.
-\]
-As $\tau < \frac{3}{4}\shortexpect Z$, arguing that $\sqrt{3}\sqrt{\var Z} \leq \frac{1}{4}\shortexpect Z$ is enough, i.e. that $48\var Z \leq (\shortexpect Z)^2$. From \eqref{eq:estimate:l2:add:variance}, this is equivalent to showing
-\[
-    \Delta^2 + \frac{1}{n} -2 m\sum_{k=1}^n \Delta_k^3 \leq \frac{m^2\Delta^4}{96}\;.
-\]
-We bound the LHS term by term.
-\begin{itemize}
-  \item As $\Delta^2 \geq \frac{\eps^2}{n}$, we get $m^2\Delta^2 \geq \frac{C^2}{\eps^2}$, and thus $\frac{m^2\Delta^4}{288} \geq \frac{C^2}{288\eps^2}\Delta^2 \geq \Delta^2$ (as $C \geq 17$ and $\eps \leq 1$).
-  \item Similarly, $\frac{m^2\Delta^4}{288} \geq \frac{C^2}{288\eps^2}\cdot \frac{\eps^2}{n} \geq \frac{1}{n}$. 
-  \item Finally, recalling that\footnotemark
-  \[
-    \sum_{k=1}^n \abs{\Delta_k}^3 \leq \left( \sum_{k=1}^n \abs{\Delta_k}^2 \right)^{3/2} = \Delta^3
-  \]
-  we get that $\abs{2m\sum_{k=1}^n \abs{\Delta_k}^3} \leq 2m \Delta^3 = \frac{m^2 \Delta^4}{288} \cdot \frac{2\cdot 288}{m\Delta} \leq \frac{m^2 \Delta^4}{288}$, using the fact that
-  $\frac{m\Delta}{2\cdot 288} \geq \frac{C}{576\eps} \geq 1$ (by choice of $C \geq 576$).
-\end{itemize}
-Overall, the LHS is at most $3\cdot \frac{m^2 \Delta^4}{288} = \frac{m^2 \Delta^4}{96}$, as claimed.
-
-
-\footnotetext{
-For any sequence $x=(x_1,\dots,x_n)\in\R^n$, $p > 0 \mapsto \norm{x}_p$ is non-increasing. In particular, for $0 < p \leq q <\infty$,
-\[
-\left(\sum_i \abs{x_i}^q\right)^{1/q} = \norm{x}_q \leq \norm{x}_p = \left(\sum_i \abs{x_i}^p\right)^{1/p}\;.
-\] To see why, one can easily prove that if $\norm{x}_p = 1$, then $\norm{x}_q^q \leq 1$ (bounding each term $\abs{x_i}^q \leq \abs{x_i}^p$), and therefore $\norm{x}_q \leq 1 = \norm{x}_p$. Next, for the general case, apply this to $y = x/\norm{x}_p$, which has unit $\lp[p]$ norm, and conclude by homogeneity of the norm.
-}
-
-\subparagraph{Completeness} Assume $\Delta^2=\normtwo{\D-\uniform}^2 < \eps^2/(4n)$. We need to show that $\probaOf{ Z \geq \tau } \leq 1/3$. Chebyshev's inequality implies
-\[
-    \probaOf{ Z - \shortexpect Z > \sqrt{3}\sqrt{\var Z} } \leq 1/3
-\]
-and therefore it is sufficient to show that 
-\[
-    \tau \geq \shortexpect Z + \sqrt{3}\sqrt{\var Z}
-\]
-Recalling the expressions of $\shortexpect Z$ and $\var Z$ from \eqref{eq:estimate:l2:add:variance}, this is tantamount to showing
-\[
-    \frac{3}{4}\frac{m^2\eps^2}{n} \geq m^2\Delta^2 + \sqrt{6}m\sqrt{\Delta^2 + \frac{1}{n} -2m \sum_{k=1}^n \Delta_k^3}
-\]
-or equivalently
-\[
-    \frac{3}{4} \frac{m}{\sqrt{n}}\eps^2 \geq m \sqrt{n} \Delta^2 + \sqrt{6} \sqrt{1 + n\Delta^2 -2nm \sum_{k=1}^n \Delta_k^3}\;.
-\]
-Since $\sqrt{1 + n\Delta^2 -2 n m  \sum_{k=1}^n \Delta_k^3} \leq \sqrt{1 + n\Delta^2} \leq \sqrt{1 + \eps^2/4} \leq \sqrt{5/4}$, we get that the second term is at most $\sqrt{30/4} < 3$. All that remains is to show that $m\sqrt{n}\Delta^2 \geq 3m\frac{\eps^2}{4\sqrt{n}}-3$. But as $\Delta^2 < \eps^2/(4n)$, $m\sqrt{n}\Delta^2 \leq m\frac{\eps^2}{4\sqrt{n}}$; and our choice of $m \geq C\cdot\frac{\sqrt{n}}{\eps^2}$ for some absolute constant $C \geq 6$  ensures this holds.
-\end{proof}
- 
 \subsection{Proof of~\cref{theo:structural:mhr}}\label{app:structural:proofs}
 
 In this section, we prove our structural result for MHR distributions,~\cref{theo:structural:mhr}:
@@ -882,33 +811,33 @@ We write $\opt^{(I)}_{1,d}$ to denote the {infimum of the}
 distance $\normone{p-g}^{(I)}$ between $p$ and any degree-$d$
 subdistribution $g$ on $I$ that satisfies $g(I) = p(I)$.
 
-The key step of {\sc ProjectSinglePoly} is 
-Step~\ref{step:projectsinglepoly:find} where it calls the {\sc FindSinglePoly} procedure.
+The key step of \textsc{ProjectSinglePoly} is 
+Step~\ref{step:projectsinglepoly:find} where it calls the \textsc{FindSinglePoly} procedure.
 In this procedure
 $T_i(x)$ denotes the degree-$i$ Chebychev polynomial
 of the first kind.
-The function {\sc FindSinglePoly} should be thought of
+The function \textsc{FindSinglePoly} should be thought of
 as the CDF of a ``quasi-distribution'' $f$; we say that
 $f=F'$ is a ``quasi-distribution'' 
 and not a \textit{bona fide} probability distribution because it is
 not guaranteed to be non-negative everywhere on $[-1,1)$.  Step~\ref{step:findsinglepoly:2}
-of {\sc FindSinglePoly} processes
+of \textsc{FindSinglePoly} processes
 $f$ slightly to obtain a polynomial $q$ which is an actual distribution over
 $[-1,1).$
 \begin{algorithm}
-  \caption{{\sc ProjectSinglePoly}}
+  \caption{\textsc{ProjectSinglePoly}}
   \begin{algorithmic}[1]
     \Require parameters $d,\eps$; and the full description of an $\ell$-histogram $p$ over $[-1,1)$.
     \Ensure a degree-$d$ distribution $q$ such that $\dtv(p,q) \leq 3 \cdot \opt_{1,d} + O(\eps)$
     \State Partition $[-1,1)$ into $z = \Theta((d+1)/\eps)$ intervals $I_0 = [i_0,i_1), \dots, I_{z-1}=[i_{z-1},i_z)$, where $i_0=-1$ and $i_z=1$, such that
   for each $j \in \{1,\dots,z\}$ we have $p(I_j) = \Theta(\eps/(d+1))$ or ($\abs{I_j}=1$ and $p(I_j)=\bigOmega{\eps/(d+1)}$).
-    \State\label{step:projectsinglepoly:find} Call {\sc FindSinglePoly}($d$, $\eps$, $\eta:=\Theta(\eps/(d+1))$, $\{I_0,\dots,I_{z-1}\}$, $p$ and output the hypothesis $q$ that it returns.
+    \State\label{step:projectsinglepoly:find} Call \textsc{FindSinglePoly}($d$, $\eps$, $\eta:=\Theta(\eps/(d+1))$, $\{I_0,\dots,I_{z-1}\}$, $p$ and output the hypothesis $q$ that it returns.
   \end{algorithmic}
 \end{algorithm}
 
 
 \begin{algorithm}
-  \caption{{\sc FindSinglePoly}}
+  \caption{\textsc{FindSinglePoly}}
   \begin{algorithmic}[1]
     \Require  degree parameter $d$;
 error parameter $\eps$; parameter $\eta$; $(p,\eta)$-uniform partition
@@ -979,7 +908,7 @@ Output $q$ as the hypothesis pdf.
 The rest of this subsection gives the proof of~\cref{theo:degreed:poly-projection}.
 The claimed running time bound is obvious
  (the computation is dominated by
-solving the $\poly(d,1/\eps)$-size LP in {\sc ProjectSinglePoly}, with an additional term linear in $\ell$ when partitioning $[-1,1)$ in the initial first step),
+solving the $\poly(d,1/\eps)$-size LP in \textsc{ProjectSinglePoly}, with an additional term linear in $\ell$ when partitioning $[-1,1)$ in the initial first step),
 so it suffices to prove correctness.
 
 Before launching into the proof we give some intuition for the linear
@@ -1009,20 +938,20 @@ everywhere nonnegative (again more on this below).
 \medskip
 
 We begin by observing that 
-{\sc ProjectSinglePoly} calls {\sc FindSinglePoly} with input parameters that satisfy
-{\sc FindSinglePoly}'s input requirements:
+\textsc{ProjectSinglePoly} calls \textsc{FindSinglePoly} with input parameters that satisfy
+\textsc{FindSinglePoly}'s input requirements:
 
 \begin{enumerate}
 \item [(I)] the non-singleton intervals $I_0,\dots,I_{z-1}$ are $(p,\eta)$-uniform; and
 \item [(II)] the singleton intervals each have weight at least $\frac{\eta}{10}$.
 \end{enumerate}
 
-We then proceed to show that, from there, {\sc FindSinglePoly}'s LP is feasible and has a high-quality
+We then proceed to show that, from there, \textsc{FindSinglePoly}'s LP is feasible and has a high-quality
 optimal solution.
 
 \begin{lemma} \label{lem:feasible}
 Suppose $p$ is an $\ell$-histogram over $[-1,1)$, so that conditions (I) and (II) above hold;
-then the LP defined in Step~\ref{step:findsinglepoly:1} of {\sc FindSinglePoly}
+then the LP defined in Step~\ref{step:findsinglepoly:1} of \textsc{FindSinglePoly}
 is feasible; and the optimal solution $\tau$ is at most $\opt_{1,d}$.
 \end{lemma}
 

@@ -88,8 +88,8 @@ In this section, we consider the three following testing problems, each of them 
 In the query access model, there exists a tester for identity to a known distribution $\D^\ast$ with query complexity $\bigO{\frac{1}{\eps}}$.
 \end{theorem}
 Note that the tester given in~\cite{RS:09} is neither tolerant nor robust; however, it only uses query access.~\cite{CRS:15} later adapt this algorithm to give a tester for closeness between two unknown distributions, in a setting which can be seen as ``relaxed'' \pdfsamp access model:\footnote{In the sense that the evaluation oracle, being simulated via another type of oracle, is not only noisy but also allowed to err on a small set of points.}
-\begin{theorem}[{\cite[Theorem 12]{CRS:15}}]\label{theorem:testing:equivalence:d1:d2:CRS:15}
-In the \pdfsamp access model, there exists a tester for closeness between two unknown distributions $\D_1$, $\D_2$ with sample complexity $\bigO{\frac{1}{\eps}}$.\todonote{Switch back to internal reference?}
+\begin{theorem}[{\cite[Theorem 12]{CRS:15}, and~\cref{thm:d1d2-using-approx-eval}}]\label{theorem:testing:equivalence:d1:d2:CRS:15}
+In the \pdfsamp access model, there exists a tester for closeness between two unknown distributions $\D_1$, $\D_2$ with sample complexity $\bigO{\frac{1}{\eps}}$.
 \end{theorem}
 It is worth noting that the algorithm in question is conceptually very simple -- namely, it consists in drawing samples from both distributions and then querying the respective probability mass both distributions put on them, hoping to detect a violation.
 
