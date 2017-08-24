@@ -60,7 +60,7 @@ density function at $i$.\footnote{Note that in both definitions, one can decide 
     \parbox{25mm}{ Estimating support size to $\pm\eps n$ \strut } & $\bigTheta{\frac{n}{\log n}}$~\cite{ValiantValiant:11,ValiantValiant:10lb} & \cellcolor{gray!25}~  & \cellcolor{gray!25}~\ignore{ $\bigTheta{\frac{1}{\eps^{2}}}$ $(\star)$ }        & $\bigTheta{\frac{1}{\eps^{2}}}$             & $\bigO{\frac{1}{\eps^{2}}}$           \\ \hline
     \end{tabular}
 \end{adjustwidth}
-    \caption{\label{table:secextended:results} Summary of results. $(\dagger)$ stands for ``robust to multiplicative noise''. The bounds with an asterisk are those which, in spite of being for different models, derive from the results of the last two columns.}
+    \caption{\label{table:secextended:results} Summary of results in the \pdfsamp  and \cdfsamp  models. $(\dagger)$ stands for ``robust to multiplicative noise''. The bounds with an asterisk are those which, in spite of being for different models, derive from the results of the last two columns.}
 \end{table}
  
 While it is not clear, looking at these problems, whether the additional flexibility that the \Cdfsamp access grants over the \Pdfsamp one can \emph{unconditionally} yield strictly more sample-efficient testing algorithms, we do provide a separation between the two models in~\cref{sec:supportsize:entropy:monotone} by showing an exponential improvement in the query complexity for estimating the entropy of a distribution given the promise that the latter is (close to) monotone. This leads us to suspect that for the task of testing monotonicity (for which we have preliminary results), under a structural assumption on the distribution, or more generally for properties intrinsically related to the underlying total order of the domain, such a speedup holds.  Moreover, we stress out the fact that our $\bigOmega{1/(\eps_2-\eps_1)^2}$ lower bound for tolerant identity testing does not apply to the \Cdfsamp setting.
@@ -282,7 +282,7 @@ The overall idea lies on a reduction from distinguishing between two types of bi
           \draw[thin,\linestyle]  ({\i*\buckwidth},{\fstHigh}) -- ({(\i+1)*\buckwidth},{\fstHigh});
           \draw[thin,\linestyle]  ({\xmax-\i*\buckwidth},{\sndHigh}) -- ({\xmax-(\i+1)*\buckwidth},{\sndHigh});
         };
-  \end{tikzpicture}\caption{\label{fig:construction:lb:tolerant:uniformity:D:pm}The \textsf{yes}-instance $\D^+$ (for a fixed $\Pi$, taken to be consecutive intervals).}
+  \end{tikzpicture}\caption{\label{fig:construction:lb:tolerant:uniformity:D:pm}Lower bound for tolerant uniformity testing in the \pdfsamp access model: The \yes-instance $\D^+$ (for a fixed $\Pi$, taken to be consecutive intervals).}
 \end{figure}
   
   \subparagraph{Reduction} We will reduce the problem of distinguishing between \textsf{(a)} a $p^+$- and \textsf{(b)} a $p^-$-biased coin to telling $\D^+$ and $\D^-$ apart.
@@ -577,7 +577,7 @@ Note that by construction $\D(i)+\D(n-i)=\frac{2}{n}$ for all $i\in[k]$.
           \draw[\linethickness,red]  ({\i*\buckwidth},{\fstHigh}) -- ({(\i+1)*\buckwidth},{\fstHigh});
           \draw[\linethicknesssnd,\linestyle]  ({\xmax-\i*\buckwidth},{\sndHigh}) -- ({\xmax-(\i+1)*\buckwidth},{\sndHigh});
         };
-  \end{tikzpicture}\caption{\label{fig:construction:lb:support:size:D}An instance of distribution $\D_p$ with $p=4/10$.}
+  \end{tikzpicture}\caption{\label{fig:construction:lb:support:size:D}Lower bound for support size estimation in the \pdfsamp model: An instance of distribution $\D_p$ with $p=4/10$.}
 \end{figure}
 Define now, for any $\eps\in(0,1/6)$, the families of distributions $\distrD^+$ and $\distrD^-$ induced the above construction, taking $p$ to be respectively $p^+\eqdef \frac{1}{2}$ and $p^-\eqdef \frac{1}{2}-6\eps$. Hereafter, by $\D^+$ (resp. $\D^-$), we refer to a distribution from $\distrD^+$ (resp. $\distrD^-$) generated randomly as above (we assume further, without loss of generality, that $n\gg 1/\eps^2$):
 \begin{align*}

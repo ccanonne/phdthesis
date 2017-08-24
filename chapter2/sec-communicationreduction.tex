@@ -39,7 +39,7 @@ Our main result is a characterization of the sample complexity of the distributi
                  & \cellcolor{gray!25}\\\hline
   \end{tabular}
   \end{adjustwidth}
-    \caption{\label{fig:table:secommunication:results} Summary of results. All the bounds are stated for constant proximity parameter $\eps$.}
+    \caption{\label{fig:table:secommunication:results} Summary of results obtained \textit{via} our communication complexity methodology. All the bounds are stated for constant proximity parameter $\eps$.}
   \end{table}
  
 In a recent and influential work, Valiant and Valiant~\cite{VV:14} showed that the sample complexity of the foregoing question is closely related to the $\lp[2/3]$-quasinorm of $\p$, defined as $\norm{\p}_{2/3} = \big(\sum_{\omega \in \Omega} \abs{\p(\omega)}^{2/3}\big)^{3/2}$. That is, viewing a distribution $\p \in\distribs{\Omega}$ as an $\abs{\Omega}$-dimensional vector of probabilities, let $\p_{-\eps}^{-\max}$ be the vector obtained from $\p$ by zeroing out the largest entry as well as the set of smallest entries summing to $\eps$ (note that $\p_{-\eps}^{-\max}$ is no longer a probability distribution). Valiant and Valiant gave an $\eps$-tester\footnote{Throughout the introduction, we fix $\eps$ to be small constant and refer to a tester with respect to proximity parameter $\eps$ as an \emph{$\eps$-tester}.}{} for testing identity to $\p$ with sample complexity $O\big({\norm{\p_{-c \eps}^{-\max}}_{2/3}}\big)$, where $c>0$ is a universal constant, and complemented this result with a lower bound of $\Omega\big({\norm{\p_{-\eps}^{-\max}}_{2/3}}\big)$.\footnote{We remark that for certain $\p$'s, the asymptotic behavior of $\bigO{\norm{\p_{-c\eps}^{-\max}}_{2/3}}$ strongly depends on the constant $c$, and so it cannot be omitted from the expression. We further remark that this result was referred to by Valiant and Valiant  as ``instance-optimal identity testing'' as the resulting bounds are phrased as a function of the distribution $\p$ itself -- instead of the standard parameter which is the domain size $n$.}
@@ -634,7 +634,7 @@ where $f\colon x\in [0,1]\mapsto x^2+x\sqrt{1-x^2}$. It is instructive to note t
       \addplot+[mark=none,smooth,red] {x}; 
     \end{axis}
   \end{tikzpicture}
-  \caption{Holmstedt's upper bound (in blue) vs. true behavior of $\kf{\p}$ (in red).}
+  \caption{Example of the $K$-functional for the uniform distribution over $[n]$: Holmstedt's upper bound (in blue) vs. true behavior of $\kf{\p}$ (in red).}
 \end{figure}
 
 From the above, we can now compare the behavior of $\kf{\p}^{-1}(1-2\eps)$ to the ``2/3-norm functional'' introduced by Valiant and Valiant~\cite{VV:14}: for $\eps\in(0,1/2)$,

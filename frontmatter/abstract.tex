@@ -11,18 +11,17 @@
 
 \epigraph{Recently there has been a lot of glorious hullabaloo about Big Data and how it is going to revolutionize the way we work, play, eat and sleep.}{Rocco A. Servedio}
 
-In order to study the real world, scientists (and computer scientists) develop
-simplified models that attempt to capture the essential features of the observed system.
-Understanding the power and limitations of these models, when they apply or fail to fully
-capture the situation at hand, is therefore of paramount importance.
+In order to study the real world, scientists (and computer scientists) develop simplified models that attempt to capture the essential features of the observed system.
+Understanding the power and limitations of these models, when they apply or fail to fully capture the situation at hand, is therefore of uttermost importance.
 
-In this thesis, we consider the role of some of these standard models in property and
-distribution testing, as well as in related areas. We introduce variants or extensions of these
-models, in order to circumvent some of their limitations or draw new insights about the
-problems they aim at capturing. Our results are organized in two main directions:
+In this thesis, we investigate the role of some of these models in property testing of probability distributions (\emph{distribution testing}), as well as in related areas. We introduce natural extensions of the standard
+model (which only allows access to independent draws from the underlying distribution), in order to circumvent some of its limitations or draw new insights about the
+problems they aim at capturing. Our results are organized in three main directions:
 
 \begin{enumerate}
-  \item We study and refine our understanding of distribution testing, providing a clear picture of what can and cannot be achieved~--~and why~--~in many problems of interest. This goal is tackled in two ways: first, we abstract structural properties of distributions that allow efficient approaches, and obtain a general algorithmic framework that leverages them. Second, we will introduce and consider new (natural) models of access to the unknown distributions, that enable testers to achieve better efficiency; thus helping both in obtaining such better algorithms in practice, and in providing an understanding of the underlying bottlenecks for algorithms in the standard access models.
+  \item We provide systematic approaches to tackle distribution testing questions. Specifically, we provide two general algorithmic frameworks that apply to a wide range of properties, and yield efficient and near-optimal results for many of them. We complement these by introducing two methodologies to prove information-theoretic lower bounds in distribution testing, which enable us to derive hardness results in a clean and unified way.
+  
+  \item We introduce and investigate two new models of access to the unknown distributions, which both generalize the standard sampling model in different ways and allow testing algorithms to achieve significantly better efficiency. Our study of the power and limitations of algorithms in these models shows how these could lead to faster algorithms in practical situations, and  yields a better understanding of the underlying bottlenecks in the standard sampling setting.
 
-  \item We then leave the field of distribution testing to explore areas adjacent or related to property testing. We first introduce a new algorithmic primitive of sampling correction, which in some sense lies in between distribution learning and testing, and aims at capturing imperfect or noisy sources of data. \new{We then venture into the field of communication complexity, and study the role of imperfect context between two communicating parties: thus interpolating between the standard settings of public and private shared randomness between two parties.}\todonote{Change the abstract}{} Finally, we turn back to communication complexity, drawing connections between this field and distribution testing~--~yielding a new general method for proving lower bounds in the latter.
+  \item We then leave the field of distribution testing to explore areas adjacent to property testing. We define a new algorithmic primitive of \emph{sampling correction}, which in some sense lies in between distribution learning and testing and aims to capture settings where data originates from imperfect or noisy sources. Our work sets out to model these situations in a rigorous and abstracted way, in order to enable the development of systematic methods to address these issues.
 \end{enumerate}
