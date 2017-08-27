@@ -3,8 +3,8 @@
 % It's probably a good idea to review the university guidelines just so you know what you want your dissertation to look like. You can read about those guidelines at this site: http://gsas.columbia.edu/content/formatting-guidelines.
 
 \documentclass[letterpaper,10pt,oldfontcommands]{memoir} % The memoir class is great for longer works that use separate chapters. The Dissertation Office recommends 10-pt Arial or 12-pt Times New Roman. I use 12-pt for readability.
-\def\withcolors{1}
-\def\withnotes{1}
+\def\withcolors{0}
+\def\withnotes{0}
 \def\withannoyingspacing{0}
 
 \setsecnumdepth{subsubsection}
@@ -27,11 +27,17 @@
 %\usepackage{utopia} % Nice font. I like it.
 \usepackage{times} % Stupid font. I like it too.
 
-\title{Property Testing and Probability Distributions: New Insights from New Models}
+\title{Property Testing and Probability Distributions: New Techniques, New Models, and New Goals}
 \author{Cl\'{e}ment L. Canonne}
 \date{2017}
 
+% Property Testing and Probability Distributions: New Insights from New Models
 % New approaches and models in distribution testing
+% In and Beyond Distribution Testing
+% Distribution Testing: The Edge, and Beyond
+% Distribution Testing: Playing by and Bending the Rules
+% "There will be a test"
+% Property Testing and Probability Distributions: New Techniques, New Models, and New Goals
 
 
 \usepackage[backend=bibtex]{biblatex} % Use biblatex
@@ -109,5 +115,8 @@
 \setlength{\bibitemsep}{\baselineskip} % Skip lines between bibliography entries. Columbia requires that you skip a line between entries.
 \SingleSpacing % Start single-spacing text before you start the bibliography. We used \bibitemsep earlier in this document to keep bibliography items separated by one line of blank space, but we need to keep the entries themselves single-spaced.
 \printbibliography % Print the bibliography.
+
+\appendix
+\include{appendix/app-deferredproofs}
 
 \end{document}
