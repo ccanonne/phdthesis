@@ -18,7 +18,7 @@ When the domain is a subset of the natural numbers $\N$, we shall often abuse no
 
 As is usual in property testing of distributions, throughout this dissertation the distance between two distributions $\D_1, \D_2\in \distribs{\domain}$ will be the \emph{total variation distance}:
 \begin{equation}\label{def:distance:tv}
-\totalvardist{\D_1}{\D_2 } \eqdef \max_{S \subseteq \domain} (\D_1(S)-\D_2(S)) = \frac{1}{2} \sum_{x \in \domain}\abs{\D_1(i)-\D_2(i)} = \frac{1}{2} \normone{\D_1 - \D_2}
+\totalvardist{\D_1}{\D_2 } \eqdef \max_{S \subseteq \domain} (\D_1(S)-\D_2(S)) = \frac{1}{2} \sum_{x \in \domain}\abs{\D_1(x)-\D_2(x)} = \frac{1}{2} \normone{\D_1 - \D_2}
 \end{equation}
 which takes value in $[0,1]$. (Due to the equivalence between total variation and $\lp[1]$ distances, we will sometimes phrase our results in terms of the latter, and ask the reader for their forgiveness.) In some cases, it is useful to consider -- either as a proxy towards total variation, or for the sake of the analysis -- different metrics, such as $\lp[2]$, Kolmogorov, or Hellinger distances. More on these can be found in~\cref{chap:preliminaries:previous:tools}.
 
