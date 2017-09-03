@@ -89,7 +89,7 @@ We note that our upper bound for $t$-histograms (\cref{coro:main:testing:piecewi
 \subparagraph{Lower Bounds} To complement our upper bounds, we also give a generic framework for proving lower bounds against testing classes of distributions. While this framework will be the focus of the next chapter, we state here some of the results it enables us to derive for specific structured distribution families; the reader is referred to~\cref{sec:learningreductions} (and specifically~\cref{theo:main:testing:lb}) for the details and formal statement of our reduction-based lower bound theorem.
 
 \begin{restatable}{corollary}{corolbsqrtn}\label{coro:lb:sqrtn}
-  Testing log-concavity, convexity, concavity, MHR, unimodality, $t$-modality, $t$-histograms, and $t$-piecewise degree-$d$ distributions each require $\bigOmega{{\sqrt{n}}/{\eps^2}}$ samples (the last three for $t = o(\sqrt{n})$ and $t(d+1) = o(\sqrt{n})$, respectively), for any $\eps\geq 1/n^{O(1)}$.
+  Testing log-concavity, convexity, concavity, MHR, unimodality, $t$-modality, $t$-histograms, and $t$-piecewise degree-$d$ distributions each require $\bigOmega{{\sqrt{n}}/{\eps^2}}$ samples (the last three for $t = o(\sqrt{n})$ and $t(d+1) = o(\sqrt{n})$, respectively), for any $\eps\geq 1/n^{O(1)}$.\footnote{Here, the restriction on $\eps$ should be read as ``for each of these distribution classes, there exists an absolute constant $c>0$ (which may depend on the corresponding class) such that the result applies for every $\eps\geq \frac{1}{n^c}$.''}
 \end{restatable}
 
 \begin{restatable}{corollary}{corolbpbd}\label{coro:lb:pbd}

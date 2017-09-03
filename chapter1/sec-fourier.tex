@@ -3,21 +3,6 @@ The upper bound framework presented in the previous section relied on a \emph{sh
 Our two Swiss Army Knife approaches -- the shape restriction one from the previous section, and the ``Fourier knife'' we are about to describe -- can thus be seen as complementary; in conjunction, they provide a thorough and widely applicable toolbox to tackle distribution testing questions.
 
  \subsection{Introduction}  \label{sec:introduction:fourier}
-% \subsubsection{Background and Motivation} \label{ssec:background}
-
-% The prototypical inference question in the area of \emph{distribution property testing}~\cite{BFRSW:00}
-% is the following: Given a set of samples from a collection of probability distributions, can we
-% determine whether these distributions satisfy a certain property?
-% During the past two decades, this broad
-% question -- whose roots lie in statistical hypothesis testing~\cite{NeymannPearson:33,Lehmann:2005:book} --
-% has received considerable attention by the computer science community,
-% see~\cite{Rubinfeld:12:Survey, Canonne:15:Survey} for two recent surveys.
-% After two decades of study, for many properties of interest there exist
-% sample-optimal testers (matched by information-theoretic lower bounds)
-% ~\cite{Paninski:08, CDVV:14, VV:14, DKN:15, DK:16}.
-
-% In this work, we focus on the problem of testing whether the unknown distribution
-% belongs to a given family of discrete \emph{structured} distributions.
 
 As before, let $\property$ be a family of discrete distributions over a total order (e.g., $[n]$)
 or a partial order (e.g., $[n]^k$). 
@@ -489,7 +474,49 @@ and (b) $\widetilde{\mu}$, a tentative approximation to $\shortexpect_{X \sim \p
 
 \subsubsection{Analyzing the subroutines}
 
-We start with a simple fact, that we will use to bound the running time of our algorithm and which follows immediately from~\cite[Claim 2.4]{DKS:15}:
+We start with some useful structural results, which will be necessary to our analysis. The first is the following lemma from~\cite{DKS:15}:
+\begin{lemma}[{\cite[Lemma 2.3]{DKS:15}}]\label{lemma:FourierSupportLem}
+Let $\p \in \classksiirv[n]{k}$ with $\sqrt{\var_{X \sim \p}[X]} = s$, $1/2>\delta>0$, and $M \in \Z_+$ with $M>s$.
+Let $\fourier{\p}$ be the discrete Fourier transform of $\p$ modulo $M$. Then, we have
+  \begin{enumerate}
+    \item[(i)]\label{lemma:FourierSupportLem:i} Let $\mathcal{L} = \mathcal{L}(\delta, M,s) \eqdef \left\{ \xi \in [M-1] \mid \exists a, b \in \Z, 0 \leq a \leq b < k \textrm{ such that }
+    |\xi/M - a/b| <  \frac{\sqrt{\ln (1/\delta)}}{2s}  \right\} \;.$ Then, $|\fourier{\p}(\xi)| \leq \delta$ for all $\xi \in [M-1] \setminus \mathcal{L}.$
+    That is, $|\fourier{\p}(\xi)| > \delta$ for
+    at most $|\mathcal{L}| \leq M k^2 s^{-1} \sqrt{\log(1/\delta)}$ values of $\xi$ .
+    \item[(ii)]\label{lemma:FourierSupportLem:ii} At most $4Mks^{-1}\sqrt{\log(1/\delta)}$ many integers $0 \leq \xi \leq M-1$ have  $|\fourier{\p}(\xi)| > \delta \;.$
+  \end{enumerate}
+\end{lemma}
+Next, we provide a simple structural lemma, bounding the $\lp[2]$ norm of any $(n,k)$-SIIRV as a function of $k$ and its variance only:
+\begin{lemma}[Any $(n,k)$-SIIRV modulo $M$ has small {$\lp[2]$} norm]\label{claim:ksiirv:l2:norm}
+  If $\p \in \mathcal{S}_{n, k}$ has variance $s^2$, then the distribution $\p'$ defined as $\p' \eqdef \p \bmod M$ satisfies 
+  $
+      \normtwo{\p'} \leq \sqrt{\frac{8k}{s}}
+  $.
+\end{lemma}
+\begin{proof}[Proof of~\cref{claim:ksiirv:l2:norm}]
+By Plancherel, we have
+$
+  \normtwo{\p'}^2 = \frac{1}{M} \sum_{\xi=0}^{M-1} \dabs{\fourier{\p'}(\xi)}^2 = \frac{1}{M} \sum_{\xi=0}^{M-1} \dabs{\fourier{\p}(\xi)}^2
+$, 
+the second equality due to the definition of $\fourier{\p'}$. Indeed, for any $\xi\in\modulo{M}$, 
+\begin{align*}
+    \fourier{\p'}(\xi) &= \sum_{j=0}^{M-1} e^{-2i\pi \frac{j\xi}{M}} \p'(j) = \sum_{j=0}^{M-1} e^{-2i\pi \frac{j\xi}{M}} \sum_{\substack{j'\in\mathbb{N}\\j' = j \bmod M}} \p(j')
+    = \sum_{j=0}^{M-1} \sum_{\substack{j'\in\mathbb{N}\\j' = j \bmod M}} e^{-2i\pi \frac{j'\xi}{M}} \p(j')
+    \\
+    &= \sum_{j\in\mathbb{N}} e^{-2i\pi \frac{j'\xi}{M}} \p(j')
+    = \fourier{\p}(\xi)
+\end{align*}
+as $u\mapsto e^{-2i\pi u}$ is $1$-periodic. Since $\abs{\fourier{\p}(\xi)}\leq 1$ for every $\xi\in\modulo{M}$ (as $\fourier{\p}(\xi) = \shortexpect_{j\sim \p}[e^{-2i\pi \frac{j\xi}{M}}]$), we can upper bound the RHS as
+\[
+    \frac{1}{M} \sum_{\xi=0}^{M-1} \dabs{\fourier{\p}(\xi)}^2 \leq \frac{1}{M} \sum_{r\geq 0} \sum_{\xi : \frac{1}{2^{r+1}} < \abs{\fourier{\p}(\xi)} \leq \frac{1}{2^{r}}} \abs{\fourier{\p}(\xi)}^2
+    \leq \frac{1}{M} \sum_{r\geq 0} \frac{1}{2^{2r}} \abs{\setOfSuchThat{ \xi\in\modulo{M} }{ \frac{1}{2^{r+1}} < \abs{\fourier{\p}(\xi)} }}\;.
+\]
+Invoking~\cref{lemma:FourierSupportLem}(ii) with parameter $\delta$ set to $\frac{1}{2^{r+1}}$, we get that $\abs{\setOfSuchThat{ \xi\in\modulo{M} }{ \frac{1}{2^{r+1}} < \abs{\fourier{\p}(\xi)} }} \leq 4Mk s^{-1} \sqrt{r+1}$, from which \[
+    \normtwo{\p'}^2 \leq \frac{4k}{s} \sum_{r\geq 0} \frac{\sqrt{r+1}}{2^{2r}} \leq \frac{8k}{s}
+\]
+as desired.
+\end{proof}
+Finally, we will use the simple fact below -- which follows immediately from~\cite[Claim 2.4]{DKS:15} -- to bound the running time of our algorithm:
 \begin{fact}\label{fact:bound:size:s}
   For $S$ as defined in Step~\ref{algo:step:dft:computation}, we have
   \[
@@ -499,7 +526,7 @@ We start with a simple fact, that we will use to bound the running time of our a
   for a suitably large choice of the constant $C''>0$; from which we get $\delta \leq \frac{1}{4\sqrt{\abs{S}}}$.
 \end{fact}
 
-We then argue that with high probability, the estimates obtained in Step~\ref{algo:step:estimates:mu:sigma} will be accurate enough for our purposes. (The somewhat odd statement below, stating two distinct guarantees where the second implies the first, is due to the following: \cref{eq:guarantees:moments} will be the guarantee that (the completeness analysis of) our algorithm relies on, while the second, slightly stronger one, will only be used in the particular implementation of the ``projection step'' (Step~\ref{algo:step:cover}) from~\cref{sec:projections}.)
+With this in hand, we argue that with high probability, the estimates obtained in Step~\ref{algo:step:estimates:mu:sigma} will be accurate enough for our purposes. (The somewhat odd statement below, stating two distinct guarantees where the second implies the first, is due to the following: \cref{eq:guarantees:moments} will be the guarantee that (the completeness analysis of) our algorithm relies on, while the second, slightly stronger one, will only be used in the particular implementation of the ``projection step'' (Step~\ref{algo:step:cover}) from~\cref{sec:projections}.)
 \begin{claim}[Estimating the first two moments (if $\p$ is a SIIRV)]\label{claim:estimate:moments}
   With probability at least $19/20$ over the $O(k)$ draws from $\p$ in Step~\ref{algo:step:estimates:mu:sigma}, the following holds. If $\p\in\classksiirv[n]{k}$, the estimates $\widetilde{\sigma},\widetilde{\mu}$ defined as the empirical mean and (unbiased) empirical variance meet the guarantees stated in Step~\ref{algo:step:estimates:mu:sigma} of the algorithm, namely
   \begin{equation}\label{eq:guarantees:moments}

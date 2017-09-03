@@ -200,7 +200,7 @@ Then, for all $\eps > 0$, $\probaOf{ \kolmogorov{\D}{\hat{\D}} > \eps } \leq 2e^
 
 We state here a few facts about monotone distributions, namely that they admit a \emph{succinct} approximation, itself monotone, close in total variation distance. This theorem, originally from \cite{Birge:87}, has recently been pivotal in several results on learning and testing $k$-modal distributions \cite{DDS:12,DDSVV:13}. 
 \begin{definition}[Birg\'e decomposition]\label{def:birge:decomposition}
-  Given a parameter $\alpha>0$, the corresponding (oblivious) \emph{Birg\'e decomposition of $[n]$} is the partition $\mathcal{I}_\alpha=(I_1,\dots,I_\ell)$, where $\ell=\bigTheta{\frac{\ln( \alpha n + 1)}{\alpha}}=\bigTheta{\frac{\log n }{\alpha}}$ and $\abs{I_{k}}=\flr{(1+\alpha)^k}$, $1\leq k \leq \ell$. 
+  Given a parameter $\alpha>0$, the corresponding (oblivious) \emph{Birg\'e decomposition of $[n]$} is the partition $\mathcal{I}_\alpha=(I_1,\dots,I_\ell)$, where $\ell=\bigO{\frac{\ln( \alpha n + 1)}{\alpha}}=\bigO{\frac{\log n }{\alpha}}$ and $\abs{I_{k}}=\flr{(1+\alpha)^k}$, $1\leq k \leq \ell$. 
 \end{definition}
 Note that this partition consists of logarithmically many intervals \emph{and crucially only depends on $n$ and $\eps$} (and not on any specific distribution $\D$): for this reason, we will often refer to it as the ``oblivious'' decomposition.
 
@@ -375,55 +375,7 @@ Note that the DFT (modulo $M$) is a linear operator; moreover, we recall the sta
 For $M\geq 1$ and $F,G\colon\modulo{n} \to \C$, we have (i) $\sum_{j=0}^{n-1} F(j)\overline{G(j)} =  \frac{1}{M}\sum_{\xi=0}^{M-1} \fourier{F}(\xi)\overline{\fourier{G}(\xi)}$; and (ii) $\normtwo{F}= \frac{1}{\sqrt{M}}\normtwo{\fourier{F}}$, 
 where $\fourier{F},\fourier{G}$ are the DFT modulo $M$ of $F,G$, respectively.
 \end{theorem}
-\noindent(The latter equality is sometimes referred to as Parseval's theorem.) We also note that, for our PMD testing, we shall need the appropriate generalization of the Fourier transform to the multivariate setting. We leave this generalization to the corresponding section,~\cref{sec:pmd:testing}.
-
- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Some more useful structural results}\label{sec:learn}
-To establish the completeness of several of our algorithms, we will rely upon this lemma from~\cite{DKS:15}:
-\begin{lemma}[{\cite[Lemma 2.3]{DKS:15}}]\label{lemma:FourierSupportLem}
-Let $\p \in \classksiirv[n]{k}$ with $\sqrt{\var_{X \sim \p}[X]} = s$, $1/2>\delta>0$, and $M \in \Z_+$ with $M>s$.
-Let $\fourier{\p}$ be the discrete Fourier transform of $\p$ modulo $M$. Then, we have
-  \begin{enumerate}
-    \item[(i)]\label{lemma:FourierSupportLem:i} Let $\mathcal{L} = \mathcal{L}(\delta, M,s) \eqdef \left\{ \xi \in [M-1] \mid \exists a, b \in \Z, 0 \leq a \leq b < k \textrm{ such that }
-    |\xi/M - a/b| <  \frac{\sqrt{\ln (1/\delta)}}{2s}  \right\} \;.$ Then, $|\fourier{\p}(\xi)| \leq \delta$ for all $\xi \in [M-1] \setminus \mathcal{L}.$
-    That is, $|\fourier{\p}(\xi)| > \delta$ for
-    at most $|\mathcal{L}| \leq M k^2 s^{-1} \sqrt{\log(1/\delta)}$ values of $\xi$ .
-    \item[(ii)]\label{lemma:FourierSupportLem:ii} At most $4Mks^{-1}\sqrt{\log(1/\delta)}$ many integers $0 \leq \xi \leq M-1$ have  $|\fourier{\p}(\xi)| > \delta \;.$
-  \end{enumerate}
-\end{lemma}
-
-
-We then provide a simple structural lemma, bounding the $\lp[2]$ norm of any $(n,k)$-SIIRV as a function of $k$ and its variance only:
-\begin{lemma}[Any $(n,k)$-SIIRV modulo $M$ has small {$\lp[2]$} norm]\label{claim:ksiirv:l2:norm}
-  If $\p \in \mathcal{S}_{n, k}$ has variance $s^2$, then the distribution $\p'$ defined as $\p' \eqdef \p \bmod M$ satisfies 
-  $
-      \normtwo{\p'} \leq \sqrt{\frac{8k}{s}}
-  $.
-\end{lemma}
-\begin{proof}[Proof of~\cref{claim:ksiirv:l2:norm}]
-By Plancherel, we have
-$
-  \normtwo{\p'}^2 = \frac{1}{M} \sum_{\xi=0}^{M-1} \dabs{\fourier{\p'}(\xi)}^2 = \frac{1}{M} \sum_{\xi=0}^{M-1} \dabs{\fourier{\p}(\xi)}^2
-$, 
-the second equality due to the definition of $\fourier{\p'}$. Indeed, for any $\xi\in\modulo{M}$, 
-\begin{align*}
-    \fourier{\p'}(\xi) &= \sum_{j=0}^{M-1} e^{-2i\pi \frac{j\xi}{M}} \p'(j) = \sum_{j=0}^{M-1} e^{-2i\pi \frac{j\xi}{M}} \sum_{\substack{j'\in\mathbb{N}\\j' = j \bmod M}} \p(j')
-    = \sum_{j=0}^{M-1} \sum_{\substack{j'\in\mathbb{N}\\j' = j \bmod M}} e^{-2i\pi \frac{j'\xi}{M}} \p(j')
-    \\
-    &= \sum_{j\in\mathbb{N}} e^{-2i\pi \frac{j'\xi}{M}} \p(j')
-    = \fourier{\p}(\xi)
-\end{align*}
-as $u\mapsto e^{-2i\pi u}$ is $1$-periodic. Since $\abs{\fourier{\p}(\xi)}\leq 1$ for every $\xi\in\modulo{M}$ (as $\fourier{\p}(\xi) = \shortexpect_{j\sim \p}[e^{-2i\pi \frac{j\xi}{M}}]$), we can upper bound the RHS as
-\[
-    \frac{1}{M} \sum_{\xi=0}^{M-1} \dabs{\fourier{\p}(\xi)}^2 \leq \frac{1}{M} \sum_{r\geq 0} \sum_{\xi : \frac{1}{2^{r+1}} < \abs{\fourier{\p}(\xi)} \leq \frac{1}{2^{r}}} \abs{\fourier{\p}(\xi)}^2
-    \leq \frac{1}{M} \sum_{r\geq 0} \frac{1}{2^{2r}} \abs{\setOfSuchThat{ \xi\in\modulo{M} }{ \frac{1}{2^{r+1}} < \abs{\fourier{\p}(\xi)} }}\;.
-\]
-Invoking~\cref{lemma:FourierSupportLem}(ii) with parameter $\delta$ set to $\frac{1}{2^{r+1}}$, we get that $\abs{\setOfSuchThat{ \xi\in\modulo{M} }{ \frac{1}{2^{r+1}} < \abs{\fourier{\p}(\xi)} }} \leq 4Mk s^{-1} \sqrt{r+1}$, from which \[
-    \normtwo{\p'}^2 \leq \frac{4k}{s} \sum_{r\geq 0} \frac{\sqrt{r+1}}{2^{2r}} \leq \frac{8k}{s}
-\]
-as desired.
-\end{proof}
-
+\noindent(The latter equality is sometimes referred to as Parseval's theorem.) We also note that later, for our PMD testing result, we shall need the appropriate generalization of the Fourier transform to the multivariate setting. We leave this generalization to the corresponding section,~\cref{sec:pmd:testing}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Error-Correcting Codes.} 
