@@ -137,7 +137,7 @@ good concentration -- while arguing concentration of each of these terms separat
 A nearly identical method works for PMDs as well. Moreover, our approach can be abstracted 
 to yield a general testing framework, as we explain in~\cref{sec:general:testing}. It is interesting to
 remark that the Fourier transform has been used to learn PMDs and SIIRVs~\cite{DKS:15, DKT:15, DKS:15b, DDKT:16}, and therefore it may not be entirely surprising that it has applications to testing as well. 
-However, testing membership to a class using the Fourier transform is significantly more challenging than learning: a fundamental reason being that, in contrast to the learning 
+However, testing membership in a class using the Fourier transform is significantly more challenging than learning: a fundamental reason being that, in contrast to the learning 
 setting, we need to handle distributions that are \emph{not} SIIRVs and PMDs (but, indeed, are far from those). The learning algorithms, on the other hand, work under the promise that the distribution is in the class, and thus can leverage the specific structure of SIIRVs and PMDs. Moreover, our Fourier testing techniques gives
 improved algorithms for other structured families as well, e.g., log-concavity, for which no Fourier learning algorithm was known.
 
@@ -665,7 +665,7 @@ In particular, we hereafter assume that $\widetilde{\sigma} \leq 2k\sqrt{n}$.
 
  
 \subsection{The General Tester}\label{sec:general:testing}
-In this section, we abstract the ideas underlying the $(n,k)$-SIIRV from~\cref{sec:siirv:testing}, to provide a general testing framework. In more detail, our theorem (\cref{theo:testing:general}) has the following flavor: if $\property$ is a property of distributions such that every $\p\in\property$ has both (i) small effective support and (ii) sparse effective Fourier support, then one can test membership to $\property$ with $O(\sqrt{sM}/\eps^2+s/\eps^2)$ samples (where $M$ and $s$ are the bounds on the effective support and effective Fourier support, respectively). As a caveat, we do require that the sparse effective Fourier support $S$ be independent of $\p\in\property$, i.e., is a characteristic of the class $\property$ itself.
+In this section, we abstract the ideas underlying the $(n,k)$-SIIRV from~\cref{sec:siirv:testing}, to provide a general testing framework. In more detail, our theorem (\cref{theo:testing:general}) has the following flavor: if $\property$ is a property of distributions such that every $\p\in\property$ has both (i) small effective support and (ii) sparse effective Fourier support, then one can test membership in $\property$ with $O(\sqrt{sM}/\eps^2+s/\eps^2)$ samples (where $M$ and $s$ are the bounds on the effective support and effective Fourier support, respectively). As a caveat, we do require that the sparse effective Fourier support $S$ be independent of $\p\in\property$, i.e., is a characteristic of the class $\property$ itself.
 
 The high-level idea is then quite simple: the algorithm proceeds in three stages, namely the \emph{effective support test}, the \emph{Fourier effective support test}, and the \emph{projection step}. In the first, it takes some samples from $\p$ to identify what should be the effective support $I$ of $\p$, if $\p$ did have the property: and then checks that indeed $\abs{I}\leq M$ (as it should) and that $\p$ puts probability mass $1-O(\eps)$ on $I$.
 
@@ -1082,7 +1082,7 @@ $. By standard arguments, this yields information-theoretically an agnostic lear
 Having (a), (b), and (c), an application of~\cite[Theorem 18]{CDGR:16} yields that, as long as 
 $
   q_{\rm agn}(n,k,\eps) = o( q_{\rm hard}(n,k,\eps) )
-$ then testing membership to $\classpmd[n]{k}$ requires $\bigOmega{q_{\rm hard}(n,k,\eps)}$ samples as well. This in particular holds for $k = o(n^{c})$ (where e.g. $c<1/9$) and $\eps = 1/2^{O(n)}$.
+$ then testing membership in $\classpmd[n]{k}$ requires $\bigOmega{q_{\rm hard}(n,k,\eps)}$ samples as well. This in particular holds for $k = o(n^{c})$ (where e.g. $c<1/9$) and $\eps = 1/2^{O(n)}$.
 
 \end{proof}
 
