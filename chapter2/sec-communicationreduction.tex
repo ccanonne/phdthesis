@@ -207,8 +207,8 @@ We shall focus on a special type of the foregoing reductions, which is particula
 		p(x,y) = \frac{\alpha}{\alpha+\beta}\cdot \p_A(x) + \frac{\beta}{\alpha+\beta}\cdot \p_B(y)
 		\] 
 		and $\alpha,\beta$ can each be encoded with $\bigO{\log n}$ bits.
-		\item \emph{Completeness:} For every $(x,y) = f^{-1}(1)$, it holds that $\p(x,y) \in \Pi$.
-		\item \emph{Soundness:} For every $(x,y) = f^{-1}(0)$, it holds that $\p(x,y)$ is $\eps$-far from $\Pi$ in $\ell_1$ distance.
+		\item \emph{Completeness:} For every $(x,y) \in f^{-1}(1)$, it holds that $\p(x,y) \in \Pi$.
+		\item \emph{Soundness:} For every $(x,y) \in f^{-1}(0)$, it holds that $\p(x,y)$ is $\eps$-far from $\Pi$ in $\ell_1$ distance.
 	\end{enumerate}
 	Then, every $\eps$-tester for $\Pi$ needs $\bigOmega{\frac{\SMP(f)}{\log(n)}}$ samples.
 \end{lemma}
